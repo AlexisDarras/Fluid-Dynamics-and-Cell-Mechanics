@@ -7,7 +7,9 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
+
+      - href: NotesIntroNavierStokes.qmd
+        text: Introduction to the Navier-Stokes Equation
 
 format:
   html:
