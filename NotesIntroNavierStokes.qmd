@@ -1,0 +1,665 @@
+---
+title: "Biological and Mesoscale Physics"
+subtitle: "Introduction to Continuum Mechanics and the Navier-Stokes Equations"
+author: "Dr Alexis Darras"
+format:
+  html:
+    toc: true
+    number-sections: true
+---
+
+# Introduction
+
+Many biological systems involve fluids:
+
+- blood flow through vessels,
+- transport within cells,
+- swimming microorganisms,
+- suspensions of proteins, cells and bacteria,
+- diffusion of nutrients and signalling molecules.
+
+Although these systems differ greatly in scale, they are governed by a common set of physical laws.
+
+The purpose of these notes is to derive the Navier-Stokes equation from Newton's laws and to explain the physical meaning of every term involved.
+
+Throughout these notes, bold symbols denote vectors.
+
+| Symbol | Meaning | SI unit |
+|----------|----------|----------|
+| $\mathbf r$ | Position vector | m |
+| $t$ | Time | s |
+| $\rho$ | Mass density | kg m$^{-3}$ |
+| $\mathbf v$ | Velocity field | m s$^{-1}$ |
+| $p$ | Pressure | Pa |
+| $\boldsymbol{\sigma}$ | Stress tensor | Pa |
+| $\eta$ | Dynamic viscosity | Pa s |
+| $\mathbf f_V$ | Body force density | N m$^{-3}$ |
+
+# From point particles to continuous media
+
+## Newtonian mechanics
+
+For a collection of particles, Newton's second law states
+
+$$
+\sum \mathbf F = \frac{d\mathbf p}{dt},
+$$
+
+where $\mathbf p$ is the momentum of the particle.
+
+Classical mechanics therefore describes:
+
+- particle positions,
+- particle velocities,
+- forces acting on each particle.
+
+This description rapidly becomes impossible when dealing with fluids, since a macroscopic fluid contains roughly
+
+$$
+10^{23}
+$$
+
+molecules per mole.
+
+## The continuum hypothesis
+
+Instead of describing individual molecules, we average quantities over a sufficiently small volume.
+
+This volume must:
+
+- be large compared with molecular dimensions,
+- be small compared with the length scales of interest.
+
+We then define smooth fields such as
+
+$$
+\rho(\mathbf r,t),
+$$
+
+$$
+\mathbf v(\mathbf r,t),
+$$
+
+$$
+p(\mathbf r,t).
+$$
+
+This approximation is known as the **continuum hypothesis**.
+
+Under this hypothesis, fluids can be treated using differential calculus.
+
+# Eulerian and Lagrangian descriptions
+
+There are two fundamentally different ways of describing fluid motion.
+
+## Lagrangian description
+
+We follow an individual fluid particle.
+
+Its position is
+
+$$
+\mathbf r_P(t).
+$$
+
+Its velocity is
+
+$$
+\mathbf v_P(t)
+=
+\frac{d\mathbf r_P}{dt}.
+$$
+
+This description remains very close to ordinary Newtonian mechanics.
+
+## Eulerian description
+
+Instead of following particles, we observe the fluid at fixed positions.
+
+At every point in space, we define
+
+$$
+\mathbf v(\mathbf r,t).
+$$
+
+This velocity field gives the velocity that a fluid particle would have if it passed through position $\mathbf r$ at time $t$.
+
+Most fluid mechanics uses the Eulerian description.
+
+## Comparison with particle mechanics
+
+| Particle mechanics | Continuum mechanics |
+|----------|----------|
+| Position $\mathbf r_P(t)$ | Velocity field $\mathbf v(\mathbf r,t)$ |
+| Mass $m$ | Density $\rho(\mathbf r,t)$ |
+| Force $\mathbf F$ | Force density |
+| Momentum $\mathbf p$ | Momentum density $\rho\mathbf v$ |
+| Newton's law | Cauchy momentum equation |
+
+# The material derivative
+
+Suppose a fluid carries a scalar quantity
+
+$$
+X(\mathbf r,t).
+$$
+
+Examples include:
+
+- temperature,
+- concentration,
+- density.
+
+A fluid particle moving through the flow experiences two kinds of changes:
+
+1. explicit changes with time;
+2. changes caused by moving into a region where the value of $X$ is different.
+
+Using the chain rule,
+
+$$
+\frac{dX}{dt}
+=
+\frac{\partial X}{\partial t}
++
+\frac{dx_i}{dt}
+\frac{\partial X}{\partial x_i}.
+$$
+
+Since
+
+$$
+\frac{dx_i}{dt}=v_i,
+$$
+
+we obtain
+
+$$
+\boxed{
+\frac{DX}{Dt}
+=
+\frac{\partial X}{\partial t}
++
+\mathbf v\cdot\nabla X
+}
+$$
+
+This operator is called the **material derivative**.
+
+## Material derivative of velocity
+
+Applying the material derivative to velocity itself gives the acceleration of a fluid element:
+
+$$
+\boxed{
+\frac{D\mathbf v}{Dt}
+=
+\frac{\partial\mathbf v}{\partial t}
++
+(\mathbf v\cdot\nabla)\mathbf v
+}
+$$
+
+The first term is called the **local acceleration**.
+
+The second term is called the **convective acceleration**.
+
+This second term has no equivalent in elementary particle mechanics and is responsible for much of the complexity of fluid dynamics.
+
+# Scalars, vectors and tensors
+
+Before introducing forces in continuous media, we need a new mathematical object.
+
+## Scalars
+
+Scalars possess magnitude only.
+
+Examples:
+
+- temperature,
+- mass,
+- density,
+- pressure.
+
+## Vectors
+
+Vectors possess magnitude and direction.
+
+Examples:
+
+- displacement,
+- velocity,
+- force.
+
+## Second-rank tensors
+
+A tensor describes how a quantity depends on direction.
+
+The simplest example is a matrix:
+
+$$
+\mathbf T
+=
+\begin{pmatrix}
+T_{xx} & T_{xy} & T_{xz}\\
+T_{yx} & T_{yy} & T_{yz}\\
+T_{zx} & T_{zy} & T_{zz}
+\end{pmatrix}.
+$$
+
+Tensors appear naturally when describing stresses in a continuous medium.
+
+Indeed, the force exerted across a given surface depends not only on position but also on the orientation of that surface.
+
+# Forces in a continuum
+
+## Body forces
+
+Some forces act throughout the volume of the fluid.
+
+Examples:
+
+- gravity,
+- electromagnetic forces.
+
+These forces scale with volume.
+
+The total body force acting on a volume $V$ is
+
+$$
+\mathbf F_V
+=
+\int_V \mathbf f_V \, dV,
+$$
+
+where
+
+$$
+\mathbf f_V
+$$
+
+is the body-force density.
+
+## Surface forces
+
+Fluid elements also exert forces on neighbouring fluid elements.
+
+These forces act through surfaces.
+
+They scale with surface area rather than volume.
+
+Define the traction vector
+
+$$
+\boldsymbol{\tau}
+=
+\frac{d\mathbf F}{dS}.
+$$
+
+Unlike pressure, traction depends on the orientation of the surface.
+
+# The stress tensor
+
+Remarkably, all surface forces can be described by a single tensor.
+
+The fundamental result is
+
+$$
+\boxed{
+\boldsymbol{\tau}
+=
+\mathbf n\cdot\boldsymbol{\sigma}
+}
+$$
+
+where
+
+- $\mathbf n$ is the outward surface normal,
+- $\boldsymbol{\sigma}$ is the stress tensor.
+
+The stress tensor is
+
+$$
+\boldsymbol{\sigma}
+=
+\begin{pmatrix}
+\sigma_{xx} & \sigma_{xy} & \sigma_{xz}\\
+\sigma_{yx} & \sigma_{yy} & \sigma_{yz}\\
+\sigma_{zx} & \sigma_{zy} & \sigma_{zz}
+\end{pmatrix}.
+$$
+
+## Interpretation of stress components
+
+For example:
+
+- $\sigma_{xx}$ measures a normal stress,
+- $\sigma_{xy}$ measures a shear stress.
+
+Specifically,
+
+$$
+\sigma_{xy}
+$$
+
+represents the force in the $y$ direction acting across a surface normal to $x$.
+
+# Pressure and shear stress
+
+The stress tensor is usually decomposed as
+
+$$
+\boxed{
+\boldsymbol{\sigma}
+=
+-p\mathbf I
++
+\boldsymbol{\sigma}'
+}
+$$
+
+where:
+
+- $p$ is the pressure,
+- $\mathbf I$ is the identity tensor,
+- $\boldsymbol{\sigma}'$ is the deviatoric stress tensor.
+
+The pressure contribution is isotropic.
+
+It acts equally in every direction.
+
+The deviatoric contribution is associated with deformation of the fluid.
+
+# Newtonian fluids
+
+Different materials exhibit different relationships between stress and deformation.
+
+This relationship is called the **constitutive equation**.
+
+## Rate-of-strain tensor
+
+The rate-of-strain tensor is defined as
+
+$$
+\gamma_{ij}
+=
+\frac{\partial v_i}{\partial x_j}
++
+\frac{\partial v_j}{\partial x_i}.
+$$
+
+For incompressible fluids, this quantifies local deformation rates.
+
+## Newtonian constitutive law
+
+For a Newtonian fluid,
+
+$$
+\boxed{
+\sigma_{ij}
+=
+-p\delta_{ij}
++
+\eta
+\left(
+\frac{\partial v_i}{\partial x_j}
++
+\frac{\partial v_j}{\partial x_i}
+\right)
+}
+$$
+
+where
+
+- $\eta$ is the dynamic viscosity.
+
+The key idea is:
+
+> Stress is proportional to deformation rate.
+
+This relationship is analogous to Hooke's law in elasticity, except that fluids respond to deformation rates rather than deformations themselves.
+
+# Conservation of mass
+
+Consider a fixed control volume.
+
+Mass may enter or leave through its surface.
+
+However, mass cannot be created or destroyed.
+
+Therefore,
+
+$$
+\boxed{
+\frac{\partial\rho}{\partial t}
++
+\nabla\cdot(\rho\mathbf v)
+=
+0
+}
+$$
+
+This equation is known as the **continuity equation**.
+
+# Incompressible fluids
+
+Many biological fluids can often be treated as incompressible.
+
+Incompressibility implies
+
+$$
+\frac{D\rho}{Dt}
+=
+0.
+$$
+
+Substituting into the continuity equation yields
+
+$$
+\boxed{
+\nabla\cdot\mathbf v
+=
+0
+}
+$$
+
+The velocity field therefore has zero divergence.
+
+Physically, this means fluid elements may deform but they do not change volume.
+
+# Conservation of momentum
+
+We now apply Newton's second law to a fluid element.
+
+## Momentum balance
+
+The rate of change of momentum equals the sum of forces.
+
+For a continuum,
+
+$$
+\rho
+\frac{D\mathbf v}{Dt}
+=
+\nabla\cdot\boldsymbol{\sigma}
++
+\mathbf f_V.
+$$
+
+Substituting the expression for the material derivative gives
+
+$$
+\boxed{
+\rho
+\left(
+\frac{\partial\mathbf v}{\partial t}
++
+(\mathbf v\cdot\nabla)\mathbf v
+\right)
+=
+\nabla\cdot\boldsymbol{\sigma}
++
+\mathbf f_V
+}
+$$
+
+This equation is called the **Cauchy momentum equation**.
+
+# Derivation of the Navier-Stokes equation
+
+Substitute the Newtonian constitutive equation:
+
+$$
+\sigma_{ij}
+=
+-p\delta_{ij}
++
+\eta
+\left(
+\frac{\partial v_i}{\partial x_j}
++
+\frac{\partial v_j}{\partial x_i}
+\right).
+$$
+
+Assuming:
+
+- constant density,
+- constant viscosity,
+- incompressibility,
+
+one obtains
+
+$$
+\nabla\cdot\boldsymbol{\sigma}
+=
+-\nabla p
++
+\eta\nabla^2\mathbf v.
+$$
+
+The Cauchy momentum equation therefore becomes
+
+$$
+\boxed{
+\rho
+\left(
+\frac{\partial\mathbf v}{\partial t}
++
+(\mathbf v\cdot\nabla)\mathbf v
+\right)
+=
+-\nabla p
++
+\eta\nabla^2\mathbf v
++
+\mathbf f_V
+}
+$$
+
+This is the Navier-Stokes equation.
+
+# Physical interpretation of Navier-Stokes
+
+The equation
+
+$$
+\rho
+\left(
+\frac{\partial\mathbf v}{\partial t}
++
+(\mathbf v\cdot\nabla)\mathbf v
+\right)
+=
+-\nabla p
++
+\eta\nabla^2\mathbf v
++
+\mathbf f_V
+$$
+
+can be interpreted term by term.
+
+| Term | Meaning |
+|----------|----------|
+| $\rho \partial_t\mathbf v$ | Local acceleration |
+| $\rho(\mathbf v\cdot\nabla)\mathbf v$ | Convective acceleration |
+| $-\nabla p$ | Pressure forces |
+| $\eta\nabla^2\mathbf v$ | Viscous momentum diffusion |
+| $\mathbf f_V$ | Body forces |
+
+The equation therefore has exactly the same structure as
+
+$$
+\text{mass}\times\text{acceleration}
+=
+\text{sum of forces}.
+$$
+
+# Reynolds number
+
+The balance between inertial and viscous effects is quantified by the Reynolds number.
+
+Define characteristic scales:
+
+- velocity $U$,
+- length $L$.
+
+Comparing inertia and viscosity gives
+
+$$
+\boxed{
+Re
+=
+\frac{\rho UL}{\eta}
+}
+$$
+
+## Physical meaning
+
+When
+
+$$
+Re\gg1,
+$$
+
+inertia dominates.
+
+When
+
+$$
+Re\ll1,
+$$
+
+viscosity dominates.
+
+Many organisms operate in the low-Reynolds-number regime.
+
+For example:
+
+- bacteria,
+- sperm cells,
+- intracellular transport.
+
+Their physics is therefore fundamentally different from our everyday experience.
+
+# Towards the problem class
+
+In the next session we will solve the Navier-Stokes equation for flow between parallel plates.
+
+To do so we will progressively introduce simplifying assumptions:
+
+1. incompressible flow,
+2. stationary flow,
+3. fully developed flow,
+4. no-slip boundary conditions,
+5. imposed pressure gradient.
+
+Under these assumptions, the Navier-Stokes equation reduces to an ordinary differential equation that can be solved analytically.
+
+This will allow us to derive:
+
+- Poiseuille flow of a Newtonian fluid,
+- flow of a power-law fluid,
+
+which form the basis of the following problem class.
