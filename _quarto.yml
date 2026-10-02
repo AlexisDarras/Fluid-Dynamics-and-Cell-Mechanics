@@ -8,6 +8,9 @@ website:
       - href: NotesIntroNavierStokes.qmd
         text: Introduction to the Navier-Stokes Equation
 
+      - href: FluidMechanicsProblemClass.qmd
+        text: Introduction to the Navier-Stokes Equation
+
 format:
   html:
     theme:
