@@ -102,7 +102,7 @@
     "href": "NotesIntroNavierStokes.html#newtonian-constitutive-law",
     "title": "Biological and Mesoscale Physics",
     "section": "7.2 Newtonian constitutive law",
-    "text": "7.2 Newtonian constitutive law\nFor a Newtonian fluid, the consitutive equation is that:\n\\[\n\\boxed{\n\\sigma_{ij}\n=\n-p\\delta_{ij}\n+\n\\eta\n\\left(\n\\frac{\\partial v_i}{\\partial x_j}\n+\n\\frac{\\partial v_j}{\\partial x_i}\n\\right)\n}\n\\]\nwhere \\(\\eta\\) is the dynamic viscosity.\nThe key idea is:\n\n\n\n\n\n\nImportant\n\n\n\nShear stress is linearly proportional to the shear rate.\n\n\n\n\n\n\n\n\nFigure 6: Illustration of Pressure and shear stresses.\n\n\n\nThis relationship is analogous to Hooke’s law in elasticity, except that fluids respond to deformation rates rather than deformations themselves."
+    "text": "7.2 Newtonian constitutive law\nFor a Newtonian fluid, the consitutive equation is that:\n\\[\n\\boxed{\n\\sigma_{ij}\n=\n-p\\delta_{ij}\n+\n\\eta\n\\left(\n\\frac{\\partial v_i}{\\partial x_j}\n+\n\\frac{\\partial v_j}{\\partial x_i}\n\\right)\n}\n\\]\nwhere \\(\\eta\\) is the dynamic viscosity.\nThe key idea is:\n\n\n\n\n\n\nImportant\n\n\n\nShear stress is linearly proportional to the shear rate.\n\n\n\n\n\n\n\n\nFigure 6: Illustration of flow profile of a Newtonian fluid under shear.\n\n\n\nThis relationship is analogous to Hooke’s law in elasticity, except that fluids respond to deformation rates rather than deformations themselves."
   },
   {
     "objectID": "NotesIntroNavierStokes.html#momentum-balance",
@@ -180,5 +180,75 @@
     "title": "Biological and Mesoscale Physics",
     "section": "7.1 Shear-rate tensor",
     "text": "7.1 Shear-rate tensor\nThe shear-rate tensor is defined as\n\\[\n\\gamma_{ij}\n=\\frac{1}{2}\\left(\n\\frac{\\partial v_i}{\\partial x_j}\n+\n\\frac{\\partial v_j}{\\partial x_i}\n\\right)\n-\\frac{1}{3}\\sum_{k} \\frac{\\partial v_k}{\\partial x_k} \\delta_{ij},\n\\] where the third term exists to make the tensor traceless. For incompressible fluids, as \\(\\nabla\\cdot\\mathbf v=\\sum_{k}\\frac{\\partial v_k}{\\partial x_k}=0\\), only the first two terms matter. This quantifies local deformation rates."
+  },
+  {
+    "objectID": "FluidMechanicsProblemClass.html",
+    "href": "FluidMechanicsProblemClass.html",
+    "title": "Fluid Mechanics Problem Class",
+    "section": "",
+    "text": "In this problem class, we will apply the conservation laws developed in the lecture notes to determine the velocity profile of a fluid flowing between two parallel plates.\nThe objectives are:\n\nSolve the Navier-Stokes equations for a Newtonian fluid.\nExtend the derivation to a power-law fluid.\nUnderstand the physical role of pressure gradients, viscosity, and constitutive equations.\n\nThroughout the exercises, do not attempt to solve the full Navier-Stokes equation immediately. Instead, progressively exploit the symmetries and assumptions of the problem to simplify the equations."
+  },
+  {
+    "objectID": "FluidMechanicsProblemClass.html#step-1-use-the-symmetries-of-the-problem",
+    "href": "FluidMechanicsProblemClass.html#step-1-use-the-symmetries-of-the-problem",
+    "title": "Fluid Mechanics Problem Class",
+    "section": "3.1 Step 1: Use the symmetries of the problem",
+    "text": "3.1 Step 1: Use the symmetries of the problem\nBegin by exploiting the assumptions.\n\nStationary flow : Which terms disappear from the Navier-Stokes equation when formulating this hypothesis?\nFully-developed flow: The geometry is translationally invariant along \\(x\\) and \\(z\\). What does this imply mathematically?\n\n-Two-dimensional flow: The problem statement gives \\(v_z=0\\). Which velocity components remain potentially non-zero?\n-Incompressibility: what equation can you get from this hypothesis? Use the wall boundary conditions to find what this implies for \\(v_y\\).\n\n\n\n\n\n\nNoteHint\n\n\n\n\n\nThe no-slip condition applies to every velocity component at the walls."
+  },
+  {
+    "objectID": "FluidMechanicsProblemClass.html#step-3-simplify-the-navier-stokes-equation",
+    "href": "FluidMechanicsProblemClass.html#step-3-simplify-the-navier-stokes-equation",
+    "title": "Fluid Mechanics Problem Class",
+    "section": "3.2 Step 3: Simplify the Navier-Stokes equation",
+    "text": "3.2 Step 3: Simplify the Navier-Stokes equation\nInsert the previous results into\n\\[\n\\rho\n\\left(\n\\frac{\\partial\\mathbf v}{\\partial t}\n+\n(\\mathbf v\\cdot\\nabla)\\mathbf v\n\\right)\n=\n-\\nabla p\n+\n\\eta\\nabla^2\\mathbf v.\n\\]\n\n3.2.1 Question\nWhat remains of:\n\nthe local acceleration term?\nthe convective acceleration term?\n\nAfter simplification, write the \\(x\\)-component of the equation.\n\n\n\n\n\n\nNoteHint\n\n\n\n\n\nYou should obtain an equation involving\n\\[\n\\frac{\\partial p}{\\partial x}\n\\]\nand\n\\[\n\\frac{\\partial^2 v_x}{\\partial y^2}.\n\\]"
+  },
+  {
+    "objectID": "FluidMechanicsProblemClass.html#step-4-solve-the-differential-equation",
+    "href": "FluidMechanicsProblemClass.html#step-4-solve-the-differential-equation",
+    "title": "Fluid Mechanics Problem Class",
+    "section": "3.3 Step 4: Solve the differential equation",
+    "text": "3.3 Step 4: Solve the differential equation\nInsert\n\\[\n\\frac{\\partial p}{\\partial x}\n=\n-\\frac{\\Delta p}{L}.\n\\]\nYou should obtain an ordinary differential equation in \\(y\\).\nIntegrate once.\nWhat physical quantity appears after the first integration?\nIntegrate a second time.\nTwo integration constants will appear.\nHow can they be determined?\n\n3.3.1 Boundary conditions\nHow can you formulate teh boudnary conditions mathematically in regard to \\(v_x\\) ?"
+  },
+  {
+    "objectID": "FluidMechanicsProblemClass.html#step-5-check-your-result",
+    "href": "FluidMechanicsProblemClass.html#step-5-check-your-result",
+    "title": "Fluid Mechanics Problem Class",
+    "section": "3.4 Step 5: Check your result",
+    "text": "3.4 Step 5: Check your result\nBefore moving on, verify that the solution satisfies:\n\nno-slip at both plates;\nleft-right symmetry about (y=0); including extremum velocity at the channel centre."
+  },
+  {
+    "objectID": "FluidMechanicsProblemClass.html#step-1-repeat-the-symmetry-analysis",
+    "href": "FluidMechanicsProblemClass.html#step-1-repeat-the-symmetry-analysis",
+    "title": "Fluid Mechanics Problem Class",
+    "section": "4.1 Step 1: Repeat the symmetry analysis",
+    "text": "4.1 Step 1: Repeat the symmetry analysis\nAll geometric assumptions from Exercise 1 still apply.\nDetermine:\n\nwhich velocity components vanish,\nwhich derivatives vanish,\nwhich stress components may remain non-zero.\n\n\n\n\n\n\n\nNoteHint\n\n\n\n\n\nOnly one velocity component survives.\nConsequently, only one independent shear stress component remains."
+  },
+  {
+    "objectID": "FluidMechanicsProblemClass.html#step-2-write-the-constitutive-relation",
+    "href": "FluidMechanicsProblemClass.html#step-2-write-the-constitutive-relation",
+    "title": "Fluid Mechanics Problem Class",
+    "section": "4.2 Step 2: Write the constitutive relation",
+    "text": "4.2 Step 2: Write the constitutive relation\nExpress the remaining shear stress component in terms of the velocity gradient."
+  },
+  {
+    "objectID": "FluidMechanicsProblemClass.html#step-3-simplify-the-momentum-equation",
+    "href": "FluidMechanicsProblemClass.html#step-3-simplify-the-momentum-equation",
+    "title": "Fluid Mechanics Problem Class",
+    "section": "4.3 Step 3: Simplify the momentum equation",
+    "text": "4.3 Step 3: Simplify the momentum equation\nUse exactly the same reasoning as for the Newtonian fluid.\nReduce the \\(x\\)-component of the momentum equation to a one-dimensional ordinary differential equation.\nAfter integrating once, an integration constant appears.\nHow can the symmetry of the channel be used to determine this constant?\n\n\n\n\n\n\nNoteHint\n\n\n\n\n\nThe geometry is symmetric with respect to\n\\[\ny=0.\n\\]\nThink about the behaviour of the shear stress at the centre plane."
+  },
+  {
+    "objectID": "FluidMechanicsProblemClass.html#step-4-determine-the-velocity-profile",
+    "href": "FluidMechanicsProblemClass.html#step-4-determine-the-velocity-profile",
+    "title": "Fluid Mechanics Problem Class",
+    "section": "4.4 Step 4: Determine the velocity profile",
+    "text": "4.4 Step 4: Determine the velocity profile\nAfter obtaining an expression for\n\\[\n\\frac{\\partial v_x}{\\partial y},\n\\]\nintegrate a second time.\nApply the no-slip condition at the walls.\nYou should obtain a family of velocity profiles depending on the exponent \\(n\\)."
+  },
+  {
+    "objectID": "FluidMechanicsProblemClass.html#step-5-explore-limiting-cases",
+    "href": "FluidMechanicsProblemClass.html#step-5-explore-limiting-cases",
+    "title": "Fluid Mechanics Problem Class",
+    "section": "4.5 Step 5: Explore limiting cases",
+    "text": "4.5 Step 5: Explore limiting cases\nEvaluate qualitatively what happens when:\n\n$n&lt;1,\n\\(n=1\\),\n\\(n&gt;1\\).\n\nHow does the shape of the profile change?\nWhich case corresponds to the Newtonian fluid solved previously?"
   }
 ]

@@ -884,7 +884,7 @@ The key idea is:
 Shear stress is **linearly proportional** to the shear rate.
 :::
 
-![Illustration of Pressure and shear stresses.](figures/StressTensorElements.png){#fig-StressTensor}
+![Illustration of flow profile of a Newtonian fluid under shear.](figures/NewtonianProfile.png){#fig-NewtonProfile}
 
 This relationship is analogous to Hooke's law in elasticity, except that fluids respond to deformation rates rather than deformations themselves.
 
