@@ -1,0 +1,184 @@
+[
+  {
+    "objectID": "NotesIntroNavierStokes.html",
+    "href": "NotesIntroNavierStokes.html",
+    "title": "Biological and Mesoscale Physics",
+    "section": "",
+    "text": "Many biological systems involve fluids:\n\nblood flow through vessels,\ntransport within cells,\nswimming microorganisms,\nsuspensions of proteins, cells and bacteria,\ndiffusion of nutrients and signalling molecules.\n\nAlthough these systems differ greatly in scale, they are governed by a common set of physical laws.\nThe purpose of these notes is to derive the Navier-Stokes equation from Newton’s laws and to explain the physical meaning of every term involved.\nThroughout these notes, bold symbols denote vectors.\n\n\n\nSymbol\nMeaning\nSI unit\n\n\n\n\n\\(\\mathbf r\\)\nPosition vector\nm\n\n\n\\(t\\)\nTime\ns\n\n\n\\(\\rho\\)\nMass density\nkg m\\(^{-3}\\)\n\n\n\\(\\mathbf v\\)\nVelocity field\nm s\\(^{-1}\\)\n\n\n\\(p\\)\nPressure\nPa\n\n\n\\(\\boldsymbol{\\sigma}\\)\nStress tensor\nPa\n\n\n\\(\\eta\\)\nDynamic viscosity\nPa s\n\n\n\\(\\mathbf f_V\\)\nVolume force density\nN m\\(^{-3}\\)\n\n\n\\(\\mathbf g\\)\ngravitational acceleration\nm s\\(^{-2}\\)"
+  },
+  {
+    "objectID": "NotesIntroNavierStokes.html#newtonian-mechanics",
+    "href": "NotesIntroNavierStokes.html#newtonian-mechanics",
+    "title": "Biological and Mesoscale Physics",
+    "section": "2.1 Newtonian mechanics",
+    "text": "2.1 Newtonian mechanics\nFor a collection of particles, Newton’s second law states\n\\[\n\\sum \\mathbf F = \\frac{d\\mathbf p}{dt},\n\\]\nwhere \\(\\mathbf p\\) is the momentum of the particle.\nClassical mechanics therefore describes:\n\nparticle positions,\nparticle velocities,\nforces acting on each particle.\n\nThis description rapidly becomes impossible when dealing with fluids, since a macroscopic fluid contains roughly\n\\[\n10^{23}\n\\]\nmolecules per mole."
+  },
+  {
+    "objectID": "NotesIntroNavierStokes.html#the-continuum-hypothesis",
+    "href": "NotesIntroNavierStokes.html#the-continuum-hypothesis",
+    "title": "Biological and Mesoscale Physics",
+    "section": "2.2 The continuum hypothesis",
+    "text": "2.2 The continuum hypothesis\nInstead of describing individual molecules, we average quantities over a sufficiently small volume.\nThis volume must:\n\nbe large compared with molecular dimensions,\nbe small compared with the length scales of interest.\n\nWe then define smooth fields such as the local mass density \\(\\rho(\\mathbf r,t)\\), the velocity field \\(\\mathbf v(\\mathbf r,t)\\), and the pressure field \\(p(\\mathbf r,t)\\).\nThis approximation is known as the continuum hypothesis. Under this hypothesis, fluids can be treated using differential calculus.\n\n\n\n\n\n\nNotePreamble: the mathematical nature of physical quantities\n\n\n\n\n\nIn order to discuss forces in continuous media, compared with point mechanics, we need a new mathematical object to describe physical quantities, known as a tensor. As you are reading these notes, you should ba familiar with scalar and vector physical quantities:\n\n2.3 Scalars\nScalars possess magnitude only. They’re represented by a single number.\nExamples:\n\ntemperature,\nmass,\ndensity,\npressure.\n\n\n\n2.4 Vectors\nVectors possess magnitude and direction. They are represented by a \\(N\\times 1\\) matrix, or array, where \\(N\\) is the dimension of the described system, which depends on the choice of reference frame.\nExamples:\n\ndisplacement,\nvelocity,\nforce.\n\n\n\n2.5 Second-rank tensors\nIn a simple way, one can say a tensor describes how a vector quantity depends on direction.\nThe simplest example is a matrix:\n\\[\n\\mathbf T\n=\n\\begin{pmatrix}\nT_{xx} & T_{xy} & T_{xz}\\\\\nT_{yx} & T_{yy} & T_{yz}\\\\\nT_{zx} & T_{zy} & T_{zz}\n\\end{pmatrix}.\n\\]\nTensors appear naturally when describing stresses in a continuous medium.\nIndeed, the force exerted across a given surface depends not only on position but also on the orientation of that surface. Gradients of vector quantites are also important in continuous media.\n\n\n2.6 Change of reference frame\nOne of the defining properties of physical quantities is that their description should not depend on the coordinate system used by the observer.\n\n2.6.1 Scalars\nScalars are unchanged when the coordinate system is rotated.\nFor example, the temperature at a point remains the same regardless of how we orient our axes.\nIf\n\\[\nT = 300\\,\\mathrm{K},\n\\]\nthen every observer measures exactly the same value.\n\n\n2.6.2 Vectors\nThe components of a vector depend on the chosen coordinate system, even though the physical vector itself does not.\nFor example, consider a force\n\\[\n\\mathbf F=\n\\begin{pmatrix}\n10\\\\\n0\n\\end{pmatrix}\n\\mathrm{N}\n\\]\nin a two-dimensional coordinate system.\nIf the axes are rotated by \\(45^\\circ\\), the same force becomes\n\\[\n\\mathbf F'=\n\\begin{pmatrix}\n10/\\sqrt{2}\\\\\n-10/\\sqrt{2}\n\\end{pmatrix}\n\\mathrm{N}.\n\\]\nThe numerical components have changed, but the physical force is exactly the same.\nMathematically, vectors transform according to\n\\[\nF_i' = R_{ij}F_j=\\mathbf R \\cdot \\mathbf F,\n\\]\nwhere \\(R_{ij}\\) is the rotation matrix describing the change of basis.\n\n\n2.6.3 Second-rank tensors\nA tensor describes a relationship between directions. Consequently, both of its indices must transform whenever the coordinate system changes.\nFor a second-rank tensor,\n\\[\nT_{ij},\n\\]\nthe components in the rotated coordinate system become\n\\[\nT'_{ij}\n=\nR_{ik}R_{jl}T_{kl}\n=\\mathbf R\\cdot \\mathbf T \\cdot \\mathbf R^{-1}.\n\\]\nThe two rotation matrices appear because the tensor acts on two directions simultaneously.\nFor example, as we will show later, the stress tensor contains:\n\na direction associated with the orientation of a surface,\na direction associated with the force acting on that surface.\n\nBoth directions must therefore be transformed when changing coordinates.\nThis is why stresses cannot generally be represented by a simple scalar or vector.\n\n\n\n\n\n\n\n\n\n\n\nNoteA description of notation conventions\n\n\n\n\n\nFluid mechanics uses a compact notation based on vectors, tensors and the Einstein summation convention.\n\n2.6.4 Einstein summation convention\nWhenever an index appears twice in a term, summation over that index is implied.\nFor example,\n\\[\na_i b_i\n=\n\\sum_{i=1}^{3} a_i b_i\n=\na_1 b_1+a_2 b_2+a_3 b_3 .\n\\]\nThis notation avoids writing explicit summation symbols and greatly simplifies tensor equations.\n\n\n2.6.5 The gradient operator\nThe vector differential operator\n\\[\n\\nabla\n=\n\\left(\n\\frac{\\partial}{\\partial x},\n\\frac{\\partial}{\\partial y},\n\\frac{\\partial}{\\partial z}\n\\right)\n\\equiv\n\\left(\n\\frac{\\partial}{\\partial x_1},\n\\frac{\\partial}{\\partial x_2},\n\\frac{\\partial}{\\partial x_3}\n\\right)\n\\]\ncan be written in index notation as\n\\[\n(\\nabla)_i\n=\n\\frac{\\partial}{\\partial x_i}.\n\\]\n\n\n2.6.6 Dot product with a gradient\nThe velocity vector is\n\\[\n\\mathbf v\n=\n(v_1,v_2,v_3).\n\\]\nThe expression\n\\[\n\\mathbf v\\cdot\\nabla\n\\]\nmeans\n\\[\nv_i\\frac{\\partial}{\\partial x_i}\n=\nv_1\\frac{\\partial}{\\partial x}\n+\nv_2\\frac{\\partial}{\\partial y}\n+\nv_3\\frac{\\partial}{\\partial z}.\n\\]\nNote that \\(\\mathbf v\\cdot\\nabla\\) is not a scalar quantity, but a differential scalar operator which acts on whatever follows it.\nFor example, if \\(X(\\mathbf r,t)\\) is a scalar field,\n\\[\n\\mathbf v\\cdot\\nabla X\n=\nv_i\\frac{\\partial X}{\\partial x_i}\n=\nv_1\\frac{\\partial X}{\\partial x}\n+\nv_2\\frac{\\partial X}{\\partial y}\n+\nv_3\\frac{\\partial X}{\\partial z}.\n\\]\nThis quantity represents the rate at which a fluid particle experiences changes in \\(X\\) because it is moving through space.\n\n\n2.6.7 Other common tensor operations\nThe gradient of a scalar field produces a vector:\n\\[\n(\\nabla X)_i\n=\n\\frac{\\partial X}{\\partial x_i}.\n\\]\nThe divergence of a vector field produces a scalar:\n\\[\n\\nabla\\cdot\\mathbf v\n=\n\\frac{\\partial v_i}{\\partial x_i} (=\\frac{\\partial v_1}{\\partial x}+\\frac{\\partial v_2}{\\partial y}+\\frac{\\partial v_3}{\\partial z}).\n\\]\nThe gradient of a vector field produces a second-rank tensor:\n\\[\n(\\nabla\\mathbf v)_{ij}\n=\n\\frac{\\partial v_j}{\\partial x_i}.\n\\]\nThe double contraction of two tensors produces a scalar:\n\\[\nA:B\n=\nA_{ij}B_{ij}.\n\\]\nThese operations appear repeatedly in continuum mechanics because physical quantities such as stress and strain are tensorial in nature."
+  },
+  {
+    "objectID": "NotesIntroNavierStokes.html#lagrangian-description",
+    "href": "NotesIntroNavierStokes.html#lagrangian-description",
+    "title": "Biological and Mesoscale Physics",
+    "section": "3.1 Lagrangian description",
+    "text": "3.1 Lagrangian description\nWe follow an individual fluid particle.\nIts position is\n\\[\n\\mathbf r_P(t).\n\\]\nIts velocity is\n\\[\n\\mathbf v_P(t)\n=\n\\frac{d\\mathbf r_P}{dt}.\n\\]\nThis description remains very close to ordinary Newtonian mechanics."
+  },
+  {
+    "objectID": "NotesIntroNavierStokes.html#eulerian-description",
+    "href": "NotesIntroNavierStokes.html#eulerian-description",
+    "title": "Biological and Mesoscale Physics",
+    "section": "3.2 Eulerian description",
+    "text": "3.2 Eulerian description\nInstead of following particles, we observe the fluid at fixed positions.\nAt every point in space, we define\n\\[\n\\mathbf v(\\mathbf r,t).\n\\]\nThis velocity field gives the velocity that a fluid particle would have if it passed through position \\(\\mathbf r\\) at time \\(t\\).\nMost fluid mechanics uses the Eulerian description."
+  },
+  {
+    "objectID": "NotesIntroNavierStokes.html#comparison-with-particle-mechanics",
+    "href": "NotesIntroNavierStokes.html#comparison-with-particle-mechanics",
+    "title": "Biological and Mesoscale Physics",
+    "section": "3.1 Comparison with particle mechanics",
+    "text": "3.1 Comparison with particle mechanics\n\n\n\n\n\n\n\nParticle mechanics\nContinuum mechanics\n\n\n\n\nPosition \\(\\mathbf r_P(t)\\) and speed \\(\\mathbf v_P(t)\\)\nVelocity field \\(\\mathbf v(\\mathbf r,t)\\)\n\n\nMass \\(m\\)\nDensity \\(\\rho(\\mathbf r,t)\\)\n\n\nForce \\(\\mathbf F\\)\nVolume force density \\(\\mathbf f_v\\)\n\n\nMomentum \\(\\mathbf p\\)\nMomentum density \\(\\rho\\mathbf v\\)"
+  },
+  {
+    "objectID": "NotesIntroNavierStokes.html#material-derivative-of-velocity",
+    "href": "NotesIntroNavierStokes.html#material-derivative-of-velocity",
+    "title": "Biological and Mesoscale Physics",
+    "section": "4.1 Material derivative of velocity",
+    "text": "4.1 Material derivative of velocity\nApplying the material derivative to velocity itself gives the acceleration of a fluid element:\n\\[\n\\boxed{\n\\frac{D\\mathbf v}{Dt}\n=\n\\frac{\\partial\\mathbf v}{\\partial t}\n+\n(\\mathbf v\\cdot\\nabla)\\mathbf v\n}\n\\]\nThe first term is called the local acceleration.\nThe second term is called the convective acceleration.\nThis second term has no equivalent in elementary particle mechanics and is responsible for much of the complexity of fluid dynamics."
+  },
+  {
+    "objectID": "NotesIntroNavierStokes.html#scalars",
+    "href": "NotesIntroNavierStokes.html#scalars",
+    "title": "Biological and Mesoscale Physics",
+    "section": "2.3 Scalars",
+    "text": "2.3 Scalars\nScalars possess magnitude only. They’re represented by a single number.\nExamples:\n\ntemperature,\nmass,\ndensity,\npressure."
+  },
+  {
+    "objectID": "NotesIntroNavierStokes.html#vectors",
+    "href": "NotesIntroNavierStokes.html#vectors",
+    "title": "Biological and Mesoscale Physics",
+    "section": "2.4 Vectors",
+    "text": "2.4 Vectors\nVectors possess magnitude and direction. They are represented by a \\(N\\times 1\\) matrix, or array, where \\(N\\) is the dimension of the described system, which depends on the choice of reference frame.\nExamples:\n\ndisplacement,\nvelocity,\nforce."
+  },
+  {
+    "objectID": "NotesIntroNavierStokes.html#second-rank-tensors",
+    "href": "NotesIntroNavierStokes.html#second-rank-tensors",
+    "title": "Biological and Mesoscale Physics",
+    "section": "2.5 Second-rank tensors",
+    "text": "2.5 Second-rank tensors\nIn a simple way, one can say a tensor describes how a vector quantity depends on direction.\nThe simplest example is a matrix:\n\\[\n\\mathbf T\n=\n\\begin{pmatrix}\nT_{xx} & T_{xy} & T_{xz}\\\\\nT_{yx} & T_{yy} & T_{yz}\\\\\nT_{zx} & T_{zy} & T_{zz}\n\\end{pmatrix}.\n\\]\nTensors appear naturally when describing stresses in a continuous medium.\nIndeed, the force exerted across a given surface depends not only on position but also on the orientation of that surface. Gradients of vector quantites are also important in continuous media."
+  },
+  {
+    "objectID": "NotesIntroNavierStokes.html#body-forces",
+    "href": "NotesIntroNavierStokes.html#body-forces",
+    "title": "Biological and Mesoscale Physics",
+    "section": "5.1 Body forces",
+    "text": "5.1 Body forces\nSome forces act throughout the volume of the fluid.\nExamples:\n\ngravity,\nelectromagnetic forces.\n\nThese forces scale with volume.\nThe total body force acting on a volume \\(V\\) is\n\\[\n\\mathbf F_V\n=\n\\int_V \\mathbf f_V \\, dV,\n\\]\nwhere\n\\[\n\\mathbf f_V\n\\]\nis the body-force density."
+  },
+  {
+    "objectID": "NotesIntroNavierStokes.html#surface-forces",
+    "href": "NotesIntroNavierStokes.html#surface-forces",
+    "title": "Biological and Mesoscale Physics",
+    "section": "5.2 Surface forces",
+    "text": "5.2 Surface forces\nA second class of forces arises from interactions between neighbouring material elements.\nExamples include:\n\npressure forces,\nviscous shear forces,\ncontact forces in solids.\n\nAt first sight one might expect these forces to also scale with volume, since molecules throughout the element interact with one another. However, a careful counting argument shows otherwise.\n\n5.2.1 Why do interaction forces scale with surface area?\nInteractions between particles occur in action-reaction pairs.\nFor two particles located entirely within the constitutive element,\n\\[\n\\mathbf F_{12}\n=\n-\\mathbf F_{21},\n\\]\nso their contributions cancel when computing the net force acting on the whole element.\nTherefore, interactions between particles entirely inside the volume do not contribute to the total external force.\nOnly interactions crossing the boundary of the constitutive element survive.\nThe number of such interactions is proportional to the size of the boundary surface.\nAs a result,\n\\[\nF_S \\propto S,\n\\]\nwhere (S) is the surface area of the constitutive element.\nSince\n\\[\nS \\sim L^2,\n\\]\nsurface forces scale as\n\\[\nF_S \\sim L^2.\n\\]\nThis result explains why stresses are naturally defined as force per unit area.\n\n\n\n\n\n\nFigure 2: Neighbouring particles interacting across a boundary surface, showing cancellation of internal action-reaction pairs and survival of boundary interactions.\n\n\n\n\n\n5.2.2 Why do surface forces depend on surface orientation?\nUnlike volume forces such as gravity, surface forces originate from interactions between neighbouring particles located on opposite sides of an imaginary surface drawn through the material.\nThe key idea is that changing the orientation of this surface changes which pairs of particles are separated by the surface.\nFor example, consider the same small material element and imagine drawing two different surfaces through it:\n\na horizontal surface;\nan inclined surface.\n\nThe particles lying on one side of the surface and those lying on the other side will generally be different in each case.\nAs a result, the collection of intermolecular interactions crossing the surface also changes.\nBecause the net force acting on the material element arises from the sum of all interactions crossing the boundary, changing the orientation of the boundary changes the resulting force.\nTherefore, the surface force cannot depend only on position. It must also depend on the orientation of the surface.\n\n\n\n\n\n\nFigure 3: Two different cuts through the same material element, showing different pairs of particles interacting across each surface.\n\n\n\nMathematically, we characterize the orientation of a surface by its outward unit normal vector\n\\[\n\\mathbf n.\n\\]\nThe force per unit area acting across a surface with normal (n) is called the traction vector\n\\[\n\\boxed{\n\\boldsymbol{\\tau}(\\mathbf n)\n=\n\\frac{d\\mathbf F}{dS}.\n}\n\\]\nThe explicit dependence on (n) emphasizes that two surfaces passing through the same point may experience different tractions if they have different orientations.\nThis dependence on surface orientation is the fundamental reason why internal forces in a continuum cannot generally be described by a scalar or a vector alone. One can however show that a second-rank tensor, known as the stress tensor \\(\\boldsymbol{\\sigma}\\), is sufficient to describe all surface stresses in contimuous material. The traction vector, for a surface with a normal \\(\\mathbf n\\), can then be determined as\n\\[\n\\boxed{\n\\boldsymbol{\\tau}(\\mathbf n)\n=\n\\mathbf n \\cdot \\boldsymbol{\\sigma}\n}\n\\]\nTo understand the physical meaning of the stress tensor, consider one of its components, \\(\\sigma_{ij}\\). The second index \\(j\\) identifies the direction of the force acting on the surface, while the first index \\(i\\) identifies the direction normal to that surface.\nEquivalently,\n\\[\n\\boxed{\n\\sigma_{ij}\n=\n\\text{force in direction } j\n\\text{ acting on a surface normal to } i\n\\text{ per unit area}.\n}\n\\]\nFor example, \\(\\sigma_{xy}\\) represents the force per unit area acting in the \\(y\\)-direction across a surface whose normal points in the \\(x\\)-direction. Likewise, \\(\\sigma_{zz}\\) represents the force per unit area acting in the \\(z\\)-direction across a surface normal to \\(z\\).\nSuch components are called normal stresses, while components with \\(i\\neq j\\) are called shear stresses.\nA useful way to visualize the stress tensor is to consider three surfaces passing through a point and normal to the coordinate axes. The corresponding traction vectors are\n\\[\n\\boldsymbol{\\tau}(\\mathbf e_x)\n=\n\\begin{pmatrix}\n\\sigma_{xx}\\\\\n\\sigma_{xy}\\\\\n\\sigma_{xz}\n\\end{pmatrix},\n\\qquad\n\\boldsymbol{\\tau}(\\mathbf e_y)\n=\n\\begin{pmatrix}\n\\sigma_{yx}\\\\\n\\sigma_{yy}\\\\\n\\sigma_{yz}\n\\end{pmatrix},\n\\qquad\n\\boldsymbol{\\tau}(\\mathbf e_z)\n=\n\\begin{pmatrix}\n\\sigma_{zx}\\\\\n\\sigma_{zy}\\\\\n\\sigma_{zz}\n\\end{pmatrix}.\n\\]\nThe stress tensor therefore contains all the information required to determine the traction acting on a surface of arbitrary orientation. Each column corresponds to a particular surface normal, while each row corresponds to a particular force direction.\n\n\n\n\n\n\nNoteDerivation of the stress tensor: Cauchy’s tetrahedron argument\n\n\n\n\n\nSince the traction depends on the chosen normal vector \\(\\mathbf n\\), one might think that an independent traction vector must be specified for every possible orientation. Cauchy’s tetrahedron argument shows that this is not necessary. We have introduced the traction vector\n\\[\n\\boldsymbol{\\tau}(\\mathbf n)\n=\n\\frac{d\\mathbf F}{dS},\n\\]\nwhich gives the force per unit area acting across a surface whose outward normal is \\(\\mathbf n\\).\nA natural question arises:\n\nHow many traction vectors do we need to specify in order to describe all possible internal forces in a material?\n\nAt first sight, the answer seems daunting: every possible surface orientation could have a different traction vector.\nRemarkably, this is not the case.\n\n5.2.3 Step 1: Consider an infinitesimal tetrahedron\nImagine an infinitesimal tetrahedral fluid element.\nThree faces are aligned with the coordinate planes:\n\na face normal to \\(\\mathbf e_x\\),\na face normal to \\(\\mathbf e_y\\),\na face normal to \\(\\mathbf e_z\\).\n\nThe fourth face is an arbitrarily oriented surface with normal\n\\[\n\\mathbf n\n=\n(n_x,n_y,n_z).\n\\]\n\n\n\n\n\n\nFigure 4: Illustration of the Cauchy tetrahedron.\n\n\n\nLet:\n\n\\(S\\) be the area of the inclined face,\n\\(S_x\\), \\(S_y\\), \\(S_z\\) be the areas of the coordinate faces.\n\nGeometry gives\n\\[\nS_x=n_xS,\n\\qquad\nS_y=n_yS,\n\\qquad\nS_z=n_zS.\n\\]\nThe quantities \\(n_x\\), \\(n_y\\) and \\(n_z\\) are precisely the direction cosines of the normal vector.\n\n\n5.2.4 Step 2: Apply force balance\nBecause the tetrahedron is infinitesimally small, its volume scales as\n\\[\nV \\sim L^3,\n\\]\nwhile surface areas scale as\n\\[\nS \\sim L^2.\n\\]\nAs the size of the tetrahedron tends to zero, body forces and inertial terms become negligible compared with surface forces.\nForce balance therefore reduces to\n\\[\n\\sum \\mathbf F_{Surface} = 0.\n\\]\nThe surface force acting on the inclined face is\n\\[\n\\boldsymbol{\\tau}(\\mathbf n)S.\n\\]\nThe forces acting on the coordinate faces are\n\\[\n\\boldsymbol{\\tau}(-\\mathbf e_x)S_x,\n\\]\n\\[\n\\boldsymbol{\\tau}(-\\mathbf e_y)S_y,\n\\]\n\\[\n\\boldsymbol{\\tau}(-\\mathbf e_z)S_z.\n\\]\nTaking into account that \\(\\boldsymbol{\\tau}(-\\mathbf n)=-\\boldsymbol{\\tau}(\\mathbf n)\\) (which is a direct application of Newton’s third law), it comes\n\\[\n\\boldsymbol{\\tau}(\\mathbf n)S\n=\n\\boldsymbol{\\tau}(\\mathbf e_x)S_x\n+\n\\boldsymbol{\\tau}(\\mathbf e_y)S_y\n+\n\\boldsymbol{\\tau}(\\mathbf e_z)S_z.\n\\]\nSubstituting\n\\[\nS_x=n_xS,\n\\qquad\nS_y=n_yS,\n\\qquad\nS_z=n_zS,\n\\]\nand dividing by \\(S\\) gives\n\\[\n\\boxed{\n\\boldsymbol{\\tau}(\\mathbf n)\n=\nn_x\\boldsymbol{\\tau}(\\mathbf e_x)\n+\nn_y\\boldsymbol{\\tau}(\\mathbf e_y)\n+\nn_z\\boldsymbol{\\tau}(\\mathbf e_z)\n\\equiv\n\\mathbf n \\cdot \\boldsymbol{\\sigma}\n}\n\\]\nThis is Cauchy’s fundamental result, or, in index notation,\n\\[\n\\boxed{\n\\tau_i(\\mathbf n) = n_j \\sigma_{ji}.\n}\n\\]\n\n\n5.2.5 Physical meaning\nThe important conclusion is that:\n\nOnce the traction vectors are known on three mutually perpendicular surfaces, the traction vector on any arbitrarily oriented surface is completely determined.\n\nTherefore a continuum does not require infinitely many force variables. All internal mechanical forces can be represented by the nine components of a second-rank tensor, known as the stress tensor.\nThis is the continuum-mechanics equivalent of using a force vector in particle mechanics."
+  },
+  {
+    "objectID": "NotesIntroNavierStokes.html#interpretation-of-stress-components",
+    "href": "NotesIntroNavierStokes.html#interpretation-of-stress-components",
+    "title": "Biological and Mesoscale Physics",
+    "section": "6.1 Interpretation of stress components",
+    "text": "6.1 Interpretation of stress components\nFor example:\n\n\\(\\sigma_{xx}\\) measures a normal stress,\n\\(\\sigma_{xy}\\) measures a shear stress.\n\nSpecifically,\n\\[\n\\sigma_{xy}\n\\]\nrepresents the force in the \\(y\\) direction acting across a surface normal to \\(x\\)."
+  },
+  {
+    "objectID": "NotesIntroNavierStokes.html#rate-of-strain-tensor",
+    "href": "NotesIntroNavierStokes.html#rate-of-strain-tensor",
+    "title": "Biological and Mesoscale Physics",
+    "section": "7.1 Rate-of-strain tensor",
+    "text": "7.1 Rate-of-strain tensor\nThe rate-of-strain tensor is defined as\n\\[\n\\gamma_{ij}\n=\n\\frac{\\partial v_i}{\\partial x_j}\n+\n\\frac{\\partial v_j}{\\partial x_i}.\n\\]\nFor incompressible fluids, this quantifies local deformation rates."
+  },
+  {
+    "objectID": "NotesIntroNavierStokes.html#newtonian-constitutive-law",
+    "href": "NotesIntroNavierStokes.html#newtonian-constitutive-law",
+    "title": "Biological and Mesoscale Physics",
+    "section": "7.2 Newtonian constitutive law",
+    "text": "7.2 Newtonian constitutive law\nFor a Newtonian fluid, the consitutive equation is that:\n\\[\n\\boxed{\n\\sigma_{ij}\n=\n-p\\delta_{ij}\n+\n\\eta\n\\left(\n\\frac{\\partial v_i}{\\partial x_j}\n+\n\\frac{\\partial v_j}{\\partial x_i}\n\\right)\n}\n\\]\nwhere \\(\\eta\\) is the dynamic viscosity.\nThe key idea is:\n\n\n\n\n\n\nImportant\n\n\n\nShear stress is linearly proportional to the shear rate.\n\n\n\n\n\n\n\n\nFigure 6: Illustration of Pressure and shear stresses.\n\n\n\nThis relationship is analogous to Hooke’s law in elasticity, except that fluids respond to deformation rates rather than deformations themselves."
+  },
+  {
+    "objectID": "NotesIntroNavierStokes.html#momentum-balance",
+    "href": "NotesIntroNavierStokes.html#momentum-balance",
+    "title": "Biological and Mesoscale Physics",
+    "section": "10.1 Momentum balance",
+    "text": "10.1 Momentum balance\nThe rate of change of momentum equals the sum of forces.\nFor a continuum, one can show\n\\[\n\\rho\n\\frac{D\\mathbf v}{Dt}\n=\n\\nabla\\cdot\\boldsymbol{\\sigma}\n+\n\\mathbf f_V.\n\\]\n\n\n\n\n\n\nNoteDerivation of the Cauchy momentum equation\n\n\n\n\n\nThe continuum equivalent of Newton’s second law is obtained by applying momentum conservation to an arbitrary material volume \\(V\\). For a collection of particles, Newton’s second law reads\n\\[\n\\frac{d\\mathbf P}{dt}\n=\n\\sum \\mathbf F,\n\\]\nwith \\(P\\) the total momentum. In a continuum, the momentum contained within a material volume \\(V\\) is\n\\[\n\\mathbf P\n=\n\\int_V \\rho \\mathbf v\\, dV,\n\\]\nwhere we integrate over a material volume, defined by specific particles. Applying Newton’s second law gives\n\\[\n\\boxed{\n\\frac{d}{dt}\n\\int_V \\rho\\mathbf v\\, dV\n=\n\\oint_S (\\mathbf n\\cdot\\boldsymbol{\\sigma})\\, dS+\\int_V \\mathbf f_V\\, dV,\n}\n\\]\nApplying the divergence theorem,\n\\[\n\\oint_S \\mathbf n\\cdot\\boldsymbol{\\sigma}\\, dS\n=\n\\int_V \\nabla\\cdot\\boldsymbol{\\sigma}\\, dV.\n\\]\nTherefore,\n\\[\n\\frac{d}{dt}\n\\int_V \\rho\\mathbf v\\, dV\n=\n\\int_V\n\\left(\n\\nabla\\cdot\\boldsymbol{\\sigma}\n+\n\\mathbf f_V\n\\right)\ndV.\n\\]\nBecause \\(V\\) is a material volume moving with the fluid, we must use a material derivative. Using the product rule,\n\\[\n\\frac{d}{dt}\n\\int_V \\rho\\mathbf v\\, dV\n=\n\\int_V\n\\frac{d(\\rho\\mathbf v)}{dt}\n\\,dV\n+\n\\int_V\n\\rho\\mathbf v\n\\frac{d(dV)}{dt}.\n\\]\nThe rate of change of a material volume element can be written as\n\\[\n\\frac{d(dV)}{dt}\n=\n(\\nabla\\cdot\\mathbf v)\\,dV.\n\\]\nTherefore\n\\[\n\\frac{d}{dt}\n\\int_V \\rho\\mathbf v\\, dV\n=\n\\int_V\n\\left(\n\\frac{d(\\rho\\mathbf v)}{dt}\n+\n\\rho\\mathbf v\\,\\nabla\\cdot\\mathbf v\n\\right)dV.\n\\]\nExpanding the material derivative,\n\\[\n\\frac{d(\\rho\\mathbf v)}{dt}\n=\n\\mathbf v\\frac{D\\rho}{Dt}\n+\n\\rho\\frac{D\\mathbf v}{Dt},\n\\]\ngiving\n\\[\n\\frac{d}{dt}\n\\int_V \\rho\\mathbf v\\, dV\n=\n\\int_V\n\\left[\n\\mathbf v\n\\left(\n\\frac{D\\rho}{Dt}\n+\n\\rho\\nabla\\cdot\\mathbf v\n\\right)\n+\n\\rho\\frac{D\\mathbf v}{Dt}\n\\right]\ndV.\n\\]\nFrom the continuity equation,\n\\[\n\\boxed{\n\\frac{D\\rho}{Dt}\n+\n\\rho\\nabla\\cdot\\mathbf v\n=\n0.\n}\n\\]\nThe first term therefore vanishes:\n\\[\n\\frac{d}{dt}\n\\int_V \\rho\\mathbf v\\, dV\n=\n\\int_V\n\\rho\\frac{D\\mathbf v}{Dt}\n\\,dV.\n\\]\nSubstituting into the momentum balance gives\n\\[\n\\int_V\n\\rho\\frac{D\\mathbf v}{Dt}\n\\,dV\n=\n\\int_V\n\\left(\n\\nabla\\cdot\\boldsymbol{\\sigma}\n+\n\\mathbf f_V\n\\right)\ndV.\n\\]\nBringing both terms to the same side,\n\\[\n\\int_V\n\\left[\n\\rho\\frac{D\\mathbf v}{Dt}\n-\n\\nabla\\cdot\\boldsymbol{\\sigma}\n-\n\\mathbf f_V\n\\right]\ndV\n=\n0.\n\\]\nSince the control volume is arbitrary, the integrand itself must vanish:\n\\[\n\\boxed{\n\\rho\n\\frac{D\\mathbf v}{Dt}\n=\n\\nabla\\cdot\\boldsymbol{\\sigma}\n+\n\\mathbf f_V.\n}\n\\]\nThis equation is known as the Cauchy momentum equation. It is simply Newton’s second law written for a continuous medium.\n\n\n\nSubstituting the expression for the material derivative gives\n\\[\n\\boxed{\n\\rho\n\\left(\n\\frac{\\partial\\mathbf v}{\\partial t}\n+\n(\\mathbf v\\cdot\\nabla)\\mathbf v\n\\right)\n=\n\\nabla\\cdot\\boldsymbol{\\sigma}\n+\n\\mathbf f_V\n}\n\\]\nThis equation is called the Cauchy momentum equation."
+  },
+  {
+    "objectID": "NotesIntroNavierStokes.html#physical-meaning",
+    "href": "NotesIntroNavierStokes.html#physical-meaning",
+    "title": "Biological and Mesoscale Physics",
+    "section": "14.1 Physical meaning",
+    "text": "14.1 Physical meaning\nWhen\n\\[\nRe\\gg1,\n\\]\ninertia dominates.\nWhen\n\\[\nRe\\ll1,\n\\]\nviscosity dominates.\nMany organisms operate in the low-Reynolds-number regime.\nFor example:\n\nbacteria,\nsperm cells,\nintracellular transport.\n\nTheir physics is therefore fundamentally different from our everyday experience."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Fluid Dynamics and Cell Mechanics",
+    "section": "",
+    "text": "Teaching materials, practical exercises, and resources for the Fluid Dynamics and Cell Mechanics partim of the Mesoscale and Biological Physics course.\nAbout\\ This website provides:\n- Lecture notes and supplementary material - Practical exercises and laboratory activities\nThe site is built using Quarto and automatically deployed through GitHub Pages.\nYou can navigate the website by course chapters using the tumbnails on the top left of your screen."
+  },
+  {
+    "objectID": "NotesIntroNavierStokes.html#change-of-reference-frame",
+    "href": "NotesIntroNavierStokes.html#change-of-reference-frame",
+    "title": "Biological and Mesoscale Physics",
+    "section": "2.6 Change of reference frame",
+    "text": "2.6 Change of reference frame\nOne of the defining properties of physical quantities is that their description should not depend on the coordinate system used by the observer.\n\n2.6.1 Scalars\nScalars are unchanged when the coordinate system is rotated.\nFor example, the temperature at a point remains the same regardless of how we orient our axes.\nIf\n\\[\nT = 300\\,\\mathrm{K},\n\\]\nthen every observer measures exactly the same value.\n\n\n2.6.2 Vectors\nThe components of a vector depend on the chosen coordinate system, even though the physical vector itself does not.\nFor example, consider a force\n\\[\n\\mathbf F=\n\\begin{pmatrix}\n10\\\\\n0\n\\end{pmatrix}\n\\mathrm{N}\n\\]\nin a two-dimensional coordinate system.\nIf the axes are rotated by \\(45^\\circ\\), the same force becomes\n\\[\n\\mathbf F'=\n\\begin{pmatrix}\n10/\\sqrt{2}\\\\\n-10/\\sqrt{2}\n\\end{pmatrix}\n\\mathrm{N}.\n\\]\nThe numerical components have changed, but the physical force is exactly the same.\nMathematically, vectors transform according to\n\\[\nF_i' = R_{ij}F_j=\\mathbf R \\cdot \\mathbf F,\n\\]\nwhere \\(R_{ij}\\) is the rotation matrix describing the change of basis.\n\n\n2.6.3 Second-rank tensors\nA tensor describes a relationship between directions. Consequently, both of its indices must transform whenever the coordinate system changes.\nFor a second-rank tensor,\n\\[\nT_{ij},\n\\]\nthe components in the rotated coordinate system become\n\\[\nT'_{ij}\n=\nR_{ik}R_{jl}T_{kl}\n=\\mathbf R\\cdot \\mathbf T \\cdot \\mathbf R^{-1}.\n\\]\nThe two rotation matrices appear because the tensor acts on two directions simultaneously.\nFor example, as we will show later, the stress tensor contains:\n\na direction associated with the orientation of a surface,\na direction associated with the force acting on that surface.\n\nBoth directions must therefore be transformed when changing coordinates.\nThis is why stresses cannot generally be represented by a simple scalar or vector."
+  },
+  {
+    "objectID": "index.html#what-you-will-find-here",
+    "href": "index.html#what-you-will-find-here",
+    "title": "Fluid Dynamics and Cell Mechanics",
+    "section": "What you will find here",
+    "text": "What you will find here\n\nLecture notes and supplementary reading material\nPractical exercises and laboratory activities"
+  },
+  {
+    "objectID": "index.html#about-this-website",
+    "href": "index.html#about-this-website",
+    "title": "Fluid Dynamics and Cell Mechanics",
+    "section": "About this website",
+    "text": "About this website\nThis site is built using Quarto and is automatically published through GitHub Pages, ensuring that the most up-to-date course materials are always available online."
+  },
+  {
+    "objectID": "index.html#navigation",
+    "href": "index.html#navigation",
+    "title": "Fluid Dynamics and Cell Mechanics",
+    "section": "Navigation",
+    "text": "Navigation\nUse the chapter thumbnails in the top-left navigation panel to browse the different sections of the course.\nWe recommend working through the notes in order, as later chapters build on concepts introduced earlier in the module.\n\n\n\n\n\n\nTip\n\n\n\nIf this is your first visit, start with the introductory chapter before moving on to the lecture notes and practical activities."
+  },
+  {
+    "objectID": "NotesIntroNavierStokes.html#volume-forces",
+    "href": "NotesIntroNavierStokes.html#volume-forces",
+    "title": "Biological and Mesoscale Physics",
+    "section": "5.1 Volume forces",
+    "text": "5.1 Volume forces\nSome forces act directly on every particle contained within the material element.\nExamples include:\n\ngravity,\nelectric forces,\nmagnetic forces.\n\nA simple example is gravity. If the constitutive element contains (N) particles of mass (m_i), the total gravitational force is\n\\[\n\\mathbf F_g\n=\n\\sum_i m_i\\mathbf g.\n\\]\nAs the number of particles becomes very large, this discrete sum may be replaced by a volume integral:\n\\[\n\\mathbf F_g\n=\n\\int_V \\rho \\mathbf g\\,dV.\n\\]\nMore generally, any force acting throughout the volume can be written\n\\[\n\\boxed{\n\\mathbf F_V\n=\n\\int_V \\mathbf f_V\\,dV\n}\n\\]\nwhere (f_V) is the volume-force density (force per unit volume).\n\n5.1.1 Why do volume forces scale with volume?\nIf the characteristic size of the constitutive element is (L), then\n\\[\nV \\sim L^3.\n\\]\nThe number of particles contained inside the element is proportional to its volume. Since each particle experiences the external force, the total force is also proportional to the volume:\n\\[\nF_V \\propto V.\n\\]\nConsequently,\n\\[\nF_V \\sim L^3.\n\\]\n\n\n\n\n\n\nFigure 1: External forces acting on particles inside a constitutive volume. Every particle experiences gravity, leading to a net force proportional to the volume of the element."
+  },
+  {
+    "objectID": "NotesIntroNavierStokes.html#physical-meaning-1",
+    "href": "NotesIntroNavierStokes.html#physical-meaning-1",
+    "title": "Biological and Mesoscale Physics",
+    "section": "13.1 Physical meaning",
+    "text": "13.1 Physical meaning\nWhen\n\\[\nRe\\gg1,\n\\]\ninertia dominates.\nWhen\n\\[\nRe\\ll1,\n\\]\nviscosity dominates.\nMany organisms operate in the low-Reynolds-number regime.\nFor example:\n\nbacteria,\nsperm cells,\nintracellular transport.\n\nTheir physics is therefore fundamentally different from our everyday experience."
+  },
+  {
+    "objectID": "NotesIntroNavierStokes.html#shear-rate-tensor",
+    "href": "NotesIntroNavierStokes.html#shear-rate-tensor",
+    "title": "Biological and Mesoscale Physics",
+    "section": "7.1 Shear-rate tensor",
+    "text": "7.1 Shear-rate tensor\nThe shear-rate tensor is defined as\n\\[\n\\gamma_{ij}\n=\\frac{1}{2}\\left(\n\\frac{\\partial v_i}{\\partial x_j}\n+\n\\frac{\\partial v_j}{\\partial x_i}\n\\right)\n-\\frac{1}{3}\\sum_{k} \\frac{\\partial v_k}{\\partial x_k} \\delta_{ij},\n\\] where the third term exists to make the tensor traceless. For incompressible fluids, as \\(\\nabla\\cdot\\mathbf v=\\sum_{k}\\frac{\\partial v_k}{\\partial x_k}=0\\), only the first two terms matter. This quantifies local deformation rates."
+  }
+]

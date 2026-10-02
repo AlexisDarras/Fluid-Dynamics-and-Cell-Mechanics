@@ -1,0 +1,2216 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dr Alexis Darras">
+
+<title>Biological and Mesoscale Physics – Fluid Dynamics and Cell Mechanics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Fluid Dynamics and Cell Mechanics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./NotesIntroNavierStokes.html" aria-current="page"> 
+<span class="menu-text">Introduction to the Navier-Stokes Equation</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
+  <li><a href="#from-point-particles-to-continuous-media" id="toc-from-point-particles-to-continuous-media" class="nav-link" data-scroll-target="#from-point-particles-to-continuous-media"><span class="header-section-number">2</span> From point particles to continuous media</a>
+  <ul class="collapse">
+  <li><a href="#newtonian-mechanics" id="toc-newtonian-mechanics" class="nav-link" data-scroll-target="#newtonian-mechanics"><span class="header-section-number">2.1</span> Newtonian mechanics</a></li>
+  <li><a href="#the-continuum-hypothesis" id="toc-the-continuum-hypothesis" class="nav-link" data-scroll-target="#the-continuum-hypothesis"><span class="header-section-number">2.2</span> The continuum hypothesis</a></li>
+  </ul></li>
+  <li><a href="#eulerian-and-lagrangian-descriptions" id="toc-eulerian-and-lagrangian-descriptions" class="nav-link" data-scroll-target="#eulerian-and-lagrangian-descriptions"><span class="header-section-number">3</span> Eulerian and Lagrangian descriptions</a>
+  <ul class="collapse">
+  <li><a href="#comparison-with-particle-mechanics" id="toc-comparison-with-particle-mechanics" class="nav-link" data-scroll-target="#comparison-with-particle-mechanics"><span class="header-section-number">3.1</span> Comparison with particle mechanics</a></li>
+  </ul></li>
+  <li><a href="#the-material-derivative" id="toc-the-material-derivative" class="nav-link" data-scroll-target="#the-material-derivative"><span class="header-section-number">4</span> The material derivative</a>
+  <ul class="collapse">
+  <li><a href="#material-derivative-of-velocity" id="toc-material-derivative-of-velocity" class="nav-link" data-scroll-target="#material-derivative-of-velocity"><span class="header-section-number">4.1</span> Material derivative of velocity</a></li>
+  </ul></li>
+  <li><a href="#forces-in-a-continuum" id="toc-forces-in-a-continuum" class="nav-link" data-scroll-target="#forces-in-a-continuum"><span class="header-section-number">5</span> Forces in a continuum</a>
+  <ul class="collapse">
+  <li><a href="#volume-forces" id="toc-volume-forces" class="nav-link" data-scroll-target="#volume-forces"><span class="header-section-number">5.1</span> Volume forces</a>
+  <ul class="collapse">
+  <li><a href="#why-do-volume-forces-scale-with-volume" id="toc-why-do-volume-forces-scale-with-volume" class="nav-link" data-scroll-target="#why-do-volume-forces-scale-with-volume"><span class="header-section-number">5.1.1</span> Why do volume forces scale with volume?</a></li>
+  </ul></li>
+  <li><a href="#surface-forces" id="toc-surface-forces" class="nav-link" data-scroll-target="#surface-forces"><span class="header-section-number">5.2</span> Surface forces</a>
+  <ul class="collapse">
+  <li><a href="#why-do-interaction-forces-scale-with-surface-area" id="toc-why-do-interaction-forces-scale-with-surface-area" class="nav-link" data-scroll-target="#why-do-interaction-forces-scale-with-surface-area"><span class="header-section-number">5.2.1</span> Why do interaction forces scale with surface area?</a></li>
+  <li><a href="#why-do-surface-forces-depend-on-surface-orientation" id="toc-why-do-surface-forces-depend-on-surface-orientation" class="nav-link" data-scroll-target="#why-do-surface-forces-depend-on-surface-orientation"><span class="header-section-number">5.2.2</span> Why do surface forces depend on surface orientation?</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#pressure-and-shear-stress" id="toc-pressure-and-shear-stress" class="nav-link" data-scroll-target="#pressure-and-shear-stress"><span class="header-section-number">6</span> Pressure and shear stress</a></li>
+  <li><a href="#newtonian-fluids" id="toc-newtonian-fluids" class="nav-link" data-scroll-target="#newtonian-fluids"><span class="header-section-number">7</span> Newtonian fluids</a>
+  <ul class="collapse">
+  <li><a href="#shear-rate-tensor" id="toc-shear-rate-tensor" class="nav-link" data-scroll-target="#shear-rate-tensor"><span class="header-section-number">7.1</span> Shear-rate tensor</a></li>
+  <li><a href="#newtonian-constitutive-law" id="toc-newtonian-constitutive-law" class="nav-link" data-scroll-target="#newtonian-constitutive-law"><span class="header-section-number">7.2</span> Newtonian constitutive law</a></li>
+  </ul></li>
+  <li><a href="#conservation-of-mass" id="toc-conservation-of-mass" class="nav-link" data-scroll-target="#conservation-of-mass"><span class="header-section-number">8</span> Conservation of mass</a></li>
+  <li><a href="#incompressible-fluids" id="toc-incompressible-fluids" class="nav-link" data-scroll-target="#incompressible-fluids"><span class="header-section-number">9</span> Incompressible fluids</a></li>
+  <li><a href="#conservation-of-momentum" id="toc-conservation-of-momentum" class="nav-link" data-scroll-target="#conservation-of-momentum"><span class="header-section-number">10</span> Conservation of momentum</a>
+  <ul class="collapse">
+  <li><a href="#momentum-balance" id="toc-momentum-balance" class="nav-link" data-scroll-target="#momentum-balance"><span class="header-section-number">10.1</span> Momentum balance</a></li>
+  </ul></li>
+  <li><a href="#derivation-of-the-navier-stokes-equation" id="toc-derivation-of-the-navier-stokes-equation" class="nav-link" data-scroll-target="#derivation-of-the-navier-stokes-equation"><span class="header-section-number">11</span> Derivation of the Navier-Stokes equation</a></li>
+  <li><a href="#physical-interpretation-of-navier-stokes" id="toc-physical-interpretation-of-navier-stokes" class="nav-link" data-scroll-target="#physical-interpretation-of-navier-stokes"><span class="header-section-number">12</span> Physical interpretation of Navier-Stokes</a></li>
+  <li><a href="#towards-the-problem-class" id="toc-towards-the-problem-class" class="nav-link" data-scroll-target="#towards-the-problem-class"><span class="header-section-number">13</span> Towards the problem class</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Biological and Mesoscale Physics</h1>
+<p class="subtitle lead">Introduction to Continuum Mechanics and the Navier-Stokes Equations</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Dr Alexis Darras </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
+<p>Many biological systems involve fluids:</p>
+<ul>
+<li>blood flow through vessels,</li>
+<li>transport within cells,</li>
+<li>swimming microorganisms,</li>
+<li>suspensions of proteins, cells and bacteria,</li>
+<li>diffusion of nutrients and signalling molecules.</li>
+</ul>
+<p>Although these systems differ greatly in scale, they are governed by a common set of physical laws.</p>
+<p>The purpose of these notes is to derive the Navier-Stokes equation from Newton’s laws and to explain the physical meaning of every term involved.</p>
+<p>Throughout these notes, bold symbols denote vectors.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Symbol</th>
+<th>Meaning</th>
+<th>SI unit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\mathbf r\)</span></td>
+<td>Position vector</td>
+<td>m</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(t\)</span></td>
+<td>Time</td>
+<td>s</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\rho\)</span></td>
+<td>Mass density</td>
+<td>kg m<span class="math inline">\(^{-3}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\mathbf v\)</span></td>
+<td>Velocity field</td>
+<td>m s<span class="math inline">\(^{-1}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(p\)</span></td>
+<td>Pressure</td>
+<td>Pa</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\boldsymbol{\sigma}\)</span></td>
+<td>Stress tensor</td>
+<td>Pa</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\eta\)</span></td>
+<td>Dynamic viscosity</td>
+<td>Pa s</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\mathbf f_V\)</span></td>
+<td>Volume force density</td>
+<td>N m<span class="math inline">\(^{-3}\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\mathbf g\)</span></td>
+<td>gravitational acceleration</td>
+<td>m s<span class="math inline">\(^{-2}\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="from-point-particles-to-continuous-media" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> From point particles to continuous media</h1>
+<section id="newtonian-mechanics" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="newtonian-mechanics"><span class="header-section-number">2.1</span> Newtonian mechanics</h2>
+<p>For a collection of particles, Newton’s second law states</p>
+<p><span class="math display">\[
+\sum \mathbf F = \frac{d\mathbf p}{dt},
+\]</span></p>
+<p>where <span class="math inline">\(\mathbf p\)</span> is the momentum of the particle.</p>
+<p>Classical mechanics therefore describes:</p>
+<ul>
+<li>particle positions,</li>
+<li>particle velocities,</li>
+<li>forces acting on each particle.</li>
+</ul>
+<p>This description rapidly becomes impossible when dealing with fluids, since a macroscopic fluid contains roughly</p>
+<p><span class="math display">\[
+10^{23}
+\]</span></p>
+<p>molecules per mole.</p>
+</section>
+<section id="the-continuum-hypothesis" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="the-continuum-hypothesis"><span class="header-section-number">2.2</span> The continuum hypothesis</h2>
+<p>Instead of describing individual molecules, we average quantities over a sufficiently small volume.</p>
+<p>This volume must:</p>
+<ul>
+<li>be large compared with molecular dimensions,</li>
+<li>be small compared with the length scales of interest.</li>
+</ul>
+<p>We then define smooth fields such as the local mass density <span class="math inline">\(\rho(\mathbf r,t)\)</span>, the velocity field <span class="math inline">\(\mathbf v(\mathbf r,t)\)</span>, and the pressure field <span class="math inline">\(p(\mathbf r,t)\)</span>.</p>
+<p>This approximation is known as the <strong>continuum hypothesis</strong>. Under this hypothesis, fluids can be treated using differential calculus.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Preamble: the mathematical nature of physical quantities
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>In order to discuss forces in continuous media, compared with point mechanics, we need a new mathematical object to describe physical quantities, known as a tensor. As you are reading these notes, you should ba familiar with scalar and vector physical quantities:</p>
+<section id="scalars" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="scalars"><span class="header-section-number">2.3</span> Scalars</h2>
+<p>Scalars possess magnitude only. They’re represented by a single number.</p>
+<p>Examples:</p>
+<ul>
+<li>temperature,</li>
+<li>mass,</li>
+<li>density,</li>
+<li>pressure.</li>
+</ul>
+</section>
+<section id="vectors" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="vectors"><span class="header-section-number">2.4</span> Vectors</h2>
+<p>Vectors possess magnitude and direction. They are represented by a <span class="math inline">\(N\times 1\)</span> matrix, or array, where <span class="math inline">\(N\)</span> is the dimension of the described system, which depends on the choice of reference frame.</p>
+<p>Examples:</p>
+<ul>
+<li>displacement,</li>
+<li>velocity,</li>
+<li>force.</li>
+</ul>
+</section>
+<section id="second-rank-tensors" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="second-rank-tensors"><span class="header-section-number">2.5</span> Second-rank tensors</h2>
+<p>In a simple way, one can say a tensor describes how a vector quantity depends on direction.</p>
+<p>The simplest example is a matrix:</p>
+<p><span class="math display">\[
+\mathbf T
+=
+\begin{pmatrix}
+T_{xx} &amp; T_{xy} &amp; T_{xz}\\
+T_{yx} &amp; T_{yy} &amp; T_{yz}\\
+T_{zx} &amp; T_{zy} &amp; T_{zz}
+\end{pmatrix}.
+\]</span></p>
+<p>Tensors appear naturally when describing stresses in a continuous medium.</p>
+<p>Indeed, the force exerted across a given surface depends not only on position but also on the orientation of that surface. Gradients of vector quantites are also important in continuous media.</p>
+</section>
+<section id="change-of-reference-frame" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="change-of-reference-frame"><span class="header-section-number">2.6</span> Change of reference frame</h2>
+<p>One of the defining properties of physical quantities is that their description should not depend on the coordinate system used by the observer.</p>
+<section id="scalars-1" class="level3" data-number="2.6.1">
+<h3 data-number="2.6.1" class="anchored" data-anchor-id="scalars-1"><span class="header-section-number">2.6.1</span> Scalars</h3>
+<p>Scalars are unchanged when the coordinate system is rotated.</p>
+<p>For example, the temperature at a point remains the same regardless of how we orient our axes.</p>
+<p>If</p>
+<p><span class="math display">\[
+T = 300\,\mathrm{K},
+\]</span></p>
+<p>then every observer measures exactly the same value.</p>
+</section>
+<section id="vectors-1" class="level3" data-number="2.6.2">
+<h3 data-number="2.6.2" class="anchored" data-anchor-id="vectors-1"><span class="header-section-number">2.6.2</span> Vectors</h3>
+<p>The components of a vector depend on the chosen coordinate system, even though the physical vector itself does not.</p>
+<p>For example, consider a force</p>
+<p><span class="math display">\[
+\mathbf F=
+\begin{pmatrix}
+10\\
+0
+\end{pmatrix}
+\mathrm{N}
+\]</span></p>
+<p>in a two-dimensional coordinate system.</p>
+<p>If the axes are rotated by <span class="math inline">\(45^\circ\)</span>, the same force becomes</p>
+<p><span class="math display">\[
+\mathbf F'=
+\begin{pmatrix}
+10/\sqrt{2}\\
+-10/\sqrt{2}
+\end{pmatrix}
+\mathrm{N}.
+\]</span></p>
+<p>The numerical components have changed, but the physical force is exactly the same.</p>
+<p>Mathematically, vectors transform according to</p>
+<p><span class="math display">\[
+F_i' = R_{ij}F_j=\mathbf R \cdot \mathbf F,
+\]</span></p>
+<p>where <span class="math inline">\(R_{ij}\)</span> is the rotation matrix describing the change of basis.</p>
+</section>
+<section id="second-rank-tensors-1" class="level3" data-number="2.6.3">
+<h3 data-number="2.6.3" class="anchored" data-anchor-id="second-rank-tensors-1"><span class="header-section-number">2.6.3</span> Second-rank tensors</h3>
+<p>A tensor describes a relationship between directions. Consequently, both of its indices must transform whenever the coordinate system changes.</p>
+<p>For a second-rank tensor,</p>
+<p><span class="math display">\[
+T_{ij},
+\]</span></p>
+<p>the components in the rotated coordinate system become</p>
+<p><span class="math display">\[
+T'_{ij}
+=
+R_{ik}R_{jl}T_{kl}
+=\mathbf R\cdot \mathbf T \cdot \mathbf R^{-1}.
+\]</span></p>
+<p>The two rotation matrices appear because the tensor acts on two directions simultaneously.</p>
+<p>For example, as we will show later, the stress tensor contains:</p>
+<ul>
+<li>a direction associated with the orientation of a surface,</li>
+<li>a direction associated with the force acting on that surface.</li>
+</ul>
+<p>Both directions must therefore be transformed when changing coordinates.</p>
+<p>This is why stresses cannot generally be represented by a simple scalar or vector.</p>
+</section>
+</section>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>A description of notation conventions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Fluid mechanics uses a compact notation based on vectors, tensors and the <strong>Einstein summation convention</strong>.</p>
+<section id="einstein-summation-convention" class="level3" data-number="2.6.4">
+<h3 data-number="2.6.4" class="anchored" data-anchor-id="einstein-summation-convention"><span class="header-section-number">2.6.4</span> Einstein summation convention</h3>
+<p>Whenever an index appears twice in a term, summation over that index is implied.</p>
+<p>For example,</p>
+<p><span class="math display">\[
+a_i b_i
+=
+\sum_{i=1}^{3} a_i b_i
+=
+a_1 b_1+a_2 b_2+a_3 b_3 .
+\]</span></p>
+<p>This notation avoids writing explicit summation symbols and greatly simplifies tensor equations.</p>
+</section>
+<section id="the-gradient-operator" class="level3" data-number="2.6.5">
+<h3 data-number="2.6.5" class="anchored" data-anchor-id="the-gradient-operator"><span class="header-section-number">2.6.5</span> The gradient operator</h3>
+<p>The vector differential operator</p>
+<p><span class="math display">\[
+\nabla
+=
+\left(
+\frac{\partial}{\partial x},
+\frac{\partial}{\partial y},
+\frac{\partial}{\partial z}
+\right)
+\equiv
+\left(
+\frac{\partial}{\partial x_1},
+\frac{\partial}{\partial x_2},
+\frac{\partial}{\partial x_3}
+\right)
+\]</span></p>
+<p>can be written in index notation as</p>
+<p><span class="math display">\[
+(\nabla)_i
+=
+\frac{\partial}{\partial x_i}.
+\]</span></p>
+</section>
+<section id="dot-product-with-a-gradient" class="level3" data-number="2.6.6">
+<h3 data-number="2.6.6" class="anchored" data-anchor-id="dot-product-with-a-gradient"><span class="header-section-number">2.6.6</span> Dot product with a gradient</h3>
+<p>The velocity vector is</p>
+<p><span class="math display">\[
+\mathbf v
+=
+(v_1,v_2,v_3).
+\]</span></p>
+<p>The expression</p>
+<p><span class="math display">\[
+\mathbf v\cdot\nabla
+\]</span></p>
+<p>means</p>
+<p><span class="math display">\[
+v_i\frac{\partial}{\partial x_i}
+=
+v_1\frac{\partial}{\partial x}
++
+v_2\frac{\partial}{\partial y}
++
+v_3\frac{\partial}{\partial z}.
+\]</span></p>
+<p>Note that <span class="math inline">\(\mathbf v\cdot\nabla\)</span> is <strong>not a scalar quantity</strong>, but a differential scalar operator which acts on whatever follows it.</p>
+<p>For example, if <span class="math inline">\(X(\mathbf r,t)\)</span> is a scalar field,</p>
+<p><span class="math display">\[
+\mathbf v\cdot\nabla X
+=
+v_i\frac{\partial X}{\partial x_i}
+=
+v_1\frac{\partial X}{\partial x}
++
+v_2\frac{\partial X}{\partial y}
++
+v_3\frac{\partial X}{\partial z}.
+\]</span></p>
+<p>This quantity represents the rate at which a fluid particle experiences changes in <span class="math inline">\(X\)</span> because it is moving through space.</p>
+</section>
+<section id="other-common-tensor-operations" class="level3" data-number="2.6.7">
+<h3 data-number="2.6.7" class="anchored" data-anchor-id="other-common-tensor-operations"><span class="header-section-number">2.6.7</span> Other common tensor operations</h3>
+<p>The <strong>gradient of a scalar field</strong> produces a vector:</p>
+<p><span class="math display">\[
+(\nabla X)_i
+=
+\frac{\partial X}{\partial x_i}.
+\]</span></p>
+<p>The <strong>divergence of a vector field</strong> produces a scalar:</p>
+<p><span class="math display">\[
+\nabla\cdot\mathbf v
+=
+\frac{\partial v_i}{\partial x_i} (=\frac{\partial v_1}{\partial x}+\frac{\partial v_2}{\partial y}+\frac{\partial v_3}{\partial z}).
+\]</span></p>
+<p>The <strong>gradient of a vector field</strong> produces a second-rank tensor:</p>
+<p><span class="math display">\[
+(\nabla\mathbf v)_{ij}
+=
+\frac{\partial v_j}{\partial x_i}.
+\]</span></p>
+<p>The <strong>double contraction</strong> of two tensors produces a scalar:</p>
+<p><span class="math display">\[
+A:B
+=
+A_{ij}B_{ij}.
+\]</span></p>
+<p>These operations appear repeatedly in continuum mechanics because physical quantities such as stress and strain are tensorial in nature.</p>
+</section>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="eulerian-and-lagrangian-descriptions" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Eulerian and Lagrangian descriptions</h1>
+<p>There are two fundamentally different ways of describing fluid motion:</p>
+<ul>
+<li><p>the <strong>Lagrangian description</strong>: We follow an individual fluid particle. Its position is <span class="math inline">\(\mathbf r_P(t)\)</span>, and its velocity is <span class="math inline">\(\mathbf v_P(t)=\frac{d\mathbf r_P}{dt}\)</span>. This description remains very close to ordinary Newtonian mechanics.</p></li>
+<li><p>the <strong>Eulerian description</strong>: Instead of following particles, we observe the fluid at fixed positions. At every point in space, we define the velocity field <span class="math inline">\(\mathbf v(\mathbf r,t)\)</span> as the velocity of the particles present in <span class="math inline">\(\mathbf r\)</span> at time <span class="math inline">\(t\)</span>. Most fluid mechanics uses the Eulerian description.</p></li>
+</ul>
+<section id="comparison-with-particle-mechanics" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="comparison-with-particle-mechanics"><span class="header-section-number">3.1</span> Comparison with particle mechanics</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Particle mechanics</th>
+<th>Continuum mechanics</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Position <span class="math inline">\(\mathbf r_P(t)\)</span> and speed <span class="math inline">\(\mathbf v_P(t)\)</span></td>
+<td>Velocity field <span class="math inline">\(\mathbf v(\mathbf r,t)\)</span></td>
+</tr>
+<tr class="even">
+<td>Mass <span class="math inline">\(m\)</span></td>
+<td>Density <span class="math inline">\(\rho(\mathbf r,t)\)</span></td>
+</tr>
+<tr class="odd">
+<td>Force <span class="math inline">\(\mathbf F\)</span></td>
+<td>Volume force density <span class="math inline">\(\mathbf f_v\)</span></td>
+</tr>
+<tr class="even">
+<td>Momentum <span class="math inline">\(\mathbf p\)</span></td>
+<td>Momentum density <span class="math inline">\(\rho\mathbf v\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="the-material-derivative" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> The material derivative</h1>
+<p>Suppose a fluid carries a scalar quantity <span class="math inline">\(X(\mathbf r,t)\)</span>, such as a temperature, concentration or density. A fluid particle moving through the flow experiences two kinds of changes:</p>
+<ol type="1">
+<li>explicit changes with time;</li>
+<li>changes caused by moving into a region where the value of <span class="math inline">\(X\)</span> is different.</li>
+</ol>
+<p>Using the chain rule,</p>
+<p><span class="math display">\[
+\frac{dX}{dt}
+=
+\frac{\partial X}{\partial t}
++
+\frac{dx_i}{dt}
+\frac{\partial X}{\partial x_i}.
+\]</span></p>
+<p>Since <span class="math inline">\(\frac{dx_i}{dt}=v_i\)</span> is the velocity of the material particle carrying those changes, we obtain</p>
+<p><span class="math display">\[
+\boxed{
+\frac{DX}{Dt}
+=
+\frac{\partial X}{\partial t}
++
+\mathbf v\cdot\nabla X
+}
+\]</span></p>
+<p>This operator is called the <strong>material derivative</strong>.</p>
+<section id="material-derivative-of-velocity" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="material-derivative-of-velocity"><span class="header-section-number">4.1</span> Material derivative of velocity</h2>
+<p>Applying the material derivative to velocity itself gives the acceleration of a fluid element:</p>
+<p><span class="math display">\[
+\boxed{
+\frac{D\mathbf v}{Dt}
+=
+\frac{\partial\mathbf v}{\partial t}
++
+(\mathbf v\cdot\nabla)\mathbf v
+}
+\]</span></p>
+<p>The first term is called the <strong>local acceleration</strong>.</p>
+<p>The second term is called the <strong>convective acceleration</strong>.</p>
+<p>This second term has no equivalent in elementary particle mechanics and is responsible for much of the complexity of fluid dynamics.</p>
+</section>
+</section>
+<section id="forces-in-a-continuum" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Forces in a continuum</h1>
+<p>Consider a small material element of fluid occupying a volume (V).</p>
+<p>Unlike a point particle, this element contains a very large number of molecules. The total force acting on the element therefore arises from two physically distinct origins:</p>
+<ol type="1">
+<li>forces applied by external fields, acting on all particles within the volume;</li>
+<li>forces exerted by neighbouring material through the boundary of the element.</li>
+</ol>
+<p>Understanding the scaling of these two contributions is one of the key steps in continuum mechanics.</p>
+<section id="volume-forces" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="volume-forces"><span class="header-section-number">5.1</span> Volume forces</h2>
+<p>Some forces act directly on every particle contained within the material element.</p>
+<p>Examples include:</p>
+<ul>
+<li>gravity,</li>
+<li>electric forces,</li>
+<li>magnetic forces.</li>
+</ul>
+<p>A simple example is gravity. If the constitutive element contains (N) particles of mass (m_i), the total gravitational force is</p>
+<p><span class="math display">\[
+\mathbf F_g
+=
+\sum_i m_i\mathbf g.
+\]</span></p>
+<p>As the number of particles becomes very large, this discrete sum may be replaced by a volume integral:</p>
+<p><span class="math display">\[
+\mathbf F_g
+=
+\int_V \rho \mathbf g\,dV.
+\]</span></p>
+<p>More generally, any force acting throughout the volume can be written</p>
+<p><span class="math display">\[
+\boxed{
+\mathbf F_V
+=
+\int_V \mathbf f_V\,dV
+}
+\]</span></p>
+<p>where (f_V) is the volume-force density (force per unit volume).</p>
+<section id="why-do-volume-forces-scale-with-volume" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="why-do-volume-forces-scale-with-volume"><span class="header-section-number">5.1.1</span> Why do volume forces scale with volume?</h3>
+<p>If the characteristic size of the constitutive element is (L), then</p>
+<p><span class="math display">\[
+V \sim L^3.
+\]</span></p>
+<p>The number of particles contained inside the element is proportional to its volume. Since each particle experiences the external force, the total force is also proportional to the volume:</p>
+<p><span class="math display">\[
+F_V \propto V.
+\]</span></p>
+<p>Consequently,</p>
+<p><span class="math display">\[
+F_V \sim L^3.
+\]</span></p>
+<div id="fig-volume-force" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-volume-force-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/PictureFv.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-volume-force-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: External forces acting on particles inside a constitutive volume. Every particle experiences gravity, leading to a net force proportional to the volume of the element.
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="surface-forces" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="surface-forces"><span class="header-section-number">5.2</span> Surface forces</h2>
+<p>A second class of forces arises from interactions between neighbouring material elements.</p>
+<p>Examples include:</p>
+<ul>
+<li>pressure forces,</li>
+<li>viscous shear forces,</li>
+<li>contact forces in solids.</li>
+</ul>
+<p>At first sight one might expect these forces to also scale with volume, since molecules throughout the element interact with one another. However, a careful counting argument shows otherwise.</p>
+<section id="why-do-interaction-forces-scale-with-surface-area" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="why-do-interaction-forces-scale-with-surface-area"><span class="header-section-number">5.2.1</span> Why do interaction forces scale with surface area?</h3>
+<p>Interactions between particles occur in action-reaction pairs.</p>
+<p>For two particles located entirely within the constitutive element,</p>
+<p><span class="math display">\[
+\mathbf F_{12}
+=
+-\mathbf F_{21},
+\]</span></p>
+<p>so their contributions cancel when computing the net force acting on the whole element.</p>
+<p>Therefore, interactions between particles entirely inside the volume do not contribute to the total external force.</p>
+<p>Only interactions crossing the boundary of the constitutive element survive.</p>
+<p>The number of such interactions is proportional to the size of the boundary surface.</p>
+<p>As a result,</p>
+<p><span class="math display">\[
+F_S \propto S,
+\]</span></p>
+<p>where (S) is the surface area of the constitutive element.</p>
+<p>Since</p>
+<p><span class="math display">\[
+S \sim L^2,
+\]</span></p>
+<p>surface forces scale as</p>
+<p><span class="math display">\[
+F_S \sim L^2.
+\]</span></p>
+<p>This result explains why stresses are naturally defined as force per unit area.</p>
+<div id="fig-surface-force" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-surface-force-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/PictureFs.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-surface-force-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Neighbouring particles interacting across a boundary surface, showing cancellation of internal action-reaction pairs and survival of boundary interactions.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="why-do-surface-forces-depend-on-surface-orientation" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="why-do-surface-forces-depend-on-surface-orientation"><span class="header-section-number">5.2.2</span> Why do surface forces depend on surface orientation?</h3>
+<p>Unlike volume forces such as gravity, surface forces originate from interactions between neighbouring particles located on opposite sides of an imaginary surface drawn through the material.</p>
+<p>The key idea is that changing the orientation of this surface changes which pairs of particles are separated by the surface.</p>
+<p>For example, consider the same small material element and imagine drawing two different surfaces through it:</p>
+<ul>
+<li>a horizontal surface;</li>
+<li>an inclined surface.</li>
+</ul>
+<p>The particles lying on one side of the surface and those lying on the other side will generally be different in each case.</p>
+<p>As a result, the collection of intermolecular interactions crossing the surface also changes.</p>
+<p>Because the net force acting on the material element arises from the sum of all interactions crossing the boundary, changing the orientation of the boundary changes the resulting force.</p>
+<p>Therefore, the surface force cannot depend only on position. It must also depend on the orientation of the surface.</p>
+<div id="fig-surface-depend" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-surface-depend-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/SurfaceDependency.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-surface-depend-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Two different cuts through the same material element, showing different pairs of particles interacting across each surface.
+</figcaption>
+</figure>
+</div>
+<p>Mathematically, we characterize the orientation of a surface by its outward unit normal vector</p>
+<p><span class="math display">\[
+\mathbf n.
+\]</span></p>
+<p>The force per unit area acting across a surface with normal (n) is called the <strong>traction vector</strong></p>
+<p><span class="math display">\[
+\boxed{
+\boldsymbol{\tau}(\mathbf n)
+=
+\frac{d\mathbf F}{dS}.
+}
+\]</span></p>
+<p>The explicit dependence on (n) emphasizes that two surfaces passing through the same point may experience different tractions if they have different orientations.</p>
+<p>This dependence on surface orientation is the fundamental reason why internal forces in a continuum cannot generally be described by a scalar or a vector alone. One can however show that a second-rank tensor, known as the stress tensor <span class="math inline">\(\boldsymbol{\sigma}\)</span>, is sufficient to describe all surface stresses in contimuous material. The traction vector, for a surface with a normal <span class="math inline">\(\mathbf n\)</span>, can then be determined as</p>
+<p><span class="math display">\[
+\boxed{
+\boldsymbol{\tau}(\mathbf n)
+=
+\mathbf n \cdot \boldsymbol{\sigma}
+}
+\]</span></p>
+<p>To understand the physical meaning of the stress tensor, consider one of its components, <span class="math inline">\(\sigma_{ij}\)</span>. The second index <span class="math inline">\(j\)</span> identifies the direction of the force acting on the surface, while the first index <span class="math inline">\(i\)</span> identifies the direction normal to that surface.</p>
+<p>Equivalently,</p>
+<p><span class="math display">\[
+\boxed{
+\sigma_{ij}
+=
+\text{force in direction } j
+\text{ acting on a surface normal to } i
+\text{ per unit area}.
+}
+\]</span></p>
+<p>For example, <span class="math inline">\(\sigma_{xy}\)</span> represents the force per unit area acting in the <span class="math inline">\(y\)</span>-direction across a surface whose normal points in the <span class="math inline">\(x\)</span>-direction. Likewise, <span class="math inline">\(\sigma_{zz}\)</span> represents the force per unit area acting in the <span class="math inline">\(z\)</span>-direction across a surface normal to <span class="math inline">\(z\)</span>.</p>
+<p>Such components are called <strong>normal stresses</strong>, while components with <span class="math inline">\(i\neq j\)</span> are called <strong>shear stresses</strong>.</p>
+<p>A useful way to visualize the stress tensor is to consider three surfaces passing through a point and normal to the coordinate axes. The corresponding traction vectors are</p>
+<p><span class="math display">\[
+\boldsymbol{\tau}(\mathbf e_x)
+=
+\begin{pmatrix}
+\sigma_{xx}\\
+\sigma_{xy}\\
+\sigma_{xz}
+\end{pmatrix},
+\qquad
+\boldsymbol{\tau}(\mathbf e_y)
+=
+\begin{pmatrix}
+\sigma_{yx}\\
+\sigma_{yy}\\
+\sigma_{yz}
+\end{pmatrix},
+\qquad
+\boldsymbol{\tau}(\mathbf e_z)
+=
+\begin{pmatrix}
+\sigma_{zx}\\
+\sigma_{zy}\\
+\sigma_{zz}
+\end{pmatrix}.
+\]</span></p>
+<p>The stress tensor therefore contains all the information required to determine the traction acting on a surface of arbitrary orientation. Each column corresponds to a particular surface normal, while each row corresponds to a particular force direction.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Derivation of the stress tensor: Cauchy’s tetrahedron argument
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Since the traction depends on the chosen normal vector <span class="math inline">\(\mathbf n\)</span>, one might think that an independent traction vector must be specified for every possible orientation. Cauchy’s tetrahedron argument shows that this is not necessary. We have introduced the traction vector</p>
+<p><span class="math display">\[
+\boldsymbol{\tau}(\mathbf n)
+=
+\frac{d\mathbf F}{dS},
+\]</span></p>
+<p>which gives the force per unit area acting across a surface whose outward normal is <span class="math inline">\(\mathbf n\)</span>.</p>
+<p>A natural question arises:</p>
+<blockquote class="blockquote">
+<p>How many traction vectors do we need to specify in order to describe all possible internal forces in a material?</p>
+</blockquote>
+<p>At first sight, the answer seems daunting: every possible surface orientation could have a different traction vector.</p>
+<p>Remarkably, this is not the case.</p>
+<section id="step-1-consider-an-infinitesimal-tetrahedron" class="level3" data-number="5.2.3">
+<h3 data-number="5.2.3" class="anchored" data-anchor-id="step-1-consider-an-infinitesimal-tetrahedron"><span class="header-section-number">5.2.3</span> Step 1: Consider an infinitesimal tetrahedron</h3>
+<p>Imagine an infinitesimal tetrahedral fluid element.</p>
+<p>Three faces are aligned with the coordinate planes:</p>
+<ul>
+<li>a face normal to <span class="math inline">\(\mathbf e_x\)</span>,</li>
+<li>a face normal to <span class="math inline">\(\mathbf e_y\)</span>,</li>
+<li>a face normal to <span class="math inline">\(\mathbf e_z\)</span>.</li>
+</ul>
+<p>The fourth face is an arbitrarily oriented surface with normal</p>
+<p><span class="math display">\[
+\mathbf n
+=
+(n_x,n_y,n_z).
+\]</span></p>
+<div id="fig-CauchyTetra" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-CauchyTetra-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/CauchyTetra.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-CauchyTetra-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Illustration of the Cauchy tetrahedron.
+</figcaption>
+</figure>
+</div>
+<p>Let:</p>
+<ul>
+<li><span class="math inline">\(S\)</span> be the area of the inclined face,</li>
+<li><span class="math inline">\(S_x\)</span>, <span class="math inline">\(S_y\)</span>, <span class="math inline">\(S_z\)</span> be the areas of the coordinate faces.</li>
+</ul>
+<p>Geometry gives</p>
+<p><span class="math display">\[
+S_x=n_xS,
+\qquad
+S_y=n_yS,
+\qquad
+S_z=n_zS.
+\]</span></p>
+<p>The quantities <span class="math inline">\(n_x\)</span>, <span class="math inline">\(n_y\)</span> and <span class="math inline">\(n_z\)</span> are precisely the direction cosines of the normal vector.</p>
+</section>
+<section id="step-2-apply-force-balance" class="level3" data-number="5.2.4">
+<h3 data-number="5.2.4" class="anchored" data-anchor-id="step-2-apply-force-balance"><span class="header-section-number">5.2.4</span> Step 2: Apply force balance</h3>
+<p>Because the tetrahedron is infinitesimally small, its volume scales as</p>
+<p><span class="math display">\[
+V \sim L^3,
+\]</span></p>
+<p>while surface areas scale as</p>
+<p><span class="math display">\[
+S \sim L^2.
+\]</span></p>
+<p>As the size of the tetrahedron tends to zero, body forces and inertial terms become negligible compared with surface forces.</p>
+<p>Force balance therefore reduces to</p>
+<p><span class="math display">\[
+\sum \mathbf F_{Surface} = 0.
+\]</span></p>
+<p>The surface force acting on the inclined face is</p>
+<p><span class="math display">\[
+\boldsymbol{\tau}(\mathbf n)S.
+\]</span></p>
+<p>The forces acting on the coordinate faces are</p>
+<p><span class="math display">\[
+\boldsymbol{\tau}(-\mathbf e_x)S_x,
+\]</span></p>
+<p><span class="math display">\[
+\boldsymbol{\tau}(-\mathbf e_y)S_y,
+\]</span></p>
+<p><span class="math display">\[
+\boldsymbol{\tau}(-\mathbf e_z)S_z.
+\]</span></p>
+<p>Taking into account that <span class="math inline">\(\boldsymbol{\tau}(-\mathbf n)=-\boldsymbol{\tau}(\mathbf n)\)</span> (which is a direct application of Newton’s third law), it comes</p>
+<p><span class="math display">\[
+\boldsymbol{\tau}(\mathbf n)S
+=
+\boldsymbol{\tau}(\mathbf e_x)S_x
++
+\boldsymbol{\tau}(\mathbf e_y)S_y
++
+\boldsymbol{\tau}(\mathbf e_z)S_z.
+\]</span></p>
+<p>Substituting</p>
+<p><span class="math display">\[
+S_x=n_xS,
+\qquad
+S_y=n_yS,
+\qquad
+S_z=n_zS,
+\]</span></p>
+<p>and dividing by <span class="math inline">\(S\)</span> gives</p>
+<p><span class="math display">\[
+\boxed{
+\boldsymbol{\tau}(\mathbf n)
+=
+n_x\boldsymbol{\tau}(\mathbf e_x)
++
+n_y\boldsymbol{\tau}(\mathbf e_y)
++
+n_z\boldsymbol{\tau}(\mathbf e_z)
+\equiv
+\mathbf n \cdot \boldsymbol{\sigma}
+}
+\]</span></p>
+<p>This is Cauchy’s fundamental result, or, in index notation,</p>
+<p><span class="math display">\[
+\boxed{
+\tau_i(\mathbf n) = n_j \sigma_{ji}.
+}
+\]</span></p>
+</section>
+<section id="physical-meaning" class="level3" data-number="5.2.5">
+<h3 data-number="5.2.5" class="anchored" data-anchor-id="physical-meaning"><span class="header-section-number">5.2.5</span> Physical meaning</h3>
+<p>The important conclusion is that:</p>
+<blockquote class="blockquote">
+<p>Once the traction vectors are known on three mutually perpendicular surfaces, the traction vector on any arbitrarily oriented surface is completely determined.</p>
+</blockquote>
+<p>Therefore a continuum does not require infinitely many force variables. All internal mechanical forces can be represented by the nine components of a second-rank tensor, known as the <strong>stress tensor</strong>.</p>
+<p>This is the continuum-mechanics equivalent of using a force vector in particle mechanics.</p>
+</section>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="pressure-and-shear-stress" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Pressure and shear stress</h1>
+<p>The stress tensor is usually decomposed as</p>
+<p><span class="math display">\[
+\boxed{
+\boldsymbol{\sigma}
+=
+-p\mathbf I
++
+\boldsymbol{\sigma}'
+}
+\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(p\)</span> is the pressure,</li>
+<li><span class="math inline">\(\mathbf I\)</span> is the identity tensor,</li>
+<li><span class="math inline">\(\boldsymbol{\sigma}'\)</span> is the deviatoric stress tensor.</li>
+</ul>
+<div id="fig-StressTensor" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-StressTensor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/StressTensorElements.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-StressTensor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Illustration of Pressure (<span class="math inline">\(\sigma_{zz}\)</span>) and shear stresses (<span class="math inline">\(\sigma_zx\)</span>).
+</figcaption>
+</figure>
+</div>
+<p>The pressure contribution is isotropic. It acts equally in every direction.</p>
+<p>The deviatoric contribution is associated with deformation of the fluid.</p>
+</section>
+<section id="newtonian-fluids" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Newtonian fluids</h1>
+<p>Different materials exhibit different relationships between stress and deformation.</p>
+<p>This relationship is called the <strong>constitutive equation</strong>.</p>
+<section id="shear-rate-tensor" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="shear-rate-tensor"><span class="header-section-number">7.1</span> Shear-rate tensor</h2>
+<p>The shear-rate tensor is defined as</p>
+<p><span class="math display">\[
+\gamma_{ij}
+=\frac{1}{2}\left(
+\frac{\partial v_i}{\partial x_j}
++
+\frac{\partial v_j}{\partial x_i}
+\right)
+-\frac{1}{3}\sum_{k} \frac{\partial v_k}{\partial x_k} \delta_{ij},
+\]</span> where the third term exists to make the tensor traceless. For incompressible fluids, as <span class="math inline">\(\nabla\cdot\mathbf v=\sum_{k}\frac{\partial v_k}{\partial x_k}=0\)</span>, only the first two terms matter. This quantifies local deformation rates.</p>
+</section>
+<section id="newtonian-constitutive-law" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="newtonian-constitutive-law"><span class="header-section-number">7.2</span> Newtonian constitutive law</h2>
+<p>For a Newtonian fluid, the consitutive equation is that:</p>
+<p><span class="math display">\[
+\boxed{
+\sigma_{ij}
+=
+-p\delta_{ij}
++
+\eta
+\left(
+\frac{\partial v_i}{\partial x_j}
++
+\frac{\partial v_j}{\partial x_i}
+\right)
+}
+\]</span></p>
+<p>where <span class="math inline">\(\eta\)</span> is the dynamic viscosity.</p>
+<p>The key idea is:</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Shear stress is <strong>linearly proportional</strong> to the shear rate.</p>
+</div>
+</div>
+<div id="fig-StressTensor" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-StressTensor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/StressTensorElements.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-StressTensor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Illustration of Pressure and shear stresses.
+</figcaption>
+</figure>
+</div>
+<p>This relationship is analogous to Hooke’s law in elasticity, except that fluids respond to deformation rates rather than deformations themselves.</p>
+</section>
+</section>
+<section id="conservation-of-mass" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Conservation of mass</h1>
+<p>Consider a fixed control volume.</p>
+<p>Mass may enter or leave through its surface.</p>
+<p>However, mass cannot be created or destroyed.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Derivation of the continuity equation
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>To derive the conservation of mass equation, consider a fixed control volume <span class="math inline">\(V\)</span> bounded by a closed surface <span class="math inline">\(S\)</span>.</p>
+<p>Let the density field be</p>
+<p><span class="math display">\[
+\rho(\mathbf r,t).
+\]</span></p>
+<p>The total mass contained within the control volume is</p>
+<p><span class="math display">\[
+m(t)
+=
+\int_V \rho(\mathbf r,t)\,dV.
+\]</span></p>
+<p>Since mass can neither be created nor destroyed, the rate of change of mass inside the volume must equal the net mass flux through its boundary.</p>
+<section id="mass-flux-through-a-surface" class="level3" data-number="8.0.1">
+<h3 data-number="8.0.1" class="anchored" data-anchor-id="mass-flux-through-a-surface"><span class="header-section-number">8.0.1</span> Mass flux through a surface</h3>
+<p>Consider a small surface element <span class="math inline">\(dS\)</span> whose outward normal is <span class="math inline">\(\mathbf n\)</span>.</p>
+<p>The fluid velocity at that point is <span class="math inline">\(\mathbf v\)</span>.</p>
+<p>The volume of fluid crossing the surface per unit time is</p>
+<p><span class="math display">\[
+(\mathbf v\cdot\mathbf n)dS.
+\]</span></p>
+<p>Multiplying by the density gives the mass crossing the surface per unit time:</p>
+<p><span class="math display">\[
+\rho\,(\mathbf v\cdot\mathbf n)dS.
+\]</span></p>
+<p>Integrating over the entire boundary gives the total mass leaving the volume:</p>
+<p><span class="math display">\[
+\oint_S \rho\,\mathbf v\cdot\mathbf n\,dS.
+\]</span></p>
+<p>Because outward flux removes mass from the control volume,</p>
+<p><span class="math display">\[
+\boxed{
+\frac{dm}{dt}
+=
+-\oint_S \rho\,\mathbf v\cdot\mathbf n\,dS
+}
+\]</span></p>
+<p>or equivalently</p>
+<p><span class="math display">\[
+\boxed{
+\frac{d}{dt}
+\int_V \rho\,dV
+=
+-\oint_S \rho\,\mathbf v\cdot\mathbf n\,dS.
+}
+\]</span></p>
+<div id="fig-MassCon" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-MassCon-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/ControlVolume.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-MassCon-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Fixed control volume with outward normal vector <span class="math inline">\(\mathbf n\)</span> and mass flux <span class="math inline">\(\rho\mathbf v\cdot\mathbf n\)</span> through the boundary.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="why-does-the-time-derivative-become-a-partial-derivative" class="level3" data-number="8.0.2">
+<h3 data-number="8.0.2" class="anchored" data-anchor-id="why-does-the-time-derivative-become-a-partial-derivative"><span class="header-section-number">8.0.2</span> Why does the time derivative become a partial derivative?</h3>
+<p>The integration is performed over a <strong>fixed region of space</strong>.</p>
+<p>The spatial coordinates defining the volume do not change with time.</p>
+<p>Therefore the time derivative can be taken inside the integral:</p>
+<p><span class="math display">\[
+\frac{d}{dt}
+\int_V \rho\,dV
+=
+\int_V
+\frac{\partial\rho}{\partial t}
+\,dV.
+\]</span></p>
+<p>Notice that we obtain a <strong>partial derivative</strong> rather than a material derivative.</p>
+<p>This is because we are not following a fluid particle.</p>
+<p>Instead, we are observing how the density changes at fixed points in space, which is precisely the Eulerian description.</p>
+</section>
+<section id="converting-the-surface-integral-into-a-volume-integral" class="level3" data-number="8.0.3">
+<h3 data-number="8.0.3" class="anchored" data-anchor-id="converting-the-surface-integral-into-a-volume-integral"><span class="header-section-number">8.0.3</span> Converting the surface integral into a volume integral</h3>
+<p>The right-hand side contains a surface integral.</p>
+<p>Using the divergence theorem,</p>
+<p><span class="math display">\[
+\oint_S
+\rho\mathbf v\cdot\mathbf n\,dS
+=
+\int_V
+\nabla\cdot(\rho\mathbf v)\,dV.
+\]</span></p>
+<p>Substituting gives</p>
+<p><span class="math display">\[
+\int_V
+\frac{\partial\rho}{\partial t}
+\,dV
+=
+-
+\int_V
+\nabla\cdot(\rho\mathbf v)
+\,dV.
+\]</span></p>
+<p>Bringing both terms to the same side,</p>
+<p><span class="math display">\[
+\boxed{
+\int_V
+\left[
+\frac{\partial\rho}{\partial t}
++
+\nabla\cdot(\rho\mathbf v)
+\right]
+dV
+=
+0.
+}
+\]</span></p>
+</section>
+<section id="obtaining-the-local-form" class="level3" data-number="8.0.4">
+<h3 data-number="8.0.4" class="anchored" data-anchor-id="obtaining-the-local-form"><span class="header-section-number">8.0.4</span> Obtaining the local form</h3>
+<p>The above relation must hold for <strong>every possible control volume</strong> <span class="math inline">\(V\)</span>.</p>
+<p>The only way this can be true is if the integrand itself vanishes everywhere:</p>
+<p><span class="math display">\[
+\boxed{
+\frac{\partial\rho}{\partial t}
++
+\nabla\cdot(\rho\mathbf v)
+=
+0,
+}
+\]</span></p>
+<p>which can also be written with the total time derivative as</p>
+<p><span class="math display">\[
+\boxed{
+\frac{D\rho}{Dt}
++
+\rho\,\nabla\cdot\mathbf v
+=
+0.
+}
+\]</span></p>
+<p>This is the <strong>continuity equation</strong>, expressing local conservation of mass.</p>
+</section>
+</div>
+</div>
+</div>
+<p>Therefore, as demonstarted in the note above,</p>
+<p><span class="math display">\[
+\boxed{
+\frac{\partial\rho}{\partial t}
++
+\nabla\cdot(\rho\mathbf v)
+=
+0
+}
+\]</span></p>
+<p>This equation is known as the <strong>continuity equation</strong>.</p>
+</section>
+<section id="incompressible-fluids" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Incompressible fluids</h1>
+<p>Many biological fluids can often be treated as incompressible.</p>
+<p>Incompressibility implies</p>
+<p><span class="math display">\[
+\frac{D\rho}{Dt}
+=
+0.
+\]</span></p>
+<p>Substituting into the continuity equation yields</p>
+<p><span class="math display">\[
+\boxed{
+\nabla\cdot\mathbf v
+=
+0
+}
+\]</span></p>
+<p>The velocity field therefore has zero divergence.</p>
+<p>Physically, this means incompressible fluid elements may deform but they do not change volume.</p>
+</section>
+<section id="conservation-of-momentum" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Conservation of momentum</h1>
+<p>We now apply Newton’s second law to a fluid element.</p>
+<section id="momentum-balance" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="momentum-balance"><span class="header-section-number">10.1</span> Momentum balance</h2>
+<p>The rate of change of momentum equals the sum of forces.</p>
+<p>For a continuum, one can show</p>
+<p><span class="math display">\[
+\rho
+\frac{D\mathbf v}{Dt}
+=
+\nabla\cdot\boldsymbol{\sigma}
++
+\mathbf f_V.
+\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Derivation of the Cauchy momentum equation
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The continuum equivalent of Newton’s second law is obtained by applying momentum conservation to an arbitrary material volume <span class="math inline">\(V\)</span>. For a collection of particles, Newton’s second law reads</p>
+<p><span class="math display">\[
+\frac{d\mathbf P}{dt}
+=
+\sum \mathbf F,
+\]</span></p>
+<p>with <span class="math inline">\(P\)</span> the total momentum. In a continuum, the momentum contained within a material volume <span class="math inline">\(V\)</span> is</p>
+<p><span class="math display">\[
+\mathbf P
+=
+\int_V \rho \mathbf v\, dV,
+\]</span></p>
+<p>where we integrate over a <strong>material volume</strong>, defined by specific particles. Applying Newton’s second law gives</p>
+<p><span class="math display">\[
+\boxed{
+\frac{d}{dt}
+\int_V \rho\mathbf v\, dV
+=
+\oint_S (\mathbf n\cdot\boldsymbol{\sigma})\, dS+\int_V \mathbf f_V\, dV,
+}
+\]</span></p>
+<p>Applying the divergence theorem,</p>
+<p><span class="math display">\[
+\oint_S \mathbf n\cdot\boldsymbol{\sigma}\, dS
+=
+\int_V \nabla\cdot\boldsymbol{\sigma}\, dV.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\frac{d}{dt}
+\int_V \rho\mathbf v\, dV
+=
+\int_V
+\left(
+\nabla\cdot\boldsymbol{\sigma}
++
+\mathbf f_V
+\right)
+dV.
+\]</span></p>
+<p>Because <span class="math inline">\(V\)</span> is a material volume moving with the fluid, we must use a material derivative. Using the product rule,</p>
+<p><span class="math display">\[
+\frac{d}{dt}
+\int_V \rho\mathbf v\, dV
+=
+\int_V
+\frac{d(\rho\mathbf v)}{dt}
+\,dV
++
+\int_V
+\rho\mathbf v
+\frac{d(dV)}{dt}.
+\]</span></p>
+<p>The rate of change of a material volume element can be written as</p>
+<p><span class="math display">\[
+\frac{d(dV)}{dt}
+=
+(\nabla\cdot\mathbf v)\,dV.
+\]</span></p>
+<p>Therefore</p>
+<p><span class="math display">\[
+\frac{d}{dt}
+\int_V \rho\mathbf v\, dV
+=
+\int_V
+\left(
+\frac{d(\rho\mathbf v)}{dt}
++
+\rho\mathbf v\,\nabla\cdot\mathbf v
+\right)dV.
+\]</span></p>
+<p>Expanding the material derivative,</p>
+<p><span class="math display">\[
+\frac{d(\rho\mathbf v)}{dt}
+=
+\mathbf v\frac{D\rho}{Dt}
++
+\rho\frac{D\mathbf v}{Dt},
+\]</span></p>
+<p>giving</p>
+<p><span class="math display">\[
+\frac{d}{dt}
+\int_V \rho\mathbf v\, dV
+=
+\int_V
+\left[
+\mathbf v
+\left(
+\frac{D\rho}{Dt}
++
+\rho\nabla\cdot\mathbf v
+\right)
++
+\rho\frac{D\mathbf v}{Dt}
+\right]
+dV.
+\]</span></p>
+<p>From the continuity equation,</p>
+<p><span class="math display">\[
+\boxed{
+\frac{D\rho}{Dt}
++
+\rho\nabla\cdot\mathbf v
+=
+0.
+}
+\]</span></p>
+<p>The first term therefore vanishes:</p>
+<p><span class="math display">\[
+\frac{d}{dt}
+\int_V \rho\mathbf v\, dV
+=
+\int_V
+\rho\frac{D\mathbf v}{Dt}
+\,dV.
+\]</span></p>
+<p>Substituting into the momentum balance gives</p>
+<p><span class="math display">\[
+\int_V
+\rho\frac{D\mathbf v}{Dt}
+\,dV
+=
+\int_V
+\left(
+\nabla\cdot\boldsymbol{\sigma}
++
+\mathbf f_V
+\right)
+dV.
+\]</span></p>
+<p>Bringing both terms to the same side,</p>
+<p><span class="math display">\[
+\int_V
+\left[
+\rho\frac{D\mathbf v}{Dt}
+-
+\nabla\cdot\boldsymbol{\sigma}
+-
+\mathbf f_V
+\right]
+dV
+=
+0.
+\]</span></p>
+<p>Since the control volume is arbitrary, the integrand itself must vanish:</p>
+<p><span class="math display">\[
+\boxed{
+\rho
+\frac{D\mathbf v}{Dt}
+=
+\nabla\cdot\boldsymbol{\sigma}
++
+\mathbf f_V.
+}
+\]</span></p>
+<p>This equation is known as the <strong>Cauchy momentum equation</strong>. It is simply Newton’s second law written for a continuous medium.</p>
+</div>
+</div>
+</div>
+<p>Substituting the expression for the material derivative gives</p>
+<p><span class="math display">\[
+\boxed{
+\rho
+\left(
+\frac{\partial\mathbf v}{\partial t}
++
+(\mathbf v\cdot\nabla)\mathbf v
+\right)
+=
+\nabla\cdot\boldsymbol{\sigma}
++
+\mathbf f_V
+}
+\]</span></p>
+<p>This equation is called the <strong>Cauchy momentum equation</strong>.</p>
+</section>
+</section>
+<section id="derivation-of-the-navier-stokes-equation" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Derivation of the Navier-Stokes equation</h1>
+<p>Substitute the Newtonian constitutive equation:</p>
+<p><span class="math display">\[
+\sigma_{ij}
+=
+-p\delta_{ij}
++
+\eta
+\left(
+\frac{\partial v_i}{\partial x_j}
++
+\frac{\partial v_j}{\partial x_i}
+\right).
+\]</span></p>
+<p>Assuming:</p>
+<ul>
+<li>constant density,</li>
+<li>constant viscosity,</li>
+<li>incompressibility,</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Importance of the incompressibility hypothesis
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Starting from the Newtonian constitutive equation,</p>
+<p><span class="math display">\[
+\sigma_{ij}
+=
+-p\delta_{ij}
++
+\eta
+\left(
+\frac{\partial v_i}{\partial x_j}
++
+\frac{\partial v_j}{\partial x_i}
+\right),
+\]</span></p>
+<p>we wish to evaluate the quantity appearing in the Cauchy momentum equation,</p>
+<p><span class="math display">\[
+(\nabla\cdot\boldsymbol{\sigma})_i
+=
+\frac{\partial \sigma_{ij}}{\partial x_j}.
+\]</span></p>
+<p>Substituting the constitutive equation gives</p>
+<p><span class="math display">\[
+\frac{\partial \sigma_{ij}}{\partial x_j}
+=
+-\frac{\partial p}{\partial x_j}\delta_{ij}
++
+\eta
+\frac{\partial}{\partial x_j}
+\left(
+\frac{\partial v_i}{\partial x_j}
++
+\frac{\partial v_j}{\partial x_i}
+\right).
+\]</span></p>
+<p>The pressure term simplifies to</p>
+<p><span class="math display">\[
+-\frac{\partial p}{\partial x_j}\delta_{ij}
+=
+-\frac{\partial p}{\partial x_i}.
+\]</span></p>
+<p>For the viscous contribution,</p>
+<p><span class="math display">\[
+\eta
+\frac{\partial}{\partial x_j}
+\left(
+\frac{\partial v_i}{\partial x_j}
++
+\frac{\partial v_j}{\partial x_i}
+\right)
+=
+\eta
+\left(
+\frac{\partial^2 v_i}{\partial x_j^2}
++
+\frac{\partial}{\partial x_j}
+\left(
+\frac{\partial v_j}{\partial x_i}
+\right)
+\right).
+\]</span></p>
+<p>The first term is simply the Laplacian of the velocity component:</p>
+<p><span class="math display">\[
+\frac{\partial^2 v_i}{\partial x_j^2}
+=
+\nabla^2 v_i.
+\]</span></p>
+<p>For the second term, we interchange the order of differentiation:</p>
+<p><span class="math display">\[
+\frac{\partial}{\partial x_j}
+\left(
+\frac{\partial v_j}{\partial x_i}
+\right)
+=
+\frac{\partial}{\partial x_i}
+\left(
+\frac{\partial v_j}{\partial x_j}
+\right).
+\]</span></p>
+<p>Recognizing the divergence of the velocity field,</p>
+<p><span class="math display">\[
+\frac{\partial v_j}{\partial x_j}
+=
+\nabla\cdot\mathbf v,
+\]</span></p>
+<p>we obtain</p>
+<p><span class="math display">\[
+\frac{\partial}{\partial x_j}
+\left(
+\frac{\partial v_j}{\partial x_i}
+\right)
+=
+\frac{\partial}{\partial x_i}
+(\nabla\cdot\mathbf v).
+\]</span></p>
+<p>At this point the incompressibility condition becomes crucial:</p>
+<p><span class="math display">\[
+\nabla\cdot\mathbf v = 0.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\frac{\partial}{\partial x_i}
+(\nabla\cdot\mathbf v)
+=
+0.
+\]</span></p>
+<p>The entire second viscous term vanishes:</p>
+<p><span class="math display">\[
+\frac{\partial}{\partial x_j}
+\left(
+\frac{\partial v_j}{\partial x_i}
+\right)
+=
+0.
+\]</span></p>
+<p>We are left with</p>
+<p><span class="math display">\[
+(\nabla\cdot\boldsymbol{\sigma})_i
+=
+-\frac{\partial p}{\partial x_i}
++
+\eta\nabla^2 v_i.
+\]</span></p>
+<p>Writing the result in vector form,</p>
+<p><span class="math display">\[
+\boxed{
+\nabla\cdot\boldsymbol{\sigma}
+=
+-\nabla p
++
+\eta\nabla^2\mathbf v.
+}
+\]</span></p>
+<p>Without the incompressibility hypothesis, an additional term would remain:</p>
+<p><span class="math display">\[
+\nabla\cdot\boldsymbol{\sigma}
+=
+-\nabla p
++
+\eta\nabla^2\mathbf v
++
+\eta\nabla(\nabla\cdot\mathbf v).
+\]</span></p>
+<p>The assumption</p>
+<p><span class="math display">\[
+\nabla\cdot\mathbf v = 0
+\]</span></p>
+<p>is therefore what allows the Cauchy momentum equation to simplify into the familiar Navier-Stokes equation used throughout this course.</p>
+</div>
+</div>
+</div>
+<p>one obtains</p>
+<p><span class="math display">\[
+\nabla\cdot\boldsymbol{\sigma}
+=
+-\nabla p
++
+\eta\nabla^2\mathbf v.
+\]</span></p>
+<p>The Cauchy momentum equation therefore becomes</p>
+<p><span class="math display">\[
+\boxed{
+\rho
+\left(
+\frac{\partial\mathbf v}{\partial t}
++
+(\mathbf v\cdot\nabla)\mathbf v
+\right)
+=
+-\nabla p
++
+\eta\nabla^2\mathbf v
++
+\mathbf f_V
+}
+\]</span></p>
+<p>This is the Navier-Stokes equation.</p>
+</section>
+<section id="physical-interpretation-of-navier-stokes" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Physical interpretation of Navier-Stokes</h1>
+<p>The equation</p>
+<p><span class="math display">\[
+\rho
+\left(
+\frac{\partial\mathbf v}{\partial t}
++
+(\mathbf v\cdot\nabla)\mathbf v
+\right)
+=
+-\nabla p
++
+\eta\nabla^2\mathbf v
++
+\mathbf f_V
+\]</span></p>
+<p>can be interpreted term by term.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Term</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\rho \partial_t\mathbf v\)</span></td>
+<td>Local acceleration</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\rho(\mathbf v\cdot\nabla)\mathbf v\)</span></td>
+<td>Convective acceleration</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(-\nabla p\)</span></td>
+<td>Pressure forces</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\eta\nabla^2\mathbf v\)</span></td>
+<td>Viscous momentum diffusion</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\mathbf f_V\)</span></td>
+<td>Body forces</td>
+</tr>
+</tbody>
+</table>
+<p>The equation therefore has exactly the same structure as</p>
+<p><span class="math display">\[
+\text{mass}\times\text{acceleration}
+=
+\text{sum of forces}.
+\]</span></p>
+<!--
+# Reynolds number
+
+The balance between inertial and viscous effects is quantified by the Reynolds number.
+
+Define characteristic scales:
+
+- velocity $U$,
+- length $L$.
+
+Comparing inertia and viscosity gives
+
+$$
+\boxed{
+Re
+=
+\frac{\rho UL}{\eta}
+}
+$$
+
+## Physical meaning
+
+When
+
+$$
+Re\gg1,
+$$
+
+inertia dominates.
+
+When
+
+$$
+Re\ll1,
+$$
+
+viscosity dominates.
+
+Many organisms operate in the low-Reynolds-number regime.
+
+For example:
+
+- bacteria,
+- sperm cells,
+- intracellular transport.
+
+Their physics is therefore fundamentally different from our everyday experience.
+-->
+</section>
+<section id="towards-the-problem-class" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> Towards the problem class</h1>
+<p>In the next session we will solve the Navier-Stokes equation for flow between parallel plates.</p>
+<p>To do so we will progressively introduce simplifying assumptions:</p>
+<ol type="1">
+<li>incompressible flow,</li>
+<li>stationary flow,</li>
+<li>fully developed flow,</li>
+<li>no-slip boundary conditions,</li>
+<li>imposed pressure gradient.</li>
+</ol>
+<p>Under these assumptions, the Navier-Stokes equation reduces to an ordinary differential equation that can be solved analytically.</p>
+<p>This will allow us to derive:</p>
+<ul>
+<li>Poiseuille flow of a Newtonian fluid,</li>
+<li>flow of a power-law fluid,</li>
+</ul>
+<p>which form the basis of the following problem class.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

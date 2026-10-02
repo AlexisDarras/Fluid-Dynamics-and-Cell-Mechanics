@@ -34,6 +34,7 @@ Throughout these notes, bold symbols denote vectors.
 | $\boldsymbol{\sigma}$ | Stress tensor | Pa |
 | $\eta$ | Dynamic viscosity | Pa s |
 | $\mathbf f_V$ | Volume force density | N m$^{-3}$ |
+| $\mathbf g$ | gravitational acceleration | m s$^{-2}$ |
 
 
 
@@ -157,7 +158,7 @@ $$
 
 in a two-dimensional coordinate system.
 
-If the axes are rotated by \(45^\circ\), the same force becomes
+If the axes are rotated by $45^\circ$, the same force becomes
 
 $$
 \mathbf F'=
@@ -173,10 +174,10 @@ The numerical components have changed, but the physical force is exactly the sam
 Mathematically, vectors transform according to
 
 $$
-F_i' = R_{ij}F_j,
+F_i' = R_{ij}F_j=\mathbf R \cdot \mathbf F,
 $$
 
-where \(R_{ij}\) is the rotation matrix describing the change of basis.
+where $R_{ij}$ is the rotation matrix describing the change of basis.
 
 ### Second-rank tensors
 
@@ -193,7 +194,8 @@ the components in the rotated coordinate system become
 $$
 T'_{ij}
 =
-R_{ik}R_{jl}T_{kl}.
+R_{ik}R_{jl}T_{kl}
+=\mathbf R\cdot \mathbf T \cdot \mathbf R^{-1}.
 $$
 
 The two rotation matrices appear because the tensor acts on two directions simultaneously.
@@ -244,6 +246,12 @@ $$
 \frac{\partial}{\partial y},
 \frac{\partial}{\partial z}
 \right)
+\equiv
+\left(
+\frac{\partial}{\partial x_1},
+\frac{\partial}{\partial x_2},
+\frac{\partial}{\partial x_3}
+\right)
 $$
 
 can be written in index notation as
@@ -282,7 +290,7 @@ v_2\frac{\partial}{\partial y}
 v_3\frac{\partial}{\partial z}.
 $$
 
-Note that $\mathbf v\cdot\nabla$ is **not a scalar**, but a differential operator which acts on whatever follows it.
+Note that $\mathbf v\cdot\nabla$ is **not a scalar quantity**, but a differential scalar operator which acts on whatever follows it.
 
 For example, if $X(\mathbf r,t)$ is a scalar field,
 
@@ -291,11 +299,11 @@ $$
 =
 v_i\frac{\partial X}{\partial x_i}
 =
-v_x\frac{\partial X}{\partial x}
+v_1\frac{\partial X}{\partial x}
 +
-v_y\frac{\partial X}{\partial y}
+v_2\frac{\partial X}{\partial y}
 +
-v_z\frac{\partial X}{\partial z}.
+v_3\frac{\partial X}{\partial z}.
 $$
 
 This quantity represents the rate at which a fluid particle experiences changes in $X$ because it is moving through space.
@@ -315,7 +323,7 @@ The **divergence of a vector field** produces a scalar:
 $$
 \nabla\cdot\mathbf v
 =
-\frac{\partial v_i}{\partial x_i}.
+\frac{\partial v_i}{\partial x_i} (=\frac{\partial v_1}{\partial x}+\frac{\partial v_2}{\partial y}+\frac{\partial v_3}{\partial z}).
 $$
 
 The **gradient of a vector field** produces a second-rank tensor:
@@ -360,19 +368,7 @@ There are two fundamentally different ways of describing fluid motion:
 
 # The material derivative
 
-Suppose a fluid carries a scalar quantity
-
-$$
-X(\mathbf r,t).
-$$
-
-Examples include:
-
-- temperature,
-- concentration,
-- density.
-
-A fluid particle moving through the flow experiences two kinds of changes:
+Suppose a fluid carries a scalar quantity $X(\mathbf r,t)$, such as a temperature, concentration or density. A fluid particle moving through the flow experiences two kinds of changes:
 
 1. explicit changes with time;
 2. changes caused by moving into a region where the value of $X$ is different.
@@ -388,13 +384,7 @@ $$
 \frac{\partial X}{\partial x_i}.
 $$
 
-Since
-
-$$
-\frac{dx_i}{dt}=v_i,
-$$
-
-we obtain
+Since $\frac{dx_i}{dt}=v_i$ is the velocity of the material particle carrying those changes, we obtain
 
 $$
 \boxed{
@@ -431,100 +421,394 @@ The second term is called the **convective acceleration**.
 
 This second term has no equivalent in elementary particle mechanics and is responsible for much of the complexity of fluid dynamics.
 
-
-
 # Forces in a continuum
 
-## Body forces
+Consider a small material element of fluid occupying a volume \(V\).
 
-Some forces act throughout the volume of the fluid.
+Unlike a point particle, this element contains a very large number of molecules. The total force acting on the element therefore arises from two physically distinct origins:
 
-Examples:
+1. forces applied by external fields, acting on all particles within the volume;
+2. forces exerted by neighbouring material through the boundary of the element.
+
+Understanding the scaling of these two contributions is one of the key steps in continuum mechanics.
+
+## Volume forces
+
+Some forces act directly on every particle contained within the material element.
+
+Examples include:
 
 - gravity,
-- electromagnetic forces.
+- electric forces,
+- magnetic forces.
 
-These forces scale with volume.
-
-The total body force acting on a volume $V$ is
+A simple example is gravity. If the constitutive element contains \(N\) particles of mass \(m_i\), the total gravitational force is
 
 $$
-\mathbf F_V
+\mathbf F_g
 =
-\int_V \mathbf f_V \, dV,
+\sum_i m_i\mathbf g.
 $$
 
-where
+As the number of particles becomes very large, this discrete sum may be replaced by a volume integral:
 
 $$
-\mathbf f_V
-$$
-
-is the body-force density.
-
-## Surface forces
-
-Fluid elements also exert forces on neighbouring fluid elements.
-
-These forces act through surfaces.
-
-They scale with surface area rather than volume.
-
-Define the traction vector
-
-$$
-\boldsymbol{\tau}
+\mathbf F_g
 =
-\frac{d\mathbf F}{dS}.
+\int_V \rho \mathbf g\,dV.
 $$
 
-Unlike pressure, traction depends on the orientation of the surface.
-
-# The stress tensor
-
-Remarkably, all surface forces can be described by a single tensor.
-
-The fundamental result is
+More generally, any force acting throughout the volume can be written
 
 $$
 \boxed{
-\boldsymbol{\tau}
+\mathbf F_V
 =
-\mathbf n\cdot\boldsymbol{\sigma}
+\int_V \mathbf f_V\,dV
 }
 $$
 
-where
+where \(\mathbf f_V\) is the volume-force density (force per unit volume).
 
-- $\mathbf n$ is the outward surface normal,
-- $\boldsymbol{\sigma}$ is the stress tensor.
+### Why do volume forces scale with volume?
 
-The stress tensor is
+If the characteristic size of the constitutive element is \(L\), then
 
 $$
-\boldsymbol{\sigma}
+V \sim L^3.
+$$
+
+The number of particles contained inside the element is proportional to its volume. Since each particle experiences the external force, the total force is also proportional to the volume:
+
+$$
+F_V \propto V.
+$$
+
+Consequently,
+
+$$
+F_V \sim L^3.
+$$
+
+
+
+![External forces acting on particles inside a constitutive volume. Every particle experiences gravity, leading to a net force proportional to the volume of the element.](figures/PictureFv.png){#fig-volume-force}
+
+## Surface forces
+
+A second class of forces arises from interactions between neighbouring material elements.
+
+Examples include:
+
+- pressure forces,
+- viscous shear forces,
+- contact forces in solids.
+
+At first sight one might expect these forces to also scale with volume, since molecules throughout the element interact with one another. However, a careful counting argument shows otherwise.
+
+### Why do interaction forces scale with surface area?
+
+Interactions between particles occur in action-reaction pairs.
+
+For two particles located entirely within the constitutive element,
+
+$$
+\mathbf F_{12}
+=
+-\mathbf F_{21},
+$$
+
+so their contributions cancel when computing the net force acting on the whole element.
+
+Therefore, interactions between particles entirely inside the volume do not contribute to the total external force.
+
+Only interactions crossing the boundary of the constitutive element survive.
+
+The number of such interactions is proportional to the size of the boundary surface.
+
+As a result,
+
+$$
+F_S \propto S,
+$$
+
+where \(S\) is the surface area of the constitutive element.
+
+Since
+
+$$
+S \sim L^2,
+$$
+
+surface forces scale as
+
+$$
+F_S \sim L^2.
+$$
+
+This result explains why stresses are naturally defined as force per unit area.
+
+![Neighbouring particles interacting across a boundary surface, showing cancellation of internal action-reaction pairs and survival of boundary interactions.](figures/PictureFs.png){#fig-surface-force}
+
+### Why do surface forces depend on surface orientation?
+
+Unlike volume forces such as gravity, surface forces originate from interactions between neighbouring particles located on opposite sides of an imaginary surface drawn through the material.
+
+The key idea is that changing the orientation of this surface changes which pairs of particles are separated by the surface.
+
+For example, consider the same small material element and imagine drawing two different surfaces through it:
+
+- a horizontal surface;
+- an inclined surface.
+
+The particles lying on one side of the surface and those lying on the other side will generally be different in each case.
+
+As a result, the collection of intermolecular interactions crossing the surface also changes.
+
+Because the net force acting on the material element arises from the sum of all interactions crossing the boundary, changing the orientation of the boundary changes the resulting force.
+
+Therefore, the surface force cannot depend only on position. It must also depend on the orientation of the surface.
+
+![Two different cuts through the same material element, showing different pairs of particles interacting across each surface.](figures/SurfaceDependency.png){#fig-surface-depend}
+
+Mathematically, we characterize the orientation of a surface by its outward unit normal vector
+
+$$
+\mathbf n.
+$$
+
+The force per unit area acting across a surface with normal \(\mathbf n\) is called the **traction vector**
+
+$$
+\boxed{
+\boldsymbol{\tau}(\mathbf n)
+=
+\frac{d\mathbf F}{dS}.
+}
+$$
+
+The explicit dependence on \(\mathbf n\) emphasizes that two surfaces passing through the same point may experience different tractions if they have different orientations.
+
+This dependence on surface orientation is the fundamental reason why internal forces in a continuum cannot generally be described by a scalar or a vector alone. One can however show that a second-rank tensor, known as the stress tensor $\boldsymbol{\sigma}$, is sufficient to describe all surface stresses in contimuous material. The traction vector, for a surface with a normal $\mathbf n$, can then be determined as
+
+$$
+\boxed{
+\boldsymbol{\tau}(\mathbf n)
+=
+\mathbf n \cdot \boldsymbol{\sigma}
+}
+$$
+
+To understand the physical meaning of the stress tensor, consider one of its components, $\sigma_{ij}$. The second index $j$ identifies the direction of the force acting on the surface, while the first index $i$ identifies the direction normal to that surface.
+
+Equivalently,
+
+$$
+\boxed{
+\sigma_{ij}
+=
+\text{force in direction } j
+\text{ acting on a surface normal to } i
+\text{ per unit area}.
+}
+$$
+
+For example, $\sigma_{xy}$ represents the force per unit area acting in the $y$-direction across a surface whose normal points in the $x$-direction. Likewise, $\sigma_{zz}$ represents the force per unit area acting in the $z$-direction across a surface normal to $z$.
+
+Such components are called **normal stresses**, while components with $i\neq j$ are called **shear stresses**.
+
+A useful way to visualize the stress tensor is to consider three surfaces passing through a point and normal to the coordinate axes. The corresponding traction vectors are
+
+$$
+\boldsymbol{\tau}(\mathbf e_x)
 =
 \begin{pmatrix}
-\sigma_{xx} & \sigma_{xy} & \sigma_{xz}\\
-\sigma_{yx} & \sigma_{yy} & \sigma_{yz}\\
-\sigma_{zx} & \sigma_{zy} & \sigma_{zz}
+\sigma_{xx}\\
+\sigma_{xy}\\
+\sigma_{xz}
+\end{pmatrix},
+\qquad
+\boldsymbol{\tau}(\mathbf e_y)
+=
+\begin{pmatrix}
+\sigma_{yx}\\
+\sigma_{yy}\\
+\sigma_{yz}
+\end{pmatrix},
+\qquad
+\boldsymbol{\tau}(\mathbf e_z)
+=
+\begin{pmatrix}
+\sigma_{zx}\\
+\sigma_{zy}\\
+\sigma_{zz}
 \end{pmatrix}.
 $$
 
-## Interpretation of stress components
+The stress tensor therefore contains all the information required to determine the traction acting on a surface of arbitrary orientation. Each column corresponds to a particular surface normal, while each row corresponds to a particular force direction.
 
-For example:
 
-- $\sigma_{xx}$ measures a normal stress,
-- $\sigma_{xy}$ measures a shear stress.
+::: {.callout-note collapse="true"}
+## Derivation of the stress tensor: Cauchy's tetrahedron argument
 
-Specifically,
+Since the traction depends on the chosen normal vector $\mathbf n$, one might think that an independent traction vector must be specified for every possible orientation. Cauchy's tetrahedron argument shows that this is not necessary. We have introduced the traction vector
 
 $$
-\sigma_{xy}
+\boldsymbol{\tau}(\mathbf n)
+=
+\frac{d\mathbf F}{dS},
 $$
 
-represents the force in the $y$ direction acting across a surface normal to $x$.
+which gives the force per unit area acting across a surface whose outward normal is $\mathbf n$.
+
+A natural question arises:
+
+> How many traction vectors do we need to specify in order to describe all possible internal forces in a material?
+
+At first sight, the answer seems daunting: every possible surface orientation could have a different traction vector.
+
+Remarkably, this is not the case.
+
+### Step 1: Consider an infinitesimal tetrahedron
+
+Imagine an infinitesimal tetrahedral fluid element.
+
+Three faces are aligned with the coordinate planes:
+
+- a face normal to $\mathbf e_x$,
+- a face normal to $\mathbf e_y$,
+- a face normal to $\mathbf e_z$.
+
+The fourth face is an arbitrarily oriented surface with normal
+
+$$
+\mathbf n
+=
+(n_x,n_y,n_z).
+$$
+
+
+![Illustration of the Cauchy tetrahedron.](figures/CauchyTetra.png){#fig-CauchyTetra}
+
+Let:
+
+- $S$ be the area of the inclined face,
+- $S_x$, $S_y$, $S_z$ be the areas of the coordinate faces.
+
+Geometry gives
+
+$$
+S_x=n_xS,
+\qquad
+S_y=n_yS,
+\qquad
+S_z=n_zS.
+$$
+
+The quantities $n_x$, $n_y$ and $n_z$ are precisely the direction cosines of the normal vector.
+
+### Step 2: Apply force balance
+
+Because the tetrahedron is infinitesimally small, its volume scales as
+
+$$
+V \sim L^3,
+$$
+
+while surface areas scale as
+
+$$
+S \sim L^2.
+$$
+
+As the size of the tetrahedron tends to zero, body forces and inertial terms become negligible compared with surface forces.
+
+Force balance therefore reduces to
+
+$$
+\sum \mathbf F_{Surface} = 0.
+$$
+
+The surface force acting on the inclined face is
+
+$$
+\boldsymbol{\tau}(\mathbf n)S.
+$$
+
+The forces acting on the coordinate faces are
+
+$$
+\boldsymbol{\tau}(-\mathbf e_x)S_x,
+$$
+
+$$
+\boldsymbol{\tau}(-\mathbf e_y)S_y,
+$$
+
+$$
+\boldsymbol{\tau}(-\mathbf e_z)S_z.
+$$
+
+Taking into account that $\boldsymbol{\tau}(-\mathbf n)=-\boldsymbol{\tau}(\mathbf n)$ (which is a direct application of Newton's third law), it comes
+
+$$
+\boldsymbol{\tau}(\mathbf n)S
+=
+\boldsymbol{\tau}(\mathbf e_x)S_x
++
+\boldsymbol{\tau}(\mathbf e_y)S_y
++
+\boldsymbol{\tau}(\mathbf e_z)S_z.
+$$
+
+Substituting
+
+$$
+S_x=n_xS,
+\qquad
+S_y=n_yS,
+\qquad
+S_z=n_zS,
+$$
+
+and dividing by $S$ gives
+
+$$
+\boxed{
+\boldsymbol{\tau}(\mathbf n)
+=
+n_x\boldsymbol{\tau}(\mathbf e_x)
++
+n_y\boldsymbol{\tau}(\mathbf e_y)
++
+n_z\boldsymbol{\tau}(\mathbf e_z)
+\equiv
+\mathbf n \cdot \boldsymbol{\sigma}
+}
+$$
+
+This is Cauchy's fundamental result, or, in index notation,
+
+$$
+\boxed{
+\tau_i(\mathbf n) = n_j \sigma_{ji}.
+}
+$$
+
+### Physical meaning
+
+The important conclusion is that:
+
+
+> Once the traction vectors are known on three mutually perpendicular surfaces, the traction vector on any arbitrarily oriented surface is completely determined.
+
+
+Therefore a continuum does not require infinitely many force variables. All internal mechanical forces can be represented by the nine components of a second-rank tensor, known as the **stress tensor**.
+
+This is the continuum-mechanics equivalent of using a force vector in particle mechanics.
+
+:::
+
 
 # Pressure and shear stress
 
@@ -546,9 +830,9 @@ where:
 - $\mathbf I$ is the identity tensor,
 - $\boldsymbol{\sigma}'$ is the deviatoric stress tensor.
 
-The pressure contribution is isotropic.
+![Illustration of Pressure ($\sigma_{zz}$) and shear stresses ($\sigma_zx$).](figures/StressTensorElements.png){#fig-StressTensor}
 
-It acts equally in every direction.
+The pressure contribution is isotropic. It acts equally in every direction. 
 
 The deviatoric contribution is associated with deformation of the fluid.
 
@@ -558,23 +842,24 @@ Different materials exhibit different relationships between stress and deformati
 
 This relationship is called the **constitutive equation**.
 
-## Rate-of-strain tensor
+## Shear-rate tensor
 
-The rate-of-strain tensor is defined as
+The shear-rate tensor is defined as
 
 $$
 \gamma_{ij}
-=
+=\frac{1}{2}\left(
 \frac{\partial v_i}{\partial x_j}
 +
-\frac{\partial v_j}{\partial x_i}.
+\frac{\partial v_j}{\partial x_i}
+\right)
+-\frac{1}{3}\sum_{k} \frac{\partial v_k}{\partial x_k} \delta_{ij},
 $$
-
-For incompressible fluids, this quantifies local deformation rates.
+where the third term exists to make the tensor traceless. For incompressible fluids, as $\nabla\cdot\mathbf v=\sum_{k}\frac{\partial v_k}{\partial x_k}=0$, only the first two terms matter. This quantifies local deformation rates.
 
 ## Newtonian constitutive law
 
-For a Newtonian fluid,
+For a Newtonian fluid, the consitutive equation is that:
 
 $$
 \boxed{
@@ -591,13 +876,15 @@ $$
 }
 $$
 
-where
-
-- $\eta$ is the dynamic viscosity.
+where $\eta$ is the dynamic viscosity.
 
 The key idea is:
 
-> Stress is proportional to deformation rate.
+::: {.callout-important}
+Shear stress is **linearly proportional** to the shear rate.
+:::
+
+![Illustration of Pressure and shear stresses.](figures/StressTensorElements.png){#fig-StressTensor}
 
 This relationship is analogous to Hooke's law in elasticity, except that fluids respond to deformation rates rather than deformations themselves.
 
@@ -609,7 +896,175 @@ Mass may enter or leave through its surface.
 
 However, mass cannot be created or destroyed.
 
-Therefore,
+::: {.callout-note collapse="true"}
+## Derivation of the continuity equation
+
+To derive the conservation of mass equation, consider a fixed control volume $V$ bounded by a closed surface $S$.
+
+Let the density field be
+
+$$
+\rho(\mathbf r,t).
+$$
+
+The total mass contained within the control volume is
+
+$$
+m(t)
+=
+\int_V \rho(\mathbf r,t)\,dV.
+$$
+
+Since mass can neither be created nor destroyed, the rate of change of mass inside the volume must equal the net mass flux through its boundary.
+
+### Mass flux through a surface
+
+Consider a small surface element $dS$ whose outward normal is $\mathbf n$.
+
+The fluid velocity at that point is $\mathbf v$.
+
+The volume of fluid crossing the surface per unit time is
+
+$$
+(\mathbf v\cdot\mathbf n)dS.
+$$
+
+Multiplying by the density gives the mass crossing the surface per unit time:
+
+$$
+\rho\,(\mathbf v\cdot\mathbf n)dS.
+$$
+
+Integrating over the entire boundary gives the total mass leaving the volume:
+
+$$
+\oint_S \rho\,\mathbf v\cdot\mathbf n\,dS.
+$$
+
+Because outward flux removes mass from the control volume,
+
+$$
+\boxed{
+\frac{dm}{dt}
+=
+-\oint_S \rho\,\mathbf v\cdot\mathbf n\,dS
+}
+$$
+
+or equivalently
+
+$$
+\boxed{
+\frac{d}{dt}
+\int_V \rho\,dV
+=
+-\oint_S \rho\,\mathbf v\cdot\mathbf n\,dS.
+}
+$$
+
+
+![Fixed control volume with outward normal vector $\mathbf n$ and mass flux $\rho\mathbf v\cdot\mathbf n$ through the boundary.](figures/ControlVolume.png){#fig-MassCon}
+
+### Why does the time derivative become a partial derivative?
+
+The integration is performed over a **fixed region of space**.
+
+The spatial coordinates defining the volume do not change with time.
+
+Therefore the time derivative can be taken inside the integral:
+
+$$
+\frac{d}{dt}
+\int_V \rho\,dV
+=
+\int_V
+\frac{\partial\rho}{\partial t}
+\,dV.
+$$
+
+Notice that we obtain a **partial derivative** rather than a material derivative.
+
+This is because we are not following a fluid particle.
+
+Instead, we are observing how the density changes at fixed points in space, which is precisely the Eulerian description.
+
+### Converting the surface integral into a volume integral
+
+The right-hand side contains a surface integral.
+
+Using the divergence theorem,
+
+$$
+\oint_S
+\rho\mathbf v\cdot\mathbf n\,dS
+=
+\int_V
+\nabla\cdot(\rho\mathbf v)\,dV.
+$$
+
+Substituting gives
+
+$$
+\int_V
+\frac{\partial\rho}{\partial t}
+\,dV
+=
+-
+\int_V
+\nabla\cdot(\rho\mathbf v)
+\,dV.
+$$
+
+Bringing both terms to the same side,
+
+$$
+\boxed{
+\int_V
+\left[
+\frac{\partial\rho}{\partial t}
++
+\nabla\cdot(\rho\mathbf v)
+\right]
+dV
+=
+0.
+}
+$$
+
+### Obtaining the local form
+
+The above relation must hold for **every possible control volume** $V$.
+
+The only way this can be true is if the integrand itself vanishes everywhere:
+
+$$
+\boxed{
+\frac{\partial\rho}{\partial t}
++
+\nabla\cdot(\rho\mathbf v)
+=
+0,
+}
+$$
+
+which can also be written with the total time derivative as
+
+$$
+\boxed{
+\frac{D\rho}{Dt}
++
+\rho\,\nabla\cdot\mathbf v
+=
+0.
+}
+$$
+
+This is the **continuity equation**, expressing local conservation of mass.
+
+:::
+
+
+Therefore, as demonstarted in the note above,
 
 $$
 \boxed{
@@ -647,7 +1102,7 @@ $$
 
 The velocity field therefore has zero divergence.
 
-Physically, this means fluid elements may deform but they do not change volume.
+Physically, this means incompressible fluid elements may deform but they do not change volume.
 
 # Conservation of momentum
 
@@ -657,7 +1112,7 @@ We now apply Newton's second law to a fluid element.
 
 The rate of change of momentum equals the sum of forces.
 
-For a continuum,
+For a continuum, one can show
 
 $$
 \rho
@@ -667,6 +1122,200 @@ $$
 +
 \mathbf f_V.
 $$
+
+::: {.callout-note collapse="true"}
+## Derivation of the Cauchy momentum equation
+
+The continuum equivalent of Newton's second law is obtained by applying momentum conservation to an arbitrary material volume $V$. For a collection of particles, Newton's second law reads
+
+$$
+\frac{d\mathbf P}{dt}
+=
+\sum \mathbf F,
+$$
+
+with $P$ the total momentum. In a continuum, the momentum contained within a material volume $V$ is
+
+$$
+\mathbf P
+=
+\int_V \rho \mathbf v\, dV,
+$$
+
+where we integrate over a **material volume**, defined by specific particles. Applying Newton's second law gives
+
+$$
+\boxed{
+\frac{d}{dt}
+\int_V \rho\mathbf v\, dV
+=
+\oint_S (\mathbf n\cdot\boldsymbol{\sigma})\, dS+\int_V \mathbf f_V\, dV,
+}
+$$
+
+
+Applying the divergence theorem,
+
+$$
+\oint_S \mathbf n\cdot\boldsymbol{\sigma}\, dS
+=
+\int_V \nabla\cdot\boldsymbol{\sigma}\, dV.
+$$
+
+Therefore,
+
+$$
+\frac{d}{dt}
+\int_V \rho\mathbf v\, dV
+=
+\int_V
+\left(
+\nabla\cdot\boldsymbol{\sigma}
++
+\mathbf f_V
+\right)
+dV.
+$$
+
+Because $V$ is a material volume moving with the fluid, we must use a material derivative. Using the product rule,
+
+$$
+\frac{d}{dt}
+\int_V \rho\mathbf v\, dV
+=
+\int_V
+\frac{d(\rho\mathbf v)}{dt}
+\,dV
++
+\int_V
+\rho\mathbf v
+\frac{d(dV)}{dt}.
+$$
+
+The rate of change of a material volume element can be written as
+
+$$
+\frac{d(dV)}{dt}
+=
+(\nabla\cdot\mathbf v)\,dV.
+$$
+
+Therefore
+
+$$
+\frac{d}{dt}
+\int_V \rho\mathbf v\, dV
+=
+\int_V
+\left(
+\frac{d(\rho\mathbf v)}{dt}
++
+\rho\mathbf v\,\nabla\cdot\mathbf v
+\right)dV.
+$$
+
+Expanding the material derivative,
+
+$$
+\frac{d(\rho\mathbf v)}{dt}
+=
+\mathbf v\frac{D\rho}{Dt}
++
+\rho\frac{D\mathbf v}{Dt},
+$$
+
+giving
+
+$$
+\frac{d}{dt}
+\int_V \rho\mathbf v\, dV
+=
+\int_V
+\left[
+\mathbf v
+\left(
+\frac{D\rho}{Dt}
++
+\rho\nabla\cdot\mathbf v
+\right)
++
+\rho\frac{D\mathbf v}{Dt}
+\right]
+dV.
+$$
+
+
+From the continuity equation,
+
+$$
+\boxed{
+\frac{D\rho}{Dt}
++
+\rho\nabla\cdot\mathbf v
+=
+0.
+}
+$$
+
+The first term therefore vanishes:
+
+$$
+\frac{d}{dt}
+\int_V \rho\mathbf v\, dV
+=
+\int_V
+\rho\frac{D\mathbf v}{Dt}
+\,dV.
+$$
+
+Substituting into the momentum balance gives
+
+$$
+\int_V
+\rho\frac{D\mathbf v}{Dt}
+\,dV
+=
+\int_V
+\left(
+\nabla\cdot\boldsymbol{\sigma}
++
+\mathbf f_V
+\right)
+dV.
+$$
+
+Bringing both terms to the same side,
+
+$$
+\int_V
+\left[
+\rho\frac{D\mathbf v}{Dt}
+-
+\nabla\cdot\boldsymbol{\sigma}
+-
+\mathbf f_V
+\right]
+dV
+=
+0.
+$$
+
+Since the control volume is arbitrary, the integrand itself must vanish:
+
+$$
+\boxed{
+\rho
+\frac{D\mathbf v}{Dt}
+=
+\nabla\cdot\boldsymbol{\sigma}
++
+\mathbf f_V.
+}
+$$
+
+This equation is known as the **Cauchy momentum equation**. It is simply Newton's second law written for a continuous medium.
+
+:::
 
 Substituting the expression for the material derivative gives
 
@@ -709,6 +1358,192 @@ Assuming:
 - constant density,
 - constant viscosity,
 - incompressibility,
+
+
+::: {.callout-note collapse="true"}
+# Importance of the incompressibility hypothesis
+
+Starting from the Newtonian constitutive equation,
+
+$$
+\sigma_{ij}
+=
+-p\delta_{ij}
++
+\eta
+\left(
+\frac{\partial v_i}{\partial x_j}
++
+\frac{\partial v_j}{\partial x_i}
+\right),
+$$
+
+we wish to evaluate the quantity appearing in the Cauchy momentum equation,
+
+$$
+(\nabla\cdot\boldsymbol{\sigma})_i
+=
+\frac{\partial \sigma_{ij}}{\partial x_j}.
+$$
+
+Substituting the constitutive equation gives
+
+$$
+\frac{\partial \sigma_{ij}}{\partial x_j}
+=
+-\frac{\partial p}{\partial x_j}\delta_{ij}
++
+\eta
+\frac{\partial}{\partial x_j}
+\left(
+\frac{\partial v_i}{\partial x_j}
++
+\frac{\partial v_j}{\partial x_i}
+\right).
+$$
+
+The pressure term simplifies to
+
+$$
+-\frac{\partial p}{\partial x_j}\delta_{ij}
+=
+-\frac{\partial p}{\partial x_i}.
+$$
+
+For the viscous contribution,
+
+$$
+\eta
+\frac{\partial}{\partial x_j}
+\left(
+\frac{\partial v_i}{\partial x_j}
++
+\frac{\partial v_j}{\partial x_i}
+\right)
+=
+\eta
+\left(
+\frac{\partial^2 v_i}{\partial x_j^2}
++
+\frac{\partial}{\partial x_j}
+\left(
+\frac{\partial v_j}{\partial x_i}
+\right)
+\right).
+$$
+
+The first term is simply the Laplacian of the velocity component:
+
+$$
+\frac{\partial^2 v_i}{\partial x_j^2}
+=
+\nabla^2 v_i.
+$$
+
+For the second term, we interchange the order of differentiation:
+
+$$
+\frac{\partial}{\partial x_j}
+\left(
+\frac{\partial v_j}{\partial x_i}
+\right)
+=
+\frac{\partial}{\partial x_i}
+\left(
+\frac{\partial v_j}{\partial x_j}
+\right).
+$$
+
+Recognizing the divergence of the velocity field,
+
+$$
+\frac{\partial v_j}{\partial x_j}
+=
+\nabla\cdot\mathbf v,
+$$
+
+we obtain
+
+$$
+\frac{\partial}{\partial x_j}
+\left(
+\frac{\partial v_j}{\partial x_i}
+\right)
+=
+\frac{\partial}{\partial x_i}
+(\nabla\cdot\mathbf v).
+$$
+
+At this point the incompressibility condition becomes crucial:
+
+$$
+\nabla\cdot\mathbf v = 0.
+$$
+
+Therefore,
+
+$$
+\frac{\partial}{\partial x_i}
+(\nabla\cdot\mathbf v)
+=
+0.
+$$
+
+The entire second viscous term vanishes:
+
+$$
+\frac{\partial}{\partial x_j}
+\left(
+\frac{\partial v_j}{\partial x_i}
+\right)
+=
+0.
+$$
+
+We are left with
+
+$$
+(\nabla\cdot\boldsymbol{\sigma})_i
+=
+-\frac{\partial p}{\partial x_i}
++
+\eta\nabla^2 v_i.
+$$
+
+Writing the result in vector form,
+
+$$
+\boxed{
+\nabla\cdot\boldsymbol{\sigma}
+=
+-\nabla p
++
+\eta\nabla^2\mathbf v.
+}
+$$
+
+Without the incompressibility hypothesis, an additional term would remain:
+
+$$
+\nabla\cdot\boldsymbol{\sigma}
+=
+-\nabla p
++
+\eta\nabla^2\mathbf v
++
+\eta\nabla(\nabla\cdot\mathbf v).
+$$
+
+The assumption
+
+$$
+\nabla\cdot\mathbf v = 0
+$$
+
+is therefore what allows the Cauchy momentum equation to simplify into the familiar Navier-Stokes equation used throughout this course.
+
+:::
+
 
 one obtains
 
@@ -778,6 +1613,7 @@ $$
 \text{sum of forces}.
 $$
 
+<!--
 # Reynolds number
 
 The balance between inertial and viscous effects is quantified by the Reynolds number.
@@ -824,6 +1660,7 @@ For example:
 - intracellular transport.
 
 Their physics is therefore fundamentally different from our everyday experience.
+-->
 
 # Towards the problem class
 
