@@ -5,9 +5,6 @@ website:
   title: "Fluid Dynamics and Cell Mechanics"
   navbar:
     left:
-      - href: index.qmd
-        text: Home
-
       - href: NotesIntroNavierStokes.qmd
         text: Introduction to the Navier-Stokes Equation
 

@@ -33,7 +33,9 @@ Throughout these notes, bold symbols denote vectors.
 | $p$ | Pressure | Pa |
 | $\boldsymbol{\sigma}$ | Stress tensor | Pa |
 | $\eta$ | Dynamic viscosity | Pa s |
-| $\mathbf f_V$ | Body force density | N m$^{-3}$ |
+| $\mathbf f_V$ | Volume force density | N m$^{-3}$ |
+
+
 
 # From point particles to continuous media
 
@@ -70,71 +72,291 @@ This volume must:
 - be large compared with molecular dimensions,
 - be small compared with the length scales of interest.
 
-We then define smooth fields such as
+We then define smooth fields such as the local mass density $\rho(\mathbf r,t)$, the velocity field $\mathbf v(\mathbf r,t)$, and the pressure field $p(\mathbf r,t)$.
+
+This approximation is known as the **continuum hypothesis**. Under this hypothesis, fluids can be treated using differential calculus.
+
+::: {.callout-note collapse="true"}
+# Preamble: the mathematical nature of physical quantities
+
+In order to discuss forces in continuous media, compared with point mechanics, we need a new mathematical object to describe physical quantities, known as a tensor. As you are reading these notes, you should ba familiar with scalar and vector physical quantities:
+
+## Scalars
+
+Scalars possess magnitude only. They're represented by a single number.
+
+Examples:
+
+- temperature,
+- mass,
+- density,
+- pressure.
+
+## Vectors
+
+Vectors possess magnitude and direction. They are represented by a $N\times 1$ matrix, or array, where $N$ is the dimension of the described system, which depends on the choice of reference frame.
+
+Examples:
+
+- displacement,
+- velocity,
+- force.
+
+## Second-rank tensors
+
+In a simple way, one can say a tensor describes how a vector quantity depends on direction.
+
+The simplest example is a matrix:
 
 $$
-\rho(\mathbf r,t),
+\mathbf T
+=
+\begin{pmatrix}
+T_{xx} & T_{xy} & T_{xz}\\
+T_{yx} & T_{yy} & T_{yz}\\
+T_{zx} & T_{zy} & T_{zz}
+\end{pmatrix}.
 $$
 
-$$
-\mathbf v(\mathbf r,t),
-$$
+Tensors appear naturally when describing stresses in a continuous medium.
+
+Indeed, the force exerted across a given surface depends not only on position but also on the orientation of that surface. Gradients of vector quantites are also important in continuous media.
+
+## Change of reference frame
+
+One of the defining properties of physical quantities is that their description should not depend on the coordinate system used by the observer.
+
+### Scalars
+
+Scalars are unchanged when the coordinate system is rotated.
+
+For example, the temperature at a point remains the same regardless of how we orient our axes.
+
+If
 
 $$
-p(\mathbf r,t).
+T = 300\,\mathrm{K},
 $$
 
-This approximation is known as the **continuum hypothesis**.
+then every observer measures exactly the same value.
 
-Under this hypothesis, fluids can be treated using differential calculus.
+### Vectors
+
+The components of a vector depend on the chosen coordinate system, even though the physical vector itself does not.
+
+For example, consider a force
+
+$$
+\mathbf F=
+\begin{pmatrix}
+10\\
+0
+\end{pmatrix}
+\mathrm{N}
+$$
+
+in a two-dimensional coordinate system.
+
+If the axes are rotated by \(45^\circ\), the same force becomes
+
+$$
+\mathbf F'=
+\begin{pmatrix}
+10/\sqrt{2}\\
+-10/\sqrt{2}
+\end{pmatrix}
+\mathrm{N}.
+$$
+
+The numerical components have changed, but the physical force is exactly the same.
+
+Mathematically, vectors transform according to
+
+$$
+F_i' = R_{ij}F_j,
+$$
+
+where \(R_{ij}\) is the rotation matrix describing the change of basis.
+
+### Second-rank tensors
+
+A tensor describes a relationship between directions. Consequently, both of its indices must transform whenever the coordinate system changes.
+
+For a second-rank tensor,
+
+$$
+T_{ij},
+$$
+
+the components in the rotated coordinate system become
+
+$$
+T'_{ij}
+=
+R_{ik}R_{jl}T_{kl}.
+$$
+
+The two rotation matrices appear because the tensor acts on two directions simultaneously.
+
+For example, as we will show later, the stress tensor contains:
+
+- a direction associated with the orientation of a surface,
+- a direction associated with the force acting on that surface.
+
+Both directions must therefore be transformed when changing coordinates.
+
+This is why stresses cannot generally be represented by a simple scalar or vector.
+
+:::
+
+
+
+::: {.callout-note collapse="true"}
+## A description of notation conventions
+
+Fluid mechanics uses a compact notation based on vectors, tensors and the **Einstein summation convention**.
+
+### Einstein summation convention
+
+Whenever an index appears twice in a term, summation over that index is implied.
+
+For example,
+
+$$
+a_i b_i
+=
+\sum_{i=1}^{3} a_i b_i
+=
+a_1 b_1+a_2 b_2+a_3 b_3 .
+$$
+
+This notation avoids writing explicit summation symbols and greatly simplifies tensor equations.
+
+### The gradient operator
+
+The vector differential operator
+
+$$
+\nabla
+=
+\left(
+\frac{\partial}{\partial x},
+\frac{\partial}{\partial y},
+\frac{\partial}{\partial z}
+\right)
+$$
+
+can be written in index notation as
+
+$$
+(\nabla)_i
+=
+\frac{\partial}{\partial x_i}.
+$$
+
+### Dot product with a gradient
+
+The velocity vector is
+
+$$
+\mathbf v
+=
+(v_1,v_2,v_3).
+$$
+
+The expression
+
+$$
+\mathbf v\cdot\nabla
+$$
+
+means
+
+$$
+v_i\frac{\partial}{\partial x_i}
+=
+v_1\frac{\partial}{\partial x}
++
+v_2\frac{\partial}{\partial y}
++
+v_3\frac{\partial}{\partial z}.
+$$
+
+Note that $\mathbf v\cdot\nabla$ is **not a scalar**, but a differential operator which acts on whatever follows it.
+
+For example, if $X(\mathbf r,t)$ is a scalar field,
+
+$$
+\mathbf v\cdot\nabla X
+=
+v_i\frac{\partial X}{\partial x_i}
+=
+v_x\frac{\partial X}{\partial x}
++
+v_y\frac{\partial X}{\partial y}
++
+v_z\frac{\partial X}{\partial z}.
+$$
+
+This quantity represents the rate at which a fluid particle experiences changes in $X$ because it is moving through space.
+
+### Other common tensor operations
+
+The **gradient of a scalar field** produces a vector:
+
+$$
+(\nabla X)_i
+=
+\frac{\partial X}{\partial x_i}.
+$$
+
+The **divergence of a vector field** produces a scalar:
+
+$$
+\nabla\cdot\mathbf v
+=
+\frac{\partial v_i}{\partial x_i}.
+$$
+
+The **gradient of a vector field** produces a second-rank tensor:
+
+$$
+(\nabla\mathbf v)_{ij}
+=
+\frac{\partial v_j}{\partial x_i}.
+$$
+
+The **double contraction** of two tensors produces a scalar:
+
+$$
+A:B
+=
+A_{ij}B_{ij}.
+$$
+
+These operations appear repeatedly in continuum mechanics because physical quantities such as stress and strain are tensorial in nature.
+
+:::
+
+
 
 # Eulerian and Lagrangian descriptions
 
-There are two fundamentally different ways of describing fluid motion.
+There are two fundamentally different ways of describing fluid motion:
 
-## Lagrangian description
+- the **Lagrangian description**: We follow an individual fluid particle. Its position is $\mathbf r_P(t)$, and its velocity is $\mathbf v_P(t)=\frac{d\mathbf r_P}{dt}$. This description remains very close to ordinary Newtonian mechanics.
 
-We follow an individual fluid particle.
-
-Its position is
-
-$$
-\mathbf r_P(t).
-$$
-
-Its velocity is
-
-$$
-\mathbf v_P(t)
-=
-\frac{d\mathbf r_P}{dt}.
-$$
-
-This description remains very close to ordinary Newtonian mechanics.
-
-## Eulerian description
-
-Instead of following particles, we observe the fluid at fixed positions.
-
-At every point in space, we define
-
-$$
-\mathbf v(\mathbf r,t).
-$$
-
-This velocity field gives the velocity that a fluid particle would have if it passed through position $\mathbf r$ at time $t$.
-
-Most fluid mechanics uses the Eulerian description.
+- the **Eulerian description**: Instead of following particles, we observe the fluid at fixed positions. At every point in space, we define the velocity field $\mathbf v(\mathbf r,t)$ as the velocity of the particles present in $\mathbf r$ at time $t$. Most fluid mechanics uses the Eulerian description.
 
 ## Comparison with particle mechanics
 
 | Particle mechanics | Continuum mechanics |
 |----------|----------|
-| Position $\mathbf r_P(t)$ | Velocity field $\mathbf v(\mathbf r,t)$ |
+| Position $\mathbf r_P(t)$ and speed $\mathbf v_P(t)$ | Velocity field $\mathbf v(\mathbf r,t)$ |
 | Mass $m$ | Density $\rho(\mathbf r,t)$ |
-| Force $\mathbf F$ | Force density |
+| Force $\mathbf F$ | Volume force density $\mathbf f_v$|
 | Momentum $\mathbf p$ | Momentum density $\rho\mathbf v$ |
-| Newton's law | Cauchy momentum equation |
+
 
 # The material derivative
 
@@ -186,6 +408,9 @@ $$
 
 This operator is called the **material derivative**.
 
+
+
+
 ## Material derivative of velocity
 
 Applying the material derivative to velocity itself gives the acceleration of a fluid element:
@@ -206,50 +431,7 @@ The second term is called the **convective acceleration**.
 
 This second term has no equivalent in elementary particle mechanics and is responsible for much of the complexity of fluid dynamics.
 
-# Scalars, vectors and tensors
 
-Before introducing forces in continuous media, we need a new mathematical object.
-
-## Scalars
-
-Scalars possess magnitude only.
-
-Examples:
-
-- temperature,
-- mass,
-- density,
-- pressure.
-
-## Vectors
-
-Vectors possess magnitude and direction.
-
-Examples:
-
-- displacement,
-- velocity,
-- force.
-
-## Second-rank tensors
-
-A tensor describes how a quantity depends on direction.
-
-The simplest example is a matrix:
-
-$$
-\mathbf T
-=
-\begin{pmatrix}
-T_{xx} & T_{xy} & T_{xz}\\
-T_{yx} & T_{yy} & T_{yz}\\
-T_{zx} & T_{zy} & T_{zz}
-\end{pmatrix}.
-$$
-
-Tensors appear naturally when describing stresses in a continuous medium.
-
-Indeed, the force exerted across a given surface depends not only on position but also on the orientation of that surface.
 
 # Forces in a continuum
 

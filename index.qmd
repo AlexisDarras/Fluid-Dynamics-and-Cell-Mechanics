@@ -1,7 +1,32 @@
 ---
+---
 title: "Fluid Dynamics and Cell Mechanics"
 ---
 
-This is a Quarto website.
+# Welcome
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+Welcome to the course website for **Fluid Dynamics and Cell Mechanics**, part of the **Mesoscale and Biological Physics** unit.
+
+::: {.callout-note}
+This website brings together the teaching materials, lecture notes, practical exercises, and learning resources used throughout the course.
+:::
+
+## What you will find here
+
+- Lecture notes and supplementary reading material
+- Practical exercises and laboratory activities
+
+
+## About this website
+
+This site is built using **Quarto** and is automatically published through **GitHub Pages**, ensuring that the most up-to-date course materials are always available online.
+
+## Navigation
+
+Use the chapter thumbnails in the top-left navigation panel to browse the different sections of the course.
+
+We recommend working through the notes in order, as later chapters build on concepts introduced earlier in the module.
+
+::: {.callout-tip}
+If this is your first visit, start with the introductory chapter before moving on to the lecture notes and practical activities.
+:::
