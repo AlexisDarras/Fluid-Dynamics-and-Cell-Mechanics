@@ -250,5 +250,201 @@
     "title": "Fluid Mechanics Problem Class",
     "section": "4.5 Step 5: Explore limiting cases",
     "text": "4.5 Step 5: Explore limiting cases\nEvaluate qualitatively what happens when:\n\n$n&lt;1,\n\\(n=1\\),\n\\(n&gt;1\\).\n\nHow does the shape of the profile change?\nWhich case corresponds to the Newtonian fluid solved previously?"
+  },
+  {
+    "objectID": "LowRe.html",
+    "href": "LowRe.html",
+    "title": "Biological and Mesoscale Physics",
+    "section": "",
+    "text": "In the previous lecture, we derived the Navier-Stokes equation:\n\\[\n\\underbrace{\n\\color{red}{\n\\rho\n\\left(\n\\frac{\\partial \\mathbf v}{\\partial t}\n+\n(\\mathbf v\\cdot\\nabla)\\mathbf v\n\\right)\n}\n}_{\\text{\\color{red}{Inertia}}}\n=\n\\underbrace{\n\\color{blue}{\n-\\nabla p\n}\n}_{\\text{\\color{blue}{Pressure}}}\n+\n\\underbrace{\n\\color{green}{\n\\eta\\nabla^2\\mathbf v\n}\n}_{\\text{\\color{green}{Viscous dissipation}}}\n+\n\\underbrace{\n\\color{purple}{\n\\mathbf f_V\n}\n}_{\\text{\\color{purple}{Volume forces}}}\n\\]\nA powerful way to understand fluid flows is to compare the relative importance of the different terms appearing in the Navier-Stokes equation. To do this, we estimate the order of magnitude of each term using characteristic scales:\n\nlength scale \\(L\\)\nvelocity scale \\(U\\)\npressure scale \\(\\Delta P\\)\nFluid density \\(\\rho\\)\n\nThe characteristic magnitude of each contribution can be estimated as\n\n\n\n\n\n\n\n\nTerm\nPhysical meaning\nCharacteristic scale\n\n\n\n\n\\(\\color{red}{\\rho\\left(\\frac{\\partial \\mathbf v}{\\partial t}+(\\mathbf v\\cdot\\nabla)\\mathbf v\\right)}\\)\nInertia\n\\(\\rho U^2/L\\)\n\n\n\\(\\color{blue}{-\\nabla p}\\)\nPressure forces\n\\(\\Delta P/L\\)\n\n\n\\(\\color{green}{\\eta\\nabla^2\\mathbf v}\\)\nViscous dissipation\n\\(\\eta U/L^2\\)\n\n\n\\(\\color{purple}{\\mathbf f_V}\\)\nVolume forces (e.g. gravity)\n\\(\\rho g\\)\n\n\n\nIn many situations, some of these effects dominate while others become negligible. Rather than solving the full Navier-Stokes equation, we can often gain physical insight by comparing the relative magnitudes of its terms. Taking ratios of these characteristic magnitudes leads to a family of dimensionless numbers that characterize different flow regimes:\nThe Reynolds number compares inertial effects to viscous effects:   \\[\n\\boxed{\nRe\n=\n\\frac{\\color{red}\\text{Inertia}}{\\color{green}\\text{Viscous forces}}\n=\n\\frac{\\rho U L}{\\eta}.\n}\n\\]\nWe can interpret the value of teh Reynolds number based on on its magnitude:\n\n\\(Re \\gg 1\\): inertia dominates viscosity;\n\n\\(Re \\ll 1\\): viscosity dominates inertia.\n  The Reynolds number is one of the most important quantities in fluid mechanics and will be the focus of this lecture.   The Euler number compares pressure forces to inertial forces:   \\[\n\\boxed{\nEu\n=\n\\frac{\\color{blue}\\text{Pressure}}{\\color{red}\\text{Inertia}}\n=\n\\frac{\\Delta P}{\\rho U^2}.\n}\n\\]\n\\(Eu \\gg 1\\): pressure forces dominate inertia;\n\n\\(Eu \\ll 1\\): inertial effects dominate pressure forces.\n\nThe Froude number compares inertial effects to gravity:   \\[\n\\boxed{\nFr\n=\n\\sqrt{\n\\frac{\\color{red}\\text{Inertia}}{\\color{purple}\\text{Gravity}}\n}\n=\n\\frac{U}{\\sqrt{gL}}\n.\n}\n\\]\nInterpretation:\n\n\\(Fr \\gg 1\\): inertia dominates gravity;\n\\(Fr \\ll 1\\): gravity dominates inertia.   The Froude number plays an important role in free-surface flows such as rivers, waves and ship hydrodynamics.\n\n\n\nSuppose two flows have completely different:\n\nsizes,\nvelocities,\nviscosities,\ndensities.\n\nIf they have the same dimensionless numbers, they will often behave in a very similar manner.   Dimensionless numbers therefore allow us to identify entire classes of fluid flows without solving the governing equations explicitly.   For biological systems, the most important quantity is usually the Reynolds number, because it determines whether fluid motion is governed primarily by inertia or viscosity.   In the remainder of this lecture, we will discover that many microorganisms operate at   \\[\nRe \\ll 1,\n\\]   where the physics becomes dramatically different from our everyday experience."
+  },
+  {
+    "objectID": "LowRe.html#high-reynolds-number",
+    "href": "LowRe.html#high-reynolds-number",
+    "title": "Biological and Mesoscale Physics",
+    "section": "2.1 High Reynolds number",
+    "text": "2.1 High Reynolds number\nWhen\n\\[\nRe \\gg 1,\n\\]\ninertial effects dominate.\nExamples:\n\naircraft,\ncars,\nswimming humans,\nrivers.\n\nIn this regime:\n\nvortices often form,\nturbulence may appear,\nflow structures persist through momentum transport."
+  },
+  {
+    "objectID": "LowRe.html#low-reynolds-number",
+    "href": "LowRe.html#low-reynolds-number",
+    "title": "Biological and Mesoscale Physics",
+    "section": "2.2 Low Reynolds number",
+    "text": "2.2 Low Reynolds number\nWhen\n\\[\nRe \\ll 1,\n\\]\nviscous forces dominate.\nThe inertial term becomes negligible compared with viscosity.\nThe Navier-Stokes equation reduces to\n\\[\n\\boxed{\n0\n=\n-\\nabla p\n+\n\\eta\\nabla^2\\mathbf v\n+\n\\mathbf f_V.\n}\n\\]\nThis equation is known as the Stokes equation.\nRemarkably, it contains no acceleration term.\nThe dynamics therefore become fundamentally different from our everyday experience."
+  },
+  {
+    "objectID": "LowRe.html#euler-number",
+    "href": "LowRe.html#euler-number",
+    "title": "Biological and Mesoscale Physics",
+    "section": "3.1 Euler number",
+    "text": "3.1 Euler number\nThe Euler number compares pressure forces with inertial forces:\n\\[\n\\boxed{\nEu\n=\n\\frac{\\Delta P}{\\rho U^2}.\n}\n\\]\nIt measures the importance of pressure-driven motion."
+  },
+  {
+    "objectID": "LowRe.html#froude-number",
+    "href": "LowRe.html#froude-number",
+    "title": "Biological and Mesoscale Physics",
+    "section": "3.2 Froude number",
+    "text": "3.2 Froude number\nThe Froude number compares inertial forces with gravity:\n\\[\n\\boxed{\nFr\n=\n\\frac{U}{\\sqrt{gL}}.\n}\n\\]\nLarge values indicate that inertia dominates gravity.\nSmall values indicate that gravity strongly influences the flow."
+  },
+  {
+    "objectID": "LowRe.html#human-swimming",
+    "href": "LowRe.html#human-swimming",
+    "title": "Biological and Mesoscale Physics",
+    "section": "2.1 Human swimming",
+    "text": "2.1 Human swimming\nTypical values:\n\\[\nL \\sim 1\\ \\mathrm{m},\n\\]\n\\[\nU \\sim 10^{-1}-1\\ \\mathrm{m\\,s^{-1}},\n\\]\n\\[\n\\rho \\sim 10^3\\ \\mathrm{kg\\,m^{-3}},\n\\]\n\\[\n\\eta \\sim 10^{-3}\\ \\mathrm{Pa\\,s}.\n\\]\nThis gives\n\\[\nRe \\sim 10^5.\n\\]\nHuman swimming is therefore strongly inertia dominated.\n\n\n\n\n\n\nFigure 1: Illustration of a human swimmer."
+  },
+  {
+    "objectID": "LowRe.html#bacteria",
+    "href": "LowRe.html#bacteria",
+    "title": "Biological and Mesoscale Physics",
+    "section": "2.2 Bacteria",
+    "text": "2.2 Bacteria\nTypical values:\n\\[\nL \\sim 1\\ \\mu\\mathrm m,\n\\]\n\\[\nU \\sim 10\\ \\mu\\mathrm m\\,s^{-1},\n\\]\n\\[\n\\rho \\sim 10^3\\ \\mathrm{kg\\,m^{-3}},\n\\]\n\\[\n\\eta \\sim 10^{-3}\\ \\mathrm{Pa\\,s}.\n\\]\nThis yields\n\\[\nRe \\sim 10^{-5}.\n\\]\nFor bacteria, inertia is essentially irrelevant.Therefore, the physical world experienced by a bacterium is completely different from the one experienced by a swimmer, as it is dominated by viscous drag forces.\n\n\n\n\n\n\nFigure 2: Illustration of a bacteria swimmer. (Illustration from Physical Biology of the Cell, Garland Science 2013)"
+  },
+  {
+    "objectID": "LowRe.html#inertial-drag",
+    "href": "LowRe.html#inertial-drag",
+    "title": "Biological and Mesoscale Physics",
+    "section": "3.1 Inertial drag",
+    "text": "3.1 Inertial drag\nConsider a body of cross-sectional area \\(A\\) moving through a fluid with speed \\(U\\).\nAs the body advances, it continuously deflects fluid that was initially at rest. You can also think of it in the referential of the block, and then it is continuously pushed by this amount of fluid that it is stopping in its track.\n\n\n\n\n\n\nFigure 3: Illustration of drag forces acting on a cube. Credits\n\n\n\nDuring a small time interval \\(dt\\), the body faces a volume of liquid\n\\[\ndV \\simeq AU\\,dt.\n\\]\nThe mass of fluid intercepted during this interval is therefore\n\\[\ndm\n=\n\\rho\\,dV\n=\n\\rho AU\\,dt.\n\\]\nIn the body referential, this fluid goes from a velocity of order \\(U\\) to virtually 0 along its axis of motion.\nThe corresponding change in momentum is\n\\[\ndp_{fluid}\n=\n(0-U)\\,dm.\n\\]\nUsing Newton’s third and second law, the force acting on the body is\n\\[\nF_i\n=\n-\\frac{dp_{fluid}}{dt},\n\\]\nwe obtain\n\\[\nF_i\n\\approx\n\\frac{U\\,dm}{dt}.\n\\]\nSubstituting the mass flow rate,\n\\[\nF_i\n\\approx\n\\frac{U(\\rho AU\\,dt)}{dt}.\n\\]\nTherefore,\n\\[\n\\boxed{\nF_i\n\\sim\n\\rho A U^2.\n}\n\\]\nThis contribution is called the inertial drag. This force scales with:\n\nthe density of the fluid,\nthe obstacle cross-sectional area,\nthe square of the velocity.\n\nThe quadratic dependence on velocity arises because:\n\nincreasing the velocity causes more fluid to be intercepted every second;\neach fluid parcel also receives a larger momentum change.\n\nSince both effects scale as \\(U\\), the resulting force scales as \\(U^2\\)."
+  },
+  {
+    "objectID": "LowRe.html#viscous-drag",
+    "href": "LowRe.html#viscous-drag",
+    "title": "Biological and Mesoscale Physics",
+    "section": "3.2 Viscous drag",
+    "text": "3.2 Viscous drag\nA second contribution arises from the viscosity of the fluid.\nBecause of the no-slip boundary condition, fluid in contact with the object’s surface has the same velocity as the surface.\nAs a result, velocity gradients develop near the body.\nSuppose the velocity increases from \\(v=0\\) at the surface to \\(v=U\\) over a characteristic distance \\(l\\). This distance must be, in first order of approximation, proportional to the object size. The full demonstration is a bit long, but it should seem pretty intuitibe that an object should not disturb a distance much larger nor much smaller than itself.\nThe velocity gradient is then of the order of\n\\[\n\\frac{\\partial v}{\\partial y}\n\\sim\n\\frac{U}{l}.\n\\]\nFor a Newtonian fluid of viscosity \\(\\eta\\), the resulting shear stress is\n\\[\n\\sigma\n=\n\\eta\n\\frac{\\partial v}{\\partial y}\n=\n\\eta\\frac{U}{l}.\n\\]\nTherefore, the total force, obtained by multiplying the stress by the area over which it acts, becomes:\n\\[\nF_v\n\\sim\nA\\sigma\n=\nA\\eta\\frac{U}{l}\n\\approx\nl\\eta U.\n\\]\nThis contribution is called the viscous drag. The viscous drag increases because:\n\nlarger viscosities generate larger shear stresses;\nlarger objects provide more surface area over which these stresses act;\nlarger velocities generate steeper velocity gradients.\n\nUnlike inertial drag, viscous drag scales linearly with velocity."
+  },
+  {
+    "objectID": "LowRe.html#why-reynolds-number-appears",
+    "href": "LowRe.html#why-reynolds-number-appears",
+    "title": "Biological and Mesoscale Physics",
+    "section": "5.3 Why Reynolds number appears",
+    "text": "5.3 Why Reynolds number appears\nComparing both contributions,\n\\[\n\\frac{F_I}{F_V}\n=\n\\frac{\\rho U^2L^2}\n{\\eta U L}\n=\n\\frac{\\rho U L}{\\eta}\n=\nRe.\n\\]\nThe Reynolds number therefore quantifies which form of drag dominates."
+  },
+  {
+    "objectID": "LowRe.html#laminar-flow",
+    "href": "LowRe.html#laminar-flow",
+    "title": "Biological and Mesoscale Physics",
+    "section": "5.1 Laminar flow",
+    "text": "5.1 Laminar flow\nLow-Reynolds-number flows are typically smooth.\nStable vortices and turbulent cascades are absent.\nFluid parcels follow predictable trajectories.\n[Insert Reynolds-number sequence around a sphere]"
+  },
+  {
+    "objectID": "LowRe.html#time-reversibility",
+    "href": "LowRe.html#time-reversibility",
+    "title": "Biological and Mesoscale Physics",
+    "section": "5.2 Time reversibility",
+    "text": "5.2 Time reversibility\nSuppose all velocities in a Stokes flow are reversed.\nThe governing equation remains unchanged.\nConsequently,\n\nevery motion is exactly reversible.\n\nThis feature has extraordinary consequences for locomotion."
+  },
+  {
+    "objectID": "LowRe.html#how-to-escape-the-theorem",
+    "href": "LowRe.html#how-to-escape-the-theorem",
+    "title": "Biological and Mesoscale Physics",
+    "section": "6.1 How to escape the theorem",
+    "text": "6.1 How to escape the theorem\nSwimming requires at least two independent degrees of freedom,and the swimmer must execute a cycle in a multidimensional shape space.\nThe forward stroke and backward stroke must follow different paths.\nOnly then can a net displacement occur.\n\n\n Trajectory in configuration space fo a microswimmer Source\n\n Corresponding motion. Source"
+  },
+  {
+    "objectID": "LowRe.html#brownian-motion",
+    "href": "LowRe.html#brownian-motion",
+    "title": "Biological and Mesoscale Physics",
+    "section": "8.1 Brownian motion",
+    "text": "8.1 Brownian motion\nA small particle, such a the ones a bacteria would use for food, undergoes thermal fluctuations. Its probability density satisfies the diffusion equation\n\\[\n\\frac{\\partial \\rho}{\\partial t}\n=\nD\\nabla^2\\rho.\n\\]\nThe diffusion coefficient of a sphere is\n\\[\n\\boxed{\nD\n=\n\\frac{k_B T}{6\\pi\\eta R}.\n}\n\\]\nThe characteristic diffusion distance is\n\\[\nl\n\\sim\n\\sqrt{2Dt}.\n\\]\nHowever, for a bacteria to travel a distance \\(l\\), the swimming time is\n\\[\nt_{\\rm swim}\n=\n\\frac{l}{v},\n\\]\nwhile the diffusion time is\n\\[\nt_D\n=\n\\frac{l^2}{D}.\n\\]\nTaking the ratio,\n\\[\n\\boxed{\nS\n=\n\\frac{t_D}{t_{\\rm swim}}\n=\n\\frac{lv}{D}.\n}\n\\]\nThis quantity is sometimes called the Sherwood number in this context.\nWhen\n\\[\nS&gt;1,\n\\]\nswimming reaches the target faster than diffusion.\nFor typical bacterial values,\n\\[\nD \\sim 500\\ \\mu\\mathrm m^2/s,\n\\]\n\\[\nv \\sim 30\\ \\mu\\mathrm m/s,\n\\]\ngiving a crossover distance of roughly\n\\[\nl\n\\sim\n20\\ \\mu\\mathrm m.\n\\]\nSwimming therefore becomes advantageous on length scales larger than a few cell sizes."
+  },
+  {
+    "objectID": "LowRe.html#swimming-versus-diffusion",
+    "href": "LowRe.html#swimming-versus-diffusion",
+    "title": "Biological and Mesoscale Physics",
+    "section": "8.2 Swimming versus diffusion",
+    "text": "8.2 Swimming versus diffusion\nTo travel a distance \\(l\\),\nthe swimming time is\n\\[\nt_{\\rm swim}\n=\n\\frac{l}{v},\n\\]\nwhile the diffusion time is\n\\[\nt_D\n=\n\\frac{l^2}{D}.\n\\]\nTaking the ratio,\n\\[\n\\boxed{\nS\n=\n\\frac{t_D}{t_{\\rm swim}}\n=\n\\frac{lv}{D}.\n}\n\\]\nThis quantity is sometimes called the Sherwood number in this context.\nWhen\n\\[\nS&gt;1,\n\\]\nswimming reaches the target faster than diffusion.\nFor typical bacterial values,\n\\[\nD \\sim 500\\ \\mu\\mathrm m^2/s,\n\\]\n\\[\nv \\sim 30\\ \\mu\\mathrm m/s,\n\\]\ngiving a crossover distance of roughly\n\\[\nl\n\\sim\n20\\ \\mu\\mathrm m.\n\\]\nSwimming therefore becomes advantageous on length scales larger than a few cell sizes."
+  },
+  {
+    "objectID": "LowRe.html#reynolds-number",
+    "href": "LowRe.html#reynolds-number",
+    "title": "Biological and Mesoscale Physics",
+    "section": "",
+    "text": "The Reynolds number compares inertial effects to viscous effects:   \\[\n\\boxed{\nRe\n=\n\\frac{\\color{red}\\text{Inertia}}{\\color{green}\\text{Viscous forces}}\n=\n\\frac{\\rho U L}{\\eta}.\n}\n\\]\nWe can interpret the value of teh Reynolds number based on on its magnitude:\n\n\\(Re \\gg 1\\): inertia dominates viscosity;\n\n\\(Re \\ll 1\\): viscosity dominates inertia.\n  The Reynolds number is one of the most important quantities in fluid mechanics and will be the focus of this lecture."
+  },
+  {
+    "objectID": "LowRe.html#euler-number-1",
+    "href": "LowRe.html#euler-number-1",
+    "title": "Biological and Mesoscale Physics",
+    "section": "4.1 Euler number",
+    "text": "4.1 Euler number\nThe Euler number compares pressure forces with inertial forces:\n\\[\n\\boxed{\nEu\n=\n\\frac{\\Delta P}{\\rho U^2}.\n}\n\\]\nIt measures the importance of pressure-driven motion."
+  },
+  {
+    "objectID": "LowRe.html#froude-number-1",
+    "href": "LowRe.html#froude-number-1",
+    "title": "Biological and Mesoscale Physics",
+    "section": "4.2 Froude number",
+    "text": "4.2 Froude number\nThe Froude number compares inertial forces with gravity:\n\\[\n\\boxed{\nFr\n=\n\\frac{U}{\\sqrt{gL}}.\n}\n\\]\nLarge values indicate that inertia dominates gravity.\nSmall values indicate that gravity strongly influences the flow."
+  },
+  {
+    "objectID": "LowRe.html#why-dimensionless-numbers-matter",
+    "href": "LowRe.html#why-dimensionless-numbers-matter",
+    "title": "Biological and Mesoscale Physics",
+    "section": "",
+    "text": "Suppose two flows have completely different:\n\nsizes,\nvelocities,\nviscosities,\ndensities.\n\nIf they have the same dimensionless numbers, they will often behave in a very similar manner.   Dimensionless numbers therefore allow us to identify entire classes of fluid flows without solving the governing equations explicitly.   For biological systems, the most important quantity is usually the Reynolds number, because it determines whether fluid motion is governed primarily by inertia or viscosity.   In the remainder of this lecture, we will discover that many microorganisms operate at   \\[\nRe \\ll 1,\n\\]   where the physics becomes dramatically different from our everyday experience."
+  },
+  {
+    "objectID": "LowRe.html#total-drag",
+    "href": "LowRe.html#total-drag",
+    "title": "Biological and Mesoscale Physics",
+    "section": "3.3 Total drag",
+    "text": "3.3 Total drag\nThe total drag force is the sum of both contributions:\n\\[\nF_D\n=\nF_i\n+\nF_v.\n\\]\nUsing the scaling estimates derived above:\n\\[\nF_D\n\\sim\n\\alpha\\,\\rho A U^2\n+\n\\beta\\,\\eta U L,\n\\]\nwhere \\(\\alpha\\) and \\(\\beta\\) are dimensionless numerical constants that depend on the object’s geometry. To determine which contribution dominates, we compare the two scaling laws:\n\\[\n\\frac{F_i}{F_v}\n=\n\\frac{\\rho A U^2}\n{\\eta U L}\n\\approx\n\\frac{\\rho U L}{\\eta}\n=\nRe.\n\\]\nThis result recalls the physical meaning of the Reynolds number:\n\\[\n\\boxed{\nRe\n=\n\\frac{\\text{Inertial forces}}\n{\\text{Viscous forces}}.\n}\n\\]\nWhen\n\\[\nRe\\gg1,\n\\]\ndrag is dominated by momentum transfer to the fluid.\nWhen\n\\[\nRe\\ll1,\n\\]\ndrag is dominated by viscous stresses.\nFor a spherical particle, one can work out numerical coefficients through the Navier-Stokes equation:\n\\[\n\\begin{cases}\nRe\\ll1\n&\n\\Longrightarrow\nF_D = -6\\pi\\eta R\\,v\n\\\\[8pt]\nRe\\gg1\n&\n\\Longrightarrow\nF_D \\approx \\frac{\\rho R^2 v^2}{2},\n\\end{cases}\n\\] although the inertial case is more complex because vortices and turbulence make it more complex.\nThe transition between these two regimes is governed by the Reynolds number. The proportionality constants (previous \\(\\alpha\\) and \\(\\beta\\)) appearing in the drag force depends on the shape of the object.\nMore generally,\n\\[\n\\mathbf F_D\n=\n-C_{\\rm drag}\\,\\eta\\,L\\,\\mathbf v,\n\\]\nwhere \\(C_{\\rm drag}\\) is a dimensionless geometric factor and \\(L\\) is a characteristic length of the object.\nThe physical origin of this dependence is that different geometries generate different flow fields and therefore different viscous stresses around their surfaces. Objects with the same size but different shapes generally experience different drag forces.\nFor a long, thin cylinder (or rod) of length \\(L\\), moving parallel or perpendicular to its main axis, the drag coefficients are different:\n\\[\n\\boxed{\n\\mathbf F_\\parallel\n\\simeq\n-2\\pi \\eta L\\,\\mathbf v_\\parallel,\n}\n\\]\n\\[\n\\boxed{\n\\mathbf F_\\perp\n\\simeq\n-4\\pi \\eta L\\,\\mathbf v_\\perp.\n}\n\\]\nThe drag experienced for motion perpendicular to the rod is therefore approximately twice as large as that for motion parallel to the rod.\nThis anisotropy plays a central role in the propulsion of microorganisms. In particular, bacterial flagella generate thrust because different parts of the flagellum experience different parallel and perpendicular drag forces as they rotate through the fluid, as we will demonstrate."
+  },
+  {
+    "objectID": "LowRe.html#why-the-reynolds-number-appears",
+    "href": "LowRe.html#why-the-reynolds-number-appears",
+    "title": "Biological and Mesoscale Physics",
+    "section": "3.4 Why the Reynolds number appears",
+    "text": "3.4 Why the Reynolds number appears\nTo determine which contribution dominates, we compare the two scaling laws:\n\\[\n\\frac{F_i}{F_v}\n=\n\\frac{\\rho A U^2}\n{\\eta U L}.\n\\]\nTaking \\(A\\sim L^2\\),\n\\[\n\\frac{F_i}{F_v}\n=\n\\frac{\\rho L^2U^2}\n{\\eta UL}.\n\\]\nHence,\n\\[\n\\boxed{\n\\frac{F_i}{F_v}\n=\n\\frac{\\rho U L}{\\eta}\n=\nRe.\n}\n\\]\nThis result reveals the physical meaning of the Reynolds number:\n\\[\n\\boxed{\nRe\n=\n\\frac{\\text{Inertial drag}}\n{\\text{Viscous drag}}.\n}\n\\]\nWhen\n\\[\nRe\\gg1,\n\\]\ndrag is dominated by momentum transfer to the fluid.\nWhen\n\\[\nRe\\ll1,\n\\]\ndrag is dominated by viscous stresses."
+  },
+  {
+    "objectID": "LowRe.html#geometry-of-the-helical-filament",
+    "href": "LowRe.html#geometry-of-the-helical-filament",
+    "title": "Biological and Mesoscale Physics",
+    "section": "7.1 Geometry of the helical filament",
+    "text": "7.1 Geometry of the helical filament\nA helical filament makes a constant angle \\(\\theta\\) with its axis of rotation.\nFrom elementary geometry,\n\\[\n\\tan\\theta\n=\n\\frac{\\pi D}{P}.\n\\]\n\n\n\n\n\n\nNoteGeometry of a helical flagellum\n\n\n\n\n\nConsider one complete turn of the helix.\nImagine “unrolling” the cylindrical surface on which the helical filament lies.\nOne complete turn of the helix then becomes a straight line on a rectangle:\n             Axis of the flagellum\n\n                    ↑\n                    │  Pitch = P\n                    │\n                    │\n                    │\n                    ●─────────────●\n                   /             /\n                  /   Helix     /\n                 /    turn     /\n                /             /\n               ●─────────────●\n\n                Circumference = πD\nThe right triangle formed has:\n\nhorizontal side: \\(\\pi D\\) (one circumference of the helix),\nvertical side: \\(P\\) (the pitch of the helix),\n\nThe angle \\(\\theta\\) between the filament and the flagellum axis therefore satisfies\n\\[\n\\tan\\theta\n=\n\\frac{\\pi D}{P}.\n\\]\n\n\n\nFor the dimensions above,\n\\[\n\\tan\\theta\n=\n\\frac{\\pi\\times 0.5}{2}\n\\simeq 0.8,\n\\]\ngiving\n\\[\n\\theta\n\\simeq 40^\\circ.\n\\]\nThe flagellum typically rotates at a frequency\n\\[\nf \\sim 100\\ \\mathrm{Hz}.\n\\]\nSince each segment follows a circular trajectory of diameter \\(D\\), its characteristic speed is\n\\[\nv\n\\simeq\n\\pi Df.\n\\]\nUsing the values above,\n\\[\nv\n\\simeq\n\\pi\\times 0.5\\times 100\n\\approx\n150\\ \\mu\\mathrm{m\\,s^{-1}}.\n\\]\nThus, although the bacterium itself only swims at a few tens of micrometres per second, individual segments of the flagellum move considerably faster."
+  },
+  {
+    "objectID": "LowRe.html#decomposition-of-the-local-velocity",
+    "href": "LowRe.html#decomposition-of-the-local-velocity",
+    "title": "Biological and Mesoscale Physics",
+    "section": "7.2 Decomposition of the local velocity",
+    "text": "7.2 Decomposition of the local velocity\nThe velocity of a small filament element can be decomposed into two components:\n\none parallel to the filament,\none perpendicular to the filament.\n\nFrom the geometry of the helix,\n\\[\nv_{\\parallel}\n=\nv\\sin\\theta,\n\\]\n\\[\nv_{\\perp}\n=\nv\\cos\\theta.\n\\]"
+  },
+  {
+    "objectID": "LowRe.html#anisotropic-drag-on-a-slender-filament",
+    "href": "LowRe.html#anisotropic-drag-on-a-slender-filament",
+    "title": "Biological and Mesoscale Physics",
+    "section": "7.3 Anisotropic drag on a slender filament",
+    "text": "7.3 Anisotropic drag on a slender filament\nAt low Reynolds number, the drag on a thin rod depends on the direction of motion.\nA filament moving parallel to its axis experiences a smaller resistance than one moving perpendicular to its axis.\nFor a small segment \\(dl\\), the drag forces are approximately\n\\[\ndF_{\\parallel}\n\\simeq\n2\\pi\\eta\\,dl\\,v_{\\parallel},\n\\]\nand\n\\[\ndF_{\\perp}\n\\simeq\n4\\pi\\eta\\,dl\\,v_{\\perp}.\n\\]\nThe perpendicular drag coefficient is therefore roughly twice the parallel one.\nThis anisotropy is the essential ingredient required for propulsion.\nIf both drag coefficients were identical, every force component would cancel and no net swimming would occur."
+  },
+  {
+    "objectID": "LowRe.html#generation-of-a-propulsive-force",
+    "href": "LowRe.html#generation-of-a-propulsive-force",
+    "title": "Biological and Mesoscale Physics",
+    "section": "7.4 Generation of a propulsive force",
+    "text": "7.4 Generation of a propulsive force\nThe drag forces \\(dF_\\parallel\\) and \\(dF_\\perp\\) do not act along the swimming direction.\nTo determine propulsion, we project both forces onto the axis of the helix.\nThe component of force along the swimming direction is\n\\[\ndF_p\n=\n-\\cos\\theta\\, dF_{\\parallel}\n+\n\\sin\\theta\\, dF_{\\perp}.\n\\]\nSubstituting the drag expressions gives\n\\[\ndF_p\n=\n-\\cos\\theta\n\\left(\n2\\pi\\eta\\,dl\\,v\\sin\\theta\n\\right)\n+\n\\sin\\theta\n\\left(\n4\\pi\\eta\\,dl\\,v\\cos\\theta\n\\right).\n\\]\nCombining terms,\n\\[\ndF_p\n=\n2\\pi\\eta\\,v\\,\\sin\\theta\\cos\\theta\\,dl.\n\\]\nIntegrating over the entire flagellum yields\n\\[\nF_p\n=\n\\int dF_p\n=\n2\\pi\\eta Lv\\sin\\theta\\cos\\theta.\n\\]\nUsing\n\\[\n2\\sin\\theta\\cos\\theta\n=\n\\sin(2\\theta),\n\\]\nwe obtain\n\\[\n\\boxed{\nF_p\n=\n\\pi\\eta Lv\\,\\sin(2\\theta).\n}\n\\]\nFinally, substituting\n\\[\nv=\\pi Df,\n\\]\ngives\n\\[\n\\boxed{\nF_p\n=\n\\pi^2\\eta LDf\\,\\sin(2\\theta).\n}\n\\]\nThis is the propulsive force generated by the rotating flagellum."
+  },
+  {
+    "objectID": "LowRe.html#estimating-the-swimming-speed",
+    "href": "LowRe.html#estimating-the-swimming-speed",
+    "title": "Biological and Mesoscale Physics",
+    "section": "7.1 Estimating the swimming speed",
+    "text": "7.1 Estimating the swimming speed\nThe cell body also experiences viscous drag.\nApproximating the bacterium as a slender rod of length \\(L\\), its drag force scales as\n\\[\nF_D\n\\simeq\n2\\pi\\eta LV.\n\\]\nwhere \\(V\\) is the swimming speed.\nAt steady state, inertia is negligible and force balance requires\n\\[\nF_p = F_D.\n\\]\nTherefore,\n\\[\n\\pi^2\\eta LDf\\,\\sin(2\\theta)\n=\n2\\pi\\eta LV.\n\\]\nAfter simplification,\n\\[\n\\boxed{\nV\n=\n\\frac{\\pi}{2}\nDf\\sin(2\\theta).\n}\n\\]\nUsing\n\\[\nD=0.5\\ \\mu\\mathrm{m},\n\\qquad\nf=100\\ \\mathrm{Hz},\n\\qquad\n\\theta\\simeq40^\\circ,\n\\]\ngives\n\\[\nV\n\\simeq\n75\\ \\mu\\mathrm{m\\,s^{-1}}.\n\\]\nThis estimate is remarkably close to experimentally observed bacterial swimming speeds, which are typically of order\n\\[\n30\\ \\mu\\mathrm{m\\,s^{-1}}.\n\\]\nGiven the simplicity of the model, agreement within a factor of two is already very good.\nThe crucial ingredient is the anisotropy of viscous drag:\n\\[\ndF_{\\perp}\n&gt;\ndF_{\\parallel}.\n\\]\nBecause motion perpendicular to the filament experiences more resistance than motion parallel to it, the drag forces do not cancel perfectly. Their imbalance produces a net force along the helix axis.\nA rotating helix therefore converts rotational motion into translational motion, allowing bacteria to swim even in the highly viscous, low-Reynolds-number world where reciprocal motions fail."
+  },
+  {
+    "objectID": "LowRe.html#numerical-estimate",
+    "href": "LowRe.html#numerical-estimate",
+    "title": "Biological and Mesoscale Physics",
+    "section": "7.6 Numerical estimate",
+    "text": "7.6 Numerical estimate\nUsing\n\\[\nD=0.5\\ \\mu\\mathrm{m},\n\\qquad\nf=100\\ \\mathrm{Hz},\n\\qquad\n\\theta\\simeq40^\\circ,\n\\]\ngives\n\\[\nV\n\\simeq\n75\\ \\mu\\mathrm{m\\,s^{-1}}.\n\\]\nThis estimate is remarkably close to experimentally observed bacterial swimming speeds, which are typically of order\n\\[\n30\\ \\mu\\mathrm{m\\,s^{-1}}.\n\\]\nGiven the simplicity of the model, agreement within a factor of two is already very good."
+  },
+  {
+    "objectID": "LowRe.html#key-physical-idea",
+    "href": "LowRe.html#key-physical-idea",
+    "title": "Biological and Mesoscale Physics",
+    "section": "7.7 Key physical idea",
+    "text": "7.7 Key physical idea\nThe crucial ingredient is the anisotropy of viscous drag:\n\\[\ndF_{\\perp}\n&gt;\ndF_{\\parallel}.\n\\]\nBecause motion perpendicular to the filament experiences more resistance than motion parallel to it, the drag forces do not cancel perfectly. Their imbalance produces a net force along the helix axis.\nA rotating helix therefore converts rotational motion into translational motion, allowing bacteria to swim even in the highly viscous, low-Reynolds-number world where reciprocal motions fail."
   }
 ]
