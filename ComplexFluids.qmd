@@ -1186,7 +1186,7 @@ So far we have discussed bulk rheology.
 
 An alternative approach consists of tracking microscopic tracer particles embedded within the material.
 
-**[Insert tracer-particle illustration]**
+![Magnetic tracer inside a cell, manipulated by a remote magnet [Source](https://doi.org/10.1073/pnas.2216839120)](figures/LocalTracer.png){#fig-cellTracer}
 
 From the fluctuations and motion of these probes one can recover:
 
@@ -1200,6 +1200,10 @@ This technique, known as **microrheology**, is particularly useful for:
 - biofilms,
 - hydrogels,
 - intracellular environments.
+
+This [linked article](https://doi.org/10.1073/pnas.2216839120) actually perform a sudden stress ramp test and obtain curves similar to the ones shown for the Kelvin-Helmholtz model.
+
+![Measurements obtained from applying a sudden stress ramp, with a magnetic microtracer [Source](https://doi.org/10.1073/pnas.2216839120)](figures/CellStressTest.png){#fig-cellStress}
 
 # Beyond Maxwell and Kelvin-Voigt
 
