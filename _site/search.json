@@ -179,7 +179,7 @@
     "href": "NotesIntroNavierStokes.html#shear-rate-tensor",
     "title": "Biological and Mesoscale Physics",
     "section": "7.1 Shear-rate tensor",
-    "text": "7.1 Shear-rate tensor\nThe shear-rate tensor is defined as\n\\[\n\\gamma_{ij}\n=\\frac{1}{2}\\left(\n\\frac{\\partial v_i}{\\partial x_j}\n+\n\\frac{\\partial v_j}{\\partial x_i}\n\\right)\n-\\frac{1}{3}\\sum_{k} \\frac{\\partial v_k}{\\partial x_k} \\delta_{ij},\n\\] where the third term exists to make the tensor traceless. For incompressible fluids, as \\(\\nabla\\cdot\\mathbf v=\\sum_{k}\\frac{\\partial v_k}{\\partial x_k}=0\\), only the first two terms matter. This quantifies local deformation rates."
+    "text": "7.1 Shear-rate tensor\nThe shear-rate tensor is defined as\n\\[\n\\dot{\\gamma_{ij}}\n=\\frac{1}{2}\\left(\n\\frac{\\partial v_i}{\\partial x_j}\n+\n\\frac{\\partial v_j}{\\partial x_i}\n\\right)\n-\\frac{1}{3}\\sum_{k} \\frac{\\partial v_k}{\\partial x_k} \\delta_{ij},\n\\] where the third term exists to make the tensor traceless. For incompressible fluids, as \\(\\nabla\\cdot\\mathbf v=\\sum_{k}\\frac{\\partial v_k}{\\partial x_k}=0\\), only the first two terms matter. This quantifies local deformation rates."
   },
   {
     "objectID": "FluidMechanicsProblemClass.html",
@@ -446,5 +446,159 @@
     "title": "Biological and Mesoscale Physics",
     "section": "7.7 Key physical idea",
     "text": "7.7 Key physical idea\nThe crucial ingredient is the anisotropy of viscous drag:\n\\[\ndF_{\\perp}\n&gt;\ndF_{\\parallel}.\n\\]\nBecause motion perpendicular to the filament experiences more resistance than motion parallel to it, the drag forces do not cancel perfectly. Their imbalance produces a net force along the helix axis.\nA rotating helix therefore converts rotational motion into translational motion, allowing bacteria to swim even in the highly viscous, low-Reynolds-number world where reciprocal motions fail."
+  },
+  {
+    "objectID": "ComplexFluids.html",
+    "href": "ComplexFluids.html",
+    "title": "Biological and Mesoscale Physics",
+    "section": "",
+    "text": "In the previous lectures, we mainly considered Newtonian fluids, for which the deviatoric stress tensor is proportional to the strain-rate/shear-rate tensor,\n\\[\n\\sigma_{ij}'\n=\n\\eta \\dot{\\gamma_{ij}},\n\\]\nwhere \\(\\sigma_{ij}'\\) is the deviatoric stress tensor, \\(\\dot{\\gamma_{ij}}\\) is the strain-rate tensor, and \\(\\eta\\) is the dynamic viscosity.\nA Newtonian fluid is completely characterized by a single constant material parameter: its viscosity. Many biological materials, however, do not behave in this simple manner.\nExamples include blood, mucus, cytoplasm, extracellular matrices, polymer solutions, emulsions, protein gels, bacterial suspensions.These materials often contain: deformable particles, polymers, proteins, or droplets which give rise to much richer mechanical behavior.\nThe goal of this lecture is to introduce some typical non-Newtonian behaviors and get a sense of how and why biological fluids deviate from Newtonian behavior."
+  },
+  {
+    "objectID": "ComplexFluids.html#non-newtonian-fluids",
+    "href": "ComplexFluids.html#non-newtonian-fluids",
+    "title": "Biological and Mesoscale Physics",
+    "section": "2.1 Non-Newtonian fluids",
+    "text": "2.1 Non-Newtonian fluids\nMany fluids exhibit a viscosity that depends on the applied deformation rate. In this case,\n\\[\n\\eta\n=\n\\eta(\\dot{\\gamma}).\n\\]\nThe stress-shear relationship is therefore nonlinear. A common phenomenological model, amongst many, is the power-law fluid\n\\[\n\\boxed{\n\\sigma_{ij}'\n=\n\\mu \\gamma_{ij}^{\\,n}\n}\n\\]\nwhere:\n\n\\(\\mu\\) is a consistency coefficient,\n\\(n\\) is the flow index.\n\n\n2.1.1 Shear thinning\nWhen \\(n&lt;1\\), the apparent viscosity decreases as the shear rate increases. This behaviour is observed in liquids such as ketchup, blood, and many polymer solutions.\n\n\n\nVideo: Shear-thinning Ketchup. Original video\nPhysically, constituents that are initially tangled or disordered progressively align with the flow, reducing resistance to deformation.\n\n\n2.1.2 Shear thickening\nWhen \\(n&gt;1\\), the apparent viscosity increases with increasing shear rate. Examples include cornstarch suspensions, or concentrated particulate suspensions.\n\n\n\nVideo: Shear-thickening Cornstarch. Original video\nAt high deformation rates, particles become locally crowded and hinder one another’s motion, causing the material to stiffen."
+  },
+  {
+    "objectID": "ComplexFluids.html#example-blood",
+    "href": "ComplexFluids.html#example-blood",
+    "title": "Biological and Mesoscale Physics",
+    "section": "3.1 Example: blood",
+    "text": "3.1 Example: blood\nBlood provides a particularly important example.\n\n\n\n\n\n\nFigure 3: Blood shear-thinning behaviour, adapted from L. Mendez-Mora, Micromachines (2021). Plasma is the name of the liquid phase carrying the red blood cells.\n\n\n\nAt low shear rates, red blood cells aggregate, forming large structures known as rouleaux, which leads to a high viscosity.\nAs the shear rate increases, those aggregates first break apart, then, as the shear rate increases further, the cells deform and align with the flow.\nThe apparent viscosity therefore decreases. Blood is consequently a strongly shear-thinning fluid.\nThis behavior is essential for circulation, as it facilitates blood flow easily through narrow vessels while maintaining high cell concentrations favouring oxygen delivery."
+  },
+  {
+    "objectID": "ComplexFluids.html#bingham-model",
+    "href": "ComplexFluids.html#bingham-model",
+    "title": "Biological and Mesoscale Physics",
+    "section": "4.1 Bingham model",
+    "text": "4.1 Bingham model\nOne of the simplest descriptions is the Bingham model:\n\\[\n\\boxed{\n\\sigma-\\sigma_s\n=\n\\eta \\dot\\gamma.\n}\n\\]\nFlow only begins once the yield stress has been exceeded."
+  },
+  {
+    "objectID": "ComplexFluids.html#herschel-bulkley-model",
+    "href": "ComplexFluids.html#herschel-bulkley-model",
+    "title": "Biological and Mesoscale Physics",
+    "section": "4.2 Herschel-Bulkley model",
+    "text": "4.2 Herschel-Bulkley model\nA more general expression combines yield stress and power-law behavior:\n\\[\n\\boxed{\n\\sigma-\\sigma_s\n=\nk\\dot\\gamma^{\\,n}.\n}\n\\]\nMany food products and biological materials are successfully described using this model."
+  },
+  {
+    "objectID": "ComplexFluids.html#strain",
+    "href": "ComplexFluids.html#strain",
+    "title": "Biological and Mesoscale Physics",
+    "section": "7.1 Strain",
+    "text": "7.1 Strain\nConsider a displacement field\n\\[\n\\mathbf u(\\mathbf r).\n\\]\nThe corresponding strain tensor is\n\\[\n\\boxed{\n\\epsilon\n=\n\\frac{\\nabla \\mathbf u\n+\n(\\nabla \\mathbf u)^T}{2}.\n}\n\\]\nThe strain tensor measures changes in shape and size.\n\n7.1.1 Shear strain\nA simple shear deformation is characterized by the shear strain\n\\[\n\\gamma.\n\\]\nFor small deformations,\n\\[\n\\gamma\n=\n\\frac{u}{d},\n\\]\nwhere:\n\n\\(u\\) is the lateral displacement,\n\\(d\\) is the sample thickness.\n\n[Insert shear deformation schematic]"
+  },
+  {
+    "objectID": "ComplexFluids.html#stress-strain-relation-for-elastic-solids",
+    "href": "ComplexFluids.html#stress-strain-relation-for-elastic-solids",
+    "title": "Biological and Mesoscale Physics",
+    "section": "7.1 Stress-strain relation for elastic solids",
+    "text": "7.1 Stress-strain relation for elastic solids\nFor an isotropic linear elastic solid,\n\\[\n\\sigma_{ij}\n=\nK\\epsilon_{kk}\\delta_{ij}\n+\n2G\n\\left(\n\\epsilon_{ij}\n-\n\\frac{\\epsilon_{kk}}{3}\\delta_{ij}\n\\right),\n\\]\nwhere:\n\n\\(K\\) is the bulk modulus,\n\\(G\\) is the shear modulus.\n\nThis plays the same role for solids as\n\\[\n\\sigma_{ij}'\n=\n\\eta\\gamma_{ij}\n\\]\ndoes for fluids.\nThe difference is fundamental:\n\nfluids respond to strain rate,\nsolids respond to strain itself."
+  },
+  {
+    "objectID": "ComplexFluids.html#physical-picture",
+    "href": "ComplexFluids.html#physical-picture",
+    "title": "Biological and Mesoscale Physics",
+    "section": "8.1 Physical picture",
+    "text": "8.1 Physical picture\nConsider a deformable polymer suspended in a liquid.\nWhen stretched,\n\nthe surrounding liquid dissipates energy,\nthe polymer stores elastic energy.\n\nThe material therefore simultaneously behaves like:\n\na dashpot (viscous element),\na spring (elastic element).\n\n\n\n\n\n\n\nFigure 10: Conceptual microscopic origin of visco-elasticity\n\n\n\n\n\n\n\n\n\nFigure 11: A example of visco-elastic behavior under stretching"
+  },
+  {
+    "objectID": "ComplexFluids.html#physical-interpretation",
+    "href": "ComplexFluids.html#physical-interpretation",
+    "title": "Biological and Mesoscale Physics",
+    "section": "11.1 Physical interpretation",
+    "text": "11.1 Physical interpretation\nThe Kelvin-Voigt model exhibits:\n\ndelayed elasticity,\nstrain recovery after unloading,\nstronger solid-like behavior at long times.\n\nIt is often a useful model for biological tissues."
+  },
+  {
+    "objectID": "ComplexFluids.html#stress-relaxation-experiment",
+    "href": "ComplexFluids.html#stress-relaxation-experiment",
+    "title": "Biological and Mesoscale Physics",
+    "section": "10.1 Stress-relaxation experiment",
+    "text": "10.1 Stress-relaxation experiment\nSuppose a sudden deformation is imposed and maintained:\n\\[\n\\gamma=\\gamma_0.\n\\]\nThe Maxwell equation becomes\n\\[\n\\sigma\n+\n\\tau\\dot\\sigma\n=\n0.\n\\]\nThe solution is\n\\[\n\\boxed{\n\\sigma(t)\n=\n\\sigma_0 e^{-t/\\tau},\n}\n\\]\nwhich also leads to an effective elastic modulus \\[\nG(t)\n=\n\\frac{\\sigma}{\\gamma_0}\n=\nG_0 e^{-t/\\tau}.\n\\]\n\n\n\n\n\n\nFigure 14: Typical measurements during a relaxation test\n\n\n\nThe stored stress and the effective elastic modulus progressively disappears. The material forgets its initial configuration over a timescale \\(\\tau\\)."
+  },
+  {
+    "objectID": "ComplexFluids.html#elastic-solid",
+    "href": "ComplexFluids.html#elastic-solid",
+    "title": "Biological and Mesoscale Physics",
+    "section": "11.1 Elastic solid",
+    "text": "11.1 Elastic solid\nThe stress is in phase with the strain:\n\\[\n\\sigma\n=\nG\\gamma_0\n\\sin(\\omega t).\n\\]\nNo phase shift occurs."
+  },
+  {
+    "objectID": "ComplexFluids.html#newtonian-liquid",
+    "href": "ComplexFluids.html#newtonian-liquid",
+    "title": "Biological and Mesoscale Physics",
+    "section": "11.2 Newtonian liquid",
+    "text": "11.2 Newtonian liquid\nThe stress is proportional to the strain rate:\n\\[\n\\sigma\n=\n\\eta\\gamma_0\\omega\n\\cos(\\omega t).\n\\]\nSince\n\\[\n\\cos(\\omega t)\n=\n\\sin(\\omega t+\\pi/2),\n\\]\nthe stress is shifted by\n\\[\n\\frac{\\pi}{2}.\n\\]"
+  },
+  {
+    "objectID": "ComplexFluids.html#viscoelastic-materials",
+    "href": "ComplexFluids.html#viscoelastic-materials",
+    "title": "Biological and Mesoscale Physics",
+    "section": "11.3 Viscoelastic materials",
+    "text": "11.3 Viscoelastic materials\nIn general,\n\\[\n\\boxed{\n\\sigma\n=\n\\sigma_0\n\\sin(\\omega t+\\delta).\n}\n\\]\nThe phase shift satisfies\n\\[\n0&lt;\\delta&lt;\\frac{\\pi}{2}.\n\\]\nThe material therefore behaves partly like a solid and partly like a liquid."
+  },
+  {
+    "objectID": "ComplexFluids.html#physical-meaning",
+    "href": "ComplexFluids.html#physical-meaning",
+    "title": "Biological and Mesoscale Physics",
+    "section": "12.1 Physical meaning",
+    "text": "12.1 Physical meaning\n\n12.1.1 Storage modulus\n\\[\nG'\n\\]\nmeasures energy stored elastically.\nIt quantifies the solid-like component of the response.\n\n\n12.1.2 Loss modulus\n\\[\nG''\n\\]\nmeasures viscous dissipation.\nIt quantifies the liquid-like component of the response.\nThe ratio\n\\[\n\\tan\\delta\n=\n\\frac{G''}{G'}\n\\]\nprovides a convenient measure of the balance between viscous and elastic behavior."
+  },
+  {
+    "objectID": "ComplexFluids.html#physical-interpretation-1",
+    "href": "ComplexFluids.html#physical-interpretation-1",
+    "title": "Biological and Mesoscale Physics",
+    "section": "15.1 Physical interpretation",
+    "text": "15.1 Physical interpretation\nThe Kelvin-Voigt model exhibits:\n\ndelayed elasticity,\nstrain recovery after unloading,\nstronger solid-like behavior at long times.\n\nIt is often a useful model for biological tissues."
+  },
+  {
+    "objectID": "ComplexFluids.html#relaxation-time",
+    "href": "ComplexFluids.html#relaxation-time",
+    "title": "Biological and Mesoscale Physics",
+    "section": "8.2 Relaxation time",
+    "text": "8.2 Relaxation time\nA useful timescale can be obtained by comparing elastic and viscous responses.\nFor an elastic solid,\n\\[\n\\sigma \\sim G\\gamma.\n\\]\nFor a viscous liquid,\n\\[\n\\sigma \\sim \\eta \\dot\\gamma.\n\\]\nSince\n\\[\n\\dot\\gamma \\sim \\frac{\\gamma}{\\tau},\n\\]\nequating both contributions gives\n\\[\n\\boxed{\n\\tau\n=\n\\frac{\\eta}{G}.\n}\n\\]\nThis quantity is known as the relaxation time.\nIt measures how long a material remembers its initial configuration.When observing the materia over an experimental time \\(t\\), if\n\\[\nt\\ll\\tau,\n\\]\nthe material behaves predominantly elastically. But if\n\\[\nt\\gg\\tau,\n\\]\nthe material behaves predominantly as a liquid.\nFor water,\n\\[\n\\tau\n=\n\\frac{\\eta}{G}\n\\approx\n10^{-12}\\ \\mathrm s.\n\\]\nWater therefore loses memory of its original shape almost instantaneously.\nIn contrast, polymeric and biological materials can exhibit relaxation times ranging from milliseconds to hours."
+  },
+  {
+    "objectID": "ComplexFluids.html#dynamic-rheology",
+    "href": "ComplexFluids.html#dynamic-rheology",
+    "title": "Biological and Mesoscale Physics",
+    "section": "10.2 Dynamic rheology",
+    "text": "10.2 Dynamic rheology\nA very powerful method for characterizing viscoelastic materials consists of applying oscillatory deformations.\nSuppose\n\\[\n\\gamma(t)\n=\n\\gamma_0\n\\sin(\\omega t).\n\\]\nThe response depends on the material.\n\n\n\n\n\n\nFigure 15: Typical measurements during an dynamic rheology experiment\n\n\n\nFor an elastic solid, the stress is in phase with the strain:\n\\[\n\\sigma\n=\nG\\gamma_0\n\\sin(\\omega t).\n\\]\nNo phase shift occurs.However, for a newtonian fluid, the stress is proportional to the strain rate:\n\\[\n\\sigma\n=\n\\eta\\gamma_0\\omega\n\\cos(\\omega t).\n\\]\nSince\n\\[\n\\cos(\\omega t)\n=\n\\sin(\\omega t+\\pi/2),\n\\]\nthe stress is shifted by\n\\[\n\\frac{\\pi}{2}.\n\\]\nIn general, for viscoelastic materials,\n\\[\n\\boxed{\n\\sigma\n=\n\\sigma_0\n\\sin(\\omega t+\\delta).\n}\n\\]\nThe phase shift satisfies\n\\[\n0&lt;\\delta&lt;\\frac{\\pi}{2}.\n\\]\nThe material therefore behaves partly like a solid and partly like a liquid.\n\n10.2.1 Storage and loss moduli\nUsing complex notation,\n\\[\n\\gamma\n=\n\\gamma_0 e^{i\\omega t},\n\\]\nthe stress can be written\n\\[\n\\sigma\n=\n(G'+iG'')\n\\gamma\n=\n\\sigma_0 e^{i(\\omega t +\\delta)}\n\\]\nThe quantities \\(G'\\) and \\(G''\\) are known as the storage modulus and the loss modulus, respectively.\n\\(G'\\) measures energy stored elastically, i.e. the solid-like component of the response, while \\(G''\\) measures viscous dissipation, i.e. the liquid-like component of the response.\nFrom the expression above, it appears that the ratio provides the phase difference between the shear stress and shear rate:\n\\[\n\\tan\\delta\n=\n\\frac{G''}{G'}\n\\]\nand \\(\\delta\\) then provides a convenient measure of the balance between viscous and elastic behavior.\n\n\n10.2.2 Maxwell model in oscillatory rheology\nUsing the constitutive equation of the Maxwell model\n\\[\n\\boxed{\n\\sigma+\\tau\\dot{\\sigma}\n=\n\\eta\\dot{\\gamma},\n}\n\\]\nwith \\(\\tau=\\frac{\\eta}{G}\\) being the relaxation time, one can predict an expected response of the material when assuming an oscillatory shear and stress.\nIndeed, we are assuming \\(\\gamma(t)=\\gamma_0 e^{i\\omega t}\\), and looking for a stress of the form \\(\\sigma(t)=(G'+iG'')\\gamma(t)\\).\nSubstituting these expressions into the Maxwell equation gives\n\\[\n\\boxed{\nG'\n=\nG\n\\frac{\\omega^2\\tau^2}\n     {1+\\omega^2\\tau^2}\n}\n\\]\nand\n\\[\n\\boxed{\nG''\n=\nG\n\\frac{\\omega\\tau}\n     {1+\\omega^2\\tau^2}.\n}\n\\]\n\n\n\n\n\n\nFigure 16: Maxwell model for storage and loss modulus, compared to experimental data on protein gels protein gel article\n\n\n\n\n10.2.2.1 Low-frequency behavior\nConsider first the limit\n\\[\n\\omega\\tau \\ll 1.\n\\]\nThis corresponds to deformation occurring very slowly compared with the material relaxation time.\nThe material has sufficient time to relax any stored stress before the direction of deformation changes.\nUsing the expressions above,\n\\[\nG'\n\\approx\nG\\omega^2\\tau^2\n\\propto\n\\omega^2,\n\\]\nwhile\n\\[\nG''\n\\approx\nG\\omega\\tau\n\\propto\n\\omega.\n\\]\nTherefore\n\\[\nG'' \\gg G'.\n\\]\nThe response is dominated by viscous dissipation.\nPhysically, the material behaves like a liquid because the polymers continuously reorganize while being deformed.\n\n\n10.2.2.2 High-frequency behavior\nNow consider\n\\[\n\\omega\\tau \\gg 1.\n\\]\nThe imposed deformation varies more rapidly than the material can relax.\nThe polymers do not have time to rearrange, so elastic stresses accumulate.\nIn this limit,\n\\[\nG'\n\\approx G,\n\\]\nwhile\n\\[\nG''\n\\approx\n\\frac{G}{\\omega\\tau}.\n\\]\nConsequently,\n\\[\nG' \\gg G''.\n\\]\nThe response is dominated by elasticity.\nThe material now behaves much more like a solid.\n\n\n10.2.2.3 Crossover frequency\nThe transition between these two regimes occurs near\n\\[\n\\boxed{\n\\omega\\tau \\sim 1.\n}\n\\]\nAt this frequency, the experimental timescale\n\\[\n\\frac{1}{\\omega}\n\\]\nbecomes comparable to the intrinsic relaxation time\n\\[\n\\tau.\n\\]\nThe material is neither fully liquid-like nor fully solid-like.\nInstead, it exhibits the strongest viscoelastic behavior.\n\n\n\n\n\n\nNoteFurther physical interpretation\n\n\n\n\n\n\n10.2.3 Why does \\(G''\\) exhibit a maximum?\nThe loss modulus may be written as\n\\[\nG''\n=\nG\n\\frac{\\omega\\tau}\n     {1+\\omega^2\\tau^2}.\n\\]\nAt low frequencies, increasing \\(\\omega\\) causes more rapid deformation and therefore larger viscous dissipation.\nAs a result,\n\\[\nG''\n\\propto\\omega.\n\\]\nHowever, at high frequencies the material no longer has enough time to flow.\nThe response becomes increasingly elastic and viscous dissipation decreases:\n\\[\nG''\n\\propto\n\\frac{1}{\\omega}.\n\\]\nThe competition between these two effects produces a maximum.\nDifferentiating with respect to \\(\\omega\\) shows that the maximum occurs at\n\\[\n\\boxed{\n\\omega=\\frac{1}{\\tau}.\n}\n\\]\nThe peak in \\(G''\\) therefore provides a direct experimental measurement of the relaxation time.\n\n\n10.2.4 Why does \\(G'\\) saturate?\nThe storage modulus is\n\\[\nG'\n=\nG\n\\frac{\\omega^2\\tau^2}\n     {1+\\omega^2\\tau^2}.\n\\]\nAt low frequency,\n\\[\nG' \\propto \\omega^2,\n\\]\nbecause polymers have enough time to relax and cannot accumulate significant elastic stress.\nAs the frequency increases, the polymers become effectively trapped during each oscillation cycle.\nThe response therefore becomes increasingly spring-like until\n\\[\nG'\n\\rightarrow G.\n\\]\nThe storage modulus saturates at the elastic modulus of the spring."
+  },
+  {
+    "objectID": "ComplexFluids.html#why-does-g-saturate",
+    "href": "ComplexFluids.html#why-does-g-saturate",
+    "title": "Biological and Mesoscale Physics",
+    "section": "10.3 Why does \\(G'\\) saturate?",
+    "text": "10.3 Why does \\(G'\\) saturate?\nThe storage modulus is\n\\[\nG'\n=\nG\n\\frac{\\omega^2\\tau^2}\n     {1+\\omega^2\\tau^2}.\n\\]\nAt low frequency,\n\\[\nG' \\propto \\omega^2,\n\\]\nbecause polymers have enough time to relax and cannot accumulate significant elastic stress.\nAs the frequency increases, the polymers become effectively trapped during each oscillation cycle.\nThe response therefore becomes increasingly spring-like until\n\\[\nG'\n\\rightarrow G.\n\\]\nThe storage modulus saturates at the elastic modulus of the spring."
+  },
+  {
+    "objectID": "ComplexFluids.html#experimental-interpretation",
+    "href": "ComplexFluids.html#experimental-interpretation",
+    "title": "Biological and Mesoscale Physics",
+    "section": "10.3 Experimental interpretation",
+    "text": "10.3 Experimental interpretation\nA typical frequency sweep therefore reveals:\n\na low-frequency regime where \\(G''&gt;G'\\) (liquid-like behaviour);\na crossover near \\(\\omega\\tau\\approx1\\);\na high-frequency regime where \\(G'&gt;G''\\) (solid-like behaviour).\n\nThis is precisely the behaviour observed in many polymer solutions, protein gels and biological materials.\nThe frequency at which the two curves cross provides valuable information about the underlying relaxation processes, while the plateau value of \\(G'\\) gives access to the material’s elastic modulus."
+  },
+  {
+    "objectID": "ComplexFluids.html#delayed-elasticity",
+    "href": "ComplexFluids.html#delayed-elasticity",
+    "title": "Biological and Mesoscale Physics",
+    "section": "11.2 Delayed elasticity",
+    "text": "11.2 Delayed elasticity\nOne of the most characteristic predictions of the Kelvin-Voigt model is its response to a sudden application of stress.\nSuppose a constant stress\n\\[\n\\sigma=\\sigma_0\n\\]\nis applied at time \\(t=0\\).\nThe constitutive equation\n\\[\n\\sigma\n=\nG\\gamma\n+\n\\eta\\dot\\gamma\n\\]\nbecomes\n\\[\n\\sigma_0\n=\nG\\gamma\n+\n\\eta\\dot\\gamma.\n\\]\nSolving this differential equation yields\n\\[\n\\boxed{\n\\gamma(t)\n=\n\\frac{\\sigma_0}{G}\n\\left[\n1-\ne^{-t/\\tau}\n\\right],\n}\n\\]\nwhere\n\\[\n\\tau\n=\n\\frac{\\eta}{G}.\n\\]\nUnlike an ideal elastic solid, which deforms instantaneously, the Kelvin-Voigt material approaches its final deformation progressively.\nThe characteristic time\n\\[\n\\tau=\\frac{\\eta}{G}\n\\]\ntherefore corresponds to the timescale required for elastic deformation to develop.\n\n\n\nTypical creep experiment for a Kelvin-Voigt material known as delayed elasticity and frequently observed in biological tissues"
+  },
+  {
+    "objectID": "ComplexFluids.html#dynamic-rheology-1",
+    "href": "ComplexFluids.html#dynamic-rheology-1",
+    "title": "Biological and Mesoscale Physics",
+    "section": "11.3 Dynamic rheology",
+    "text": "11.3 Dynamic rheology\nAs for the Maxwell model, we may probe the response of a Kelvin-Voigt material using an oscillatory deformation\n\\[\n\\gamma(t)\n=\n\\gamma_0 e^{i\\omega t}.\n\\]\nSubstituting this expression into\n\\[\n\\sigma\n=\nG\\gamma\n+\n\\eta\\dot\\gamma\n\\]\ngives\n\\[\n\\sigma\n=\n\\left(\nG+i\\eta\\omega\n\\right)\n\\gamma.\n\\]\nBy identification with\n\\[\n\\sigma\n=\n(G'+iG'')\\gamma,\n\\]\nwe obtain\n\\[\n\\boxed{\nG'=G,\n}\n\\]\nand\n\\[\n\\boxed{\nG''=\\eta\\omega.\n}\n\\]\nUnlike the Maxwell model, the storage modulus is independent of frequency:\n\\[\nG'=G.\n\\]\nThe material therefore retains an elastic component at all timescales.\nThe spring continuously supports part of the applied stress, making the response intrinsically solid-like.\n\n11.3.1 Loss modulus\nThe loss modulus increases linearly with frequency:\n\\[\nG''=\\eta\\omega.\n\\]\nAt higher frequencies, the dashpot experiences larger deformation rates and therefore dissipates more energy.\nConsequently, the viscous contribution becomes increasingly important as the oscillation frequency increases.\n\n\n11.3.2 Low-frequency behavior\nFor\n\\[\n\\omega\\tau\\ll1,\n\\]\nwe have\n\\[\nG'' \\ll G'.\n\\]\nThe response is dominated by elasticity.\nEven at very low frequencies, the Kelvin-Voigt material behaves more like a soft solid than a liquid.\nThis is in stark contrast with the Maxwell model, where the low-frequency limit is liquid-like.\n\n\n11.3.3 High-frequency behavior\nFor\n\\[\n\\omega\\tau\\gg1,\n\\]\nthe loss modulus grows while the storage modulus remains constant,\n\\[\nG''\\gg G'.\n\\]\nThe material still stores elastic energy through the spring, but viscous dissipation becomes increasingly significant because the dashpot is forced to deform more rapidly.\n\n\n11.3.4 Comparison with the Maxwell model\nThe Maxwell and Kelvin-Voigt models may be viewed as opposite limits of viscoelastic behavior.\n\n\n\nProperty\nMaxwell\nKelvin-Voigt\n\n\n\n\nArrangement\nSeries\nParallel\n\n\nStress relaxation\nYes\nNo\n\n\nDelayed elasticity\nNo\nYes\n\n\nLong-time behavior\nLiquid-like\nSolid-like\n\n\n\\(G'\\) at low frequency\nSmall\nConstant\n\n\n\\(G''\\) at low frequency\nDominant\nSmall\n\n\n\nThe Maxwell model is particularly well suited to materials that eventually flow, such as polymer solutions and viscoelastic fluids.\nThe Kelvin-Voigt model is often a better description of soft solids and biological tissues that progressively deform under load while retaining a finite elastic stiffness."
+  },
+  {
+    "objectID": "ComplexFluids.html#experimental-interpretation-1",
+    "href": "ComplexFluids.html#experimental-interpretation-1",
+    "title": "Biological and Mesoscale Physics",
+    "section": "11.4 Experimental interpretation",
+    "text": "11.4 Experimental interpretation\nA frequency sweep of a Kelvin-Voigt material therefore reveals:\n\na storage modulus that remains approximately constant,\na loss modulus that increases approximately linearly with frequency,\nan increasingly dissipative response as the deformation rate increases.\n\nThe observation of a nearly constant \\(G'\\) over a broad frequency range is often indicative of an elastic network structure, such as those found in gels, connective tissues and many biological materials."
   }
 ]

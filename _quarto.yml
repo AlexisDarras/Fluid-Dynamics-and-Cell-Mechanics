@@ -14,6 +14,9 @@ website:
       - href: LowRe.qmd
         text: A blink of life at low Reynolds number
 
+      - href: ComplexFluids.qmd
+        text: An introduction to complex (bio)fuids
+
 format:
   html:
     theme:

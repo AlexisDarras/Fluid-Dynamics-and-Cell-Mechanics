@@ -1,6 +1,7 @@
 ---
 title: "Fluid Mechanics Problem Class"
 subtitle: "Guided Notes"
+author: "Dr Alexis Darras"
 format:
   html:
     toc: true

@@ -847,7 +847,7 @@ This relationship is called the **constitutive equation**.
 The shear-rate tensor is defined as
 
 $$
-\gamma_{ij}
+\dot{\gamma_{ij}}
 =\frac{1}{2}\left(
 \frac{\partial v_i}{\partial x_j}
 +
