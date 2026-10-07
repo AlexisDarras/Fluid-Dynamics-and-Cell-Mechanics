@@ -1,0 +1,1885 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dr Alexis Darras">
+
+<title>Biological and Mesoscale Physics – Fluid Dynamics and Cell Mechanics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Fluid Dynamics and Cell Mechanics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-fluid-dynamics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Fluid Dynamics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-fluid-dynamics">    
+        <li>
+    <a class="dropdown-item" href="./NotesIntroNavierStokes.html">
+ <span class="dropdown-text">Introduction to the Navier-Stokes equation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./FluidMechanicsProblemClass.html">
+ <span class="dropdown-text">Fluid dynamics problem class</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./LowRe.html">
+ <span class="dropdown-text">A blink of life at low Reynolds number</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./ComplexFluids.html">
+ <span class="dropdown-text">An introduction to complex (bio)fluids</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-cell-mechanics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Cell Mechanics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-cell-mechanics">    
+        <li>
+    <a class="dropdown-item" href="./OsmoticPressure.html">
+ <span class="dropdown-text">Red blood cells, osmotic pressure and cell volume regulation</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
+  <li><a href="#red-blood-cells-a-model-biological-cell" id="toc-red-blood-cells-a-model-biological-cell" class="nav-link" data-scroll-target="#red-blood-cells-a-model-biological-cell"><span class="header-section-number">2</span> Red blood cells: a model biological cell</a>
+  <ul class="collapse">
+  <li><a href="#characteristic-dimensions" id="toc-characteristic-dimensions" class="nav-link" data-scroll-target="#characteristic-dimensions"><span class="header-section-number">2.1</span> Characteristic dimensions</a></li>
+  </ul></li>
+  <li><a href="#mechanical-properties-of-red-blood-cells" id="toc-mechanical-properties-of-red-blood-cells" class="nav-link" data-scroll-target="#mechanical-properties-of-red-blood-cells"><span class="header-section-number">3</span> Mechanical properties of red blood cells</a>
+  <ul class="collapse">
+  <li><a href="#deformation-in-flow" id="toc-deformation-in-flow" class="nav-link" data-scroll-target="#deformation-in-flow"><span class="header-section-number">3.1</span> Deformation in flow</a></li>
+  </ul></li>
+  <li><a href="#membrane-structure-of-red-blood-cells" id="toc-membrane-structure-of-red-blood-cells" class="nav-link" data-scroll-target="#membrane-structure-of-red-blood-cells"><span class="header-section-number">4</span> Membrane structure of red blood cells</a>
+  <ul class="collapse">
+  <li><a href="#aquaporins" id="toc-aquaporins" class="nav-link" data-scroll-target="#aquaporins"><span class="header-section-number">4.1</span> Aquaporins</a></li>
+  </ul></li>
+  <li><a href="#a-brief-introduction-to-the-cytoskeleton" id="toc-a-brief-introduction-to-the-cytoskeleton" class="nav-link" data-scroll-target="#a-brief-introduction-to-the-cytoskeleton"><span class="header-section-number">5</span> A brief introduction to the cytoskeleton</a></li>
+  <li><a href="#about-the-rest-shape-of-red-blood-cells" id="toc-about-the-rest-shape-of-red-blood-cells" class="nav-link" data-scroll-target="#about-the-rest-shape-of-red-blood-cells"><span class="header-section-number">6</span> About the rest shape of red blood cells</a></li>
+  <li><a href="#osmolarity-and-red-blood-cell-shape" id="toc-osmolarity-and-red-blood-cell-shape" class="nav-link" data-scroll-target="#osmolarity-and-red-blood-cell-shape"><span class="header-section-number">7</span> Osmolarity and red blood cell shape</a></li>
+  <li><a href="#osmotic-pressure" id="toc-osmotic-pressure" class="nav-link" data-scroll-target="#osmotic-pressure"><span class="header-section-number">8</span> Osmotic pressure</a>
+  <ul class="collapse">
+  <li><a href="#entropy-of-mixing" id="toc-entropy-of-mixing" class="nav-link" data-scroll-target="#entropy-of-mixing"><span class="header-section-number">8.1</span> Entropy of mixing</a></li>
+  </ul></li>
+  <li><a href="#osmolarity" id="toc-osmolarity" class="nav-link" data-scroll-target="#osmolarity"><span class="header-section-number">9</span> Osmolarity</a>
+  <ul class="collapse">
+  <li><a href="#definition" id="toc-definition" class="nav-link" data-scroll-target="#definition"><span class="header-section-number">9.1</span> Definition</a></li>
+  <li><a href="#difference-between-osmolarity-and-molarity" id="toc-difference-between-osmolarity-and-molarity" class="nav-link" data-scroll-target="#difference-between-osmolarity-and-molarity"><span class="header-section-number">9.2</span> Difference between osmolarity and molarity</a></li>
+  </ul></li>
+  <li><a href="#tonicity-versus-osmolarity" id="toc-tonicity-versus-osmolarity" class="nav-link" data-scroll-target="#tonicity-versus-osmolarity"><span class="header-section-number">10</span> Tonicity versus osmolarity</a></li>
+  <li><a href="#red-blood-cells-in-different-osmotic-environments" id="toc-red-blood-cells-in-different-osmotic-environments" class="nav-link" data-scroll-target="#red-blood-cells-in-different-osmotic-environments"><span class="header-section-number">11</span> Red blood cells in different osmotic environments</a>
+  <ul class="collapse">
+  <li><a href="#hemolysis" id="toc-hemolysis" class="nav-link" data-scroll-target="#hemolysis"><span class="header-section-number">11.1</span> Hemolysis</a></li>
+  <li><a href="#predicting-cell-volume-at-various-osmolarities" id="toc-predicting-cell-volume-at-various-osmolarities" class="nav-link" data-scroll-target="#predicting-cell-volume-at-various-osmolarities"><span class="header-section-number">11.2</span> Predicting cell volume at various osmolarities</a></li>
+  <li><a href="#accounting-for-intracellular-solid-volume" id="toc-accounting-for-intracellular-solid-volume" class="nav-link" data-scroll-target="#accounting-for-intracellular-solid-volume"><span class="header-section-number">11.3</span> Accounting for intracellular solid volume</a></li>
+  <li><a href="#non-ideal-osmometer-behavior" id="toc-non-ideal-osmometer-behavior" class="nav-link" data-scroll-target="#non-ideal-osmometer-behavior"><span class="header-section-number">11.4</span> Non-ideal osmometer behavior</a></li>
+  </ul></li>
+  <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link" data-scroll-target="#learning-outcomes"><span class="header-section-number">12</span> Learning outcomes</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Biological and Mesoscale Physics</h1>
+<p class="subtitle lead">Red Blood Cells, Osmotic Pressure and Cell Volume Regulation</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Dr Alexis Darras </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
+<p>In the previous lectures, we discussed:</p>
+<ul>
+<li>fluid mechanics,</li>
+<li>low Reynolds number flows,</li>
+<li>diffusion,</li>
+<li>complex fluids,</li>
+<li>viscoelasticity.</li>
+</ul>
+<p>We now turn our attention to one of the most important biological building blocks: the cell.</p>
+<p>At cellular scales, both solid-like and liquid-like physics become essential.</p>
+<p>A living cell:</p>
+<ul>
+<li>is immersed in a liquid environment,</li>
+<li>contains a liquid cytoplasm,</li>
+<li>possesses an elastic membrane,</li>
+<li>contains an active cytoskeleton.</li>
+</ul>
+<p>Understanding cellular mechanics therefore requires combining fluid dynamics and elasticity, as we hinted before. After the introduction to fluid dynamics we covered last week, the “Cell Mechanics” part of this lecture will introduce more in-depth physics of elastic membranes and how cell membranes interacts with surrounding fluids.</p>
+<p>In this lecture we will focus on:</p>
+<ol type="1">
+<li>Red blood cells as a model biological cell.</li>
+<li>Osmotic pressure.</li>
+<li>Cell volume regulation.</li>
+<li>The relationship between membrane mechanics and osmotic swelling.</li>
+</ol>
+</section>
+<section id="red-blood-cells-a-model-biological-cell" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Red blood cells: a model biological cell</h1>
+<p>Red blood cells (RBCs), or erythrocytes, provide one of the simplest and most important examples of a biological cell.</p>
+<p>Their primary role is oxygen transport throughout the body.</p>
+<p>They are also exceptionally abundant:</p>
+<blockquote class="blockquote">
+<p>Red blood cells constitute roughly 70–80% of all cells in the human body.</p>
+</blockquote>
+<p>Because they are:</p>
+<ul>
+<li>plentiful,</li>
+<li>easy to isolate,</li>
+<li>mechanically simple,</li>
+</ul>
+<p>they have become a model system for studying cellular mechanics.</p>
+<section id="characteristic-dimensions" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="characteristic-dimensions"><span class="header-section-number">2.1</span> Characteristic dimensions</h2>
+<p>A healthy red blood cell has a characteristic diameter of approximately <span class="math inline">\(8\ \mu\text m\)</span>, and a thickness of roughly <span class="math inline">\(2\ \mu\text m\)</span>.</p>
+<p>These dimensions place RBCs in an interesting regime:</p>
+<ul>
+<li>much larger than proteins,</li>
+<li>larger than bacteria,</li>
+<li>much smaller than tissues.</li>
+</ul>
+<div id="fig-RBCdim" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="max-height:15em;">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-RBCdim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/RBCdim.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="max-height:15em;">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-RBCdim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Geometry of a Red Blood Cell
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="mechanical-properties-of-red-blood-cells" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Mechanical properties of red blood cells</h1>
+<p>One of the most remarkable features of RBCs is their deformability.</p>
+<p>Capillaries may have diameters comparable to or even smaller than the cell diameter.</p>
+<p>Nevertheless, RBCs can travel through these narrow vessels without rupturing.</p>
+<section id="deformation-in-flow" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="deformation-in-flow"><span class="header-section-number">3.1</span> Deformation in flow</h2>
+<p>When exposed to shear stresses or confined flows, RBCs undergo significant shape changes.</p>
+<p>The exact shape depends on:</p>
+<ul>
+<li>the applied stress,</li>
+<li>the flow velocity,</li>
+<li>the degree of confinement.</li>
+</ul>
+<video autoplay="" loop="" muted="" playsinline="" style="width:100%; max-width:700px;">
+<source src="figures/CellChannelCompr.mp4">
+</video>
+<p>Video: Cells deforming while passing through a narrow cross-section. Adapted from Danielczok J. G. et al., &nbsp;Frontiers in physiology (2017).</p>
+<p>The shape and dynamics of a red blood cell flowing through a microchannel result from a balance between several competing physical effects:</p>
+<ul>
+<li>viscous shear stresses generated by the surrounding fluid,</li>
+<li>hydrodynamic interactions between the cell and the channel walls,</li>
+<li>elastic deformation of the cell membrane and cytoskeleton.</li>
+</ul>
+<p>These competing effects drive the cell towards an equilibrium shape and lateral position within the channel. Both the equilibrium shape and the cell trajectory depend strongly on the degree of confinement (the ratio between cell size and channel size) and on the imposed flow rate.</p>
+<p>As the flow rate increases, the hydrodynamic stresses acting on the cell become larger, leading to stronger membrane deformations and transitions between different dynamical states. Depending on the flow conditions, red blood cells may adopt parachute-like, slipper-like or more strongly elongated shapes, while simultaneously migrating across streamlines toward preferred positions in the channel.</p>
+<div id="fig-RBCflow" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-RBCflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/CellsInFlow.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-RBCflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Equilibrium shapes of red blood cells in a confined flow. Adapted from A. Guckenberger et al., Soft Matter (2018).
+</figcaption>
+</figure>
+</div>
+<p>Predicting these shape changes and understanding their consequences for blood rheology, microvascular transport, and oxygen delivery remain active areas of contemporary research. In particular, the coupling between cell deformability, hydrodynamic interactions and mass transport continues to be investigated using a combination of experiments, theory and numerical simulations.</p>
+<p>In this series of lectures, we will gradually build the physical framework required to understand these deformations, beginning with the structure and mechanical properties of the red blood cell membrane.</p>
+</section>
+</section>
+<section id="membrane-structure-of-red-blood-cells" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Membrane structure of red blood cells</h1>
+<div id="fig-CellMemb" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-CellMemb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/CellMembrane.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-CellMemb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Schematic structure of a cell membrane.
+</figcaption>
+</figure>
+</div>
+<p>To understand the origin of red blood cell deformability, and later their response to mechanical stresses, we must first examine the structure and composition of the cell membrane.</p>
+<p>The membrane contains:</p>
+<ul>
+<li>phospholipids,</li>
+<li>transmembrane proteins,</li>
+<li>a cytoskeletal network.</li>
+</ul>
+<p>Among the membrane proteins are:</p>
+<ul>
+<li>transporters,</li>
+<li>receptors,</li>
+<li>ion channels,</li>
+<li>aquaporins.</li>
+</ul>
+<p>Aquaporins are particularly important for today’s discussion.</p>
+<section id="aquaporins" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="aquaporins"><span class="header-section-number">4.1</span> Aquaporins</h2>
+<p>Aquaporins are specialized membrane proteins that facilitate water transport through the membrane.</p>
+<p>Without aquaporins, water transport would be much slower.</p>
+<p>Because RBC membranes contain many aquaporins:</p>
+<ul>
+<li>water can rapidly cross the membrane,</li>
+<li>cell volume can rapidly change,</li>
+<li>osmotic effects become extremely important.</li>
+</ul>
+</section>
+</section>
+<section id="a-brief-introduction-to-the-cytoskeleton" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> A brief introduction to the cytoskeleton</h1>
+<p>Many of the mechanical properties of cells originate from the cytoskeleton: a network of protein filaments attached to the cell membrane and extending throughout the cell interior.</p>
+<p>The cytoskeleton is composed of several families of filaments, including:</p>
+<ul>
+<li>actin filaments,</li>
+<li>microtubules,</li>
+<li>intermediate filaments,</li>
+</ul>
+<p>which differ in both structure and function.</p>
+<div id="fig-Cytoskel" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-Cytoskel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/CytoskeletonComponents.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Cytoskel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Filaments composing the cytoskeleton
+</figcaption>
+</figure>
+</div>
+<p>Together, these filaments form an elastic scaffold that helps cells maintain their shape, resist deformation through (visco-)elastic forces, and reorganize their internal structure.</p>
+<p>Importantly, the cytoskeleton is not a static structure. Filaments continuously assemble, disassemble and reorganize, while active cellular processes constantly remodel the network. Consequently, the mechanical properties of cells may vary between different cell types, from one region of a cell to another, or over time within the same cell.</p>
+<p>A complete and general description of cell mechanics therefore would require accounting for the spatial organization and dynamic remodeling of the cytoskeleton. This is particulalry important for self-propelling cells, such as some white blood cells.</p>
+<p>In this course, however, we will focus primarily on red blood cells. Over the timescales and conditions considered here, we will assume that the mechanical properties of the membrane-associated cytoskeleton remain approximately constant. This approximation allows us to treat the cell as an elastic object with well-defined mechanical properties while still capturing the essential physics of cell deformation and osmotic response.</p>
+</section>
+<section id="about-the-rest-shape-of-red-blood-cells" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> About the rest shape of red blood cells</h1>
+<p>Most membrane vesicles naturally adopt spherical shapes. &nbsp; Why? &nbsp; Lipid membranes possess an effective <strong>surface tension</strong>, meaning that creating additional membrane area costs energy. More generally, the membrane free energy contains contributions associated with both surface area and membrane curvature. &nbsp; As a consequence, a vesicle tends to adopt the shape that minimizes its mechanical energy while enclosing a fixed volume of fluid. &nbsp; For a given enclosed volume, a sphere minimizes surface area. &nbsp; Equivalently, for a fixed surface area, a sphere maximizes enclosed volume. &nbsp; This geometric property implies that a sphere corresponds to the lowest surface-energy configuration available to a simple fluid vesicle. &nbsp; Therefore, in the absence of additional mechanical constraints, &nbsp; &gt; membrane vesicles tend to adopt spherical shapes. &nbsp; Many artificial lipid vesicles and soap bubbles indeed exhibit nearly spherical geometries because their mechanics are dominated by surface tension and bending energy. &nbsp; Yet healthy red blood cells exhibit a characteristic biconcave discoid shape.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/RBCvsVesicle.png" class="img-fluid figure-img"></p>
+<figcaption>red blood cell vs phospholipid vesicle</figcaption>
+</figure>
+</div>
+<p>Understanding the origin of this shape is one of the big questions answered by membrane physics, that will be our guiding theme for the next lessons.</p>
+</section>
+<section id="osmolarity-and-red-blood-cell-shape" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Osmolarity and red blood cell shape</h1>
+<p>Experiments reveal that RBC shape depends strongly on the osmolarity of the surrounding solution.</p>
+<p>Typical observations include:</p>
+<ul>
+<li>low osmolarity → swollen cells, or spherocytes</li>
+<li>physiological osmolarity → the usual biconcave disk, or discocytes</li>
+<li>high osmolarity → cells with regular spikes, or echinocytes.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/SDEtransition.png" class="img-fluid figure-img"></p>
+<figcaption>RBC shape transitions with osmolarity</figcaption>
+</figure>
+</div>
+<p>This immediately suggests that water transport through the membrane is altering cell volume and cell shape.</p>
+<p>To understand why, we must introduce osmotic pressure.</p>
+</section>
+<section id="osmotic-pressure" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Osmotic pressure</h1>
+<p>Consider two compartments separated by a semipermeable membrane.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/SemiPermMembrane.jpg" class="img-fluid figure-img"></p>
+<figcaption>Scheme of a semipermeable membrane</figcaption>
+</figure>
+</div>
+<p>The membrane allows water to pass through but prevents some solute molecules from crossing.</p>
+<p>Initially:</p>
+<ul>
+<li>one side contains pure water,</li>
+<li>the other side contains water plus solute.</li>
+</ul>
+<p>One will observe experimentally that in this case, the water will move to the compartment containing the solute.</p>
+<video autoplay="" loop="" muted="" playsinline="" style="width:100%; max-width:700px;">
+<source src="figures/OsmoticExp.mp4">
+</video>
+<p>Video: Experiment demonstrating the existence of the osmotic pressure. <a href="https://www.youtube.com/watch?v=Xxp6oponwkg">Original Video</a></p>
+<section id="entropy-of-mixing" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="entropy-of-mixing"><span class="header-section-number">8.1</span> Entropy of mixing</h2>
+<p>The microscopic origin of osmosis lies in entropy.</p>
+<p>Recall Boltzmann’s relation</p>
+<p><span class="math display">\[
+S=k_B \ln \Omega,
+\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(S\)</span> is entropy,</li>
+<li><span class="math inline">\(\Omega\)</span> is the number of microscopic states.</li>
+</ul>
+<p>For a mixture containing several components, one obtains the entropy of mixing</p>
+<p><span class="math display">\[
+S
+=
+-k_B N
+\sum_i x_i \ln(x_i),
+\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(x_i\)</span> is the fraction of component <span class="math inline">\(i\)</span>,</li>
+<li><span class="math inline">\(N\)</span> is the total number of particles.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Derivation of the entropy of mixing
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>(see also chap 6.2 of Physical Biology of the cell.)</p>
+<p>To understand the origin of the entropy of mixing, consider a system containing <span class="math inline">\(N\)</span> particles distributed among several species.</p>
+<p>Let</p>
+<p><span class="math display">\[
+N_i
+\]</span></p>
+<p>be the number of particles of species <span class="math inline">\(i\)</span>, such that</p>
+<p><span class="math display">\[
+N
+=
+\sum_i N_i.
+\]</span></p>
+<p>We also define the particle fraction</p>
+<p><span class="math display">\[
+x_i
+=
+\frac{N_i}{N}.
+\]</span></p>
+<section id="counting-microscopic-states" class="level3" data-number="8.1.1">
+<h3 data-number="8.1.1" class="anchored" data-anchor-id="counting-microscopic-states"><span class="header-section-number">8.1.1</span> Counting microscopic states</h3>
+<p>Suppose the particles are distributed over <span class="math inline">\(N\)</span> available positions.</p>
+<p>The number of distinct microscopic arrangements is</p>
+<p><span class="math display">\[
+\Omega
+=
+\frac{N!}
+{\prod_i N_i!}.
+\]</span></p>
+<p>The numerator counts all possible arrangements of the <span class="math inline">\(N\)</span> particles, while the denominator removes overcounting caused by exchanging identical particles of the same species.</p>
+</section>
+<section id="applying-boltzmanns-relation" class="level3" data-number="8.1.2">
+<h3 data-number="8.1.2" class="anchored" data-anchor-id="applying-boltzmanns-relation"><span class="header-section-number">8.1.2</span> Applying Boltzmann’s relation</h3>
+<p>Using</p>
+<p><span class="math display">\[
+S
+=
+k_B\ln\Omega,
+\]</span></p>
+<p>we obtain</p>
+<p><span class="math display">\[
+S
+=
+k_B
+\left[
+\ln N!
+-
+\sum_i \ln N_i!
+\right].
+\]</span></p>
+<p>For the large particle numbers encountered in biological systems, we may use Stirling’s approximation</p>
+<p><span class="math display">\[
+\ln n!
+\approx
+n\ln n-n.
+\]</span></p>
+<p>Substituting into the expression above gives</p>
+<p><span class="math display">\[
+\begin{aligned}
+S
+&amp;\approx
+k_B
+\left[
+N\ln N-N
+-
+\sum_i
+\left(
+N_i\ln N_i-N_i
+\right)
+\right]
+\\
+&amp;=
+k_B
+\left[
+N\ln N
+-
+\sum_i N_i\ln N_i
+\right],
+\end{aligned}
+\]</span></p>
+<p>since</p>
+<p><span class="math display">\[
+\sum_i N_i=N.
+\]</span></p>
+</section>
+<section id="introducing-the-concentrations" class="level3" data-number="8.1.3">
+<h3 data-number="8.1.3" class="anchored" data-anchor-id="introducing-the-concentrations"><span class="header-section-number">8.1.3</span> Introducing the concentrations</h3>
+<p>Using</p>
+<p><span class="math display">\[
+N_i=Nx_i,
+\]</span></p>
+<p>we obtain</p>
+<p><span class="math display">\[
+\begin{aligned}
+S
+&amp;=
+k_B
+\left[
+N\ln N
+-
+\sum_i
+Nx_i\ln(Nx_i)
+\right]
+\\
+&amp;=
+k_BN
+\left[
+\ln N
+-
+\sum_i
+x_i
+\left(
+\ln N+\ln x_i
+\right)
+\right].
+\end{aligned}
+\]</span></p>
+<p>Expanding the sum gives</p>
+<p><span class="math display">\[
+S
+=
+k_BN
+\left[
+\ln N
+-
+\ln N
+\sum_i x_i
+-
+\sum_i x_i\ln x_i
+\right].
+\]</span></p>
+<p>Finally, since</p>
+<p><span class="math display">\[
+\sum_i x_i =1,
+\]</span></p>
+<p>the first two terms cancel, leaving</p>
+<p><span class="math display">\[
+\boxed{
+S_{\rm mix}
+=
+-k_BN
+\sum_i x_i\ln x_i.
+}
+\]</span></p>
+</section>
+<section id="physical-interpretation" class="level3" data-number="8.1.4">
+<h3 data-number="8.1.4" class="anchored" data-anchor-id="physical-interpretation"><span class="header-section-number">8.1.4</span> Physical interpretation</h3>
+<p>The entropy of mixing originates purely from counting the number of possible microscopic arrangements.</p>
+<p>When different species are mixed together, the number of accessible configurations increases dramatically:</p>
+<p><span class="math display">\[
+\Omega_{\rm mixed}
+&gt;
+\Omega_{\rm separated}.
+\]</span></p>
+<p>Since</p>
+<p><span class="math display">\[
+S=k_B\ln\Omega,
+\]</span></p>
+<p>mixing therefore increases the entropy.</p>
+<p>For a binary mixture with equal concentrations,</p>
+<p><span class="math display">\[
+x_1=x_2=\frac12,
+\]</span></p>
+<p>the entropy of mixing becomes</p>
+<p><span class="math display">\[
+\boxed{
+S_{\rm mix}
+=
+Nk_B\ln 2.
+}
+\]</span></p>
+<p>This increase in entropy is the fundamental thermodynamic driving force behind osmotic phenomena.</p>
+</section>
+</div>
+</div>
+</div>
+<p>Mixing increases the number of microscopic states and therefore increases entropy.</p>
+<p>Consequently, systems tend to favor mixing. One can show that this process leads to a so-called “Osmotic pressure” <span class="math inline">\(\Pi\)</span> that can be computed as <span class="math display">\[
+\boxed{
+\Pi
+=
+k_B T
+\frac{\sum_i N_i}{V}.
+}
+\]</span></p>
+<p>The sum only includes non-permeating particles.</p>
+<p>This result is known as the van’t Hoff equation.</p>
+<p>It is mathematically identical to the ideal gas law.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Derivation of the osmotic pressure
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Consider a mixture containing water molecules and several solute species.</p>
+<p>From the previous section, the entropy of mixing is</p>
+<p><span class="math display">\[
+S
+=
+-k_B N
+\sum_i x_i\ln x_i,
+\]</span></p>
+<p>or equivalently,</p>
+<p><span class="math display">\[
+S
+=
+-k_B
+\sum_i
+N_i
+\ln\!\left(\frac{N_i}{N}\right),
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+N=\sum_i N_i.
+\]</span></p>
+<section id="from-entropy-to-chemical-potential" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="from-entropy-to-chemical-potential"><span class="header-section-number">8.2</span> From entropy to chemical potential</h2>
+<p>The chemical potential of water is obtained by differentiating the entropy of mixing with respect to the number of water molecules.</p>
+<p>Starting from</p>
+<p><span class="math display">\[
+S
+=
+-k_B
+\sum_i
+N_i
+\ln\left(\frac{N_i}{N}\right),
+\]</span></p>
+<p>with</p>
+<p><span class="math display">\[
+N=\sum_i N_i,
+\]</span></p>
+<p>we use its thermodynamic relationship with the chemical potential, in order to find what change in the cheical potential is induced by the mixing entropy.</p>
+<p><span class="math display">\[
+\mu_w
+=
+-T
+\left(
+\frac{\partial S}{\partial N_w}
+\right)_{N_i,\,i\neq w}.
+\]</span></p>
+<p>Differentiating the entropy gives</p>
+<p><span class="math display">\[
+\frac{\mu_w}{T}
+=
+-\frac{\partial S}{\partial N_w}
+=
+k_B
+\sum_i
+\frac{\partial}{\partial N_w}
+\left[
+N_i
+\ln\left(\frac{N_i}{N}\right)
+\right].
+\]</span></p>
+<p>Using the product rule,</p>
+<p><span class="math display">\[
+\frac{\mu_w}{T}
+=
+k_B
+\sum_i
+\left[
+\delta_{iw}
+\ln\left(\frac{N_i}{N}\right)
++
+N_i
+\frac{\partial}{\partial N_w}
+\ln\left(\frac{N_i}{N}\right)
+\right],
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+\delta_{iw}
+=
+\begin{cases}
+1 &amp; i=w\\
+0 &amp; i\neq w
+\end{cases}
+\]</span></p>
+<p>is the Kronecker delta.</p>
+<p>The derivative of the logarithm can be evaluated step by step.</p>
+<p>Recall that</p>
+<p><span class="math display">\[
+N=\sum_i N_i.
+\]</span></p>
+<p>Since <span class="math inline">\(N_w\)</span> contributes to the total number of particles, both the numerator and denominator depend on <span class="math inline">\(N_w\)</span>.</p>
+<p>We first use the property</p>
+<p><span class="math display">\[
+\ln\left(\frac{N_i}{N}\right)
+=
+\ln(N_i)-\ln(N).
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\frac{\partial}{\partial N_w}
+\ln\left(\frac{N_i}{N}\right)
+=
+\frac{\partial}{\partial N_w}\ln(N_i)
+-
+\frac{\partial}{\partial N_w}\ln(N).
+\]</span></p>
+<p>Let us evaluate each term separately.</p>
+<p>For the first term,</p>
+<p><span class="math display">\[
+\frac{\partial}{\partial N_w}\ln(N_i)
+=
+\frac{1}{N_i}
+\frac{\partial N_i}{\partial N_w}.
+\]</span></p>
+<p>Because only the water particle number changes,</p>
+<p><span class="math display">\[
+\frac{\partial N_i}{\partial N_w}
+=
+\delta_{iw},
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+\delta_{iw}
+=
+\begin{cases}
+1 &amp; i=w,\\
+0 &amp; i\neq w.
+\end{cases}
+\]</span></p>
+<p>Thus,</p>
+<p><span class="math display">\[
+\frac{\partial}{\partial N_w}\ln(N_i)
+=
+\frac{\delta_{iw}}{N_i}.
+\]</span></p>
+<p>For the second term,</p>
+<p><span class="math display">\[
+\frac{\partial}{\partial N_w}\ln(N)
+=
+\frac{1}{N}
+\frac{\partial N}{\partial N_w}.
+\]</span></p>
+<p>Since</p>
+<p><span class="math display">\[
+N=\sum_j N_j,
+\]</span></p>
+<p>which, similarly, leads to</p>
+<p><span class="math display">\[
+\frac{\partial N}{\partial N_w}
+=
+1.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\frac{\partial}{\partial N_w}\ln(N)
+=
+\frac{1}{N}.
+\]</span></p>
+<p>Combining both results,</p>
+<p><span class="math display">\[
+\boxed{
+\frac{\partial}{\partial N_w}
+\ln\left(\frac{N_i}{N}\right)
+=
+\frac{\delta_{iw}}{N_i}
+-
+\frac{1}{N}.
+}
+\]</span></p>
+<p>This latter equality yields</p>
+<p><span class="math display">\[
+\frac{\mu_w}{T}
+=
+k_B
+\sum_i
+\left[
+\delta_{iw}
+\ln\left(\frac{N_i}{N}\right)
++
+N_i
+\left(
+\frac{\delta_{iw}}{N_i}
+-
+\frac{1}{N}
+\right)
+\right].
+\]</span></p>
+<p>Carrying out the summation,</p>
+<p><span class="math display">\[
+\frac{\mu_w}{T}
+=
+k_B
+\left[
+\ln\left(\frac{N_w}{N}\right)
++
+1
+-
+\frac{\sum_i N_i}{N}
+\right].
+\]</span></p>
+<p>Since</p>
+<p><span class="math display">\[
+\sum_iN_i=N,
+\]</span></p>
+<p>the last two terms cancel, giving</p>
+<p><span class="math display">\[
+\frac{\mu_w}{T}
+=
+k_B
+\ln\left(\frac{N_w}{N}\right).
+\]</span></p>
+<p>Recognizing the water mole fraction</p>
+<p><span class="math display">\[
+x_w
+=
+\frac{N_w}{N},
+\]</span></p>
+<p>we finally obtain</p>
+<p><span class="math display">\[
+\boxed{
+\mu_{w,\text{mix}}
+=
+\mu_{w,0}
++
+k_BT\ln(x_w).
+}
+\]</span></p>
+<p>This result shows that the chemical potential of water is directly determined by the entropy of mixing. The logarithm appears naturally from the combinatorial counting of microscopic configurations, rather than being introduced phenomenologically.</p>
+</section>
+<section id="dilute-solutions" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="dilute-solutions"><span class="header-section-number">8.3</span> Dilute solutions</h2>
+<p>For a dilute solution, most molecules are water, so</p>
+<p><span class="math display">\[
+x_w
+=
+1-\sum_{i\neq w}x_i.
+\]</span></p>
+<p>Using the approximation</p>
+<p><span class="math display">\[
+\ln(1-x)
+\approx
+-x,
+\qquad x\ll1,
+\]</span></p>
+<p>gives</p>
+<p><span class="math display">\[
+\mu_{w,\mathrm{mix}}
+=
+\mu_{w,0}
++
+k_B T
+\ln\!\left(
+1-\sum_{i\neq w}x_i
+\right)
+\]</span></p>
+<p><span class="math display">\[
+\approx
+\mu_{w,0}
+-
+k_B T
+\sum_{i\neq w}x_i.
+\]</span></p>
+<p>The presence of solute molecules therefore lowers the chemical potential of water.</p>
+<p>This decrease is entirely entropic: mixing water with solutes increases the number of accessible microscopic configurations.</p>
+</section>
+<section id="equilibrium-across-a-semipermeable-membrane" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="equilibrium-across-a-semipermeable-membrane"><span class="header-section-number">8.4</span> Equilibrium across a semipermeable membrane</h2>
+<p>Consider two compartments separated by a semipermeable membrane.</p>
+<p>The membrane allows water to pass but prevents certain solute molecules from crossing.</p>
+<p>At equilibrium, the chemical potential of water must be identical on both sides:</p>
+<p><span class="math display">\[
+\mu_{w,1}
+=
+\mu_{w,2}.
+\]</span></p>
+<p>Suppose:</p>
+<ul>
+<li>compartment 1 contains pure water,</li>
+<li>compartment 2 contains a dilute solution.</li>
+</ul>
+<p>The chemical potential on the pure-water side is</p>
+<p><span class="math display">\[
+\mu_{w,1}
+=
+\mu_{w,0}(p_1,T).
+\]</span></p>
+<p>On the solution side,</p>
+<p><span class="math display">\[
+\mu_{w,2}
+=
+\mu_{w,0}(p_2,T)
+-
+k_B T
+\sum_{i,\mathrm{non\!\!-\!\!perm}}
+\frac{N_i}{N}.
+\]</span></p>
+<p>The sum includes only non-permeating solutes, since permeating molecules ultimately reach the same concentration on both sides and therefore do not generate osmotic pressure.</p>
+</section>
+<section id="introducing-the-pressure-dependence" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="introducing-the-pressure-dependence"><span class="header-section-number">8.5</span> Introducing the pressure dependence</h2>
+<p>Expanding the chemical potential to first order in pressure,</p>
+<p><span class="math display">\[
+\mu_{w,0}(p_2,T)
+\approx
+\mu_{w,0}(p_1,T)
++
+(p_2-p_1)
+\left(
+\frac{\partial\mu_{w,0}}{\partial p}
+\right)_T.
+\]</span></p>
+<p>Using</p>
+<p><span class="math display">\[
+\left(
+\frac{\partial\mu}{\partial p}
+\right)_T
+=
+\nu,
+\]</span></p>
+<p>where <span class="math inline">\(\nu\)</span> is the molecular volume of water, the equilibrium condition becomes</p>
+<p><span class="math display">\[
+(p_2-p_1)\nu
+=
+k_B T
+\sum_{i,\mathrm{non\!\!-\!\!perm}}
+\frac{N_i}{N}.
+\]</span></p>
+<p>Since</p>
+<p><span class="math display">\[
+N\nu
+=
+V,
+\]</span></p>
+<p>we finally obtain</p>
+<p><span class="math display">\[
+\boxed{
+\Pi
+=
+p_2-p_1
+=
+k_B T
+\frac{\sum_{i,\mathrm{non\!\!-\!\!perm}}N_i}{V}.
+}
+\]</span></p>
+</section>
+<section id="the-vant-hoff-equation" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="the-vant-hoff-equation"><span class="header-section-number">8.6</span> The van’t Hoff equation</h2>
+<p>The osmotic pressure is therefore</p>
+<p><span class="math display">\[
+\boxed{
+\Pi
+=
+k_B T\,c,
+}
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+c
+=
+\frac{\sum_i N_i}{V}
+\]</span></p>
+<p>is the concentration of non-permeating solute particles.</p>
+<p>This result is known as the <strong>van’t Hoff equation</strong>.</p>
+<p>Its form is identical to the ideal gas law,</p>
+<p><span class="math display">\[
+p=nk_B T,
+\]</span></p>
+<p>revealing that osmotic pressure is fundamentally an entropic effect arising from the large number of microscopic configurations available when solvent and solute molecules mix.</p>
+</section>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="osmolarity" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Osmolarity</h1>
+<p>To use the osmotic pressure equation in practice, we introduce osmolarity.</p>
+<section id="definition" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="definition"><span class="header-section-number">9.1</span> Definition</h2>
+<p>Osmolarity is the concentration of osmotically active particles:</p>
+<p><span class="math display">\[
+O
+=
+\frac{\text{number of particles}}
+{\text{solution volume}}.
+\]</span></p>
+<p>whose units are written as <span class="math inline">\(\text{Osm/L}\qquad\)</span>.</p>
+</section>
+<section id="difference-between-osmolarity-and-molarity" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="difference-between-osmolarity-and-molarity"><span class="header-section-number">9.2</span> Difference between osmolarity and molarity</h2>
+<p>Molarity counts molecules.</p>
+<p>Osmolarity counts particles.</p>
+<p>For example,</p>
+<p><span class="math display">\[
+\text{NaCl}
+\rightarrow
+\text{Na}^+
++
+\text{Cl}^-.
+\]</span></p>
+<p>In aqueous solution, small inorganic salts such as NaCl are typically very strongly dissociated. Under physiological conditions, assuming complete dissociation of these salts is therefore usually an excellent approximation. &nbsp; One molecule therefore produces approximately two osmotically active particles.</p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+O \approx 2M.
+\]</span></p>
+<p>for fully dissociated NaCl.</p>
+<p>For more concentrated solutions, ion-ion interactions and incomplete dissociation may lead to small deviations from this ideal behavior, but the approximation remains sufficiently accurate for most biological applications. More generally,</p>
+<p><span class="math display">\[
+\boxed{
+O
+=
+\sum_i
+M_i
+\left[
+1+\alpha_i(p_i-1)
+\right],
+}
+\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(M_i\)</span> is the molar concentration,</li>
+<li><span class="math inline">\(\alpha_i\)</span> is the dissociation fraction,</li>
+<li><span class="math inline">\(p_i\)</span> is the number of particles generated by dissociation.</li>
+</ul>
+<p>Using this definition of osmolarity, for a semi-permeable membrane letting only water through, one gets</p>
+<p><span class="math display">\[
+\boxed{
+\Pi
+=
+O\,k_B T.
+}
+\]</span></p>
+<p>This is usually the most practical form of the osmotic pressure equation.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Example: physiological saline solutions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Physiological conditions correspond approximately to <span class="math inline">\(290\ \text{mOsm/L}\)</span>. To create a physiological slaine solution simply requires to reach this osmolarity, in order to prevent osmotic pressure between the solution and the biological tissues.With sodium chloride, assuming complete dissociation,</p>
+<p><span class="math display">\[
+O
+=
+2M.
+\]</span></p>
+<p>Thus</p>
+<p><span class="math display">\[
+M
+=
+145\ \text{mM}.
+\]</span></p>
+<p>Using the molar mass <span class="math inline">\(MM_\mathrm{NaCl}=58.44\ \text{g/mol}\)</span>, gives a mass concentration of approximately <span class="math inline">\(C=MM_\mathrm{NaCl}\,M=8.5\ \text{g/L}\)</span>.</p>
+<p>This corresponds closely to standard physiological saline.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Physiological solution with Calcium chloride
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Calcium chloride dissociates as</p>
+<p><span class="math display">\[
+\text{CaCl}_2
+\rightarrow
+\text{Ca}^{2+}
++
+2\text{Cl}^-.
+\]</span></p>
+<p>Each molecule therefore generates three particles.</p>
+<p>Assuming complete dissociation, the osmolarity is</p>
+<p><span class="math display">\[
+O \approx 3M.
+\]</span></p>
+<p>We wish to prepare a physiological solution with</p>
+<p><span class="math display">\[
+O = 290\ \mathrm{mOsm/L}.
+\]</span></p>
+<p>The required molarity is therefore</p>
+<p><span class="math display">\[
+M
+=
+\frac{O}{3}
+=
+\frac{290}{3}
+\ \mathrm{mM}
+\approx
+96.7\ \mathrm{mM}.
+\]</span></p>
+<p>The molar mass of calcium chloride is</p>
+<p><span class="math display">\[
+M_{\mathrm{CaCl_2}}
+=
+40.08
++
+2\times 35.45
+=
+110.98\ \mathrm{g/mol}.
+\]</span></p>
+<p>The corresponding mass concentration is therefore</p>
+<p><span class="math display">\[
+C
+=
+M M_{\mathrm{CaCl_2}}
+=
+0.0967\times110.98
+\ \mathrm{g/L}.
+\]</span></p>
+<p>Hence</p>
+<p><span class="math display">\[
+\boxed{
+C
+\approx
+10.7\ \mathrm{g/L}.
+}
+\]</span></p>
+<p>Therefore, a solution containing approximately</p>
+<p><span class="math display">\[
+\boxed{
+10.7\ \mathrm{g/L}
+}
+\]</span></p>
+<p>of CaCl<span class="math inline">\(_2\)</span> has roughly the same osmolarity as a physiological saline solution (<span class="math inline">\(\sim290\ \mathrm{mOsm/L}\)</span>).</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="tonicity-versus-osmolarity" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Tonicity versus osmolarity</h1>
+<p>A crucial point is that</p>
+<blockquote class="blockquote">
+<p>Tonicity is not the same thing as osmolarity.</p>
+</blockquote>
+<p>Osmolarity counts all particles.</p>
+<p>Tonicity <span class="math inline">\(O_{\rm eff}\)</span> concerns only non-permeating solutes that generate sustained osmotic pressure. It is essentially an <em>effective osmolarity</em>.</p>
+<p>Therefore, two solutions may have the same absolute osmolarity, yet produce different cellular responses because of the membrane specific permeability. When computing actual osmotic pressure, one should then use <span class="math display">\[
+\boxed{
+\Pi
+=
+O_{\rm eff}\,k_B T.
+}
+\]</span></p>
+</section>
+<section id="red-blood-cells-in-different-osmotic-environments" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Red blood cells in different osmotic environments</h1>
+<p>Experimental observations show dramatic changes in RBC morphology.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/SardariOsmoticSequence.png" class="img-fluid figure-img"></p>
+<figcaption>Confocal images of red blood cells at various osmolarities</figcaption>
+</figure>
+</div>
+<p>In hypotonic solutions, i.e.&nbsp;at low osmolarity, down to <span class="math inline">\(130\ \text{mOsm/L}\)</span>. Water enters the cell and the cell swells. The membrane becomes increasingly spherical.</p>
+<p>For isotonic solutions, i.e.&nbsp;at approximately <span class="math inline">\(290\ \text{mOsm/L}\)</span>, the normal discocyte shape is observed.</p>
+<p>In hypertonic solutions, i.e.&nbsp;at high osmolarity, upto <span class="math inline">\(800\ \text{mOsm/L}\)</span>. Water leaves the cell and the cell shrinks.Complex spiky shapes known as echinocytes appear.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>A word of caution: not all red blood cells are identical
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The images above show the <em>typical</em> response of red blood cells to changes in osmolarity. However, even within a healthy blood sample, individual cells are not identical.</p>
+<p>For example, red blood cells exhibit a distribution of:</p>
+<ul>
+<li>volumes,</li>
+<li>membrane surface areas,</li>
+<li>intracellular haemoglobin concentrations,</li>
+<li>cell ages.</li>
+</ul>
+<p>As a consequence, two cells exposed to exactly the same osmotic conditions may not respond identically. Some cells may swell or shrink more than others, and shape transitions often occur over a range of osmolarities rather than at a single well-defined value.</p>
+<p>In practice, a blood sample should therefore be viewed as a population of cells characterized by a distribution of physical properties, rather than as a collection of identical particles.</p>
+<p>Understanding how this population variability affects blood rheology, oxygen transport and disease diagnosis remains an active area of research.</p>
+</div>
+</div>
+</div>
+<section id="hemolysis" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="hemolysis"><span class="header-section-number">11.1</span> Hemolysis</h2>
+<p>If osmolarity becomes too low, water enters the cell excessively.</p>
+<p>The membrane can only stretch by a limited amount.</p>
+<p>Once its mechanical limit is reached, the membrane ruptures.</p>
+<p>This phenomenon is known as</p>
+<p><span class="math display">\[
+\boxed{\text{Hemolysis}.}
+\]</span></p>
+<p>Hemoglobin is released into the surrounding fluid.</p>
+<video autoplay="" loop="" muted="" playsinline="" style="width:100%; max-width:700px;">
+<source src="figures/Hemolysis.mp4">
+</video>
+<p>Video: Experiment observation of hemolysis. <a href="https://www.youtube.com/shorts/GwA3MtLsaHg">Original Video</a></p>
+</section>
+<section id="predicting-cell-volume-at-various-osmolarities" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="predicting-cell-volume-at-various-osmolarities"><span class="header-section-number">11.2</span> Predicting cell volume at various osmolarities</h2>
+<p>Let’s first verify whether a red blood cell behaves as a perfect osmometer.</p>
+<p>The number of intracellular solutes remains constant.</p>
+<p>Then</p>
+<p><span class="math display">\[
+O_iV_i
+=
+O_fV_f.
+\]</span></p>
+<p>Therefore</p>
+<p><span class="math display">\[
+\boxed{
+\frac{V_f}{V_i}
+=
+\frac{O_i}{O_f}.
+}
+\]</span></p>
+<p>This predicts that cell volume should be inversely proportional to external osmolarity. Let’s compare with typical experimental values:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/CellVolumeOsmolarity.png" class="img-fluid figure-img"></p>
+<figcaption>Experimental measurements of red blood cell volume at various osmolarities.</figcaption>
+</figure>
+</div>
+<p><span class="math display">\[
+V_i
+\approx
+90\ \mu\mathrm m^3,
+\]</span></p>
+<p>while the characteristic surface area of a red blood cell is <span class="math display">\[
+A
+\approx
+136\ \mu\mathrm m^2.
+\]</span></p>
+<p>A sphere with this surface area would have a maximum volume of roughly</p>
+<p><span class="math display">\[
+150\ \mu\mathrm m^3.
+\]</span></p>
+<p>Using the ideal osmometer model predicts complete swelling around</p>
+<p><span class="math display">\[
+180\ \text{mOsm/L}.
+\]</span></p>
+<p>Experiments show hemolysis happens at significantly lower osmolarities.</p>
+<p>The ideal model is therefore incomplete.</p>
+</section>
+<section id="accounting-for-intracellular-solid-volume" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="accounting-for-intracellular-solid-volume"><span class="header-section-number">11.3</span> Accounting for intracellular solid volume</h2>
+<p>Not all of the cell volume is water.</p>
+<p>A fraction of the volume is occupied by proteins and other intracellular components.</p>
+<p>Let</p>
+<p><span class="math display">\[
+W
+\]</span></p>
+<p>be the water fraction of the cell volume.</p>
+<p>Only this fraction participates in osmotic swelling.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/IntraSolidVolume.png" class="img-fluid figure-img"></p>
+<figcaption>Scheme of the influence from solid intracellular volume</figcaption>
+</figure>
+</div>
+<p>The osmotic balance becomes</p>
+<p><span class="math display">\[
+O_i W V_i
+=
+O_f
+\left[
+V_f-(1-W)V_i
+\right].
+\]</span></p>
+<p>Solving gives</p>
+<p><span class="math display">\[
+\boxed{
+\frac{V_f}{V_i}
+=
+W\frac{O_i}{O_f}
+-
+W+1.
+}
+\]</span></p>
+<p>For <span class="math inline">\(W\approx 0.7\)</span>, from experimental estimations, the prediction improves substantially. &nbsp; Indeed, assuming complete hemolysis occurs when the cell reaches its maximum spherical volume, &nbsp; <span class="math display">\[
+V_f \approx 1.67\,V_i,
+\]</span> &nbsp; the modified osmometer model predicts hemolysis at</p>
+<p><span class="math display">\[
+O_f
+=
+O_i\,
+\frac{1}{\dfrac{\left(V_f/V_i\right)-1}{W}+1}.
+\]</span> &nbsp; Substituting &nbsp; <span class="math display">\[
+O_i \approx 290\ \mathrm{mOsm/L},
+\qquad
+W\approx0.7,
+\qquad
+V_f/V_i\approx1.67,
+\]</span> &nbsp; gives &nbsp; <span class="math display">\[
+\boxed{
+O_f \approx 154\ \mathrm{mOsm/L}.
+}
+\]</span> &nbsp; This prediction is significantly closer to the experimentally observed osmolarity at which hemolysis occurs (<span class="math inline">\(130\,\mathrm{mOsm/L}\)</span>) than the ideal osmometer model neglecting the volume occupied by intracellular solids.</p>
+</section>
+<section id="non-ideal-osmometer-behavior" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="non-ideal-osmometer-behavior"><span class="header-section-number">11.4</span> Non-ideal osmometer behavior</h2>
+<p>Experimental measurements show that RBCs are not perfect osmometers.</p>
+<p>To account for this discrepancy, an empirical correction factor</p>
+<p><span class="math display">\[
+R\in[0,1]
+\]</span></p>
+<p>is often introduced:</p>
+<p><span class="math display">\[
+\boxed{
+\frac{V_f}{V_i}
+=
+RW
+\left(
+\frac{O_i}{O_f}-1
+\right)
++1.
+}
+\]</span></p>
+<p>The parameter <span class="math inline">\(R\)</span> quantifies how closely the cell behaves as an ideal osmometer:</p>
+<ul>
+<li><span class="math inline">\(R=1\)</span>: ideal osmometer;</li>
+<li><span class="math inline">\(R&lt;1\)</span>: reduced volume response to osmotic stress.</li>
+</ul>
+<p>For red blood cells, experimental measurements typically yield <span class="math inline">\(R\approx0.7\)</span>.</p>
+<p>Using again</p>
+<p><span class="math display">\[
+W\approx0.7,
+\qquad
+O_i\approx290\ \mathrm{mOsm/L},
+\qquad
+\frac{V_f}{V_i}\approx1.67,
+\]</span></p>
+<p>the model predicts complete hemolysis at</p>
+<p><span class="math display">\[
+O_f
+=
+\frac{O_i}
+{
+1+\dfrac{\left(V_f/V_i\right)-1}{RW}
+\approx
+127\ \mathrm{mOsm/L}
+}.
+\]</span></p>
+<p>This prediction is substantially closer to the experimentally observed hemolysis threshold than either the ideal osmometer model or the fixed solid-volume model.</p>
+<p>The introduction of the non-ideal osmometer factor therefore captures an additional piece of the underlying cell physics. However, the parameter <span class="math inline">\(R\)</span> is purely empirical and does not explain the microscopic origin of the deviation.</p>
+<p>A natural question therefore arises:</p>
+<blockquote class="blockquote">
+<p>Why do red blood cells respond less strongly to osmotic pressure than an ideal osmometer would predict?</p>
+</blockquote>
+<p>The most likely explanation is that part of the osmotic work is expended in deforming the membrane and the membrane-associated cytoskeleton. In other words, membrane elasticity opposes osmotic swelling and modifies the volume response of the cell.</p>
+<p>A complete description of the cell geometry therefore requires coupling osmotic pressure and membrane elasticity. The latter will be the topic of our next lecture.</p>
+</section>
+</section>
+<section id="learning-outcomes" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Learning outcomes</h1>
+<p>After this lecture, you should be able to:</p>
+<ul>
+<li>explain why RBCs are a useful model cell;</li>
+<li>describe the structure of the RBC membrane and the role of aquaporins;</li>
+<li>define osmolarity and distinguish it from molarity;</li>
+<li>enunciate the van’t Hoff osmotic pressure equation;</li>
+<li>explain the difference between tonicity and osmolarity;</li>
+<li>predict how cells respond to hypo-, iso- and hypertonic environments;</li>
+<li>understand the origin of hemolysis;</li>
+<li>derive the ideal osmometer model;</li>
+<li>argument why RBCs behave as non-ideal osmometers;</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

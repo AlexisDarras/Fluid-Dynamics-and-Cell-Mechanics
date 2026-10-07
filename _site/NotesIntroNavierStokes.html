@@ -125,22 +125,40 @@ window.Quarto = {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link active" href="./NotesIntroNavierStokes.html" aria-current="page"> 
-<span class="menu-text">Introduction to the Navier-Stokes Equation</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-fluid-dynamics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Fluid Dynamics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-fluid-dynamics">    
+        <li>
+    <a class="dropdown-item" href="./NotesIntroNavierStokes.html">
+ <span class="dropdown-text">Introduction to the Navier-Stokes equation</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./FluidMechanicsProblemClass.html"> 
-<span class="menu-text">Fluid Dynamics Problem Class</span></a>
+        <li>
+    <a class="dropdown-item" href="./FluidMechanicsProblemClass.html">
+ <span class="dropdown-text">Fluid dynamics problem class</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./LowRe.html"> 
-<span class="menu-text">A blink of life at low Reynolds number</span></a>
+        <li>
+    <a class="dropdown-item" href="./LowRe.html">
+ <span class="dropdown-text">A blink of life at low Reynolds number</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./ComplexFluids.html"> 
-<span class="menu-text">An introduction to complex (bio)fuids</span></a>
+        <li>
+    <a class="dropdown-item" href="./ComplexFluids.html">
+ <span class="dropdown-text">An introduction to complex (bio)fluids</span></a>
   </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-cell-mechanics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Cell Mechanics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-cell-mechanics">    
+        <li>
+    <a class="dropdown-item" href="./OsmoticPressure.html">
+ <span class="dropdown-text">Red blood cells, osmotic pressure and cell volume regulation</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -1041,13 +1059,13 @@ Figure&nbsp;5: Illustration of Pressure (<span class="math inline">\(\sigma_{zz}
 <p>The shear-rate tensor is defined as</p>
 <p><span class="math display">\[
 \dot{\gamma_{ij}}
-=\frac{1}{2}\left(
+=\left(
 \frac{\partial v_i}{\partial x_j}
 +
 \frac{\partial v_j}{\partial x_i}
 \right)
--\frac{1}{3}\sum_{k} \frac{\partial v_k}{\partial x_k} \delta_{ij},
-\]</span> where the third term exists to make the tensor traceless. For incompressible fluids, as <span class="math inline">\(\nabla\cdot\mathbf v=\sum_{k}\frac{\partial v_k}{\partial x_k}=0\)</span>, only the first two terms matter. This quantifies local deformation rates.</p>
+-\frac{2}{3}\sum_{k} \frac{\partial v_k}{\partial x_k} \delta_{ij},
+\]</span> where the last term exists to make the tensor traceless. For incompressible fluids, as <span class="math inline">\(\nabla\cdot\mathbf v=\sum_{k}\frac{\partial v_k}{\partial x_k}=0\)</span>, only the parenthesis matters. This quantifies local deformation rates.</p>
 </section>
 <section id="newtonian-constitutive-law" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="newtonian-constitutive-law"><span class="header-section-number">7.2</span> Newtonian constitutive law</h2>

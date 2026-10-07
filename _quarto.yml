@@ -3,19 +3,29 @@ project:
 
 website:
   title: "Fluid Dynamics and Cell Mechanics"
+
   navbar:
     left:
-      - href: NotesIntroNavierStokes.qmd
-        text: Introduction to the Navier-Stokes Equation
 
-      - href: FluidMechanicsProblemClass.qmd
-        text: Fluid Dynamics Problem Class
+      - text: "Fluid Dynamics"
+        menu:
+          - href: NotesIntroNavierStokes.qmd
+            text: Introduction to the Navier-Stokes equation
 
-      - href: LowRe.qmd
-        text: A blink of life at low Reynolds number
+          - href: FluidMechanicsProblemClass.qmd
+            text: Fluid dynamics problem class
 
-      - href: ComplexFluids.qmd
-        text: An introduction to complex (bio)fuids
+          - href: LowRe.qmd
+            text: A blink of life at low Reynolds number
+
+          - href: ComplexFluids.qmd
+            text: An introduction to complex (bio)fluids
+
+      - text: "Cell Mechanics"
+        menu:
+          - href: OsmoticPressure.qmd
+            text: Red blood cells, osmotic pressure and cell volume regulation
+
 
 format:
   html:
@@ -24,6 +34,3 @@ format:
       - brand
     css: styles.css
     toc: true
-
-
-
