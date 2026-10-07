@@ -26,6 +26,10 @@ website:
           - href: OsmoticPressure.qmd
             text: Red blood cells, osmotic pressure and cell volume regulation
 
+          - href: MembraneElasticity.qmd
+            text: Membrane elasticity
+
+
 
 format:
   html:
