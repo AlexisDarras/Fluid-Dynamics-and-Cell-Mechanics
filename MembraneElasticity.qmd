@@ -1,3 +1,13 @@
+---
+title: "Biological and Mesoscale Physics"
+subtitle: "Membrane elasticity and the shape of Red Blood Cells"
+author: "Dr Alexis Darras"
+format:
+  html:
+    toc: true
+    number-sections: true
+---
+
 # Membrane elasticity
 
 In the previous lecture, we saw that introducing a non-ideal osmometer factor considerably improves the prediction of red blood cell swelling and hemolysis. However, the origin of this correction remains to be understood.
@@ -437,19 +447,48 @@ As a consequence, it often does not influence shape changes unless topology chan
 
 # Computing curvature rigorously
 
-:::{.callout-note}
-Expand the intro of this justification.
-:::
+Up to this point, we have argued that the principal curvatures can be interpreted locally as the eigenvalues of the matrix of second derivatives
 
-For an arbitrary surface,
+$$
+\frac{\partial^2 h}{\partial x_i\partial x_j},
+$$
+
+provided that the coordinates $(x_1,x_2)$ are chosen within the tangent plane of the surface at the point of interest.
+
+This local description is extremely useful for building intuition, but it becomes insufficient when we wish to describe an entire membrane. Indeed, the tangent plane changes from point to point on a curved surface, and so do the local coordinates attached to it.
+
+When computing quantities such as the total bending energy,
+
+$$
+U_b=\int_A dA\,f(K,K_G),
+$$
+
+we must integrate over the whole surface using a single parametrization. We can no longer redefine the coordinate system independently at every point to coincide with the local tangent plane.
+
+As we move along the surface, the local normal vector
+
+$$
+\mathbf n
+$$
+
+changes direction. Curvature must therefore be characterized by how this normal vector rotates from one point to another. This is the central idea underlying differential geometry: rather than describing curvature through second derivatives measured in a local tangent plane, we describe it through the variation of the surface normal over the entire surface.
+
+To do so, we introduce a smooth parametrization of the surface
 
 $$
 \mathbf X(u_1,u_2),
 $$
 
-determining the curvature is substantially more difficult than taking second derivatives.
+where $(u_1,u_2)$ are coordinates labeling points on the membrane.
 
-Indeed, curvature depends on changes in the local normal vector.
+![Surface paramterisation, as illustrated in [M. Deserno, Chemistry and physics of lipids (2015)](https://doi.org/10.1016/j.chemphyslip.2014.05.001)](figures/SurfaceParam.png)
+
+The geometry of the surface is then encoded in two fundamental objects:
+
+- the **first fundamental form**, which describes distances and angles on the surface;
+- the **second fundamental form**, which describes how the surface bends in three-dimensional space.
+
+Together, these quantities allow us to determine the principal curvatures, the mean curvature and the Gaussian curvature at every point of the membrane while maintaining a single global description of the surface.
 
 The first fundamental form is
 
@@ -489,7 +528,7 @@ II_{ij}
 \partial_i\partial_j\mathbf X.
 $$
 
-The principal curvatures are obtained as the roots of
+One can show that the principal curvatures are obtained as the roots of
 
 $$
 \boxed{
@@ -497,7 +536,11 @@ $$
 }
 $$
 
-While these calculations are beyond the scope of this course, they illustrate why determining membrane curvature is a nontrivial geometrical problem.
+While these calculations are beyond the scope of this course, they illustrate why determining membrane curvature is a nontrivial geometrical problem. Curious students are encouraged to determine formally the curvature of simple objects such as the sphere and cylinder with this method, to get a sense of its usage.
+
+:::{.callout-note}
+For the curious and motivated reader [M. Deserno, Chemistry and physics of lipids (2015)](https://doi.org/10.1016/j.chemphyslip.2014.05.001) provides an excellent and techinally detailed overview and some application of curvature stresses computation.
+:::
 
 # The shape of red blood cells
 
@@ -542,11 +585,26 @@ $$
 
 acts as a Lagrange multiplier enforcing area conservation.
 
-Minimizing this free energy predicts a rich variety of equilibrium shapes.
+The equilibrium shape of the membrane is obtained by minimizing the Helfrich free energy, i.e. finding a shape that leads to $\delta F = 0$, subject to the constraints imposed by the membrane area and the enclosed volume.
 
-Remarkably, for parameters relevant to red blood cells, the spherical shape may become unstable and deform into biconcave shapes closely resembling healthy erythrocytes.
+A sphere is always a possible solution of this minimization problem. However, it is not always the most stable one, i.e. the configuration with the lowet energy level.
 
-Typical parameters are:
+For certain combinations of:
+
+- spontaneous curvature $K_0$,
+- pressure difference $\Delta p=p_{\rm in}-p_{\rm out}$,
+- membrane area,
+- enclosed volume,
+
+small deviations from the spherical shape can actually decrease the total free energy.
+
+In mathematical terms, the first spherical-harmonic perturbations of the sphere can become energetically favorable, indicating that the spherical shape has become unstable.
+
+As a result, the membrane spontaneously evolves toward a lower-energy configuration. For parameter values relevant to red blood cells, this leads to the emergence of biconcave shapes that closely resemble healthy erythrocytes. This has been demonstrated initially in  Zhong-Can & Helfrich, Physical review letters,  (1987), and a modern and pedagogic review is provided in [Martínez-Balbuena, L., et al., American Journal of Physics 89.5 (2021): 465-476.](https://doi.org/10.1119/10.0003452)
+
+[Minimization of the Helfrich energy and emergence of RBC-like shapes [Credits](https://doi.org/10.1119/10.0003452)](figures/RBCInstability.png)
+
+Typical values used in such calculations are
 
 $$
 \kappa
@@ -563,87 +621,465 @@ $$
 $$
 R_0
 \approx
-3\ \mu{\rm m}.
+3\ \mu{\rm m},
 $$
 
-This provides a compelling physical explanation for the characteristic RBC morphology.
-
-# Elastic instabilities and buckling
-
-The red blood cell shape may be viewed as a consequence of a more general phenomenon: elastic instability.
-
-A simple example is the buckling of a compressed beam.
-
-Consider a bundle of elastic fibres of length
+and
 
 $$
-L.
+\Delta p
+\approx
+4\times10^{-2}\ {\rm J\,m^{-3}}.
 $$
 
-The bending energy scales as
+The emergence of the characteristic biconcave RBC shape can therefore be interpreted as an elastic instability of an initially spherical membrane, driven by the competition between bending elasticity, spontaneous curvature and osmotic pressure.
+
+
+# Elastic instability and buckling
+
+The Helfrich model suggests that the characteristic biconcave shape of healthy red blood cells may arise from an **elastic instability** of an initially spherical membrane.
+
+Applying this idea to membranes requires some advanced technical analisys, but we can get a sense of it by examining a simpler mechanical example: the buckling of an elastic beam under compression.
+
+The key message will be:
+
+> A structure may remain straight or spherical under small loads, but once a critical threshold is exceeded, a deformed configuration becomes energetically favorable.
+
+This is exactly the type of phenomenon that occurs in many elastic systems, including membranes.
+
+## Elastic energy of a bent beam
+
+Consider a beam of length
+
+$$
+L_0,
+$$
+
+initially straight and made of a bundle of elastic fibers.
+
+![Straight beam represented as a bundle of springs](figures/LinearSprigBeam.png)
+
+In one dimension, the elastic energy associated with elongation is
+
+$$
+U_s
+=
+\frac{E}{2}
+\left(
+\frac{\Delta L}{L_0}
+\right)^2,
+$$
+
+where
+
+$$
+E
+=
+\frac{9KG}{G+3K}
+$$
+
+is Young's modulus, expressed in terms of the bulk modulus $K$ and shear modulus $G$.
+
+To compute the energy associated with bending, imagine that the initially straight bundle of fibers is bent into an arc of radius $R$ and opening angle $\theta$.
+
+The central fiber defines a neutral axis whose length remains
+
+$$
+L_0=R\theta.
+$$
+
+Now consider a fiber located a distance $z$ from the neutral axis.
+
+Its new length becomes
+
+$$
+L(z)
+=
+(R+z)\theta.
+$$
+
+The elongation of that fiber is therefore
+
+$$
+\Delta L
+=
+L(z)-L_0
+=
+(R+z)\theta-R\theta
+=
+z\theta.
+$$
+
+Using $\theta=\frac{L_0}{R}$, this can be written
+
+$$
+\boxed{
+\Delta L
+=
+\frac{z}{R}L_0.
+}
+$$
+
+Substituting into the elastic energy gives
+
+$$
+U_s
+=
+\frac12 E
+\left(
+\frac{z}{R}
+\right)^2.
+$$
+
+This is the elastic energy density associated with a fiber located at height $z$.
+
+## Integrating over the whole beam
+
+Different fibers experience different strains depending on their distance from the neutral axis.
+
+To obtain the total elastic energy, we integrate over the beam cross-section.
+
+Let
+
+$$
+\Omega
+$$
+
+denote the cross-sectional area.
+
+The total bending energy is
+
+$$
+U_b
+=
+L_0
+\int_\Omega
+\frac12
+E
+\frac{z^2}{R^2}
+\,dA.
+$$
+
+Rearranging,
+
+$$
+U_b
+=
+\frac{EL_0}{2R^2}
+\int_\Omega z^2\,dA.
+$$
+
+The integral
+
+$$
+I
+=
+\int_\Omega z^2\,dA
+$$
+
+is known as the **second moment of area**.
+
+It characterizes how material is distributed relative to the neutral axis.
+
+We therefore obtain
 
 $$
 \boxed{
 U_b
 =
-\frac{EI}{2L}
-\theta^2,
+\frac{EL_0}{2R^2}
+I.
 }
 $$
 
-where
+This is the elastic energy cost of bending the beam.
 
-- $E$ is Young's modulus,
-- $I$ is the second moment of area.
+A more flexible beam corresponds to a smaller value of $EI$.
 
-Applying a compressive force
+## Applying a compressive force
+
+We now apply a compressive force
 
 $$
 F
 $$
 
-adds
+at both ends of the beam.
 
+![Beam compressed by opposite forces $F$](figures/CompressedBeam.jpg)
+
+If the beam bends, its projected length along the compression direction becomes $x$.
+
+We now apply a constant compressive force $F$ at both ends of the beam. Since the force is constant and directed along the compression axis,
+ 
 $$
+\mathbf F
+=
+-F\,\mathbf e_x,
+$$
+ 
+it must derive from a potential energy $U_F(x)$ satisfying
+ 
+$$
+\mathbf F
+=
+-\nabla U_F.
+$$
+ 
+In one dimension,
+ 
+$$
+F_x
+=
+-\frac{\partial U_F}{\partial x},
+$$
+ 
+which becomes
+ 
+$$
+-F
+=
+-\frac{\partial U_F}{\partial x}.
+$$
+ 
+Integrating immediately gives
+ 
+$$
+\boxed{
+U_F=Fx+C.
+}
+$$
+ 
+The additive constant is arbitrary, since only energy differences matter. Choosing the reference such that the undeformed beam ($x=L_0$) has zero potential energy,
+ 
+$$
+U_F(L_0)=0,
+$$
+ 
+yields
+ 
+$$
+C=-FL_0.
+$$
+ 
+Therefore,
+ 
+$$
+\boxed{
 U_F
 =
--F(L-x).
+-F(L_0-x).
+}
+$$
+ 
+
+To change this projected length $x$, the bent beam forms an arc of radius $R$ and opening angle $\theta$.
+
+Since $L_0=R\theta$, we have
+
+$$
+\boxed{
+R
+=
+\frac{L_0}{\theta}.
+}
 $$
 
-For small angles,
+The projected length is
 
 $$
-U_{\rm tot}
-\approx
-\left(
-\frac{EI}{2L}
--
-\frac{FL}{24}
-\right)
+x
+=
+2R\sin\left(\frac{\theta}{2}\right).
+$$
+
+Substituting the expression for $R$,
+
+$$
+\boxed{
+x
+=
+\frac{2L_0}{\theta}
+\sin\left(\frac{\theta}{2}\right).
+}
+$$
+
+Substituting
+
+$$
+R=\frac{L_0}{\theta}
+$$
+
+into the bending energy gives
+
+$$
+U_b
+=
+\frac{EI}{2L_0}
 \theta^2.
 $$
 
-The straight configuration becomes unstable when the coefficient of
+The total energy becomes
 
 $$
-\theta^2
+U_{\rm tot}
+=
+\frac{EI}{2L_0}\theta^2
+-
+F
+\left(
+L_0
+-
+\frac{2L_0}{\theta}
+\sin\frac{\theta}{2}
+\right).
 $$
 
-changes sign.
+To understand the stability of the straight state, we consider small deformations
 
-This occurs at the critical force
+$$
+\theta\ll1.
+$$
+
+Using
+
+$$
+\sin\left(\frac{\theta}{2}\right)
+=
+\frac{\theta}{2}
+-
+\frac{\theta^3}{48}
++
+O(\theta^5),
+$$
+
+we obtain
+
+$$
+\frac{2}{\theta}
+\sin\left(\frac{\theta}{2}\right)
+=
+1
+-
+\frac{\theta^2}{24}
++
+O(\theta^4).
+$$
+
+Consequently,
+
+$$
+L_0-x
+=
+\frac{L_0}{24}\theta^2
++
+O(\theta^4).
+$$
+
+Substituting into the total energy gives
+
+$$
+\boxed{
+U_{\rm tot}
+\approx
+\left(
+\frac{EI}{2L_0}
+-
+\frac{FL_0}{24}
+\right)\theta^2
++
+O(\theta^4).
+}
+$$
+
+## Stability analysis
+
+The configuration
+
+$$
+\theta=0
+$$
+
+corresponds to a perfectly straight beam.
+
+Whether this state is stable depends on the sign of the coefficient multiplying
+
+$$
+\theta^2.
+$$
+
+### Small compressive forces
+
+If
+
+$$
+F
+<
+\frac{12EI}{L_0^2},
+$$
+
+then
+
+$$
+\frac{EI}{2L_0}
+-
+\frac{FL_0}{24}
+>
+0.
+$$
+
+The energy increases when $\theta$ increases.
+
+Therefore,
+
+$$
+\theta=0
+$$
+
+remains a stable equilibrium.
+
+![Energy versus angle below the buckling threshold. Credits: Physical Biology of the Cell, 2ed (Garland Science 2013)](figures/EnergyBelowBuckling.jpg)
+
+### Large compressive forces
+
+If
+
+$$
+F
+>
+\frac{12EI}{L_0^2},
+$$
+
+then
+
+$$
+\frac{EI}{2L_0}
+-
+\frac{FL_0}{24}
+<
+0.
+$$
+
+The straight configuration now corresponds to a maximum of energy rather than a minimum.
+
+Any small perturbation lowers the energy and triggers bending.
+
+The beam spontaneously buckles.
+
+[Energy versus angle above the buckling threshold](figures/EnergyAboveBuckling.jpg)
+
+The critical force is therefore
 
 $$
 \boxed{
 F_c
 =
-\frac{12EI}{L^2}.
+\frac{12EI}{L_0^2}.
 }
 $$
 
-Above this threshold, the beam spontaneously buckles.
+This is known as the **Euler buckling instability**.
 
-The transition from spherical to biconcave RBC shapes can be understood as a closely related symmetry-breaking instability.
 
 # Modern computational modeling
 
@@ -656,28 +1092,144 @@ Today, membrane mechanics is often investigated using numerical simulations that
 - membrane constraints,
 - osmotic pressure.
 
-These approaches can reproduce many experimentally observed red blood cell shapes and dynamics.
+These approaches can reproduce many experimentally observed red blood cell shapes and dynamics, including explanations of bistability and the shapes observed at various osmotic pressures.
 
-![Examples of numerically predicted vesicle morphologies](figures/RBCNumerod cells provide an ideal model system, they are not all identical.
+![Examples of numerically predicted vesicle morphologies](figures/NumericalRBCShapes.png)
 
-During their lifetime:
+One of the major successes of these models has been the prediction of a large variety of red blood cell morphologies.
+ 
+Depending on parameters such as:
+ 
+- membrane composition,
+- spontaneous curvature,
+- osmotic pressure,
+- membrane area-to-volume ratio,
+ 
+the same membrane can adopt markedly different equilibrium configurations, including:
+ 
+- stomatocytes,
+- discocytes,
+- spherocytes,
+- echinocytes.
+ 
+These numerical phase diagrams have helped explain why apparently small biochemical or osmotic changes can induce dramatic changes in cell morphology.
+ 
+In addition, modern simulations are able to reproduce many experimentally observed shape transitions and bistabilities. In some regions of parameter space, several shapes may coexist as local minima of the membrane free energy, allowing transitions between morphologies under external perturbations.
+ 
+The current challenge is no longer merely to reproduce equilibrium shapes, but to predict the full dynamics of red blood cells under physiologically relevant conditions.
 
-- they lose volume,
-- their mechanical properties evolve,
-- their density increases.
+A key parameter controlling these dynamics is the viscosity of the fluid contained inside the cell, $\eta_{\rm in}$, which is primarily determined by the concentrated hemoglobin solution forming the cytosol.
 
-As a result, RBC populations contain cells with a range of properties rather than a single characteristic state.
+This parameter enters virtually all dynamic models of red blood cells. It influences:
 
-This heterogeneity can be observed experimentally using density-gradient techniques, where the concentration profile follows approximately
+- deformation rates,
+- tank-treading and tumbling transitions,
+- shape transitions in microvascular flows,
+- interactions between neighboring cells,
+- the effective rheology of blood.
+
+Unlike membrane elasticity, whose values are now reasonably well documented, the intracellular viscosity remains much more difficult to determine experimentally and has long been a source of disagreement between different theoretical and numerical studies. Historically, simulations have used viscosity contrasts
 
 $$
-c(h)
+\lambda
 =
-c_0
-e^{-V\Delta\rho gh/k_BT}.
+\frac{\eta_{\rm in}}{\eta_{\rm out}},
 $$
 
-Such variability must be considered when comparing theoretical predictions with experiments.
+ranging from
+
+$$
+\lambda = 1
+$$
+
+for computational convenience, to more realistic values around
+
+$$
+\lambda \approx 5,
+$$
+
+while some recent studies have suggested that significantly larger values may be required to reproduce experimental observations.
+
+A further complication is that red blood cells are continuously aging. During their approximately 120-day lifespan, they progressively lose water and become denser. As a consequence, the concentration of hemoglobin inside the cell increases, which in turn increases the viscosity of the cytosol. One should therefore not necessarily expect a single viscosity value for all healthy red blood cells. 
+
+## A recent example: viscosity distributions in healthy red blood cells
+
+A [recent study](https://doi.org/10.1119/10.0003452) addressed this question by combining density-gradient measurements with rheological measurements of extracted RBC cytosol. Rather than looking for a single value of the intracellular viscosity, the authors sought to determine its entire distribution within a healthy blood sample. 
+
+Their approach relies on two observations:
+
+1. The density of a red blood cell increases as it ages because it gradually loses water.
+2. The viscosity of concentrated hemoglobin solutions increases very rapidly with hemoglobin concentration.
+
+The authors first measured the density distribution of red blood cells using isopycnic centrifugation in Percoll density gradients. They observed that healthy RBC populations exhibit an approximately Gaussian distribution of cell densities rather than a single density value.
+
+![Density-gradient separation of RBCs and resulting density distribution [Credits](https://doi.org/10.1119/10.0003452)](figures/RBCDensity.png)
+
+They then measured the viscosity of cytosol extracted from red blood cells and established a relationship between cytosol density and viscosity. This relationship revealed a very strong increase in viscosity with increasing density, reflecting the fact that hemoglobin solutions are already close to their maximum packing concentration under physiological conditions. 
+
+![Cytosol viscosity as a function of cytosol density [Credits](https://doi.org/10.1119/10.0003452)](figures/CytosolProperties.png)
+
+Combining the density distribution of RBCs with the density-viscosity relationship allowed the authors to infer the viscosity distribution of the cytosol within a healthy RBC population.
+
+Their main conclusion was striking:
+
+$$
+\boxed{
+\lambda \approx 10
+}
+$$
+
+for the average red blood cell under physiological conditions. This value is considerably larger than the viscosity contrasts often used in numerical simulations.
+
+Even more importantly, the intracellular viscosity is not characterized by a single value. Instead, the study predicts a broad log-normal distribution extending approximately from
+
+$$
+\lambda \approx 5
+$$
+
+to
+
+$$
+\lambda \approx 20,
+$$
+
+with a median value close to
+
+$$
+\lambda \approx 10.
+$$
+
+Older red blood cells were estimated to possess more than twice the cytosol viscosity of younger cells because of their reduced water content. 
+
+[Predicted distribution of intracellular viscosity contrasts in a healthy RBC population [Credits](https://doi.org/10.1119/10.0003452)](figures/ViscosityContrast.png)
+
+## Consequences for numerical modeling
+
+This result highlights an important limitation of many current computational models.
+
+Most simulations still assume that all red blood cells:
+
+- have the same viscosity,
+- have the same density,
+- have the same age,
+- have identical mechanical properties.
+
+In reality, healthy blood contains a distribution of cells with different physical characteristics.
+
+Future simulations may therefore need to move beyond the concept of a single "representative" red blood cell and instead incorporate distributions of:
+
+- membrane properties,
+- cell volumes,
+- intracellular viscosities,
+- cell ages.
+
+Such approaches may prove essential for accurately reproducing blood rheology in health and disease.
+
+More generally, this example illustrates an important theme in modern biological physics:
+
+> Progress increasingly depends on combining detailed experiments, physical modeling, and numerical simulations to determine the effective material properties of living systems.
+
+The red blood cell remains one of the best laboratories in which to develop and test these approaches.
 
 # Key take-home messages
 

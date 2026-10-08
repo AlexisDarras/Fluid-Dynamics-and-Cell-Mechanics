@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Dr Alexis Darras">
 
-<title>membraneelasticity – Fluid Dynamics and Cell Mechanics</title>
+<title>Biological and Mesoscale Physics – Fluid Dynamics and Cell Mechanics</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -178,48 +179,85 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#membrane-elasticity" id="toc-membrane-elasticity" class="nav-link active" data-scroll-target="#membrane-elasticity">Membrane elasticity</a>
+  <li><a href="#membrane-elasticity" id="toc-membrane-elasticity" class="nav-link active" data-scroll-target="#membrane-elasticity"><span class="header-section-number">1</span> Membrane elasticity</a>
   <ul class="collapse">
-  <li><a href="#three-types-of-membrane-deformation" id="toc-three-types-of-membrane-deformation" class="nav-link" data-scroll-target="#three-types-of-membrane-deformation">Three types of membrane deformation</a></li>
-  <li><a href="#stretching" id="toc-stretching" class="nav-link" data-scroll-target="#stretching">Stretching</a></li>
-  <li><a href="#tilting-shear" id="toc-tilting-shear" class="nav-link" data-scroll-target="#tilting-shear">Tilting (shear)</a></li>
-  <li><a href="#bending" id="toc-bending" class="nav-link" data-scroll-target="#bending">Bending</a></li>
+  <li><a href="#three-types-of-membrane-deformation" id="toc-three-types-of-membrane-deformation" class="nav-link" data-scroll-target="#three-types-of-membrane-deformation"><span class="header-section-number">1.1</span> Three types of membrane deformation</a></li>
+  <li><a href="#stretching" id="toc-stretching" class="nav-link" data-scroll-target="#stretching"><span class="header-section-number">1.2</span> Stretching</a></li>
+  <li><a href="#tilting-shear" id="toc-tilting-shear" class="nav-link" data-scroll-target="#tilting-shear"><span class="header-section-number">1.3</span> Tilting (shear)</a></li>
+  <li><a href="#bending" id="toc-bending" class="nav-link" data-scroll-target="#bending"><span class="header-section-number">1.4</span> Bending</a></li>
   </ul></li>
-  <li><a href="#curvature-geometry-fundamentals" id="toc-curvature-geometry-fundamentals" class="nav-link" data-scroll-target="#curvature-geometry-fundamentals">Curvature: geometry fundamentals</a>
+  <li><a href="#curvature-geometry-fundamentals" id="toc-curvature-geometry-fundamentals" class="nav-link" data-scroll-target="#curvature-geometry-fundamentals"><span class="header-section-number">2</span> Curvature: geometry fundamentals</a>
   <ul class="collapse">
-  <li><a href="#curvature-of-a-two-dimensional-curve" id="toc-curvature-of-a-two-dimensional-curve" class="nav-link" data-scroll-target="#curvature-of-a-two-dimensional-curve">Curvature of a two-dimensional curve</a></li>
-  <li><a href="#curvature-of-a-surface" id="toc-curvature-of-a-surface" class="nav-link" data-scroll-target="#curvature-of-a-surface">Curvature of a surface</a></li>
+  <li><a href="#curvature-of-a-two-dimensional-curve" id="toc-curvature-of-a-two-dimensional-curve" class="nav-link" data-scroll-target="#curvature-of-a-two-dimensional-curve"><span class="header-section-number">2.1</span> Curvature of a two-dimensional curve</a></li>
+  <li><a href="#curvature-of-a-surface" id="toc-curvature-of-a-surface" class="nav-link" data-scroll-target="#curvature-of-a-surface"><span class="header-section-number">2.2</span> Curvature of a surface</a></li>
   </ul></li>
-  <li><a href="#helfrich-bending-energy" id="toc-helfrich-bending-energy" class="nav-link" data-scroll-target="#helfrich-bending-energy">Helfrich bending energy</a>
+  <li><a href="#helfrich-bending-energy" id="toc-helfrich-bending-energy" class="nav-link" data-scroll-target="#helfrich-bending-energy"><span class="header-section-number">3</span> Helfrich bending energy</a>
   <ul class="collapse">
-  <li><a href="#physical-interpretation" id="toc-physical-interpretation" class="nav-link" data-scroll-target="#physical-interpretation">Physical interpretation</a>
+  <li><a href="#physical-interpretation" id="toc-physical-interpretation" class="nav-link" data-scroll-target="#physical-interpretation"><span class="header-section-number">3.1</span> Physical interpretation</a>
   <ul class="collapse">
-  <li><a href="#bending-modulus" id="toc-bending-modulus" class="nav-link" data-scroll-target="#bending-modulus">Bending modulus</a></li>
-  <li><a href="#spontaneous-curvature" id="toc-spontaneous-curvature" class="nav-link" data-scroll-target="#spontaneous-curvature">Spontaneous curvature</a></li>
-  <li><a href="#gaussian-curvature" id="toc-gaussian-curvature" class="nav-link" data-scroll-target="#gaussian-curvature">Gaussian curvature</a></li>
+  <li><a href="#bending-modulus" id="toc-bending-modulus" class="nav-link" data-scroll-target="#bending-modulus"><span class="header-section-number">3.1.1</span> Bending modulus</a></li>
+  <li><a href="#spontaneous-curvature" id="toc-spontaneous-curvature" class="nav-link" data-scroll-target="#spontaneous-curvature"><span class="header-section-number">3.1.2</span> Spontaneous curvature</a></li>
+  <li><a href="#gaussian-curvature" id="toc-gaussian-curvature" class="nav-link" data-scroll-target="#gaussian-curvature"><span class="header-section-number">3.1.3</span> Gaussian curvature</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#computing-curvature-rigorously" id="toc-computing-curvature-rigorously" class="nav-link" data-scroll-target="#computing-curvature-rigorously">Computing curvature rigorously</a></li>
-  <li><a href="#the-shape-of-red-blood-cells" id="toc-the-shape-of-red-blood-cells" class="nav-link" data-scroll-target="#the-shape-of-red-blood-cells">The shape of red blood cells</a></li>
-  <li><a href="#elastic-instabilities-and-buckling" id="toc-elastic-instabilities-and-buckling" class="nav-link" data-scroll-target="#elastic-instabilities-and-buckling">Elastic instabilities and buckling</a></li>
-  <li><a href="#modern-computational-modeling" id="toc-modern-computational-modeling" class="nav-link" data-scroll-target="#modern-computational-modeling">Modern computational modeling</a></li>
-  <li><a href="#key-take-home-messages" id="toc-key-take-home-messages" class="nav-link" data-scroll-target="#key-take-home-messages">Key take-home messages</a></li>
+  <li><a href="#computing-curvature-rigorously" id="toc-computing-curvature-rigorously" class="nav-link" data-scroll-target="#computing-curvature-rigorously"><span class="header-section-number">4</span> Computing curvature rigorously</a></li>
+  <li><a href="#the-shape-of-red-blood-cells" id="toc-the-shape-of-red-blood-cells" class="nav-link" data-scroll-target="#the-shape-of-red-blood-cells"><span class="header-section-number">5</span> The shape of red blood cells</a></li>
+  <li><a href="#elastic-instability-and-buckling" id="toc-elastic-instability-and-buckling" class="nav-link" data-scroll-target="#elastic-instability-and-buckling"><span class="header-section-number">6</span> Elastic instability and buckling</a>
+  <ul class="collapse">
+  <li><a href="#elastic-energy-of-a-bent-beam" id="toc-elastic-energy-of-a-bent-beam" class="nav-link" data-scroll-target="#elastic-energy-of-a-bent-beam"><span class="header-section-number">6.1</span> Elastic energy of a bent beam</a></li>
+  <li><a href="#integrating-over-the-whole-beam" id="toc-integrating-over-the-whole-beam" class="nav-link" data-scroll-target="#integrating-over-the-whole-beam"><span class="header-section-number">6.2</span> Integrating over the whole beam</a></li>
+  <li><a href="#applying-a-compressive-force" id="toc-applying-a-compressive-force" class="nav-link" data-scroll-target="#applying-a-compressive-force"><span class="header-section-number">6.3</span> Applying a compressive force</a></li>
+  <li><a href="#stability-analysis" id="toc-stability-analysis" class="nav-link" data-scroll-target="#stability-analysis"><span class="header-section-number">6.4</span> Stability analysis</a>
+  <ul class="collapse">
+  <li><a href="#small-compressive-forces" id="toc-small-compressive-forces" class="nav-link" data-scroll-target="#small-compressive-forces"><span class="header-section-number">6.4.1</span> Small compressive forces</a></li>
+  <li><a href="#large-compressive-forces" id="toc-large-compressive-forces" class="nav-link" data-scroll-target="#large-compressive-forces"><span class="header-section-number">6.4.2</span> Large compressive forces</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#modern-computational-modeling" id="toc-modern-computational-modeling" class="nav-link" data-scroll-target="#modern-computational-modeling"><span class="header-section-number">7</span> Modern computational modeling</a>
+  <ul class="collapse">
+  <li><a href="#a-recent-example-viscosity-distributions-in-healthy-red-blood-cells" id="toc-a-recent-example-viscosity-distributions-in-healthy-red-blood-cells" class="nav-link" data-scroll-target="#a-recent-example-viscosity-distributions-in-healthy-red-blood-cells"><span class="header-section-number">7.1</span> A recent example: viscosity distributions in healthy red blood cells</a></li>
+  <li><a href="#consequences-for-numerical-modeling" id="toc-consequences-for-numerical-modeling" class="nav-link" data-scroll-target="#consequences-for-numerical-modeling"><span class="header-section-number">7.2</span> Consequences for numerical modeling</a></li>
+  </ul></li>
+  <li><a href="#key-take-home-messages" id="toc-key-take-home-messages" class="nav-link" data-scroll-target="#key-take-home-messages"><span class="header-section-number">8</span> Key take-home messages</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Biological and Mesoscale Physics</h1>
+<p class="subtitle lead">Membrane elasticity and the shape of Red Blood Cells</p>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<section id="membrane-elasticity" class="level1">
-<h1>Membrane elasticity</h1>
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Dr Alexis Darras </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="membrane-elasticity" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Membrane elasticity</h1>
 <p>In the previous lecture, we saw that introducing a non-ideal osmometer factor considerably improves the prediction of red blood cell swelling and hemolysis. However, the origin of this correction remains to be understood.</p>
 <p>A natural hypothesis is that part of the osmotic work is used to deform the membrane itself. Red blood cells are not simple liquid droplets: their membrane and membrane-associated cytoskeleton possess elastic properties that resist deformation.</p>
 <p>To understand how membrane mechanics influences cell shape and volume regulation, we must first examine the different ways in which a membrane can deform.</p>
-<section id="three-types-of-membrane-deformation" class="level2">
-<h2 class="anchored" data-anchor-id="three-types-of-membrane-deformation">Three types of membrane deformation</h2>
+<section id="three-types-of-membrane-deformation" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="three-types-of-membrane-deformation"><span class="header-section-number">1.1</span> Three types of membrane deformation</h2>
 <p>A lipid membrane may store elastic energy through three main deformation modes:</p>
 <ol type="1">
 <li>Stretching,</li>
@@ -228,8 +266,8 @@ window.Quarto = {
 </ol>
 <p>Among these mechanisms, bending is typically the most important for red blood cells and lipid vesicles.</p>
 </section>
-<section id="stretching" class="level2">
-<h2 class="anchored" data-anchor-id="stretching">Stretching</h2>
+<section id="stretching" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="stretching"><span class="header-section-number">1.2</span> Stretching</h2>
 <p>Stretching corresponds to a change in membrane area.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -277,8 +315,8 @@ k_s
 <p>As a consequence, the total membrane area is often approximately conserved.</p>
 <p>This deformation energy is however particularly important when long membrane protrusions, known as tethers, are formed.</p>
 </section>
-<section id="tilting-shear" class="level2">
-<h2 class="anchored" data-anchor-id="tilting-shear">Tilting (shear)</h2>
+<section id="tilting-shear" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="tilting-shear"><span class="header-section-number">1.3</span> Tilting (shear)</h2>
 <p>A second possible deformation mode involves tilting membrane molecules relative to the local membrane normal.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -324,8 +362,8 @@ k_t
 </ul>
 <p>In most biological situations, the two lipid monolayers can partially slide relative to one another, making pure tilt deformations comparatively unimportant.</p>
 </section>
-<section id="bending" class="level2">
-<h2 class="anchored" data-anchor-id="bending">Bending</h2>
+<section id="bending" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="bending"><span class="header-section-number">1.4</span> Bending</h2>
 <p>The third deformation mode is <strong>bending</strong>, in which the membrane changes shape without significantly changing its area.</p>
 <p>Unlike stretching, which modifies the local membrane area, bending mainly changes the relative geometry of the two lipid layers. Lipids on one side of the membrane become slightly compressed, while lipids on the opposite side become slightly stretched.</p>
 <div class="quarto-figure quarto-figure-center">
@@ -353,10 +391,10 @@ k_t
 <p>To construct a quantitative model of membrane elasticity, we must therefore introduce a precise mathematical description of curvature.</p>
 </section>
 </section>
-<section id="curvature-geometry-fundamentals" class="level1">
-<h1>Curvature: geometry fundamentals</h1>
-<section id="curvature-of-a-two-dimensional-curve" class="level2">
-<h2 class="anchored" data-anchor-id="curvature-of-a-two-dimensional-curve">Curvature of a two-dimensional curve</h2>
+<section id="curvature-geometry-fundamentals" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Curvature: geometry fundamentals</h1>
+<section id="curvature-of-a-two-dimensional-curve" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="curvature-of-a-two-dimensional-curve"><span class="header-section-number">2.1</span> Curvature of a two-dimensional curve</h2>
 <p>Consider a parametric curve</p>
 <p><span class="math display">\[
 \mathbf r(s)
@@ -472,8 +510,8 @@ s=R\theta,
 </div>
 </div>
 </section>
-<section id="curvature-of-a-surface" class="level2">
-<h2 class="anchored" data-anchor-id="curvature-of-a-surface">Curvature of a surface</h2>
+<section id="curvature-of-a-surface" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="curvature-of-a-surface"><span class="header-section-number">2.2</span> Curvature of a surface</h2>
 <p>For membranes, the relevant object is not a curve but a surface.</p>
 <p>At each point of a surface, infinitely many curvatures may be measured depending on the chosen direction, delivering an infinite number of curvatures. However, one can define two <strong>principal curvatures</strong> <span class="math inline">\(\kappa_1\)</span> and <span class="math inline">\(\kappa_2\)</span>, corresponding to the minimum and maximum curvatures passing through a given point.</p>
 <div class="quarto-figure quarto-figure-center">
@@ -527,8 +565,8 @@ K_G
 <p>These quantities completely determine the leading contributions to membrane bending energy.</p>
 </section>
 </section>
-<section id="helfrich-bending-energy" class="level1">
-<h1>Helfrich bending energy</h1>
+<section id="helfrich-bending-energy" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Helfrich bending energy</h1>
 <p>The most widely used model of membrane elasticity was proposed by Helfrich.</p>
 <p>The key idea is that the bending energy must depend on curvature.</p>
 <p>Restricting the energy to the lowest-order curvature terms leads to the Helfrich bending energy:</p>
@@ -551,10 +589,10 @@ U_b
 <li><span class="math inline">\(\bar\kappa\)</span> is the Gaussian bending modulus,</li>
 <li><span class="math inline">\(K_0\)</span> is the spontaneous curvature.</li>
 </ul>
-<section id="physical-interpretation" class="level2">
-<h2 class="anchored" data-anchor-id="physical-interpretation">Physical interpretation</h2>
-<section id="bending-modulus" class="level3">
-<h3 class="anchored" data-anchor-id="bending-modulus">Bending modulus</h3>
+<section id="physical-interpretation" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="physical-interpretation"><span class="header-section-number">3.1</span> Physical interpretation</h2>
+<section id="bending-modulus" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="bending-modulus"><span class="header-section-number">3.1.1</span> Bending modulus</h3>
 <p>The coefficient <span class="math inline">\(\kappa\)</span> measures the energetic cost of bending the membrane.</p>
 <p>Typical values are</p>
 <p><span class="math display">\[
@@ -563,8 +601,8 @@ U_b
 10^{-20}\ {\rm J}.
 \]</span></p>
 </section>
-<section id="spontaneous-curvature" class="level3">
-<h3 class="anchored" data-anchor-id="spontaneous-curvature">Spontaneous curvature</h3>
+<section id="spontaneous-curvature" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="spontaneous-curvature"><span class="header-section-number">3.1.2</span> Spontaneous curvature</h3>
 <p>The quantity</p>
 <p><span class="math display">\[
 K_0
@@ -582,8 +620,8 @@ K_0
 </figure>
 </div>
 </section>
-<section id="gaussian-curvature" class="level3">
-<h3 class="anchored" data-anchor-id="gaussian-curvature">Gaussian curvature</h3>
+<section id="gaussian-curvature" class="level3" data-number="3.1.3">
+<h3 data-number="3.1.3" class="anchored" data-anchor-id="gaussian-curvature"><span class="header-section-number">3.1.3</span> Gaussian curvature</h3>
 <p>The Gaussian curvature term contributes</p>
 <p><span class="math display">\[
 \int \bar\kappa K_G\,dA.
@@ -593,27 +631,41 @@ K_0
 </section>
 </section>
 </section>
-<section id="computing-curvature-rigorously" class="level1">
-<h1>Computing curvature rigorously</h1>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Expand the intro of this justification.</p>
-</div>
-</div>
-<p>For an arbitrary surface,</p>
+<section id="computing-curvature-rigorously" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Computing curvature rigorously</h1>
+<p>Up to this point, we have argued that the principal curvatures can be interpreted locally as the eigenvalues of the matrix of second derivatives</p>
+<p><span class="math display">\[
+\frac{\partial^2 h}{\partial x_i\partial x_j},
+\]</span></p>
+<p>provided that the coordinates <span class="math inline">\((x_1,x_2)\)</span> are chosen within the tangent plane of the surface at the point of interest.</p>
+<p>This local description is extremely useful for building intuition, but it becomes insufficient when we wish to describe an entire membrane. Indeed, the tangent plane changes from point to point on a curved surface, and so do the local coordinates attached to it.</p>
+<p>When computing quantities such as the total bending energy,</p>
+<p><span class="math display">\[
+U_b=\int_A dA\,f(K,K_G),
+\]</span></p>
+<p>we must integrate over the whole surface using a single parametrization. We can no longer redefine the coordinate system independently at every point to coincide with the local tangent plane.</p>
+<p>As we move along the surface, the local normal vector</p>
+<p><span class="math display">\[
+\mathbf n
+\]</span></p>
+<p>changes direction. Curvature must therefore be characterized by how this normal vector rotates from one point to another. This is the central idea underlying differential geometry: rather than describing curvature through second derivatives measured in a local tangent plane, we describe it through the variation of the surface normal over the entire surface.</p>
+<p>To do so, we introduce a smooth parametrization of the surface</p>
 <p><span class="math display">\[
 \mathbf X(u_1,u_2),
 \]</span></p>
-<p>determining the curvature is substantially more difficult than taking second derivatives.</p>
-<p>Indeed, curvature depends on changes in the local normal vector.</p>
+<p>where <span class="math inline">\((u_1,u_2)\)</span> are coordinates labeling points on the membrane.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/SurfaceParam.png" class="img-fluid figure-img"></p>
+<figcaption>Surface paramterisation, as illustrated in <a href="https://doi.org/10.1016/j.chemphyslip.2014.05.001">M. Deserno, Chemistry and physics of lipids&nbsp;(2015)</a></figcaption>
+</figure>
+</div>
+<p>The geometry of the surface is then encoded in two fundamental objects:</p>
+<ul>
+<li>the <strong>first fundamental form</strong>, which describes distances and angles on the surface;</li>
+<li>the <strong>second fundamental form</strong>, which describes how the surface bends in three-dimensional space.</li>
+</ul>
+<p>Together, these quantities allow us to determine the principal curvatures, the mean curvature and the Gaussian curvature at every point of the membrane while maintaining a single global description of the surface.</p>
 <p>The first fundamental form is</p>
 <p><span class="math display">\[
 I_{ij}
@@ -646,16 +698,29 @@ II_{ij}
 \cdot
 \partial_i\partial_j\mathbf X.
 \]</span></p>
-<p>The principal curvatures are obtained as the roots of</p>
+<p>One can show that the principal curvatures are obtained as the roots of</p>
 <p><span class="math display">\[
 \boxed{
 \det(II-\kappa I)=0.
 }
 \]</span></p>
-<p>While these calculations are beyond the scope of this course, they illustrate why determining membrane curvature is a nontrivial geometrical problem.</p>
+<p>While these calculations are beyond the scope of this course, they illustrate why determining membrane curvature is a nontrivial geometrical problem. Curious students are encouraged to determine formally the curvature of simple objects such as the sphere and cylinder with this method, to get a sense of its usage.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For the curious and motivated reader <a href="https://doi.org/10.1016/j.chemphyslip.2014.05.001">M. Deserno, Chemistry and physics of lipids&nbsp;(2015)</a> provides an excellent and techinally detailed overview and some application of curvature stresses computation.</p>
+</div>
+</div>
 </section>
-<section id="the-shape-of-red-blood-cells" class="level1">
-<h1>The shape of red blood cells</h1>
+<section id="the-shape-of-red-blood-cells" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> The shape of red blood cells</h1>
 <p>The total free energy of a membrane vesicle combines:</p>
 <ul>
 <li>bending energy,</li>
@@ -689,9 +754,20 @@ p_{\rm in}-p_{\rm out}
 \gamma
 \]</span></p>
 <p>acts as a Lagrange multiplier enforcing area conservation.</p>
-<p>Minimizing this free energy predicts a rich variety of equilibrium shapes.</p>
-<p>Remarkably, for parameters relevant to red blood cells, the spherical shape may become unstable and deform into biconcave shapes closely resembling healthy erythrocytes.</p>
-<p>Typical parameters are:</p>
+<p>The equilibrium shape of the membrane is obtained by minimizing the Helfrich free energy, i.e.&nbsp;finding a shape that leads to <span class="math inline">\(\delta F = 0\)</span>, subject to the constraints imposed by the membrane area and the enclosed volume.</p>
+<p>A sphere is always a possible solution of this minimization problem. However, it is not always the most stable one, i.e.&nbsp;the configuration with the lowet energy level.</p>
+<p>For certain combinations of:</p>
+<ul>
+<li>spontaneous curvature <span class="math inline">\(K_0\)</span>,</li>
+<li>pressure difference <span class="math inline">\(\Delta p=p_{\rm in}-p_{\rm out}\)</span>,</li>
+<li>membrane area,</li>
+<li>enclosed volume,</li>
+</ul>
+<p>small deviations from the spherical shape can actually decrease the total free energy.</p>
+<p>In mathematical terms, the first spherical-harmonic perturbations of the sphere can become energetically favorable, indicating that the spherical shape has become unstable.</p>
+<p>As a result, the membrane spontaneously evolves toward a lower-energy configuration. For parameter values relevant to red blood cells, this leads to the emergence of biconcave shapes that closely resemble healthy erythrocytes. This has been demonstrated initially in Zhong-Can &amp; Helfrich,&nbsp;Physical review letters,&nbsp; (1987), and a modern and pedagogic review is provided in <a href="https://doi.org/10.1119/10.0003452">Martínez-Balbuena, L., et al., American Journal of Physics&nbsp;89.5 (2021): 465-476.</a></p>
+<p><a href="figures/RBCInstability.png">Minimization of the Helfrich energy and emergence of RBC-like shapes [Credits](https://doi.org/10.1119/10.0003452)</a></p>
+<p>Typical values used in such calculations are</p>
 <p><span class="math display">\[
 \kappa
 \approx
@@ -705,71 +781,358 @@ K_0
 <p><span class="math display">\[
 R_0
 \approx
-3\ \mu{\rm m}.
+3\ \mu{\rm m},
 \]</span></p>
-<p>This provides a compelling physical explanation for the characteristic RBC morphology.</p>
-</section>
-<section id="elastic-instabilities-and-buckling" class="level1">
-<h1>Elastic instabilities and buckling</h1>
-<p>The red blood cell shape may be viewed as a consequence of a more general phenomenon: elastic instability.</p>
-<p>A simple example is the buckling of a compressed beam.</p>
-<p>Consider a bundle of elastic fibres of length</p>
+<p>and</p>
 <p><span class="math display">\[
-L.
+\Delta p
+\approx
+4\times10^{-2}\ {\rm J\,m^{-3}}.
 \]</span></p>
-<p>The bending energy scales as</p>
+<p>The emergence of the characteristic biconcave RBC shape can therefore be interpreted as an elastic instability of an initially spherical membrane, driven by the competition between bending elasticity, spontaneous curvature and osmotic pressure.</p>
+</section>
+<section id="elastic-instability-and-buckling" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Elastic instability and buckling</h1>
+<p>The Helfrich model suggests that the characteristic biconcave shape of healthy red blood cells may arise from an <strong>elastic instability</strong> of an initially spherical membrane.</p>
+<p>Applying this idea to membranes requires some advanced technical analisys, but we can get a sense of it by examining a simpler mechanical example: the buckling of an elastic beam under compression.</p>
+<p>The key message will be:</p>
+<blockquote class="blockquote">
+<p>A structure may remain straight or spherical under small loads, but once a critical threshold is exceeded, a deformed configuration becomes energetically favorable.</p>
+</blockquote>
+<p>This is exactly the type of phenomenon that occurs in many elastic systems, including membranes.</p>
+<section id="elastic-energy-of-a-bent-beam" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="elastic-energy-of-a-bent-beam"><span class="header-section-number">6.1</span> Elastic energy of a bent beam</h2>
+<p>Consider a beam of length</p>
+<p><span class="math display">\[
+L_0,
+\]</span></p>
+<p>initially straight and made of a bundle of elastic fibers.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/LinearSprigBeam.png" class="img-fluid figure-img"></p>
+<figcaption>Straight beam represented as a bundle of springs</figcaption>
+</figure>
+</div>
+<p>In one dimension, the elastic energy associated with elongation is</p>
+<p><span class="math display">\[
+U_s
+=
+\frac{E}{2}
+\left(
+\frac{\Delta L}{L_0}
+\right)^2,
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+E
+=
+\frac{9KG}{G+3K}
+\]</span></p>
+<p>is Young’s modulus, expressed in terms of the bulk modulus <span class="math inline">\(K\)</span> and shear modulus <span class="math inline">\(G\)</span>.</p>
+<p>To compute the energy associated with bending, imagine that the initially straight bundle of fibers is bent into an arc of radius <span class="math inline">\(R\)</span> and opening angle <span class="math inline">\(\theta\)</span>.</p>
+<p>The central fiber defines a neutral axis whose length remains</p>
+<p><span class="math display">\[
+L_0=R\theta.
+\]</span></p>
+<p>Now consider a fiber located a distance <span class="math inline">\(z\)</span> from the neutral axis.</p>
+<p>Its new length becomes</p>
+<p><span class="math display">\[
+L(z)
+=
+(R+z)\theta.
+\]</span></p>
+<p>The elongation of that fiber is therefore</p>
+<p><span class="math display">\[
+\Delta L
+=
+L(z)-L_0
+=
+(R+z)\theta-R\theta
+=
+z\theta.
+\]</span></p>
+<p>Using <span class="math inline">\(\theta=\frac{L_0}{R}\)</span>, this can be written</p>
+<p><span class="math display">\[
+\boxed{
+\Delta L
+=
+\frac{z}{R}L_0.
+}
+\]</span></p>
+<p>Substituting into the elastic energy gives</p>
+<p><span class="math display">\[
+U_s
+=
+\frac12 E
+\left(
+\frac{z}{R}
+\right)^2.
+\]</span></p>
+<p>This is the elastic energy density associated with a fiber located at height <span class="math inline">\(z\)</span>.</p>
+</section>
+<section id="integrating-over-the-whole-beam" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="integrating-over-the-whole-beam"><span class="header-section-number">6.2</span> Integrating over the whole beam</h2>
+<p>Different fibers experience different strains depending on their distance from the neutral axis.</p>
+<p>To obtain the total elastic energy, we integrate over the beam cross-section.</p>
+<p>Let</p>
+<p><span class="math display">\[
+\Omega
+\]</span></p>
+<p>denote the cross-sectional area.</p>
+<p>The total bending energy is</p>
+<p><span class="math display">\[
+U_b
+=
+L_0
+\int_\Omega
+\frac12
+E
+\frac{z^2}{R^2}
+\,dA.
+\]</span></p>
+<p>Rearranging,</p>
+<p><span class="math display">\[
+U_b
+=
+\frac{EL_0}{2R^2}
+\int_\Omega z^2\,dA.
+\]</span></p>
+<p>The integral</p>
+<p><span class="math display">\[
+I
+=
+\int_\Omega z^2\,dA
+\]</span></p>
+<p>is known as the <strong>second moment of area</strong>.</p>
+<p>It characterizes how material is distributed relative to the neutral axis.</p>
+<p>We therefore obtain</p>
 <p><span class="math display">\[
 \boxed{
 U_b
 =
-\frac{EI}{2L}
-\theta^2,
+\frac{EL_0}{2R^2}
+I.
 }
 \]</span></p>
-<p>where</p>
-<ul>
-<li><span class="math inline">\(E\)</span> is Young’s modulus,</li>
-<li><span class="math inline">\(I\)</span> is the second moment of area.</li>
-</ul>
-<p>Applying a compressive force</p>
+<p>This is the elastic energy cost of bending the beam.</p>
+<p>A more flexible beam corresponds to a smaller value of <span class="math inline">\(EI\)</span>.</p>
+</section>
+<section id="applying-a-compressive-force" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="applying-a-compressive-force"><span class="header-section-number">6.3</span> Applying a compressive force</h2>
+<p>We now apply a compressive force</p>
 <p><span class="math display">\[
 F
 \]</span></p>
-<p>adds</p>
-<p><span class="math display">\[
+<p>at both ends of the beam.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/CompressedBeam.jpg" class="img-fluid figure-img"></p>
+<figcaption>Beam compressed by opposite forces <span class="math inline">\(F\)</span></figcaption>
+</figure>
+</div>
+<p>If the beam bends, its projected length along the compression direction becomes <span class="math inline">\(x\)</span>.</p>
+<p>We now apply a constant compressive force <span class="math inline">\(F\)</span> at both ends of the beam. Since the force is constant and directed along the compression axis, &nbsp; <span class="math display">\[
+\mathbf F
+=
+-F\,\mathbf e_x,
+\]</span> &nbsp; it must derive from a potential energy <span class="math inline">\(U_F(x)\)</span> satisfying &nbsp; <span class="math display">\[
+\mathbf F
+=
+-\nabla U_F.
+\]</span> &nbsp; In one dimension, &nbsp; <span class="math display">\[
+F_x
+=
+-\frac{\partial U_F}{\partial x},
+\]</span> &nbsp; which becomes &nbsp; <span class="math display">\[
+-F
+=
+-\frac{\partial U_F}{\partial x}.
+\]</span> &nbsp; Integrating immediately gives &nbsp; <span class="math display">\[
+\boxed{
+U_F=Fx+C.
+}
+\]</span> &nbsp; The additive constant is arbitrary, since only energy differences matter. Choosing the reference such that the undeformed beam (<span class="math inline">\(x=L_0\)</span>) has zero potential energy, &nbsp; <span class="math display">\[
+U_F(L_0)=0,
+\]</span> &nbsp; yields &nbsp; <span class="math display">\[
+C=-FL_0.
+\]</span> &nbsp; Therefore, &nbsp; <span class="math display">\[
+\boxed{
 U_F
 =
--F(L-x).
-\]</span></p>
-<p>For small angles,</p>
+-F(L_0-x).
+}
+\]</span> &nbsp;</p>
+<p>To change this projected length <span class="math inline">\(x\)</span>, the bent beam forms an arc of radius <span class="math inline">\(R\)</span> and opening angle <span class="math inline">\(\theta\)</span>.</p>
+<p>Since <span class="math inline">\(L_0=R\theta\)</span>, we have</p>
 <p><span class="math display">\[
+\boxed{
+R
+=
+\frac{L_0}{\theta}.
+}
+\]</span></p>
+<p>The projected length is</p>
+<p><span class="math display">\[
+x
+=
+2R\sin\left(\frac{\theta}{2}\right).
+\]</span></p>
+<p>Substituting the expression for <span class="math inline">\(R\)</span>,</p>
+<p><span class="math display">\[
+\boxed{
+x
+=
+\frac{2L_0}{\theta}
+\sin\left(\frac{\theta}{2}\right).
+}
+\]</span></p>
+<p>Substituting</p>
+<p><span class="math display">\[
+R=\frac{L_0}{\theta}
+\]</span></p>
+<p>into the bending energy gives</p>
+<p><span class="math display">\[
+U_b
+=
+\frac{EI}{2L_0}
+\theta^2.
+\]</span></p>
+<p>The total energy becomes</p>
+<p><span class="math display">\[
+U_{\rm tot}
+=
+\frac{EI}{2L_0}\theta^2
+-
+F
+\left(
+L_0
+-
+\frac{2L_0}{\theta}
+\sin\frac{\theta}{2}
+\right).
+\]</span></p>
+<p>To understand the stability of the straight state, we consider small deformations</p>
+<p><span class="math display">\[
+\theta\ll1.
+\]</span></p>
+<p>Using</p>
+<p><span class="math display">\[
+\sin\left(\frac{\theta}{2}\right)
+=
+\frac{\theta}{2}
+-
+\frac{\theta^3}{48}
++
+O(\theta^5),
+\]</span></p>
+<p>we obtain</p>
+<p><span class="math display">\[
+\frac{2}{\theta}
+\sin\left(\frac{\theta}{2}\right)
+=
+1
+-
+\frac{\theta^2}{24}
++
+O(\theta^4).
+\]</span></p>
+<p>Consequently,</p>
+<p><span class="math display">\[
+L_0-x
+=
+\frac{L_0}{24}\theta^2
++
+O(\theta^4).
+\]</span></p>
+<p>Substituting into the total energy gives</p>
+<p><span class="math display">\[
+\boxed{
 U_{\rm tot}
 \approx
 \left(
-\frac{EI}{2L}
+\frac{EI}{2L_0}
 -
-\frac{FL}{24}
-\right)
+\frac{FL_0}{24}
+\right)\theta^2
++
+O(\theta^4).
+}
+\]</span></p>
+</section>
+<section id="stability-analysis" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="stability-analysis"><span class="header-section-number">6.4</span> Stability analysis</h2>
+<p>The configuration</p>
+<p><span class="math display">\[
+\theta=0
+\]</span></p>
+<p>corresponds to a perfectly straight beam.</p>
+<p>Whether this state is stable depends on the sign of the coefficient multiplying</p>
+<p><span class="math display">\[
 \theta^2.
 \]</span></p>
-<p>The straight configuration becomes unstable when the coefficient of</p>
+<section id="small-compressive-forces" class="level3" data-number="6.4.1">
+<h3 data-number="6.4.1" class="anchored" data-anchor-id="small-compressive-forces"><span class="header-section-number">6.4.1</span> Small compressive forces</h3>
+<p>If</p>
 <p><span class="math display">\[
-\theta^2
+F
+&lt;
+\frac{12EI}{L_0^2},
 \]</span></p>
-<p>changes sign.</p>
-<p>This occurs at the critical force</p>
+<p>then</p>
+<p><span class="math display">\[
+\frac{EI}{2L_0}
+-
+\frac{FL_0}{24}
+&gt;
+0.
+\]</span></p>
+<p>The energy increases when <span class="math inline">\(\theta\)</span> increases.</p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\theta=0
+\]</span></p>
+<p>remains a stable equilibrium.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/EnergyBelowBuckling.jpg" class="img-fluid figure-img"></p>
+<figcaption>Energy versus angle below the buckling threshold. Credits: Physical Biology of the Cell, 2ed (Garland Science 2013)</figcaption>
+</figure>
+</div>
+</section>
+<section id="large-compressive-forces" class="level3" data-number="6.4.2">
+<h3 data-number="6.4.2" class="anchored" data-anchor-id="large-compressive-forces"><span class="header-section-number">6.4.2</span> Large compressive forces</h3>
+<p>If</p>
+<p><span class="math display">\[
+F
+&gt;
+\frac{12EI}{L_0^2},
+\]</span></p>
+<p>then</p>
+<p><span class="math display">\[
+\frac{EI}{2L_0}
+-
+\frac{FL_0}{24}
+&lt;
+0.
+\]</span></p>
+<p>The straight configuration now corresponds to a maximum of energy rather than a minimum.</p>
+<p>Any small perturbation lowers the energy and triggers bending.</p>
+<p>The beam spontaneously buckles.</p>
+<p><a href="figures/EnergyAboveBuckling.jpg">Energy versus angle above the buckling threshold</a></p>
+<p>The critical force is therefore</p>
 <p><span class="math display">\[
 \boxed{
 F_c
 =
-\frac{12EI}{L^2}.
+\frac{12EI}{L_0^2}.
 }
 \]</span></p>
-<p>Above this threshold, the beam spontaneously buckles.</p>
-<p>The transition from spherical to biconcave RBC shapes can be understood as a closely related symmetry-breaking instability.</p>
+<p>This is known as the <strong>Euler buckling instability</strong>.</p>
 </section>
-<section id="modern-computational-modeling" class="level1">
-<h1>Modern computational modeling</h1>
+</section>
+</section>
+<section id="modern-computational-modeling" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Modern computational modeling</h1>
 <p>Analytical calculations are valuable but limited.</p>
 <p>Today, membrane mechanics is often investigated using numerical simulations that combine:</p>
 <ul>
@@ -778,26 +1141,112 @@ F_c
 <li>membrane constraints,</li>
 <li>osmotic pressure.</li>
 </ul>
-<p>These approaches can reproduce many experimentally observed red blood cell shapes and dynamics.</p>
-<p>![Examples of numerically predicted vesicle morphologies](figures/RBCNumerod cells provide an ideal model system, they are not all identical.</p>
-<p>During their lifetime:</p>
+<p>These approaches can reproduce many experimentally observed red blood cell shapes and dynamics, including explanations of bistability and the shapes observed at various osmotic pressures.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/NumericalRBCShapes.png" class="img-fluid figure-img"></p>
+<figcaption>Examples of numerically predicted vesicle morphologies</figcaption>
+</figure>
+</div>
+<p>One of the major successes of these models has been the prediction of a large variety of red blood cell morphologies. &nbsp; Depending on parameters such as: &nbsp; - membrane composition, - spontaneous curvature, - osmotic pressure, - membrane area-to-volume ratio, &nbsp; the same membrane can adopt markedly different equilibrium configurations, including: &nbsp; - stomatocytes, - discocytes, - spherocytes, - echinocytes. &nbsp; These numerical phase diagrams have helped explain why apparently small biochemical or osmotic changes can induce dramatic changes in cell morphology. &nbsp; In addition, modern simulations are able to reproduce many experimentally observed shape transitions and bistabilities. In some regions of parameter space, several shapes may coexist as local minima of the membrane free energy, allowing transitions between morphologies under external perturbations. &nbsp; The current challenge is no longer merely to reproduce equilibrium shapes, but to predict the full dynamics of red blood cells under physiologically relevant conditions.</p>
+<p>A key parameter controlling these dynamics is the viscosity of the fluid contained inside the cell, <span class="math inline">\(\eta_{\rm in}\)</span>, which is primarily determined by the concentrated hemoglobin solution forming the cytosol.</p>
+<p>This parameter enters virtually all dynamic models of red blood cells. It influences:</p>
 <ul>
-<li>they lose volume,</li>
-<li>their mechanical properties evolve,</li>
-<li>their density increases.</li>
+<li>deformation rates,</li>
+<li>tank-treading and tumbling transitions,</li>
+<li>shape transitions in microvascular flows,</li>
+<li>interactions between neighboring cells,</li>
+<li>the effective rheology of blood.</li>
 </ul>
-<p>As a result, RBC populations contain cells with a range of properties rather than a single characteristic state.</p>
-<p>This heterogeneity can be observed experimentally using density-gradient techniques, where the concentration profile follows approximately</p>
+<p>Unlike membrane elasticity, whose values are now reasonably well documented, the intracellular viscosity remains much more difficult to determine experimentally and has long been a source of disagreement between different theoretical and numerical studies. Historically, simulations have used viscosity contrasts</p>
 <p><span class="math display">\[
-c(h)
+\lambda
 =
-c_0
-e^{-V\Delta\rho gh/k_BT}.
+\frac{\eta_{\rm in}}{\eta_{\rm out}},
 \]</span></p>
-<p>Such variability must be considered when comparing theoretical predictions with experiments.</p>
+<p>ranging from</p>
+<p><span class="math display">\[
+\lambda = 1
+\]</span></p>
+<p>for computational convenience, to more realistic values around</p>
+<p><span class="math display">\[
+\lambda \approx 5,
+\]</span></p>
+<p>while some recent studies have suggested that significantly larger values may be required to reproduce experimental observations.</p>
+<p>A further complication is that red blood cells are continuously aging. During their approximately 120-day lifespan, they progressively lose water and become denser. As a consequence, the concentration of hemoglobin inside the cell increases, which in turn increases the viscosity of the cytosol. One should therefore not necessarily expect a single viscosity value for all healthy red blood cells.</p>
+<section id="a-recent-example-viscosity-distributions-in-healthy-red-blood-cells" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="a-recent-example-viscosity-distributions-in-healthy-red-blood-cells"><span class="header-section-number">7.1</span> A recent example: viscosity distributions in healthy red blood cells</h2>
+<p>A <a href="https://doi.org/10.1119/10.0003452">recent study</a> addressed this question by combining density-gradient measurements with rheological measurements of extracted RBC cytosol. Rather than looking for a single value of the intracellular viscosity, the authors sought to determine its entire distribution within a healthy blood sample.</p>
+<p>Their approach relies on two observations:</p>
+<ol type="1">
+<li>The density of a red blood cell increases as it ages because it gradually loses water.</li>
+<li>The viscosity of concentrated hemoglobin solutions increases very rapidly with hemoglobin concentration.</li>
+</ol>
+<p>The authors first measured the density distribution of red blood cells using isopycnic centrifugation in Percoll density gradients. They observed that healthy RBC populations exhibit an approximately Gaussian distribution of cell densities rather than a single density value.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/RBCDensity.png" class="img-fluid figure-img"></p>
+<figcaption>Density-gradient separation of RBCs and resulting density distribution <a href="https://doi.org/10.1119/10.0003452">Credits</a></figcaption>
+</figure>
+</div>
+<p>They then measured the viscosity of cytosol extracted from red blood cells and established a relationship between cytosol density and viscosity. This relationship revealed a very strong increase in viscosity with increasing density, reflecting the fact that hemoglobin solutions are already close to their maximum packing concentration under physiological conditions.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/CytosolProperties.png" class="img-fluid figure-img"></p>
+<figcaption>Cytosol viscosity as a function of cytosol density <a href="https://doi.org/10.1119/10.0003452">Credits</a></figcaption>
+</figure>
+</div>
+<p>Combining the density distribution of RBCs with the density-viscosity relationship allowed the authors to infer the viscosity distribution of the cytosol within a healthy RBC population.</p>
+<p>Their main conclusion was striking:</p>
+<p><span class="math display">\[
+\boxed{
+\lambda \approx 10
+}
+\]</span></p>
+<p>for the average red blood cell under physiological conditions. This value is considerably larger than the viscosity contrasts often used in numerical simulations.</p>
+<p>Even more importantly, the intracellular viscosity is not characterized by a single value. Instead, the study predicts a broad log-normal distribution extending approximately from</p>
+<p><span class="math display">\[
+\lambda \approx 5
+\]</span></p>
+<p>to</p>
+<p><span class="math display">\[
+\lambda \approx 20,
+\]</span></p>
+<p>with a median value close to</p>
+<p><span class="math display">\[
+\lambda \approx 10.
+\]</span></p>
+<p>Older red blood cells were estimated to possess more than twice the cytosol viscosity of younger cells because of their reduced water content.</p>
+<p><a href="figures/ViscosityContrast.png">Predicted distribution of intracellular viscosity contrasts in a healthy RBC population [Credits](https://doi.org/10.1119/10.0003452)</a></p>
 </section>
-<section id="key-take-home-messages" class="level1">
-<h1>Key take-home messages</h1>
+<section id="consequences-for-numerical-modeling" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="consequences-for-numerical-modeling"><span class="header-section-number">7.2</span> Consequences for numerical modeling</h2>
+<p>This result highlights an important limitation of many current computational models.</p>
+<p>Most simulations still assume that all red blood cells:</p>
+<ul>
+<li>have the same viscosity,</li>
+<li>have the same density,</li>
+<li>have the same age,</li>
+<li>have identical mechanical properties.</li>
+</ul>
+<p>In reality, healthy blood contains a distribution of cells with different physical characteristics.</p>
+<p>Future simulations may therefore need to move beyond the concept of a single “representative” red blood cell and instead incorporate distributions of:</p>
+<ul>
+<li>membrane properties,</li>
+<li>cell volumes,</li>
+<li>intracellular viscosities,</li>
+<li>cell ages.</li>
+</ul>
+<p>Such approaches may prove essential for accurately reproducing blood rheology in health and disease.</p>
+<p>More generally, this example illustrates an important theme in modern biological physics:</p>
+<blockquote class="blockquote">
+<p>Progress increasingly depends on combining detailed experiments, physical modeling, and numerical simulations to determine the effective material properties of living systems.</p>
+</blockquote>
+<p>The red blood cell remains one of the best laboratories in which to develop and test these approaches.</p>
+</section>
+</section>
+<section id="key-take-home-messages" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Key take-home messages</h1>
 <ul>
 <li>Membrane elasticity provides a likely explanation for deviations from ideal osmometer behavior.</li>
 <li>Stretching, tilting and bending are the three principal membrane deformation modes.</li>
