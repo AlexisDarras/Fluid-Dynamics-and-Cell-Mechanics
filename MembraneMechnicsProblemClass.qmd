@@ -1,0 +1,529 @@
+---
+title: "Cell Mechanics Problem Class"
+subtitle: "Membrane Elasticity and Curvature"
+author: "Dr Alexis Darras"
+format:
+  html:
+    toc: true
+    number-sections: true
+---
+
+# Introduction
+
+In this problem class, we will apply the concepts introduced in the lecture on membrane elasticity to two concrete situations:
+
+1. Determining membrane properties from tether-pulling experiments.
+2. Computing the curvature of a sphere from the first and second fundamental forms.
+
+The objective is not only to obtain numerical results, but also to become familiar with the physical and geometrical reasoning used in modern membrane mechanics.
+
+# Exercise 1: Membrane pulling
+
+Experiments can be used to characterize membrane mechanical properties by pulling thin membrane tubes, often called **tethers**, from vesicles or cellular organelles.
+
+Typical examples include:
+
+- Golgi membranes,
+- endoplasmic reticulum,
+- giant lipid vesicles.
+
+In these experiments, a small bead is trapped and displaced using optical tweezers, producing a force of approximately
+
+$$
+f \approx 10 \; \mathrm{pN}.
+$$
+
+A long cylindrical tether then emerges from the membrane.
+
+![Illustration of tether pulling](figures/MembraneProblemExp.png)
+
+The geometry is approximated by:
+
+- a spherical vesicle of radius $R$,
+- a cylindrical tether of radius $r$,
+- a tether length $L$.
+
+Assume
+
+$$
+r \ll R,
+$$
+
+and neglect spontaneous curvature.
+
+---
+
+## Step 1: Identify the relevant geometrical objects
+
+Before writing any energy, decompose the membrane into simple geometrical objects.
+
+### Question
+
+Which elementary geometries compose the membrane?
+
+Think in terms of:
+
+- the large vesicle,
+- the cylindrical tether,
+- the region connecting them.
+
+### Hint
+
+The connecting region is neither spherical nor cylindrical.
+
+What simple surface gives a smooth transition between a sphere and a cylinder?
+
+---
+
+## Step 2: Compute the bending energy
+
+The Helfrich bending energy is
+
+$$
+U_b
+=
+\int_A
+\frac{\kappa}{2}
+(2K)^2\,dA,
+$$
+
+since we neglect spontaneous curvature.
+
+For each geometrical component:
+
+1. Determine the principal curvatures.
+2. Compute the mean curvature $K$.
+3. Compute the local bending energy density.
+4. Integrate over the corresponding surface.
+
+### Useful reminders
+
+Sphere:
+
+$$
+\kappa_1=\kappa_2=\frac1R.
+$$
+
+Cylinder:
+
+$$
+\kappa_1=\frac1r,
+\qquad
+\kappa_2=0.
+$$
+
+### Hint
+
+Use the approximation
+
+$$
+r\ll R.
+$$
+
+Which bending contribution dominates?
+
+---
+
+## Step 3: Membrane stretching energy
+
+The stretching energy may be written
+
+$$
+U_s
+=
+\frac{k_s}{2}
+\frac{(A-A_0)^2}{A_0},
+$$
+
+where:
+
+- $A_0$ is the reference area,
+- $A$ is the current membrane area.
+
+### Question
+
+Express the total membrane area as a function of
+
+- $R$,
+- $r$,
+- $L$.
+
+### Hint
+
+The cylindrical tether contributes an area proportional to
+
+$$
+rL.
+$$
+
+For later calculations it is convenient to introduce the membrane tension
+
+$$
+\sigma
+=
+k_s
+\frac{A-A_0}{A_0}.
+$$
+
+---
+
+## Step 4: Other energy contributions
+
+The total energy is not limited to elasticity.
+
+### Question
+
+What are the two other energetic contributions appearing in this experiment?
+
+### Hint
+
+One is associated with the pressure difference across the membrane,
+
+$$
+\Delta p
+=
+p_{\rm in}-p_{\rm out},
+$$
+
+and the other originates from the external pulling force $f$.
+
+Write the corresponding energies using:
+
+- the enclosed volume,
+- the tether length.
+
+---
+
+## Step 5: Build the total energy
+
+Combine all previous contributions into
+
+$$
+U_{\rm tot}.
+$$
+
+The final expression should depend only on:
+
+$$
+R,\qquad r,\qquad L.
+$$
+
+Keep only the leading-order contributions in
+
+$$
+\frac rR.
+$$
+
+---
+
+## Step 6: Apply equilibrium conditions
+
+At equilibrium, the energy must be stationary with respect to every independent geometrical variable.
+
+Therefore,
+
+$$
+\frac{\partial U_{\rm tot}}{\partial R}=0,
+$$
+
+$$
+\frac{\partial U_{\rm tot}}{\partial r}=0,
+$$
+
+$$
+\frac{\partial U_{\rm tot}}{\partial L}=0.
+$$
+
+### Question
+
+What physical information is contained in each of these three equations?
+
+### Hint
+
+One of them should resemble a well-known result relating pressure and membrane tension.
+
+---
+
+## Step 7: Simplify using $r\ll R$
+
+Several terms become much smaller than others.
+
+Inspect all equilibrium equations and determine which terms can safely be neglected.
+
+### Hint
+
+Compare orders of magnitude.
+
+Terms proportional to
+
+$$
+\frac rR
+$$
+
+are typically small.
+
+---
+
+## Step 8: Estimate membrane properties
+
+Using
+
+$$
+f\approx10\ {\rm pN},
+$$
+
+$$
+r\approx50\ {\rm nm},
+$$
+
+$$
+R\approx10\ {\mu{\rm m}},
+$$
+
+estimate:
+
+1. the membrane tension $\sigma$,
+2. the bending modulus $\kappa$,
+3. the pressure difference $\Delta p$.
+
+### Sanity check
+
+Compare your bending modulus with the values encountered in the lecture:
+
+$$
+\kappa
+\sim
+10^{-20}\ {\rm J}
+\sim
+10-30\,k_B T.
+$$
+
+If your answer is orders of magnitude away from this range, revisit the approximations.
+
+---
+
+# Exercise 2: Curvature of a sphere
+
+In the lecture we introduced the first and second fundamental forms as the proper way to define curvature on a general surface.
+
+We now apply this formalism to the simplest example: a sphere.
+
+**[Insert figure from the problem sheet]**
+
+---
+
+## Step 1: Parametrize the surface
+
+Consider a sphere of radius $R$.
+
+Choose two parameters
+
+$$
+(u_1,u_2)
+$$
+
+and write an explicit parametrization
+
+$$
+\mathbf X(u_1,u_2).
+$$
+
+### Hint
+
+Spherical coordinates are the natural choice.
+
+The usual angular variables are particularly convenient.
+
+---
+
+## Step 2: Tangent vectors
+
+Compute
+
+$$
+\partial_1\mathbf X,
+\qquad
+\partial_2\mathbf X.
+$$
+
+Verify that both vectors are tangent to the surface.
+
+---
+
+## Step 3: First fundamental form
+
+Compute
+
+$$
+I_{ij}
+=
+\partial_i\mathbf X
+\cdot
+\partial_j\mathbf X.
+$$
+
+### Goal
+
+Construct the matrix
+
+$$
+I.
+$$
+
+### Check
+
+The matrix should be symmetric.
+
+---
+
+## Step 4: Surface normal
+
+Compute the unit normal vector
+
+$$
+\mathbf n
+=
+\frac{
+\partial_1\mathbf X
+\times
+\partial_2\mathbf X
+}
+{
+\left|
+\partial_1\mathbf X
+\times
+\partial_2\mathbf X
+\right|
+}.
+$$
+
+### Question
+
+Does the chosen normal point inward or outward?
+
+---
+
+## Step 5: Second derivatives
+
+Compute
+
+$$
+\partial_i\partial_j\mathbf X.
+$$
+
+You will need these quantities to construct the second fundamental form.
+
+---
+
+## Step 6: Second fundamental form
+
+Compute
+
+$$
+II_{ij}
+=
+\mathbf n
+\cdot
+\partial_i\partial_j\mathbf X.
+$$
+
+As for the first fundamental form, build the corresponding matrix
+
+$$
+II.
+$$
+
+---
+
+## Step 7: Principal curvatures
+
+The principal curvatures satisfy
+
+$$
+\det
+\left(
+II-\kappa I
+\right)
+=
+0.
+$$
+
+### Question
+
+Solve this equation and determine
+
+$$
+\kappa_1,
+\qquad
+\kappa_2.
+$$
+
+### Hint
+
+Because a sphere has the same curvature in every direction, the answer should not depend on the chosen point.
+
+---
+
+## Step 8: Mean and Gaussian curvature
+
+Use
+
+$$
+K
+=
+\frac{\kappa_1+\kappa_2}{2},
+$$
+
+and
+
+$$
+K_G
+=
+\kappa_1\kappa_2.
+$$
+
+to determine:
+
+- the mean curvature,
+- the Gaussian curvature.
+
+### Check
+
+Compare your result with the intuitive definition of curvature introduced earlier in the lecture for a circle of radius $R$.
+
+---
+
+# Questions for discussion
+
+After completing the exercises, make sure you can answer the following questions.
+
+### Membrane pulling
+
+- Why is the tether radius controlled by a balance between tension and bending?
+- Why is stretching generally neglected compared with bending in lipid membranes?
+- Why does the measured force provide information about the bending modulus?
+
+### Surface geometry
+
+- Why are principal curvatures easier to define locally than globally?
+- Why does one need the first and second fundamental forms to compute curvature on an arbitrary surface?
+- Why are all directions equivalent on a sphere but not on a general membrane?
+
+### Biological interpretation
+
+- Why does the RBC membrane behave almost as an incompressible surface?
+- Why is the bending modulus sufficient to explain many RBC shape changes?
+- Which physical effects are still missing from the Helfrich model?
+
+---
+
+# Learning outcomes
+
+By the end of this problem class, you should be able to:
+
+- derive equilibrium conditions from an elastic energy,
+- estimate membrane mechanical parameters from experiments,
+- compute the first and second fundamental forms of a surface,
+- determine principal curvatures from differential geometry,
+- compute the mean and Gaussian curvature of a sphere,
+- connect membrane-scale mechanics with experimentally observed cell behavior.

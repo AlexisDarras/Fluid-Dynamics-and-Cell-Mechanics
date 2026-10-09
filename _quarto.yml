@@ -29,6 +29,9 @@ website:
           - href: MembraneElasticity.qmd
             text: Membrane elasticity
 
+          - href: MembraneMechanicsProblemClass.qmd
+            text: Membrane elasticity problem class
+
 
 
 format:
