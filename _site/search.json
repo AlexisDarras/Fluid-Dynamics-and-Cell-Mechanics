@@ -1060,77 +1060,98 @@
     "objectID": "RBCAggregation.html#spring-model",
     "href": "RBCAggregation.html#spring-model",
     "title": "Biological and Mesoscale Physics",
-    "section": "5.1 Spring model",
-    "text": "5.1 Spring model\nSuppose a molecular bond behaves like a spring.\nThe force produced by a single bond is\n\\[\nf_b\n=\nk_b(l-l_0),\n\\]\nwhere:\n\n(k_b) is the bond stiffness,\n(l_0) is the equilibrium length,\n(l) is the current bond length.\n\nIf\n\\[\nn_b\n\\]\nbonds are present,\nthe total bridging force becomes\n\\[\n\\boxed{\nf_m\n=\nn_b f_b.\n}\n\\]\nThe interaction therefore depends not only on the mechanical properties of each bond but also on the number of bonds."
+    "section": "3.1 Spring model",
+    "text": "3.1 Spring model\nSuppose a molecular bond behaves like a spring.\nThe force produced by a single bond is\n\\[\nf_b\n=\nk_b(l-l_0),\n\\]\nwhere:\n\n\\(k_b\\) is the bond stiffness,\n\\(l_0\\) is the equilibrium length,\n\\(l\\) is the current bond length.\n\nIf\n\\[\nn_b\n\\]\nbonds are present,\nthe total bridging force becomes\n\\[\n\\boxed{\nf_m\n=\nn_b f_b.\n}\n\\]\nThe interaction therefore depends not only on the mechanical properties of each bond but also on the number of bonds."
   },
   {
     "objectID": "RBCAggregation.html#bond-kinetics",
     "href": "RBCAggregation.html#bond-kinetics",
     "title": "Biological and Mesoscale Physics",
-    "section": "5.2 Bond kinetics",
-    "text": "5.2 Bond kinetics\nThe number of attached molecules is itself dynamic.\nBridging models therefore introduce chemical-reaction kinetics.\nA typical description is\n\\[\n\\frac{\\partial n_b}{\\partial t}\n=\n2\n\\left[\nk_+\n\\frac{(n-n_b)^2}{2}\n-\nk_-\n\\frac{n_b}{2}\n\\right].\n\\]\nThe attachment and detachment rates are commonly modeled using thermally activated processes:\n\\[\nk_+\n=\nk_+^0\n\\exp\n\\left(\n-\\frac{k_{ts}(l-l_0)^2}{2k_B T}\n\\right),\n\\]\n\\[\nk_-\n=\nk_-^0\n\\exp\n\\left(\n-\\frac{(k_b-k_{ts})(l-l_0)^2}{2k_B T}\n\\right).\n\\]\nThis framework was developed and extensively explored in numerical studies by Bagchi and collaborators."
+    "section": "3.2 Bond kinetics",
+    "text": "3.2 Bond kinetics\nThe key idea behind bridging models is that aggregation does not simply depend on the existence of adhesive macromolecules, but also on how many molecular bridges are actually formed between two cells at a given instant.\nThe number of active bonds is therefore a dynamic quantity.\nLet \\(n\\) be the surface density of aggregation molecules available on each cell membrane, and \\(n_b\\) the density of bonds currently linking the two cells.\nBecause bonds can continuously form and break, \\(n_b\\) evolves according to a reaction equation analogous to those used in chemical kinetics.\nA commonly used description is\n\\[\n\\frac{\\partial n_b}{\\partial t}\n=\n2\n\\left[\nk_+\n\\frac{(n-n_b)^2}{2}\n-\nk_-\n\\frac{n_b}{2}\n\\right].\n\\]\nThe first term corresponds to bond formation, while the second term corresponds to bond rupture.\n\n3.2.1 Physical interpretation\nThe precise dependence of the bond formation rate on the number of available molecules is not known. In the present model, a second-order reaction law is assumed:   \\[\n\\text{bond formation rate}\n\\propto\n(n-n_b)^2.\n\\]   This quadratic dependence should therefore be viewed primarily as a modeling hypothesis rather than a rigorously established consequence of the underlying molecular mechanism.   Physically, it reflects the idea that bond formation becomes increasingly difficult as the available adhesion molecules are progressively exhausted.\nIn contrast, a bond can only break if it already exists, so the rupture term is proportional to the number of existing bonds:\n\\[\nk_- n_b.\n\\]\nThe competition between these two processes determines whether aggregation strengthens or weakens with time.\nAt equilibrium,\n\\[\n\\frac{\\partial n_b}{\\partial t}=0,\n\\]\nso the rates of bond formation and bond rupture exactly balance one another.\n\n\n3.2.2 Dependence on cell separation\nThe rates \\(k_+\\) and \\(k_-\\) are not constants.\nThey depend on the distance between the two cell membranes.\nThis is because each molecular bridge behaves approximately like a spring.\nIf\n\n\\(l_0\\) is the equilibrium bond length,\n\\(l\\) is the current bond length,\n\nthen stretching or compressing the bond changes its elastic energy.\nThe attachment and detachment rates are commonly modeled using thermally activated processes,\n\\[\nk_+\n=\nk_+^0\n\\exp\n\\left(\n-\\frac{k_{ts}(l-l_0)^2}{2k_B T}\n\\right),\n\\]\nand\n\\[\nk_-\n=\nk_-^0\n\\exp\n\\left(\n-\\frac{(k_b-k_{ts})(l-l_0)^2}{2k_B T}\n\\right).\n\\]\nHere:\n\n\\(k_+^0\\) is the bond formation rate when no force is applied,\n\\(k_-^0\\) is the spontaneous bond rupture rate,\n\\(k_b\\) is the effective spring constant of an individual bond,\n\\(k_{ts}\\) characterizes the transition state associated with bond formation,\n\\(l_0\\) is the equilibrium bond length,\n\\(l\\) is the current bond length,\n\\(k_B\\) is Boltzmann’s constant,\n\\(T\\) is the absolute temperature.\n\n\n\n3.2.3 Why does a Boltzmann factor appear?\nThe exponential terms have the form\n\\[\ne^{-E/k_B T},\n\\]\nwhich is the usual Boltzmann factor encountered in statistical physics.\nThis factor expresses a simple idea:\n\nConfigurations with a higher elastic energy are statistically less likely to occur.\n\nStretching a molecular bridge away from its preferred length increases its elastic energy by approximately\n\\[\n\\frac12 k(l-l_0)^2.\n\\]\nThe thermal energy available in the system is\n\\[\nk_B T.\n\\]\nThe ratio\n\\[\n\\frac{\\text{elastic energy}}\n     {\\text{thermal energy}}\n=\n\\frac{k(l-l_0)^2}{2k_B T}\n\\]\ntherefore determines how probable the configuration is.\nLarge deformations correspond to high energies, making the corresponding configurations exponentially less likely.\nAs a result:\n\nbond formation becomes less probable when molecules are strongly stretched,\nbond rupture becomes more probable when large elastic tensions develop.\n\n\n\n3.2.4 Effective number of bridge-forming molecules\nA subtle but important point is that the quantity\n\\[\nn\n\\]\nappearing in the kinetic model does not necessarily correspond to the total number of adsorbed macromolecules on the membrane.\nInstead, it should be interpreted as an effective density of molecules capable of forming bridges between two neighboring cells.\nAt low concentrations of aggregation molecules, these two quantities are approximately identical:\n\\[\nn\n\\approx\nn_{\\rm ads},\n\\]\nbecause most adsorbed molecules remain accessible and can participate in bridge formation.\nHowever, this correspondence breaks down at larger concentrations.\n\n\n\nIllustration showing increasing surface coverage of aggregation molecules and the resulting changes in the number of possible bridges between neighboring cells\n\n\nThe sketches above illustrate three qualitatively different regimes:\n\n3.2.4.1 Low concentration\nIn panel (a), only a small number of macromolecules are present near the cell surfaces.\nMost molecules remain isolated and accessible.\nIncreasing the concentration therefore increases almost proportionally the number of molecules capable of forming bridges.\nIn this regime,\n\\[\nn \\propto n_{\\rm ads}.\n\\]\n\n\n3.2.4.2 Intermediate concentration\nIn panel (b), more molecules are available in the interaction region.\nThe number of possible bridges increases rapidly because many new configurations become available.\nThe probability that a given molecule finds a suitable partner on the opposite cell increases, which favors aggregation.\nThis regime is often the most efficient for bridge formation.\n\n\n3.2.4.3 High concentration\nIn panel (c), the membrane surface becomes crowded.\nMany adsorbed molecules compete for the same available binding sites.\nSteric interactions between neighboring molecules may:\n\nreduce their mobility,\nhinder their proper orientation,\nblock access to the membrane surface,\nreduce the number of mechanically effective bridges.\n\nAs a result, the effective density of bridge-forming molecules may increase much more slowly than the total number of adsorbed molecules, and can even decrease for sufficiently strong crowding.\nConsequently,\n\\[\nn\n\\neq\nn_{\\rm ads}\n\\]\nin general.\nInstead,\n\\[\nn=n(n_{\\rm ads})\n\\]\nshould be viewed as an effective quantity that depends on:\n\nthe concentration of adsorbed molecules,\ntheir spatial organization,\nthe geometry of the contact region,\nsteric interactions between neighboring molecules.\n\n\n\n\n3.2.5 Consequences for aggregation\nThis distinction is important because it implies that increasing the concentration of aggregation proteins does not necessarily lead to stronger aggregation.\nAdding more molecules initially increases the number of possible bridges, but beyond a certain concentration crowding effects will reduce bridge formation.\nThe relationship between protein concentration and aggregation strength is therefore expected to be non-monotonic in general.\nThis observation helps explain why quantitative predictions of bridging models remain challenging: the effective parameter \\(n\\) is not simply determined by measuring the concentration of aggregation proteins, but depends on the microscopic organization of those proteins in the contact zone between neighboring cells."
   },
   {
     "objectID": "RBCAggregation.html#advantages-of-bridging-models",
     "href": "RBCAggregation.html#advantages-of-bridging-models",
     "title": "Biological and Mesoscale Physics",
-    "section": "5.3 Advantages of bridging models",
-    "text": "5.3 Advantages of bridging models\nBridging models are attractive because they can naturally be combined with:\n\nmembrane deformation,\nfluid flow,\nhydrodynamic simulations.\n\nThey are therefore widely used in computational blood mechanics."
+    "section": "3.3 Advantages of bridging models",
+    "text": "3.3 Advantages of bridging models\nBridging models are attractive because they can naturally be combined with:\n\nmembrane deformation,\nfluid flow,\nhydrodynamic simulations.\n\nThey are therefore widely used in computational blood mechanics."
   },
   {
     "objectID": "RBCAggregation.html#difficulties",
     "href": "RBCAggregation.html#difficulties",
     "title": "Biological and Mesoscale Physics",
-    "section": "5.4 Difficulties",
-    "text": "5.4 Difficulties\nThe main limitation is that many parameters are difficult to determine experimentally.\nExamples include:\n\nbond stiffnesses,\nattachment rates,\ndetachment rates,\ndensities of active macromolecules.\n\nReported values often span several orders of magnitude.\nAs a consequence, bridging models can be difficult to validate quantitatively."
+    "section": "3.4 Difficulties",
+    "text": "3.4 Difficulties\nThe main limitation is that many parameters are difficult to determine experimentally.\nExamples include:\n\nbond stiffnesses,\nattachment rates,\ndetachment rates,\ndensities of active macromolecules.\n\nReported values often span several orders of magnitude.\nAs a consequence, bridging models can be difficult to validate quantitatively."
   },
   {
     "objectID": "RBCAggregation.html#physical-origin",
     "href": "RBCAggregation.html#physical-origin",
     "title": "Biological and Mesoscale Physics",
-    "section": "6.1 Physical origin",
-    "text": "6.1 Physical origin\nConsider two red blood cells immersed in a solution containing macromolecules.\nThe polymers cannot approach arbitrarily close to the cell surface.\nA depletion layer therefore appears around each cell.\n[Insert figure: depletion layers around two neighboring cells]\nWhen two cells approach one another, these depletion layers overlap.\nThe overlap increases the volume available to polymers elsewhere in the solution.\nBecause entropy increases, the corresponding configuration is favored.\nThe result is an effective attraction between the cells.\nRemarkably:\n\ntwo particles can attract one another even if all microscopic interactions are purely repulsive.\n\nThis is one of the most important ideas in colloid science."
+    "section": "4.1 Physical origin",
+    "text": "4.1 Physical origin\nConsider two red blood cells immersed in a solution containing macromolecules or nanoparticles.\nThe polymers or particles cannot approach arbitrarily close to the cell surface.\nAn depletion layer, within which the center of mass of the macromolecules, therefore appears around each cell.\n\n\n\nDepletion layers around two neighboring spheres and cells\n\n\nWhen two cells approach one another, these depletion layers overlap.\nThe overlap increases the volume available to polymers elsewhere in the solution.\nBecause entropy increases, the corresponding configuration is favored.\nThe result is an effective attraction between the cells.\nRemarkably:\n\ntwo particles can attract one another even if all microscopic interactions are purely repulsive.\n\nThis is one of the most important ideas in colloid science."
   },
   {
     "objectID": "RBCAggregation.html#large-separations",
     "href": "RBCAggregation.html#large-separations",
     "title": "Biological and Mesoscale Physics",
-    "section": "7.1 Large separations",
-    "text": "7.1 Large separations\nIf\n\\[\nh \\ge 2r,\n\\]\nparticles can enter the gap.\nThe osmotic pressure inside and outside the gap is identical:\n\\[\nP_i=P_o.\n\\]\nNo net force appears."
+    "section": "5.1 Large separations",
+    "text": "5.1 Large separations\nIf\n\\[\nh \\ge 2r,\n\\]\nparticles can enter the gap.\nThe osmotic pressure inside and outside the gap is identical:\n\\[\nP_i=P_o.\n\\]\nNo net force appears."
   },
   {
     "objectID": "RBCAggregation.html#small-separations",
     "href": "RBCAggregation.html#small-separations",
     "title": "Biological and Mesoscale Physics",
-    "section": "7.2 Small separations",
-    "text": "7.2 Small separations\nIf\n\\[\nh &lt; 2r,\n\\]\nthe particles cannot enter the gap.\nThe osmotic pressure becomes\n\\[\nP_i=0,\n\\qquad\nP_o=\\Pi.\n\\]\nThe resulting force is\n\\[\n\\boxed{\nF=S\\Pi,\n}\n\\]\nwhere (S) is the plate area.\nFor an ideal solution,\n\\[\n\\Pi=nk_B T.\n\\]\nThe corresponding interaction energy becomes\n\\[\n\\boxed{\nU\n=\n-Snk_B T\n\\left(\nr-\\frac{h}{2}\n\\right),\n\\qquad\nh&lt;2r.\n}\n\\]\nThis is the classical Asakura–Oosawa depletion attraction."
+    "section": "5.2 Small separations",
+    "text": "5.2 Small separations\nIf\n\\[\nh &lt; 2r,\n\\]\nthe particles cannot enter the gap.\nThe osmotic pressure becomes\n\\[\nP_i=0,\n\\qquad\nP_o=\\Pi.\n\\]\nThe resulting force is\n\\[\n\\boxed{\nF=S\\Pi,\n}\n\\]\nwhere \\(S\\) is the plate area.\nFor an ideal solution,\n\\[\n\\Pi=nk_B T.\n\\]\nThe corresponding interaction energy becomes\n\\[\n\\boxed{\nU\n=\n-Snk_B T\n\\left(\nr-\\frac{h}{2}\n\\right),\n\\qquad\nh&lt;2r.\n}\n\\]\nThis is the classical Asakura–Oosawa depletion attraction."
   },
   {
     "objectID": "RBCAggregation.html#polymer-penetration",
     "href": "RBCAggregation.html#polymer-penetration",
     "title": "Biological and Mesoscale Physics",
-    "section": "8.1 Polymer penetration",
-    "text": "8.1 Polymer penetration\nNeu and Meiselman proposed an influential model incorporating:\n\npenetration depth (p),\ndepletion thickness (),\nosmotic pressure ().\n\nThe resulting interaction energy becomes\n\\[\n\\boxed{\nw_D\n=\n-2\\Pi\n\\left(\n\\Delta\n-\\frac{p+d}{2}\n+\\delta\n\\right),\n}\n\\]\nwhere:\n\n(d) is the cell-cell separation,\n() characterizes the glycocalyx thickness."
+    "section": "6.1 Polymer penetration",
+    "text": "6.1 Polymer penetration\nNeu and Meiselman proposed an influential model incorporating:\n\npenetration depth \\(p\\),\ndepletion thickness \\(\\Delta\\),\nosmotic pressure \\(\\Pi\\).\n\n\n\n\nScheme of distances in the Neu-Meiselman model of depletion interaction, in realistic and idealized representations\n\n\nThe resulting interaction energy becomes\n\\[\n\\boxed{\nw_D\n=\n-2\\Pi\n\\left(\n\\Delta\n-\\frac{p+d}{2}\n+\\delta\n\\right),\n}\n\\]\nwhere:\n\n\\(d\\) is the cell-cell separation,\n\\(\\delta\\) characterizes the glycocalyx thickness."
   },
   {
     "objectID": "RBCAggregation.html#osmotic-pressure-corrections",
     "href": "RBCAggregation.html#osmotic-pressure-corrections",
     "title": "Biological and Mesoscale Physics",
-    "section": "8.2 Osmotic-pressure corrections",
-    "text": "8.2 Osmotic-pressure corrections\nAt sufficiently large polymer concentrations, ideal-solution approximations become insufficient.\nA virial expansion can be used:\n\\[\n\\Pi\n=\nn_b k_B T\n+\nB_2 n_b^2.\n\\]\nThe depletion thickness then becomes concentration dependent.\nExperimental measurements reveal strong decreases of depletion thickness as polymer concentration increases.\n[Insert figure: depletion thickness versus polymer concentration]"
+    "section": "6.2 Osmotic-pressure corrections",
+    "text": "6.2 Osmotic-pressure corrections\nAt sufficiently large polymer concentrations, ideal-solution approximations become insufficient.\nA virial expansion can be used:\n\\[\n\\Pi\n=\nn_b k_B T\n+\nB_2 n_b^2.\n\\]\nThe depletion thickness then becomes concentration dependent.\nExperimental measurements reveal strong decreases of depletion thickness as polymer concentration increases.\n\n\n\nDepletion thickness versus polymer concentration"
   },
   {
     "objectID": "RBCAggregation.html#atomic-force-microscopy",
     "href": "RBCAggregation.html#atomic-force-microscopy",
     "title": "Biological and Mesoscale Physics",
-    "section": "10.1 Atomic force microscopy",
-    "text": "10.1 Atomic force microscopy\nA red blood cell can be attached to an AFM cantilever and brought into contact with another cell.\n[Insert figure: AFM setup]\nThe force required to separate the cells can then be measured directly.\nTypical force-distance curves reveal attractive interactions of order tens of piconewtons.\n[Insert figure: AFM force curve]"
+    "section": "8.1 Atomic force microscopy",
+    "text": "8.1 Atomic force microscopy\nA red blood cell can be attached to an AFM cantilever and brought into contact with another cell.\n\n\n\nInsert figure: AFM setup\n\n\nThe force required to separate the cells can then be measured directly.\nTypical force-distance curves reveal attractive interactions of order tens of piconewtons.\n\n\n\nInsert figure: AFM force curve"
   },
   {
     "objectID": "RBCAggregation.html#experimental-precautions",
     "href": "RBCAggregation.html#experimental-precautions",
     "title": "Biological and Mesoscale Physics",
-    "section": "10.2 Experimental precautions",
-    "text": "10.2 Experimental precautions\nSuch measurements are challenging.\nContact times must often be carefully controlled because:\n\nprolonged contact may induce bridging,\ncells continuously deform,\naggregation may become history dependent.\n\nConsequently, interpretation of experiments requires considerable care."
+    "section": "8.2 Experimental precautions",
+    "text": "8.2 Experimental precautions\nSuch measurements are challenging.\nContact times must often be carefully controlled because:\n\nprolonged contact may induce bridging,\ncells continuously deform,\naggregation may become history dependent.\n\nConsequently, interpretation of experiments requires considerable care."
+  },
+  {
+    "objectID": "RBCAggregation.html#a-clue-red-blood-cell-aggregation",
+    "href": "RBCAggregation.html#a-clue-red-blood-cell-aggregation",
+    "title": "Biological and Mesoscale Physics",
+    "section": "2.1 A clue: red blood cell aggregation",
+    "text": "2.1 A clue: red blood cell aggregation\nMicroscopy observations reveal that red blood cells do not always behave as isolated particles.\nUnder physiological conditions, human erythrocytes spontaneously form aggregates composed of multiple stacked cells.\nThese structures are known as rouleaux, from the French word describing stacks of coins.\n\n\n\nExamples of aggregates (rouleaux) structures observed in physiological conditions\n\n\nAt low shear rates, such aggregates can contain several red blood cells and may continuously form and break apart as blood flows.\nThe existence of these aggregates provides a natural explanation for shear thinning:\n\nat low shear rates, aggregation increases the effective size of suspended objects and therefore increases the viscosity;\nat high shear rates, hydrodynamic forces progressively disrupt the aggregates, reducing their influence on the flow.\n\nConsequently, the strength of aggregation is expected to play a major role in determining the rheological properties of blood.\nThis observation also explains why blood rheology differs from one species to another: the tendency of red blood cells to aggregate varies significantly across species."
+  },
+  {
+    "objectID": "RBCAggregation.html#a-physical-question",
+    "href": "RBCAggregation.html#a-physical-question",
+    "title": "Biological and Mesoscale Physics",
+    "section": "2.2 A physical question",
+    "text": "2.2 A physical question\nThe existence of rouleaux raises an important question:\n\nWhy do red blood cells attract one another at all?\n\nRed blood cells carry a net negative surface charge and are suspended in a fluid environment undergoing continuous thermal agitation. At first sight, one might therefore expect cells to remain separated.\nYet experiments clearly show the existence of stable aggregates under physiological conditions.\nUnderstanding the origin of this attraction remains an active area of research."
+  },
+  {
+    "objectID": "RBCAggregation.html#two-major-theories",
+    "href": "RBCAggregation.html#two-major-theories",
+    "title": "Biological and Mesoscale Physics",
+    "section": "2.3 Two major theories",
+    "text": "2.3 Two major theories\nOver the last decades, two major physical mechanisms have been proposed to explain red blood cell aggregation:\n\nBridging, in which macromolecules adsorb onto neighboring cells and directly connect them;\nDepletion, in which macromolecules are excluded from the narrow gap between cells, generating an effective attraction through osmotic effects.\n\n\n\n\nSchematic comparison between bridging and depletion mechanisms\n\n\nBoth approaches reproduce important experimental observations, and both continue to be investigated in modern blood physics.\nIn the remainder of this lecture, we will examine these two mechanisms in detail and discuss their respective strengths and limitations in explaining red blood cell aggregation."
   }
 ]

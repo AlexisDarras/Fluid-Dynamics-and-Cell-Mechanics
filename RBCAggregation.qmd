@@ -37,49 +37,11 @@ Understanding blood therefore requires moving from **single-cell mechanics** to 
 
 become essential.
 
-# Red blood cells as highly deformable particles
 
-Red blood cells are the most abundant cell type in the human body, accounting for roughly 70–80% of all cells.
 
-Their primary biological role is oxygen transport.
+# Why study red blood cell aggregation?
 
-A healthy red blood cell:
-
-- has a diameter of approximately \(8~\mu\mathrm m\),
-- has a thickness of approximately \(2~\mu\mathrm m\),
-- possesses remarkable deformability.
-
-**[Insert figure: RBC deformation in microchannels]**
-
-Experiments in confined microfluidic channels reveal that red blood cells continuously adapt their shape in response to flow conditions.
-
-For example:
-
-- at moderate flow velocities (\(\sim1~\mathrm{mm/s}\)),
-  cells adopt one family of shapes;
-
-- at larger velocities (\(\sim5~\mathrm{mm/s}\)),
-  stronger deformations appear.
-
-These deformations are made possible by the combination of:
-
-- membrane elasticity,
-- cytoskeletal mechanics,
-- fluidity of the lipid bilayer.
-
-Because red blood cells are both deformable and interactive, blood is a particularly rich soft-matter system.
-
-# Blood physics: an overview
-
-Many questions remain actively investigated today.
-
-Examples include:
-
-## Macroscopic rheology
-
-Blood is strongly non-Newtonian.
-
-One of its most characteristic features is **shear thinning**:
+In the lecture on complex fluids, we saw that blood is a strongly non-Newtonian fluid. In particular, its apparent viscosity decreases as the shear rate increases:
 
 $$
 \eta_{\rm app}
@@ -87,56 +49,67 @@ $$
 \qquad
 \text{when}
 \qquad
-\dot{\gamma}
+\dot\gamma
 \uparrow.
 $$
 
-The apparent viscosity decreases as the shear rate increases.
+This phenomenon, known as **shear thinning**, plays an essential role in blood circulation. It allows blood to flow relatively easily through small vessels while remaining significantly more viscous under weakly sheared conditions.
 
-**[Insert figure: viscosity versus shear rate for different species]**
+One of the most remarkable observations is that the shear-thinning behavior of blood varies considerably between species.
 
-Whether blood also exhibits a true yield stress remains an area of ongoing discussion.
+![Viscosity as a function of shear rate for blood from different animal species](figures/SpeciesViscosity.png)
 
-## Microfluidics
+Some species exhibit only weak shear thinning, whereas others show a dramatic decrease in viscosity as the shear rate increases.
 
-Important applications include:
+This immediately suggests that an additional microscopic mechanism is influencing blood rheology.
 
-- cell counting,
-- cell sorting,
-- deformability measurements,
-- disease diagnostics,
-- blood analogue development.
+## A clue: red blood cell aggregation
 
-## Red blood cell aggregation
+Microscopy observations reveal that red blood cells do not always behave as isolated particles.
 
-Perhaps the most striking collective phenomenon is the tendency of red blood cells to aggregate.
+Under physiological conditions, human erythrocytes spontaneously form aggregates composed of multiple stacked cells.
 
-**[Insert figure: rouleaux structures]**
+These structures are known as **rouleaux**, from the French word describing stacks of coins.
 
-These aggregates are often much larger than individual cells and can dominate blood rheology at low shear rates.
+![Examples of aggregates (rouleaux) structures observed in physiological conditions](figures/ExamplesRouleaux.png)
 
-Aggregation energies are typically much larger than thermal fluctuations:
+At low shear rates, such aggregates can contain several red blood cells and may continuously form and break apart as blood flows.
 
-$$
-F_{\rm agg}S
-\gg
-k_B T,
-$$
+The existence of these aggregates provides a natural explanation for shear thinning:
 
-indicating that aggregation is not driven by thermal motion alone.
+- at low shear rates, aggregation increases the effective size of suspended objects and therefore increases the viscosity;
+- at high shear rates, hydrodynamic forces progressively disrupt the aggregates, reducing their influence on the flow.
 
-This immediately raises a fundamental question:
+Consequently, the strength of aggregation is expected to play a major role in determining the rheological properties of blood.
 
-> What physical mechanism causes red blood cells to attract one another?
+This observation also explains why blood rheology differs from one species to another: the tendency of red blood cells to aggregate varies significantly across species.
 
-# Why do red blood cells aggregate?
+## A physical question
 
-Two principal explanations have been proposed:
+The existence of rouleaux raises an important question:
 
-1. Bridging
-2. Depletion
+> Why do red blood cells attract one another at all?
 
-Both mechanisms are still discussed in the literature.
+Red blood cells carry a net negative surface charge and are suspended in a fluid environment undergoing continuous thermal agitation. At first sight, one might therefore expect cells to remain separated.
+
+Yet experiments clearly show the existence of stable aggregates under physiological conditions.
+
+Understanding the origin of this attraction remains an active area of research.
+
+## Two major theories
+
+Over the last decades, two major physical mechanisms have been proposed to explain red blood cell aggregation:
+
+1. **Bridging**, in which macromolecules adsorb onto neighboring cells and directly connect them;
+2. **Depletion**, in which macromolecules are excluded from the narrow gap between cells, generating an effective attraction through osmotic effects.
+
+![Schematic comparison between bridging and depletion mechanisms](figures/BridgingDepletionComparison.png)
+
+Both approaches reproduce important experimental observations, and both continue to be investigated in modern blood physics.
+
+In the remainder of this lecture, we will examine these two mechanisms in detail and discuss their respective strengths and limitations in explaining red blood cell aggregation.
+
+
 
 # Bridging theory
 
@@ -146,7 +119,7 @@ A polymer molecule may simultaneously attach to two different cells.
 
 The molecule therefore acts as a molecular spring linking the cells together.
 
-**[Insert figure: polymer bridge between two membranes]**
+![Scheme of polymer bridges between two membranes](figures/Bridging.png)
 
 ## Spring model
 
@@ -162,9 +135,9 @@ $$
 
 where:
 
-- \(k_b\) is the bond stiffness,
-- \(l_0\) is the equilibrium length,
-- \(l\) is the current bond length.
+- $k_b$ is the bond stiffness,
+- $l_0$ is the equilibrium length,
+- $l$ is the current bond length.
 
 If
 
@@ -188,11 +161,15 @@ The interaction therefore depends not only on the mechanical properties of each 
 
 ## Bond kinetics
 
-The number of attached molecules is itself dynamic.
+The key idea behind bridging models is that aggregation does not simply depend on the existence of adhesive macromolecules, but also on how many molecular bridges are actually formed between two cells at a given instant.
 
-Bridging models therefore introduce chemical-reaction kinetics.
+The number of active bonds is therefore a dynamic quantity.
 
-A typical description is
+Let $n$ be the surface density of aggregation molecules available on each cell membrane, and $n_b$ the density of bonds currently linking the two cells.
+
+Because bonds can continuously form and break, $n_b$ evolves according to a reaction equation analogous to those used in chemical kinetics.
+
+A commonly used description is
 
 $$
 \frac{\partial n_b}{\partial t}
@@ -207,7 +184,54 @@ k_-
 \right].
 $$
 
-The attachment and detachment rates are commonly modeled using thermally activated processes:
+The first term corresponds to bond formation, while the second term corresponds to bond rupture.
+
+### Physical interpretation
+
+The precise dependence of the bond formation rate on the number of available molecules is not known. In the present model, a second-order reaction law is assumed:
+ 
+$$
+\text{bond formation rate}
+\propto
+(n-n_b)^2.
+$$
+ 
+This quadratic dependence should therefore be viewed primarily as a modeling hypothesis rather than a rigorously established consequence of the underlying molecular mechanism.
+ 
+Physically, it reflects the idea that bond formation becomes increasingly difficult as the available adhesion molecules are progressively exhausted.
+
+In contrast, a bond can only break if it already exists, so the rupture term is proportional to the number of existing bonds:
+
+$$
+k_- n_b.
+$$
+
+The competition between these two processes determines whether aggregation strengthens or weakens with time.
+
+At equilibrium,
+
+$$
+\frac{\partial n_b}{\partial t}=0,
+$$
+
+so the rates of bond formation and bond rupture exactly balance one another.
+
+### Dependence on cell separation
+
+The rates $k_+$ and $k_-$ are not constants.
+
+They depend on the distance between the two cell membranes.
+
+This is because each molecular bridge behaves approximately like a spring.
+
+If
+
+- $l_0$ is the equilibrium bond length,
+- $l$ is the current bond length,
+
+then stretching or compressing the bond changes its elastic energy.
+
+The attachment and detachment rates are commonly modeled using thermally activated processes,
 
 $$
 k_+
@@ -219,6 +243,8 @@ k_+^0
 \right),
 $$
 
+and
+
 $$
 k_-
 =
@@ -229,7 +255,160 @@ k_-^0
 \right).
 $$
 
-This framework was developed and extensively explored in numerical studies by Bagchi and collaborators.
+Here:
+
+- $k_+^0$ is the bond formation rate when no force is applied,
+- $k_-^0$ is the spontaneous bond rupture rate,
+- $k_b$ is the effective spring constant of an individual bond,
+- $k_{ts}$ characterizes the transition state associated with bond formation,
+- $l_0$ is the equilibrium bond length,
+- $l$ is the current bond length,
+- $k_B$ is Boltzmann's constant,
+- $T$ is the absolute temperature.
+
+### Why does a Boltzmann factor appear?
+
+The exponential terms have the form
+
+$$
+e^{-E/k_B T},
+$$
+
+which is the usual Boltzmann factor encountered in statistical physics.
+
+This factor expresses a simple idea:
+
+> Configurations with a higher elastic energy are statistically less likely to occur.
+
+Stretching a molecular bridge away from its preferred length increases its elastic energy by approximately
+
+$$
+\frac12 k(l-l_0)^2.
+$$
+
+The thermal energy available in the system is
+
+$$
+k_B T.
+$$
+
+The ratio
+
+$$
+\frac{\text{elastic energy}}
+     {\text{thermal energy}}
+=
+\frac{k(l-l_0)^2}{2k_B T}
+$$
+
+therefore determines how probable the configuration is.
+
+Large deformations correspond to high energies, making the corresponding configurations exponentially less likely.
+
+As a result:
+
+- bond formation becomes less probable when molecules are strongly stretched,
+- bond rupture becomes more probable when large elastic tensions develop.
+
+### Effective number of bridge-forming molecules
+
+A subtle but important point is that the quantity
+
+$$
+n
+$$
+
+appearing in the kinetic model does **not necessarily correspond to the total number of adsorbed macromolecules on the membrane**.
+
+Instead, it should be interpreted as an **effective density of molecules capable of forming bridges** between two neighboring cells.
+
+At low concentrations of aggregation molecules, these two quantities are approximately identical:
+
+$$
+n
+\approx
+n_{\rm ads},
+$$
+
+because most adsorbed molecules remain accessible and can participate in bridge formation.
+
+However, this correspondence breaks down at larger concentrations.
+
+![Illustration showing increasing surface coverage of aggregation molecules and the resulting changes in the number of possible bridges between neighboring cells](figures/BridgingCrowding.png)
+
+The sketches above illustrate three qualitatively different regimes:
+
+#### Low concentration
+
+In panel (a), only a small number of macromolecules are present near the cell surfaces.
+
+Most molecules remain isolated and accessible.
+
+Increasing the concentration therefore increases almost proportionally the number of molecules capable of forming bridges.
+
+In this regime,
+
+$$
+n \propto n_{\rm ads}.
+$$
+
+#### Intermediate concentration
+
+In panel (b), more molecules are available in the interaction region.
+
+The number of possible bridges increases rapidly because many new configurations become available.
+
+The probability that a given molecule finds a suitable partner on the opposite cell increases, which favors aggregation.
+
+This regime is often the most efficient for bridge formation.
+
+#### High concentration
+
+In panel (c), the membrane surface becomes crowded.
+
+Many adsorbed molecules compete for the same available binding sites.
+
+Steric interactions between neighboring molecules may:
+
+- reduce their mobility,
+- hinder their proper orientation,
+- block access to the membrane surface,
+- reduce the number of mechanically effective bridges.
+
+As a result, the effective density of bridge-forming molecules may increase much more slowly than the total number of adsorbed molecules, and can even decrease for sufficiently strong crowding.
+
+Consequently,
+
+$$
+n
+\neq
+n_{\rm ads}
+$$
+
+in general.
+
+Instead,
+
+$$
+n=n(n_{\rm ads})
+$$
+
+should be viewed as an effective quantity that depends on:
+
+- the concentration of adsorbed molecules,
+- their spatial organization,
+- the geometry of the contact region,
+- steric interactions between neighboring molecules.
+
+### Consequences for aggregation
+
+This distinction is important because it implies that increasing the concentration of aggregation proteins does not necessarily lead to stronger aggregation.
+
+Adding more molecules initially increases the number of possible bridges, but beyond a certain concentration crowding effects will reduce bridge formation.
+
+The relationship between protein concentration and aggregation strength is therefore expected to be non-monotonic in general.
+
+This observation helps explain why quantitative predictions of bridging models remain challenging: the effective parameter $n$ is not simply determined by measuring the concentration of aggregation proteins, but depends on the microscopic organization of those proteins in the contact zone between neighboring cells.
 
 ## Advantages of bridging models
 
@@ -266,13 +445,13 @@ Instead, the attraction emerges from entropy.
 
 ## Physical origin
 
-Consider two red blood cells immersed in a solution containing macromolecules.
+Consider two red blood cells immersed in a solution containing macromolecules or nanoparticles.
 
-The polymers cannot approach arbitrarily close to the cell surface.
+The polymers or particles cannot approach arbitrarily close to the cell surface.
 
-A depletion layer therefore appears around each cell.
+An depletion layer, within which the center of mass of the macromolecules, therefore appears around each cell.
 
-**[Insert figure: depletion layers around two neighboring cells]**
+![Depletion layers around two neighboring spheres and cells](figures/ExclusionVolumes.png)
 
 When two cells approach one another, these depletion layers overlap.
 
@@ -290,19 +469,9 @@ This is one of the most important ideas in colloid science.
 
 # Simplest depletion model
 
-Consider two parallel plates immersed in a suspension of particles of radius
+Consider two parallel plates immersed in a suspension of particles of radius $r$. The plate separation is $h$.
 
-$$
-r.
-$$
-
-The plate separation is
-
-$$
-h.
-$$
-
-**[Insert figure: plate-plate depletion geometry]**
+![Insert figure: plate-plate depletion geometry](figures/PLatePLateDepletion.png)
 
 ## Large separations
 
@@ -348,7 +517,7 @@ F=S\Pi,
 }
 $$
 
-where \(S\) is the plate area.
+where $S$ is the plate area.
 
 For an ideal solution,
 
@@ -388,11 +557,13 @@ Consequently, more sophisticated theories are required.
 
 ## Polymer penetration
 
-Neu and Meiselman proposed an influential model incorporating:
+Neu and Meiselman proposed an [influential model](https://doi.org/10.1016/S0006-3495(02)75259-4) incorporating:
 
-- penetration depth \(p\),
-- depletion thickness \(\Delta\),
-- osmotic pressure \(\Pi\).
+- penetration depth $p$,
+- depletion thickness $\Delta$,
+- osmotic pressure $\Pi$.
+
+![Scheme of distances in the Neu-Meiselman model of depletion interaction, in realistic and idealized representations](figures/NeuMeiselmannDistances.png)
 
 The resulting interaction energy becomes
 
@@ -411,8 +582,8 @@ $$
 
 where:
 
-- \(d\) is the cell-cell separation,
-- \(\delta\) characterizes the glycocalyx thickness.
+- $d$ is the cell-cell separation,
+- $\delta$ characterizes the glycocalyx thickness.
 
 ## Osmotic-pressure corrections
 
@@ -432,7 +603,7 @@ The depletion thickness then becomes concentration dependent.
 
 Experimental measurements reveal strong decreases of depletion thickness as polymer concentration increases.
 
-**[Insert figure: depletion thickness versus polymer concentration]**
+![Depletion thickness versus polymer concentration](figures/DepletionVsConcentration.png)
 
 # Comparison with experiments
 
@@ -444,13 +615,13 @@ Depletion models make quantitative predictions for:
 
 The resulting interaction energies exhibit minima at specific cell-cell distances.
 
-**[Insert figure: interaction energy versus separation distance]**
+![Insert figure: interaction energy versus separation distance](figures/DepletionVsDistance.png)
 
 These predictions can be directly compared with experiments.
 
 Remarkably good agreement is often obtained for dextran solutions.
 
-**[Insert figure: theory versus experiment]**
+![Depletion energy as a function of polymer concentration: theory versus experiment](figures/DepletionEnergyVsConcentration.png)
 
 This success is one reason depletion theory remains extremely influential in the field.
 
@@ -464,13 +635,13 @@ Several techniques are available.
 
 A red blood cell can be attached to an AFM cantilever and brought into contact with another cell.
 
-**[Insert figure: AFM setup]**
+![Insert figure: AFM setup](figures/AFMsetup.png)
 
 The force required to separate the cells can then be measured directly.
 
 Typical force-distance curves reveal attractive interactions of order tens of piconewtons.
 
-**[Insert figure: AFM force curve]**
+![Insert figure: AFM force curve](figures/AFMCurve.png)
 
 ## Experimental precautions
 
@@ -500,7 +671,7 @@ $$
 
 making the optical trap behave similarly to a spring.
 
-**[Insert figure: optical tweezers trapping geometry]**
+![Optical tweezers trapping geometry](figures/OpticalTweezersTrapping.png)
 
 Modern experiments use optical tweezers to measure:
 
@@ -518,7 +689,7 @@ Recent studies have compared experiments with numerical simulations based on:
 - pure bridging,
 - depletion plus bridging.
 
-**[Insert figure: experimental versus simulated aggregation forces]**
+![Experimental versus simulated aggregation forces](figures/MorenoFigs.png)
 
 An important conclusion is that multiple mechanisms may contribute simultaneously.
 
@@ -529,6 +700,27 @@ Current research seeks to determine:
 - which mechanism dominates,
 - under what physiological conditions,
 - and for which aggregation agents.
+
+
+# Mixing aggregation and elasticity
+
+Real red blood cells are neither rigid colloids nor purely elastic objects.
+
+They are deformable particles that aggregate.
+
+![Various geometrical configurations adopted by red blood cells in aggregates. Their distribution depends on the concentration of aggregating agent.](figures/EquilibriumShapesAggregates.png)
+
+Modern models therefore attempt to combine:
+
+- membrane elasticity,
+- hydrodynamic forces,
+- aggregation interactions.
+
+One emerging question is:
+
+> What determines the distribution of red blood cell shapes in aggregates?
+
+This naturally leads to statistical-physics approaches, which remains an active research area.
 
 # From aggregation to blood structure
 
@@ -564,42 +756,9 @@ Blood can then behave similarly to:
 - attractive suspensions,
 - soft solids.
 
-**[Insert figure: percolating RBC network]**
+![Insert figure: percolating RBC network](figures/RBCNetwork.png)
 
 This observation links blood physics directly to modern soft-matter physics.
-
-# Mixing aggregation and elasticity
-
-Real red blood cells are neither rigid colloids nor purely elastic objects.
-
-They are deformable particles that aggregate.
-
-Modern models therefore attempt to combine:
-
-- membrane elasticity,
-- hydrodynamic forces,
-- aggregation interactions.
-
-One emerging question is:
-
-> What determines the distribution of rouleaux lengths?
-
-This naturally leads to statistical-physics approaches.
-
-For example,
-
-$$
-P(S)
-=
-\frac{
-g(S)e^{-U(S)/k_B T}
-}
-{Z},
-$$
-
-relates the probability of finding an aggregate of size \(S\) to its free energy.
-
-Understanding these distributions remains an active research area.
 
 # Blood as a soft-matter system
 
