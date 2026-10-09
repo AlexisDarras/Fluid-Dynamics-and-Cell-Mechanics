@@ -901,5 +901,131 @@
     "title": "Biological and Mesoscale Physics",
     "section": "7.2 Consequences for numerical modeling",
     "text": "7.2 Consequences for numerical modeling\nThis result highlights an important limitation of many current computational models.\nMost simulations still assume that all red blood cells:\n\nhave the same viscosity,\nhave the same density,\nhave the same age,\nhave identical mechanical properties.\n\nIn reality, healthy blood contains a distribution of cells with different physical characteristics.\nFuture simulations may therefore need to move beyond the concept of a single “representative” red blood cell and instead incorporate distributions of:\n\nmembrane properties,\ncell volumes,\nintracellular viscosities,\ncell ages.\n\nSuch approaches may prove essential for accurately reproducing blood rheology in health and disease.\nMore generally, this example illustrates an important theme in modern biological physics:\n\nProgress increasingly depends on combining detailed experiments, physical modeling, and numerical simulations to determine the effective material properties of living systems.\n\nThe red blood cell remains one of the best laboratories in which to develop and test these approaches."
+  },
+  {
+    "objectID": "MembraneMechnicsProblemClass.html",
+    "href": "MembraneMechnicsProblemClass.html",
+    "title": "Cell Mechanics Problem Class",
+    "section": "",
+    "text": "In this problem class, we will apply the concepts introduced in the lecture on membrane elasticity to two concrete situations:\n\nDetermining membrane properties from tether-pulling experiments.\nComputing the curvature of a sphere from the first and second fundamental forms.\n\nThe objective is not only to obtain numerical results, but also to become familiar with the physical and geometrical reasoning used in modern membrane mechanics."
+  },
+  {
+    "objectID": "MembraneMechnicsProblemClass.html#step-1-identify-the-relevant-geometrical-objects",
+    "href": "MembraneMechnicsProblemClass.html#step-1-identify-the-relevant-geometrical-objects",
+    "title": "Cell Mechanics Problem Class",
+    "section": "2.1 Step 1: Identify the relevant geometrical objects",
+    "text": "2.1 Step 1: Identify the relevant geometrical objects\nBefore writing any energy, decompose the membrane into simple geometrical objects.\n\n2.1.1 Question\nWhich elementary geometries compose the membrane?\nThink in terms of:\n\nthe large vesicle,\nthe cylindrical tether,\nthe region connecting them.\n\n\n\n2.1.2 Hint\nThe connecting region is neither spherical nor cylindrical.\nWhat simple surface gives a smooth transition between a sphere and a cylinder?"
+  },
+  {
+    "objectID": "MembraneMechnicsProblemClass.html#step-2-compute-the-bending-energy",
+    "href": "MembraneMechnicsProblemClass.html#step-2-compute-the-bending-energy",
+    "title": "Cell Mechanics Problem Class",
+    "section": "2.2 Step 2: Compute the bending energy",
+    "text": "2.2 Step 2: Compute the bending energy\nThe Helfrich bending energy is\n\\[\nU_b\n=\n\\int_A\n\\frac{\\kappa}{2}\n(2K)^2\\,dA,\n\\]\nsince we neglect spontaneous curvature.\nFor each geometrical component:\n\nDetermine the principal curvatures.\nCompute the mean curvature \\(K\\).\nCompute the local bending energy density.\nIntegrate over the corresponding surface.\n\n\n2.2.1 Useful reminders\nSphere:\n\\[\n\\kappa_1=\\kappa_2=\\frac1R.\n\\]\nCylinder:\n\\[\n\\kappa_1=\\frac1r,\n\\qquad\n\\kappa_2=0.\n\\]\n\n\n2.2.2 Hint\nUse the approximation\n\\[\nr\\ll R.\n\\]\nWhich bending contribution dominates?"
+  },
+  {
+    "objectID": "MembraneMechnicsProblemClass.html#step-3-membrane-stretching-energy",
+    "href": "MembraneMechnicsProblemClass.html#step-3-membrane-stretching-energy",
+    "title": "Cell Mechanics Problem Class",
+    "section": "2.3 Step 3: Membrane stretching energy",
+    "text": "2.3 Step 3: Membrane stretching energy\nThe stretching energy may be written\n\\[\nU_s\n=\n\\frac{k_s}{2}\n\\frac{(A-A_0)^2}{A_0},\n\\]\nwhere:\n\n\\(A_0\\) is the reference area,\n\\(A\\) is the current membrane area.\n\n\n2.3.1 Question\nExpress the total membrane area as a function of\n\n\\(R\\),\n\\(r\\),\n\\(L\\).\n\n\n\n2.3.2 Hint\nThe cylindrical tether contributes an area proportional to\n\\[\nrL.\n\\]\nFor later calculations it is convenient to introduce the membrane tension\n\\[\n\\sigma\n=\nk_s\n\\frac{A-A_0}{A_0}.\n\\]"
+  },
+  {
+    "objectID": "MembraneMechnicsProblemClass.html#step-4-other-energy-contributions",
+    "href": "MembraneMechnicsProblemClass.html#step-4-other-energy-contributions",
+    "title": "Cell Mechanics Problem Class",
+    "section": "2.4 Step 4: Other energy contributions",
+    "text": "2.4 Step 4: Other energy contributions\nThe total energy is not limited to elasticity.\n\n2.4.1 Question\nWhat are the two other energetic contributions appearing in this experiment?\n\n\n2.4.2 Hint\nOne is associated with the pressure difference across the membrane,\n\\[\n\\Delta p\n=\np_{\\rm in}-p_{\\rm out},\n\\]\nand the other originates from the external pulling force \\(f\\).\nWrite the corresponding energies using:\n\nthe enclosed volume,\nthe tether length."
+  },
+  {
+    "objectID": "MembraneMechnicsProblemClass.html#step-5-build-the-total-energy",
+    "href": "MembraneMechnicsProblemClass.html#step-5-build-the-total-energy",
+    "title": "Cell Mechanics Problem Class",
+    "section": "2.5 Step 5: Build the total energy",
+    "text": "2.5 Step 5: Build the total energy\nCombine all previous contributions into\n\\[\nU_{\\rm tot}.\n\\]\nThe final expression should depend only on:\n\\[\nR,\\qquad r,\\qquad L.\n\\]\nKeep only the leading-order contributions in\n\\[\n\\frac rR.\n\\]"
+  },
+  {
+    "objectID": "MembraneMechnicsProblemClass.html#step-6-apply-equilibrium-conditions",
+    "href": "MembraneMechnicsProblemClass.html#step-6-apply-equilibrium-conditions",
+    "title": "Cell Mechanics Problem Class",
+    "section": "2.6 Step 6: Apply equilibrium conditions",
+    "text": "2.6 Step 6: Apply equilibrium conditions\nAt equilibrium, the energy must be stationary with respect to every independent geometrical variable.\nTherefore,\n\\[\n\\frac{\\partial U_{\\rm tot}}{\\partial R}=0,\n\\]\n\\[\n\\frac{\\partial U_{\\rm tot}}{\\partial r}=0,\n\\]\n\\[\n\\frac{\\partial U_{\\rm tot}}{\\partial L}=0.\n\\]\n\n2.6.1 Question\nWhat physical information is contained in each of these three equations?\n\n\n2.6.2 Hint\nOne of them should resemble a well-known result relating pressure and membrane tension."
+  },
+  {
+    "objectID": "MembraneMechnicsProblemClass.html#step-7-simplify-using-rll-r",
+    "href": "MembraneMechnicsProblemClass.html#step-7-simplify-using-rll-r",
+    "title": "Cell Mechanics Problem Class",
+    "section": "2.7 Step 7: Simplify using \\(r\\ll R\\)",
+    "text": "2.7 Step 7: Simplify using \\(r\\ll R\\)\nSeveral terms become much smaller than others.\nInspect all equilibrium equations and determine which terms can safely be neglected.\n\n2.7.1 Hint\nCompare orders of magnitude.\nTerms proportional to\n\\[\n\\frac rR\n\\]\nare typically small."
+  },
+  {
+    "objectID": "MembraneMechnicsProblemClass.html#step-8-estimate-membrane-properties",
+    "href": "MembraneMechnicsProblemClass.html#step-8-estimate-membrane-properties",
+    "title": "Cell Mechanics Problem Class",
+    "section": "2.8 Step 8: Estimate membrane properties",
+    "text": "2.8 Step 8: Estimate membrane properties\nUsing\n\\[\nf\\approx10\\ {\\rm pN},\n\\]\n\\[\nr\\approx50\\ {\\rm nm},\n\\]\n\\[\nR\\approx10\\ {\\mu{\\rm m}},\n\\]\nestimate:\n\nthe membrane tension \\(\\sigma\\),\nthe bending modulus \\(\\kappa\\),\nthe pressure difference \\(\\Delta p\\).\n\n\n2.8.1 Sanity check\nCompare your bending modulus with the values encountered in the lecture:\n\\[\n\\kappa\n\\sim\n10^{-20}\\ {\\rm J}\n\\sim\n10-30\\,k_B T.\n\\]\nIf your answer is orders of magnitude away from this range, revisit the approximations."
+  },
+  {
+    "objectID": "MembraneMechnicsProblemClass.html#step-1-parametrize-the-surface",
+    "href": "MembraneMechnicsProblemClass.html#step-1-parametrize-the-surface",
+    "title": "Cell Mechanics Problem Class",
+    "section": "3.1 Step 1: Parametrize the surface",
+    "text": "3.1 Step 1: Parametrize the surface\nConsider a sphere of radius \\(R\\).\nChoose two parameters\n\\[\n(u_1,u_2)\n\\]\nand write an explicit parametrization\n\\[\n\\mathbf X(u_1,u_2).\n\\]\n\n3.1.1 Hint\nSpherical coordinates are the natural choice.\nThe usual angular variables are particularly convenient."
+  },
+  {
+    "objectID": "MembraneMechnicsProblemClass.html#step-2-tangent-vectors",
+    "href": "MembraneMechnicsProblemClass.html#step-2-tangent-vectors",
+    "title": "Cell Mechanics Problem Class",
+    "section": "3.2 Step 2: Tangent vectors",
+    "text": "3.2 Step 2: Tangent vectors\nCompute\n\\[\n\\partial_1\\mathbf X,\n\\qquad\n\\partial_2\\mathbf X.\n\\]\nVerify that both vectors are tangent to the surface."
+  },
+  {
+    "objectID": "MembraneMechnicsProblemClass.html#step-3-first-fundamental-form",
+    "href": "MembraneMechnicsProblemClass.html#step-3-first-fundamental-form",
+    "title": "Cell Mechanics Problem Class",
+    "section": "3.3 Step 3: First fundamental form",
+    "text": "3.3 Step 3: First fundamental form\nCompute\n\\[\nI_{ij}\n=\n\\partial_i\\mathbf X\n\\cdot\n\\partial_j\\mathbf X.\n\\]\n\n3.3.1 Goal\nConstruct the matrix\n\\[\nI.\n\\]\n\n\n3.3.2 Check\nThe matrix should be symmetric."
+  },
+  {
+    "objectID": "MembraneMechnicsProblemClass.html#step-4-surface-normal",
+    "href": "MembraneMechnicsProblemClass.html#step-4-surface-normal",
+    "title": "Cell Mechanics Problem Class",
+    "section": "3.4 Step 4: Surface normal",
+    "text": "3.4 Step 4: Surface normal\nCompute the unit normal vector\n\\[\n\\mathbf n\n=\n\\frac{\n\\partial_1\\mathbf X\n\\times\n\\partial_2\\mathbf X\n}\n{\n\\left|\n\\partial_1\\mathbf X\n\\times\n\\partial_2\\mathbf X\n\\right|\n}.\n\\]\n\n3.4.1 Question\nDoes the chosen normal point inward or outward?"
+  },
+  {
+    "objectID": "MembraneMechnicsProblemClass.html#step-5-second-derivatives",
+    "href": "MembraneMechnicsProblemClass.html#step-5-second-derivatives",
+    "title": "Cell Mechanics Problem Class",
+    "section": "3.5 Step 5: Second derivatives",
+    "text": "3.5 Step 5: Second derivatives\nCompute\n\\[\n\\partial_i\\partial_j\\mathbf X.\n\\]\nYou will need these quantities to construct the second fundamental form."
+  },
+  {
+    "objectID": "MembraneMechnicsProblemClass.html#step-6-second-fundamental-form",
+    "href": "MembraneMechnicsProblemClass.html#step-6-second-fundamental-form",
+    "title": "Cell Mechanics Problem Class",
+    "section": "3.6 Step 6: Second fundamental form",
+    "text": "3.6 Step 6: Second fundamental form\nCompute\n\\[\nII_{ij}\n=\n\\mathbf n\n\\cdot\n\\partial_i\\partial_j\\mathbf X.\n\\]\nAs for the first fundamental form, build the corresponding matrix\n\\[\nII.\n\\]"
+  },
+  {
+    "objectID": "MembraneMechnicsProblemClass.html#step-7-principal-curvatures",
+    "href": "MembraneMechnicsProblemClass.html#step-7-principal-curvatures",
+    "title": "Cell Mechanics Problem Class",
+    "section": "3.7 Step 7: Principal curvatures",
+    "text": "3.7 Step 7: Principal curvatures\nThe principal curvatures satisfy\n\\[\n\\det\n\\left(\nII-\\kappa I\n\\right)\n=\n0.\n\\]\n\n3.7.1 Question\nSolve this equation and determine\n\\[\n\\kappa_1,\n\\qquad\n\\kappa_2.\n\\]\n\n\n3.7.2 Hint\nBecause a sphere has the same curvature in every direction, the answer should not depend on the chosen point."
+  },
+  {
+    "objectID": "MembraneMechnicsProblemClass.html#step-8-mean-and-gaussian-curvature",
+    "href": "MembraneMechnicsProblemClass.html#step-8-mean-and-gaussian-curvature",
+    "title": "Cell Mechanics Problem Class",
+    "section": "3.8 Step 8: Mean and Gaussian curvature",
+    "text": "3.8 Step 8: Mean and Gaussian curvature\nUse\n\\[\nK\n=\n\\frac{\\kappa_1+\\kappa_2}{2},\n\\]\nand\n\\[\nK_G\n=\n\\kappa_1\\kappa_2.\n\\]\nto determine:\n\nthe mean curvature,\nthe Gaussian curvature.\n\n\n3.8.1 Check\nCompare your result with the intuitive definition of curvature introduced earlier in the lecture for a circle of radius \\(R\\)."
+  },
+  {
+    "objectID": "MembraneMechnicsProblemClass.html#membrane-tubes-and-tether-formation",
+    "href": "MembraneMechnicsProblemClass.html#membrane-tubes-and-tether-formation",
+    "title": "Cell Mechanics Problem Class",
+    "section": "2.1 Membrane tubes and tether formation",
+    "text": "2.1 Membrane tubes and tether formation\nCellular membranes are not static structures. In many biological systems, narrow membrane tubes, often referred to as tethers, can be pulled from larger membrane reservoirs.\nExamples include:\n\nthe endoplasmic reticulum,\nthe Golgi apparatus,\nintracellular transport vesicles,\ngiant lipid vesicles used in biophysical experiments.\n\nThese membrane tubes can be generated in several ways. In laboratory experiments, they are often pulled using optical tweezers attached to a small bead. In living cells, similar structures are frequently generated by molecular motors that pull on the membrane while moving along cytoskeletal filaments.\n\n\n\nIllustration of tether pulling\n\n\nExperiments show that the force required to initiate and maintain a tether is typically of the order of \\(f \\sim 10\\ {\\rm pN}\\). Once formed, the tether can extend over distances much larger than its radius while remaining connected to the original membrane reservoir.\nThe figure provided in the problem statement indicates the characteristic dimensions involved in such experiments:\n\nthe force \\(f\\),\nthe tether length \\(L\\),\nthe tether radius \\(r\\),\nthe radius \\(R\\) of the membrane reservoir.\n\nTypical values are approximately\n\\[\nf \\approx 10\\ {\\rm pN},\n\\]\n\\[\nr \\approx 50\\ {\\rm nm},\n\\]\nand\n\\[\nR \\approx 10\\ {\\rm \\mu m}.\n\\]\nWe will assume that the spontaneous curvature of the membrane is negligible.\nThe goal of this exercise is to understand how the geometry and mechanics of the membrane determine:\n\nthe radius of the tether,\nthe force required to pull it,\nthe membrane tension,\nthe membrane bending modulus.\n\n\n2.1.1 Question 1 - Geometrical decomposition\n  Before writing down any energy, identify the simple geometrical objects that constitute the membrane shape shown in the figure. You should identify three elementary geometries whose areas, volumes and curvatures are known analytically.\n\n\n\n\n\n\nTipHint\n\n\n\n\n\n  Look separately at:\n\nthe large membrane reservoir,\nthe long tether,\nthe terminal cap closing the tether.\n\nTry to associate each region with a standard object whose principal curvatures are immediately known.\n\n\n\n\n\n2.1.2 Question 2 - Bending energy\nUsing the Helfrich model (without spontaneous curvature), express the total bending energy of the membrane as a function of:\n\n\\(R\\),\n\\(r\\),\n\\(L\\),\n\\(\\kappa\\).\n\nHow does the assumption \\(r\\ll R\\) simplify this expression?\n\n\n\n\n\n\nTipHint 1\n\n\n\n\n\nThe Helfrich bending energy, without spontaneous curvature, can be written as\n\\[\nU_b\n=\n\\int_A\n\\frac{\\kappa}{2}\n(2K)^2\\,dA,\n\\]\nFor each geometrical component:\n\nDetermine the principal curvatures.\nCompute the mean curvature\n\n\\[\nK\n=\n\\frac{\\kappa_1+\\kappa_2}{2}.\n\\]\n\nCompute\n\n\\[\n\\frac{\\kappa}{2}(2K)^2.\n\\]\n\nIntegrate over the corresponding area.\n\n\n\n\n\n\n\n\n\n\nTipHint 2\n\n\n\n\n\nUseful results:\nSphere of radius \\(R\\)\n\\[\n\\kappa_1=\\kappa_2=\\frac1R.\n\\]\nCylinder of radius \\(r\\)\n\\[\n\\kappa_1=\\frac1r,\n\\qquad\n\\kappa_2=0.\n\\]\nRemember that the cap closing the tether is not cylindrical.\n\n\n\n\n\n\n\n\n\nTipHint 3\n\n\n\n\n\nThe problem states that\n\\[\nr\\ll R.\n\\]\nAfter obtaining the full expression, identify which contributions are expected to dominate.\n\n\n\n\n\n2.1.3 Question 3 - Stretching energy\nWrite an expression for the membrane stretching energy, as a function of the geometric parameters \\(R,\\qquad r,\\qquad L\\) and the stretching modulus.\n\n\n\n\n\n\nTipHint 1\n\n\n\n\n\nThe membrane stretching energy can be written\n\\[\nU_s\n=\n\\frac{k_s}{2}\n\\frac{(A-A_0)^2}{A_0}.\n\\]\n\n\n\n\n\n\n\n\n\nTipHint 2\n\n\n\n\n\nThe area of the tether scales linearly with \\(L\\).\nIt is convenient to introduce the membrane tension\n\\[\n\\sigma\n=\nk_s\n\\frac{A-A_0}{A_0},\n\\]\nand rewrite the stretching contribution in terms of \\(\\sigma\\).\n\n\n\n\n\n2.1.4 Question 4 - What energy contributions are still missing?\nSo far, only elastic energies have been considered.\nIdentify the two additional contributions to the total energy of the system.\n\n\n\n\n\n\nTipHint 1\n\n\n\n\n\nOne contribution is associated with the force \\(f\\).\nThe other is associated with the fact that the pressure inside and outside the vesicle may differ.\nWrite the corresponding energy terms.\n\n\n\n\n\n\n\n\n\nTipHint 2\n\n\n\n\n\nRecall from the lecture that:\n\na constant force derives from a linear potential energy,\npressure differences perform work when the enclosed volume changes.\n\n\n\n\n\n\n2.1.5 Question 5 - Equilibrium conditions\nAt equilibrium, the membrane adopts a shape for which the total energy respects some specific conditions.\nWrite those equilibrium conditions.\n\n\n\n\n\n\nTipHint 1\n\n\n\n\n\nAt equilibrium, the membrane adopts a shape for which the tota is stationary with respect to all independent geometrical parameters\n\n\n\n\n\n\n\n\n\nTipHint 2\n\n\n\n\n\nCollect all contributions obtained previously and write a total energy\n\\[\nU_{\\rm tot}(R,r,L).\n\\]\nKeep the expression as explicit as possible.\nThe total energy should contain:\n\nbending energy,\nstretching energy,\npressure-volume work,\nforce contribution.\n\nRemember to use\n\\[\nr\\ll R\n\\]\nto simplify the equilibrium equations.\nIdentify which terms become negligible compared with the others.\n\n\n\n\n\n\n\n\n\nTipHint 3\n\n\n\n\n\nEstimate the relative size of the various bending contributions.\nCompare terms proportional to\n\\[\n\\frac1R\n\\qquad \\text{and} \\qquad\n\\frac1r.\n\\]\nusing the experimental dimensions.\n\n\n\n\n\n\n\n\n\nTipHint 4\n\n\n\n\n\nAsk yourself which geometrical quantities are free to vary.\nFor each independent variable \\(q\\), \\[\n\\frac{\\partial U_{\\rm tot}}{\\partial q}\n=\n0.\n\\]\nYou should obtain three independent equations.\n\n\n\n\n\n2.1.6 Question 8 - Determination of membrane properties\nUse the experimental values\n\\[\nf\\approx10\\ {\\rm pN},\n\\]\n\\[\nr\\approx50\\ {\\rm nm},\n\\]\n\\[\nR\\approx10\\ {\\rm \\mu m}\n\\]\nto estimate:\n\nthe membrane tension \\(\\sigma\\),\nthe bending modulus \\(\\kappa\\),\nthe pressure difference\n\n\\[\n\\Delta p\n=\np_{\\rm in}-p_{\\rm out}.\n\\]\n\n\n\n\n\n\nTipHint\n\n\n\n\n\nDo not substitute numerical values immediately.\nFirst isolate the quantities of interest from the equilibrium equations.\nOnly then evaluate the resulting expressions numerically.\n\n\n\n\n\n2.1.7 Interpretation\nOnce numerical values have been obtained, compare them with the values encountered in the lecture.\nDo your estimates:\n\nhave physically reasonable magnitudes?\ncorrespond to realistic membrane tensions?\nfall within the expected range for lipid membranes?\n\nIf not, revisit the approximations used during the derivation.\nThe purpose of this exercise is not only to perform the calculations, but also to understand how geometry, elasticity and pressure combine to determine the formation of membrane tethers."
   }
 ]
