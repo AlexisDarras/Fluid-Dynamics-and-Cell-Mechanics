@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dr Alexis Darras">
+
+<title>Biological and Mesoscale Physics – Fluid Dynamics and Cell Mechanics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Fluid Dynamics and Cell Mechanics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-fluid-dynamics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Fluid Dynamics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-fluid-dynamics">    
+        <li>
+    <a class="dropdown-item" href="./NotesIntroNavierStokes.html">
+ <span class="dropdown-text">Introduction to the Navier-Stokes equation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./FluidMechanicsProblemClass.html">
+ <span class="dropdown-text">Fluid dynamics problem class</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./LowRe.html">
+ <span class="dropdown-text">A blink of life at low Reynolds number</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./ComplexFluids.html">
+ <span class="dropdown-text">An introduction to complex (bio)fluids</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-cell-mechanics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Cell Mechanics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-cell-mechanics">    
+        <li>
+    <a class="dropdown-item" href="./OsmoticPressure.html">
+ <span class="dropdown-text">Red blood cells, osmotic pressure and cell volume regulation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./MembraneElasticity.html">
+ <span class="dropdown-text">Membrane elasticity</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./MembraneMechanicsProblemClass.qmd">
+ <span class="dropdown-text">Membrane elasticity problem class</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./RBCAggregation.html">
+ <span class="dropdown-text">Aggregation of microscopic particles</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
+  <li><a href="#red-blood-cells-as-highly-deformable-particles" id="toc-red-blood-cells-as-highly-deformable-particles" class="nav-link" data-scroll-target="#red-blood-cells-as-highly-deformable-particles"><span class="header-section-number">2</span> Red blood cells as highly deformable particles</a></li>
+  <li><a href="#blood-physics-an-overview" id="toc-blood-physics-an-overview" class="nav-link" data-scroll-target="#blood-physics-an-overview"><span class="header-section-number">3</span> Blood physics: an overview</a>
+  <ul class="collapse">
+  <li><a href="#macroscopic-rheology" id="toc-macroscopic-rheology" class="nav-link" data-scroll-target="#macroscopic-rheology"><span class="header-section-number">3.1</span> Macroscopic rheology</a></li>
+  <li><a href="#microfluidics" id="toc-microfluidics" class="nav-link" data-scroll-target="#microfluidics"><span class="header-section-number">3.2</span> Microfluidics</a></li>
+  <li><a href="#red-blood-cell-aggregation" id="toc-red-blood-cell-aggregation" class="nav-link" data-scroll-target="#red-blood-cell-aggregation"><span class="header-section-number">3.3</span> Red blood cell aggregation</a></li>
+  </ul></li>
+  <li><a href="#why-do-red-blood-cells-aggregate" id="toc-why-do-red-blood-cells-aggregate" class="nav-link" data-scroll-target="#why-do-red-blood-cells-aggregate"><span class="header-section-number">4</span> Why do red blood cells aggregate?</a></li>
+  <li><a href="#bridging-theory" id="toc-bridging-theory" class="nav-link" data-scroll-target="#bridging-theory"><span class="header-section-number">5</span> Bridging theory</a>
+  <ul class="collapse">
+  <li><a href="#spring-model" id="toc-spring-model" class="nav-link" data-scroll-target="#spring-model"><span class="header-section-number">5.1</span> Spring model</a></li>
+  <li><a href="#bond-kinetics" id="toc-bond-kinetics" class="nav-link" data-scroll-target="#bond-kinetics"><span class="header-section-number">5.2</span> Bond kinetics</a></li>
+  <li><a href="#advantages-of-bridging-models" id="toc-advantages-of-bridging-models" class="nav-link" data-scroll-target="#advantages-of-bridging-models"><span class="header-section-number">5.3</span> Advantages of bridging models</a></li>
+  <li><a href="#difficulties" id="toc-difficulties" class="nav-link" data-scroll-target="#difficulties"><span class="header-section-number">5.4</span> Difficulties</a></li>
+  </ul></li>
+  <li><a href="#depletion-theory" id="toc-depletion-theory" class="nav-link" data-scroll-target="#depletion-theory"><span class="header-section-number">6</span> Depletion theory</a>
+  <ul class="collapse">
+  <li><a href="#physical-origin" id="toc-physical-origin" class="nav-link" data-scroll-target="#physical-origin"><span class="header-section-number">6.1</span> Physical origin</a></li>
+  </ul></li>
+  <li><a href="#simplest-depletion-model" id="toc-simplest-depletion-model" class="nav-link" data-scroll-target="#simplest-depletion-model"><span class="header-section-number">7</span> Simplest depletion model</a>
+  <ul class="collapse">
+  <li><a href="#large-separations" id="toc-large-separations" class="nav-link" data-scroll-target="#large-separations"><span class="header-section-number">7.1</span> Large separations</a></li>
+  <li><a href="#small-separations" id="toc-small-separations" class="nav-link" data-scroll-target="#small-separations"><span class="header-section-number">7.2</span> Small separations</a></li>
+  </ul></li>
+  <li><a href="#realistic-depletion-models" id="toc-realistic-depletion-models" class="nav-link" data-scroll-target="#realistic-depletion-models"><span class="header-section-number">8</span> Realistic depletion models</a>
+  <ul class="collapse">
+  <li><a href="#polymer-penetration" id="toc-polymer-penetration" class="nav-link" data-scroll-target="#polymer-penetration"><span class="header-section-number">8.1</span> Polymer penetration</a></li>
+  <li><a href="#osmotic-pressure-corrections" id="toc-osmotic-pressure-corrections" class="nav-link" data-scroll-target="#osmotic-pressure-corrections"><span class="header-section-number">8.2</span> Osmotic-pressure corrections</a></li>
+  </ul></li>
+  <li><a href="#comparison-with-experiments" id="toc-comparison-with-experiments" class="nav-link" data-scroll-target="#comparison-with-experiments"><span class="header-section-number">9</span> Comparison with experiments</a></li>
+  <li><a href="#direct-experimental-measurements" id="toc-direct-experimental-measurements" class="nav-link" data-scroll-target="#direct-experimental-measurements"><span class="header-section-number">10</span> Direct experimental measurements</a>
+  <ul class="collapse">
+  <li><a href="#atomic-force-microscopy" id="toc-atomic-force-microscopy" class="nav-link" data-scroll-target="#atomic-force-microscopy"><span class="header-section-number">10.1</span> Atomic force microscopy</a></li>
+  <li><a href="#experimental-precautions" id="toc-experimental-precautions" class="nav-link" data-scroll-target="#experimental-precautions"><span class="header-section-number">10.2</span> Experimental precautions</a></li>
+  </ul></li>
+  <li><a href="#optical-tweezers-and-aggregation" id="toc-optical-tweezers-and-aggregation" class="nav-link" data-scroll-target="#optical-tweezers-and-aggregation"><span class="header-section-number">11</span> Optical tweezers and aggregation</a></li>
+  <li><a href="#comparing-interaction-models" id="toc-comparing-interaction-models" class="nav-link" data-scroll-target="#comparing-interaction-models"><span class="header-section-number">12</span> Comparing interaction models</a></li>
+  <li><a href="#from-aggregation-to-blood-structure" id="toc-from-aggregation-to-blood-structure" class="nav-link" data-scroll-target="#from-aggregation-to-blood-structure"><span class="header-section-number">13</span> From aggregation to blood structure</a></li>
+  <li><a href="#mixing-aggregation-and-elasticity" id="toc-mixing-aggregation-and-elasticity" class="nav-link" data-scroll-target="#mixing-aggregation-and-elasticity"><span class="header-section-number">14</span> Mixing aggregation and elasticity</a></li>
+  <li><a href="#blood-as-a-soft-matter-system" id="toc-blood-as-a-soft-matter-system" class="nav-link" data-scroll-target="#blood-as-a-soft-matter-system"><span class="header-section-number">15</span> Blood as a soft-matter system</a></li>
+  <li><a href="#research-perspectives" id="toc-research-perspectives" class="nav-link" data-scroll-target="#research-perspectives"><span class="header-section-number">16</span> Research perspectives</a></li>
+  <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link" data-scroll-target="#learning-outcomes"><span class="header-section-number">17</span> Learning outcomes</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Biological and Mesoscale Physics</h1>
+<p class="subtitle lead">Red Blood Cell Aggregation and Blood as a Soft Matter System</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Dr Alexis Darras </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
+<p>Throughout this course, we have mostly focused on the behavior of individual red blood cells:</p>
+<ul>
+<li>membrane mechanics,</li>
+<li>osmotic regulation,</li>
+<li>cell deformability,</li>
+<li>interactions with confined flows.</li>
+</ul>
+<p>However, blood is not simply a suspension of isolated cells.</p>
+<p>Under physiological conditions, red blood cells interact strongly with one another, forming transient clusters and larger structures known as <strong>rouleaux</strong>.</p>
+<p>These interactions profoundly influence:</p>
+<ul>
+<li>blood viscosity,</li>
+<li>microvascular flow,</li>
+<li>sedimentation,</li>
+<li>numerous diagnostic tests.</li>
+</ul>
+<p>Understanding blood therefore requires moving from <strong>single-cell mechanics</strong> to <strong>collective behavior</strong>, where concepts from:</p>
+<ul>
+<li>colloid physics,</li>
+<li>statistical physics,</li>
+<li>rheology,</li>
+<li>soft matter,</li>
+</ul>
+<p>become essential.</p>
+</section>
+<section id="red-blood-cells-as-highly-deformable-particles" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Red blood cells as highly deformable particles</h1>
+<p>Red blood cells are the most abundant cell type in the human body, accounting for roughly 70–80% of all cells.</p>
+<p>Their primary biological role is oxygen transport.</p>
+<p>A healthy red blood cell:</p>
+<ul>
+<li>has a diameter of approximately (8~m),</li>
+<li>has a thickness of approximately (2~m),</li>
+<li>possesses remarkable deformability.</li>
+</ul>
+<p><strong>[Insert figure: RBC deformation in microchannels]</strong></p>
+<p>Experiments in confined microfluidic channels reveal that red blood cells continuously adapt their shape in response to flow conditions.</p>
+<p>For example:</p>
+<ul>
+<li><p>at moderate flow velocities ((1~)), cells adopt one family of shapes;</p></li>
+<li><p>at larger velocities ((5~)), stronger deformations appear.</p></li>
+</ul>
+<p>These deformations are made possible by the combination of:</p>
+<ul>
+<li>membrane elasticity,</li>
+<li>cytoskeletal mechanics,</li>
+<li>fluidity of the lipid bilayer.</li>
+</ul>
+<p>Because red blood cells are both deformable and interactive, blood is a particularly rich soft-matter system.</p>
+</section>
+<section id="blood-physics-an-overview" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Blood physics: an overview</h1>
+<p>Many questions remain actively investigated today.</p>
+<p>Examples include:</p>
+<section id="macroscopic-rheology" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="macroscopic-rheology"><span class="header-section-number">3.1</span> Macroscopic rheology</h2>
+<p>Blood is strongly non-Newtonian.</p>
+<p>One of its most characteristic features is <strong>shear thinning</strong>:</p>
+<p><span class="math display">\[
+\eta_{\rm app}
+\downarrow
+\qquad
+\text{when}
+\qquad
+\dot{\gamma}
+\uparrow.
+\]</span></p>
+<p>The apparent viscosity decreases as the shear rate increases.</p>
+<p><strong>[Insert figure: viscosity versus shear rate for different species]</strong></p>
+<p>Whether blood also exhibits a true yield stress remains an area of ongoing discussion.</p>
+</section>
+<section id="microfluidics" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="microfluidics"><span class="header-section-number">3.2</span> Microfluidics</h2>
+<p>Important applications include:</p>
+<ul>
+<li>cell counting,</li>
+<li>cell sorting,</li>
+<li>deformability measurements,</li>
+<li>disease diagnostics,</li>
+<li>blood analogue development.</li>
+</ul>
+</section>
+<section id="red-blood-cell-aggregation" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="red-blood-cell-aggregation"><span class="header-section-number">3.3</span> Red blood cell aggregation</h2>
+<p>Perhaps the most striking collective phenomenon is the tendency of red blood cells to aggregate.</p>
+<p><strong>[Insert figure: rouleaux structures]</strong></p>
+<p>These aggregates are often much larger than individual cells and can dominate blood rheology at low shear rates.</p>
+<p>Aggregation energies are typically much larger than thermal fluctuations:</p>
+<p><span class="math display">\[
+F_{\rm agg}S
+\gg
+k_B T,
+\]</span></p>
+<p>indicating that aggregation is not driven by thermal motion alone.</p>
+<p>This immediately raises a fundamental question:</p>
+<blockquote class="blockquote">
+<p>What physical mechanism causes red blood cells to attract one another?</p>
+</blockquote>
+</section>
+</section>
+<section id="why-do-red-blood-cells-aggregate" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Why do red blood cells aggregate?</h1>
+<p>Two principal explanations have been proposed:</p>
+<ol type="1">
+<li>Bridging</li>
+<li>Depletion</li>
+</ol>
+<p>Both mechanisms are still discussed in the literature.</p>
+</section>
+<section id="bridging-theory" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Bridging theory</h1>
+<p>Bridging assumes that macromolecules dissolved in plasma adsorb onto neighboring cell membranes.</p>
+<p>A polymer molecule may simultaneously attach to two different cells.</p>
+<p>The molecule therefore acts as a molecular spring linking the cells together.</p>
+<p><strong>[Insert figure: polymer bridge between two membranes]</strong></p>
+<section id="spring-model" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="spring-model"><span class="header-section-number">5.1</span> Spring model</h2>
+<p>Suppose a molecular bond behaves like a spring.</p>
+<p>The force produced by a single bond is</p>
+<p><span class="math display">\[
+f_b
+=
+k_b(l-l_0),
+\]</span></p>
+<p>where:</p>
+<ul>
+<li>(k_b) is the bond stiffness,</li>
+<li>(l_0) is the equilibrium length,</li>
+<li>(l) is the current bond length.</li>
+</ul>
+<p>If</p>
+<p><span class="math display">\[
+n_b
+\]</span></p>
+<p>bonds are present,</p>
+<p>the total bridging force becomes</p>
+<p><span class="math display">\[
+\boxed{
+f_m
+=
+n_b f_b.
+}
+\]</span></p>
+<p>The interaction therefore depends not only on the mechanical properties of each bond but also on the number of bonds.</p>
+</section>
+<section id="bond-kinetics" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="bond-kinetics"><span class="header-section-number">5.2</span> Bond kinetics</h2>
+<p>The number of attached molecules is itself dynamic.</p>
+<p>Bridging models therefore introduce chemical-reaction kinetics.</p>
+<p>A typical description is</p>
+<p><span class="math display">\[
+\frac{\partial n_b}{\partial t}
+=
+2
+\left[
+k_+
+\frac{(n-n_b)^2}{2}
+-
+k_-
+\frac{n_b}{2}
+\right].
+\]</span></p>
+<p>The attachment and detachment rates are commonly modeled using thermally activated processes:</p>
+<p><span class="math display">\[
+k_+
+=
+k_+^0
+\exp
+\left(
+-\frac{k_{ts}(l-l_0)^2}{2k_B T}
+\right),
+\]</span></p>
+<p><span class="math display">\[
+k_-
+=
+k_-^0
+\exp
+\left(
+-\frac{(k_b-k_{ts})(l-l_0)^2}{2k_B T}
+\right).
+\]</span></p>
+<p>This framework was developed and extensively explored in numerical studies by Bagchi and collaborators.</p>
+</section>
+<section id="advantages-of-bridging-models" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="advantages-of-bridging-models"><span class="header-section-number">5.3</span> Advantages of bridging models</h2>
+<p>Bridging models are attractive because they can naturally be combined with:</p>
+<ul>
+<li>membrane deformation,</li>
+<li>fluid flow,</li>
+<li>hydrodynamic simulations.</li>
+</ul>
+<p>They are therefore widely used in computational blood mechanics.</p>
+</section>
+<section id="difficulties" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="difficulties"><span class="header-section-number">5.4</span> Difficulties</h2>
+<p>The main limitation is that many parameters are difficult to determine experimentally.</p>
+<p>Examples include:</p>
+<ul>
+<li>bond stiffnesses,</li>
+<li>attachment rates,</li>
+<li>detachment rates,</li>
+<li>densities of active macromolecules.</li>
+</ul>
+<p>Reported values often span several orders of magnitude.</p>
+<p>As a consequence, bridging models can be difficult to validate quantitatively.</p>
+</section>
+</section>
+<section id="depletion-theory" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Depletion theory</h1>
+<p>An alternative explanation comes from colloid physics.</p>
+<p>Unlike bridging, depletion does not require any direct molecular binding between cells.</p>
+<p>Instead, the attraction emerges from entropy.</p>
+<section id="physical-origin" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="physical-origin"><span class="header-section-number">6.1</span> Physical origin</h2>
+<p>Consider two red blood cells immersed in a solution containing macromolecules.</p>
+<p>The polymers cannot approach arbitrarily close to the cell surface.</p>
+<p>A depletion layer therefore appears around each cell.</p>
+<p><strong>[Insert figure: depletion layers around two neighboring cells]</strong></p>
+<p>When two cells approach one another, these depletion layers overlap.</p>
+<p>The overlap increases the volume available to polymers elsewhere in the solution.</p>
+<p>Because entropy increases, the corresponding configuration is favored.</p>
+<p>The result is an effective attraction between the cells.</p>
+<p>Remarkably:</p>
+<blockquote class="blockquote">
+<p>two particles can attract one another even if all microscopic interactions are purely repulsive.</p>
+</blockquote>
+<p>This is one of the most important ideas in colloid science.</p>
+</section>
+</section>
+<section id="simplest-depletion-model" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Simplest depletion model</h1>
+<p>Consider two parallel plates immersed in a suspension of particles of radius</p>
+<p><span class="math display">\[
+r.
+\]</span></p>
+<p>The plate separation is</p>
+<p><span class="math display">\[
+h.
+\]</span></p>
+<p><strong>[Insert figure: plate-plate depletion geometry]</strong></p>
+<section id="large-separations" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="large-separations"><span class="header-section-number">7.1</span> Large separations</h2>
+<p>If</p>
+<p><span class="math display">\[
+h \ge 2r,
+\]</span></p>
+<p>particles can enter the gap.</p>
+<p>The osmotic pressure inside and outside the gap is identical:</p>
+<p><span class="math display">\[
+P_i=P_o.
+\]</span></p>
+<p>No net force appears.</p>
+</section>
+<section id="small-separations" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="small-separations"><span class="header-section-number">7.2</span> Small separations</h2>
+<p>If</p>
+<p><span class="math display">\[
+h &lt; 2r,
+\]</span></p>
+<p>the particles cannot enter the gap.</p>
+<p>The osmotic pressure becomes</p>
+<p><span class="math display">\[
+P_i=0,
+\qquad
+P_o=\Pi.
+\]</span></p>
+<p>The resulting force is</p>
+<p><span class="math display">\[
+\boxed{
+F=S\Pi,
+}
+\]</span></p>
+<p>where (S) is the plate area.</p>
+<p>For an ideal solution,</p>
+<p><span class="math display">\[
+\Pi=nk_B T.
+\]</span></p>
+<p>The corresponding interaction energy becomes</p>
+<p><span class="math display">\[
+\boxed{
+U
+=
+-Snk_B T
+\left(
+r-\frac{h}{2}
+\right),
+\qquad
+h&lt;2r.
+}
+\]</span></p>
+<p>This is the classical Asakura–Oosawa depletion attraction.</p>
+</section>
+</section>
+<section id="realistic-depletion-models" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Realistic depletion models</h1>
+<p>Actual blood plasma is considerably more complicated.</p>
+<p>Polymers:</p>
+<ul>
+<li>possess finite size,</li>
+<li>partially penetrate glycocalyces,</li>
+<li>deform near surfaces,</li>
+<li>interact with one another.</li>
+</ul>
+<p>Consequently, more sophisticated theories are required.</p>
+<section id="polymer-penetration" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="polymer-penetration"><span class="header-section-number">8.1</span> Polymer penetration</h2>
+<p>Neu and Meiselman proposed an influential model incorporating:</p>
+<ul>
+<li>penetration depth (p),</li>
+<li>depletion thickness (),</li>
+<li>osmotic pressure ().</li>
+</ul>
+<p>The resulting interaction energy becomes</p>
+<p><span class="math display">\[
+\boxed{
+w_D
+=
+-2\Pi
+\left(
+\Delta
+-\frac{p+d}{2}
++\delta
+\right),
+}
+\]</span></p>
+<p>where:</p>
+<ul>
+<li>(d) is the cell-cell separation,</li>
+<li>() characterizes the glycocalyx thickness.</li>
+</ul>
+</section>
+<section id="osmotic-pressure-corrections" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="osmotic-pressure-corrections"><span class="header-section-number">8.2</span> Osmotic-pressure corrections</h2>
+<p>At sufficiently large polymer concentrations, ideal-solution approximations become insufficient.</p>
+<p>A virial expansion can be used:</p>
+<p><span class="math display">\[
+\Pi
+=
+n_b k_B T
++
+B_2 n_b^2.
+\]</span></p>
+<p>The depletion thickness then becomes concentration dependent.</p>
+<p>Experimental measurements reveal strong decreases of depletion thickness as polymer concentration increases.</p>
+<p><strong>[Insert figure: depletion thickness versus polymer concentration]</strong></p>
+</section>
+</section>
+<section id="comparison-with-experiments" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Comparison with experiments</h1>
+<p>Depletion models make quantitative predictions for:</p>
+<ul>
+<li>interaction energies,</li>
+<li>equilibrium spacing,</li>
+<li>concentration dependence.</li>
+</ul>
+<p>The resulting interaction energies exhibit minima at specific cell-cell distances.</p>
+<p><strong>[Insert figure: interaction energy versus separation distance]</strong></p>
+<p>These predictions can be directly compared with experiments.</p>
+<p>Remarkably good agreement is often obtained for dextran solutions.</p>
+<p><strong>[Insert figure: theory versus experiment]</strong></p>
+<p>This success is one reason depletion theory remains extremely influential in the field.</p>
+</section>
+<section id="direct-experimental-measurements" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Direct experimental measurements</h1>
+<p>Ultimately, interaction forces should be measured directly.</p>
+<p>Several techniques are available.</p>
+<section id="atomic-force-microscopy" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="atomic-force-microscopy"><span class="header-section-number">10.1</span> Atomic force microscopy</h2>
+<p>A red blood cell can be attached to an AFM cantilever and brought into contact with another cell.</p>
+<p><strong>[Insert figure: AFM setup]</strong></p>
+<p>The force required to separate the cells can then be measured directly.</p>
+<p>Typical force-distance curves reveal attractive interactions of order tens of piconewtons.</p>
+<p><strong>[Insert figure: AFM force curve]</strong></p>
+</section>
+<section id="experimental-precautions" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="experimental-precautions"><span class="header-section-number">10.2</span> Experimental precautions</h2>
+<p>Such measurements are challenging.</p>
+<p>Contact times must often be carefully controlled because:</p>
+<ul>
+<li>prolonged contact may induce bridging,</li>
+<li>cells continuously deform,</li>
+<li>aggregation may become history dependent.</li>
+</ul>
+<p>Consequently, interpretation of experiments requires considerable care.</p>
+</section>
+</section>
+<section id="optical-tweezers-and-aggregation" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Optical tweezers and aggregation</h1>
+<p>Optical tweezers provide another powerful approach.</p>
+<p>A focused laser beam can trap and manipulate individual red blood cells.</p>
+<p>The trapping force is often well approximated by</p>
+<p><span class="math display">\[
+\mathbf F
+\propto
+-k\mathbf x,
+\]</span></p>
+<p>making the optical trap behave similarly to a spring.</p>
+<p><strong>[Insert figure: optical tweezers trapping geometry]</strong></p>
+<p>Modern experiments use optical tweezers to measure:</p>
+<ul>
+<li>aggregation forces,</li>
+<li>disaggregation forces,</li>
+<li>aggregation-disaggregation hysteresis.</li>
+</ul>
+<p>These measurements provide particularly clean comparisons with theoretical predictions.</p>
+</section>
+<section id="comparing-interaction-models" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Comparing interaction models</h1>
+<p>Recent studies have compared experiments with numerical simulations based on:</p>
+<ul>
+<li>pure depletion,</li>
+<li>pure bridging,</li>
+<li>depletion plus bridging.</li>
+</ul>
+<p><strong>[Insert figure: experimental versus simulated aggregation forces]</strong></p>
+<p>An important conclusion is that multiple mechanisms may contribute simultaneously.</p>
+<p>This remains an active area of debate.</p>
+<p>Current research seeks to determine:</p>
+<ul>
+<li>which mechanism dominates,</li>
+<li>under what physiological conditions,</li>
+<li>and for which aggregation agents.</li>
+</ul>
+</section>
+<section id="from-aggregation-to-blood-structure" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> From aggregation to blood structure</h1>
+<p>At sufficiently large hematocrits,</p>
+<p><span class="math display">\[
+\phi
+\approx
+0.5,
+\]</span></p>
+<p>and when</p>
+<p><span class="math display">\[
+U_{\rm agg}
+\gg
+k_B T,
+\]</span></p>
+<p>aggregation can become a collective phenomenon.</p>
+<p>Instead of isolated rouleaux, one obtains:</p>
+<p><span class="math display">\[
+\boxed{
+\text{Percolating networks.}
+}
+\]</span></p>
+<p>Blood can then behave similarly to:</p>
+<ul>
+<li>colloidal gels,</li>
+<li>attractive suspensions,</li>
+<li>soft solids.</li>
+</ul>
+<p><strong>[Insert figure: percolating RBC network]</strong></p>
+<p>This observation links blood physics directly to modern soft-matter physics.</p>
+</section>
+<section id="mixing-aggregation-and-elasticity" class="level1" data-number="14">
+<h1 data-number="14"><span class="header-section-number">14</span> Mixing aggregation and elasticity</h1>
+<p>Real red blood cells are neither rigid colloids nor purely elastic objects.</p>
+<p>They are deformable particles that aggregate.</p>
+<p>Modern models therefore attempt to combine:</p>
+<ul>
+<li>membrane elasticity,</li>
+<li>hydrodynamic forces,</li>
+<li>aggregation interactions.</li>
+</ul>
+<p>One emerging question is:</p>
+<blockquote class="blockquote">
+<p>What determines the distribution of rouleaux lengths?</p>
+</blockquote>
+<p>This naturally leads to statistical-physics approaches.</p>
+<p>For example,</p>
+<p><span class="math display">\[
+P(S)
+=
+\frac{
+g(S)e^{-U(S)/k_B T}
+}
+{Z},
+\]</span></p>
+<p>relates the probability of finding an aggregate of size (S) to its free energy.</p>
+<p>Understanding these distributions remains an active research area.</p>
+</section>
+<section id="blood-as-a-soft-matter-system" class="level1" data-number="15">
+<h1 data-number="15"><span class="header-section-number">15</span> Blood as a soft-matter system</h1>
+<p>A useful perspective is to view blood as a concentrated suspension of attractive deformable particles.</p>
+<p>Under storage or in vitro conditions:</p>
+<ul>
+<li>there is no active propulsion,</li>
+<li>aggregation dominates thermal motion,</li>
+<li>dense networks may emerge.</li>
+</ul>
+<p>Consequently, many concepts from:</p>
+<ul>
+<li>colloidal gels,</li>
+<li>dense suspensions,</li>
+<li>particulate matter,</li>
+</ul>
+<p>become directly applicable.</p>
+<p>Blood therefore provides a fascinating bridge between biology, physics and engineering.</p>
+</section>
+<section id="research-perspectives" class="level1" data-number="16">
+<h1 data-number="16"><span class="header-section-number">16</span> Research perspectives</h1>
+<p>Many blood tests used daily in clinics rely on physical phenomena whose detailed mechanisms remain incompletely understood.</p>
+<p>Important challenges include:</p>
+<ul>
+<li>understanding aggregation mechanisms,</li>
+<li>predicting blood rheology from cellular properties,</li>
+<li>improving numerical simulations,</li>
+<li>developing new diagnostic biomarkers,</li>
+<li>optimizing blood-storage protocols.</li>
+</ul>
+<p>Red blood cells remain one of the most accessible and informative model systems in biological physics.</p>
+<p>They provide a unique playground in which:</p>
+<ul>
+<li>single-cell mechanics,</li>
+<li>fluid dynamics,</li>
+<li>statistical physics,</li>
+<li>colloid science,</li>
+<li>soft matter,</li>
+</ul>
+<p>interact simultaneously.</p>
+</section>
+<section id="learning-outcomes" class="level1" data-number="17">
+<h1 data-number="17"><span class="header-section-number">17</span> Learning outcomes</h1>
+<p>After this lecture, you should be able to:</p>
+<ul>
+<li>explain why red blood cells aggregate;</li>
+<li>distinguish bridging and depletion mechanisms;</li>
+<li>derive the basic depletion attraction between surfaces;</li>
+<li>understand how aggregation influences blood rheology;</li>
+<li>describe modern experimental methods used to measure aggregation forces;</li>
+<li>explain the challenges of quantitatively validating aggregation theories;</li>
+<li>appreciate the connections between blood physics and soft condensed matter physics.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

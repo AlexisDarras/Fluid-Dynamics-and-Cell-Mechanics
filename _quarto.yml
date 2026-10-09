@@ -32,6 +32,9 @@ website:
           - href: MembraneMechanicsProblemClass.qmd
             text: Membrane elasticity problem class
 
+          - href: RBCAggregation.qmd
+            text: Aggregation of microscopic particles
+
 
 
 format:

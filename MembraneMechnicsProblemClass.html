@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Dr Alexis Darras">
+
+<title>Cell Mechanics Problem Class – Fluid Dynamics and Cell Mechanics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Fluid Dynamics and Cell Mechanics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-fluid-dynamics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Fluid Dynamics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-fluid-dynamics">    
+        <li>
+    <a class="dropdown-item" href="./NotesIntroNavierStokes.html">
+ <span class="dropdown-text">Introduction to the Navier-Stokes equation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./FluidMechanicsProblemClass.html">
+ <span class="dropdown-text">Fluid dynamics problem class</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./LowRe.html">
+ <span class="dropdown-text">A blink of life at low Reynolds number</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./ComplexFluids.html">
+ <span class="dropdown-text">An introduction to complex (bio)fluids</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-cell-mechanics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Cell Mechanics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-cell-mechanics">    
+        <li>
+    <a class="dropdown-item" href="./OsmoticPressure.html">
+ <span class="dropdown-text">Red blood cells, osmotic pressure and cell volume regulation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./MembraneElasticity.html">
+ <span class="dropdown-text">Membrane elasticity</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./MembraneMechanicsProblemClass.qmd">
+ <span class="dropdown-text">Membrane elasticity problem class</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./RBCAggregation.html">
+ <span class="dropdown-text">Aggregation of microscopic particles</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
+  <li><a href="#exercise-1-membrane-pulling" id="toc-exercise-1-membrane-pulling" class="nav-link" data-scroll-target="#exercise-1-membrane-pulling"><span class="header-section-number">2</span> Exercise 1: Membrane pulling</a>
+  <ul class="collapse">
+  <li><a href="#membrane-tubes-and-tether-formation" id="toc-membrane-tubes-and-tether-formation" class="nav-link" data-scroll-target="#membrane-tubes-and-tether-formation"><span class="header-section-number">2.1</span> Membrane tubes and tether formation</a>
+  <ul class="collapse">
+  <li><a href="#question-1---geometrical-decomposition" id="toc-question-1---geometrical-decomposition" class="nav-link" data-scroll-target="#question-1---geometrical-decomposition"><span class="header-section-number">2.1.1</span> Question 1 - Geometrical decomposition</a></li>
+  <li><a href="#question-2---bending-energy" id="toc-question-2---bending-energy" class="nav-link" data-scroll-target="#question-2---bending-energy"><span class="header-section-number">2.1.2</span> Question 2 - Bending energy</a></li>
+  <li><a href="#question-3---stretching-energy" id="toc-question-3---stretching-energy" class="nav-link" data-scroll-target="#question-3---stretching-energy"><span class="header-section-number">2.1.3</span> Question 3 - Stretching energy</a></li>
+  <li><a href="#question-4---what-energy-contributions-are-still-missing" id="toc-question-4---what-energy-contributions-are-still-missing" class="nav-link" data-scroll-target="#question-4---what-energy-contributions-are-still-missing"><span class="header-section-number">2.1.4</span> Question 4 - What energy contributions are still missing?</a></li>
+  <li><a href="#question-5---equilibrium-conditions" id="toc-question-5---equilibrium-conditions" class="nav-link" data-scroll-target="#question-5---equilibrium-conditions"><span class="header-section-number">2.1.5</span> Question 5 - Equilibrium conditions</a></li>
+  <li><a href="#question-8---determination-of-membrane-properties" id="toc-question-8---determination-of-membrane-properties" class="nav-link" data-scroll-target="#question-8---determination-of-membrane-properties"><span class="header-section-number">2.1.6</span> Question 8 - Determination of membrane properties</a></li>
+  <li><a href="#interpretation" id="toc-interpretation" class="nav-link" data-scroll-target="#interpretation"><span class="header-section-number">2.1.7</span> Interpretation</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#exercise-2-curvature-of-a-sphere" id="toc-exercise-2-curvature-of-a-sphere" class="nav-link" data-scroll-target="#exercise-2-curvature-of-a-sphere"><span class="header-section-number">3</span> Exercise 2: Curvature of a sphere</a>
+  <ul class="collapse">
+  <li><a href="#step-1-parametrize-the-surface" id="toc-step-1-parametrize-the-surface" class="nav-link" data-scroll-target="#step-1-parametrize-the-surface"><span class="header-section-number">3.1</span> Step 1: Parametrize the surface</a>
+  <ul class="collapse">
+  <li><a href="#hint-6" id="toc-hint-6" class="nav-link" data-scroll-target="#hint-6"><span class="header-section-number">3.1.1</span> Hint</a></li>
+  </ul></li>
+  <li><a href="#step-2-tangent-vectors" id="toc-step-2-tangent-vectors" class="nav-link" data-scroll-target="#step-2-tangent-vectors"><span class="header-section-number">3.2</span> Step 2: Tangent vectors</a></li>
+  <li><a href="#step-3-first-fundamental-form" id="toc-step-3-first-fundamental-form" class="nav-link" data-scroll-target="#step-3-first-fundamental-form"><span class="header-section-number">3.3</span> Step 3: First fundamental form</a>
+  <ul class="collapse">
+  <li><a href="#goal" id="toc-goal" class="nav-link" data-scroll-target="#goal"><span class="header-section-number">3.3.1</span> Goal</a></li>
+  <li><a href="#check" id="toc-check" class="nav-link" data-scroll-target="#check"><span class="header-section-number">3.3.2</span> Check</a></li>
+  </ul></li>
+  <li><a href="#step-4-surface-normal" id="toc-step-4-surface-normal" class="nav-link" data-scroll-target="#step-4-surface-normal"><span class="header-section-number">3.4</span> Step 4: Surface normal</a>
+  <ul class="collapse">
+  <li><a href="#question" id="toc-question" class="nav-link" data-scroll-target="#question"><span class="header-section-number">3.4.1</span> Question</a></li>
+  </ul></li>
+  <li><a href="#step-5-second-derivatives" id="toc-step-5-second-derivatives" class="nav-link" data-scroll-target="#step-5-second-derivatives"><span class="header-section-number">3.5</span> Step 5: Second derivatives</a></li>
+  <li><a href="#step-6-second-fundamental-form" id="toc-step-6-second-fundamental-form" class="nav-link" data-scroll-target="#step-6-second-fundamental-form"><span class="header-section-number">3.6</span> Step 6: Second fundamental form</a></li>
+  <li><a href="#step-7-principal-curvatures" id="toc-step-7-principal-curvatures" class="nav-link" data-scroll-target="#step-7-principal-curvatures"><span class="header-section-number">3.7</span> Step 7: Principal curvatures</a>
+  <ul class="collapse">
+  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1"><span class="header-section-number">3.7.1</span> Question</a></li>
+  <li><a href="#hint-7" id="toc-hint-7" class="nav-link" data-scroll-target="#hint-7"><span class="header-section-number">3.7.2</span> Hint</a></li>
+  </ul></li>
+  <li><a href="#step-8-mean-and-gaussian-curvature" id="toc-step-8-mean-and-gaussian-curvature" class="nav-link" data-scroll-target="#step-8-mean-and-gaussian-curvature"><span class="header-section-number">3.8</span> Step 8: Mean and Gaussian curvature</a>
+  <ul class="collapse">
+  <li><a href="#check-1" id="toc-check-1" class="nav-link" data-scroll-target="#check-1"><span class="header-section-number">3.8.1</span> Check</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#questions-for-discussion" id="toc-questions-for-discussion" class="nav-link" data-scroll-target="#questions-for-discussion"><span class="header-section-number">4</span> Questions for discussion</a>
+  <ul class="collapse">
+  <li><a href="#membrane-pulling" id="toc-membrane-pulling" class="nav-link" data-scroll-target="#membrane-pulling"><span class="header-section-number">4.0.1</span> Membrane pulling</a></li>
+  <li><a href="#surface-geometry" id="toc-surface-geometry" class="nav-link" data-scroll-target="#surface-geometry"><span class="header-section-number">4.0.2</span> Surface geometry</a></li>
+  </ul></li>
+  <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link" data-scroll-target="#learning-outcomes"><span class="header-section-number">5</span> Learning outcomes</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Cell Mechanics Problem Class</h1>
+<p class="subtitle lead">Membrane Elasticity and Curvature</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Dr Alexis Darras </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
+<p>In this problem class, we will apply the concepts introduced in the lecture on membrane elasticity to two concrete situations:</p>
+<ol type="1">
+<li>Determining membrane properties from tether-pulling experiments.</li>
+<li>Computing the curvature of a sphere from the first and second fundamental forms.</li>
+</ol>
+<p>The objective is not only to obtain numerical results, but also to become familiar with the physical and geometrical reasoning used in modern membrane mechanics.</p>
+</section>
+<section id="exercise-1-membrane-pulling" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Exercise 1: Membrane pulling</h1>
+<section id="membrane-tubes-and-tether-formation" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="membrane-tubes-and-tether-formation"><span class="header-section-number">2.1</span> Membrane tubes and tether formation</h2>
+<p>Cellular membranes are not static structures. In many biological systems, narrow membrane tubes, often referred to as <strong>tethers</strong>, can be pulled from larger membrane reservoirs.</p>
+<p>Examples include:</p>
+<ul>
+<li>the endoplasmic reticulum,</li>
+<li>the Golgi apparatus,</li>
+<li>intracellular transport vesicles,</li>
+<li>giant lipid vesicles used in biophysical experiments.</li>
+</ul>
+<p>These membrane tubes can be generated in several ways. In laboratory experiments, they are often pulled using optical tweezers attached to a small bead. In living cells, similar structures are frequently generated by molecular motors that pull on the membrane while moving along cytoskeletal filaments.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/MembraneProblemExp.png" class="img-fluid figure-img"></p>
+<figcaption>Illustration of tether pulling</figcaption>
+</figure>
+</div>
+<p>Experiments show that the force required to initiate and maintain a tether is typically of the order of <span class="math inline">\(f \sim 10\ {\rm pN}\)</span>. Once formed, the tether can extend over distances much larger than its radius while remaining connected to the original membrane reservoir.</p>
+<p>The figure provided in the problem statement indicates the characteristic dimensions involved in such experiments:</p>
+<ul>
+<li>the force <span class="math inline">\(f\)</span>,</li>
+<li>the tether length <span class="math inline">\(L\)</span>,</li>
+<li>the tether radius <span class="math inline">\(r\)</span>,</li>
+<li>the radius <span class="math inline">\(R\)</span> of the membrane reservoir.</li>
+</ul>
+<p>Typical values are approximately</p>
+<p><span class="math display">\[
+f \approx 10\ {\rm pN},
+\]</span></p>
+<p><span class="math display">\[
+r \approx 50\ {\rm nm},
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+R \approx 10\ {\rm \mu m}.
+\]</span></p>
+<p>We will assume that the spontaneous curvature of the membrane is negligible.</p>
+<p>The goal of this exercise is to understand how the geometry and mechanics of the membrane determine:</p>
+<ul>
+<li>the radius of the tether,</li>
+<li>the force required to pull it,</li>
+<li>the membrane tension,</li>
+<li>the membrane bending modulus.</li>
+</ul>
+<section id="question-1---geometrical-decomposition" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="question-1---geometrical-decomposition"><span class="header-section-number">2.1.1</span> Question 1 - Geometrical decomposition</h3>
+<p>&nbsp; Before writing down any energy, identify the simple geometrical objects that constitute the membrane shape shown in the figure. You should identify three elementary geometries whose areas, volumes and curvatures are known analytically.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Hint
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>&nbsp; Look separately at:</p>
+<ul>
+<li>the large membrane reservoir,</li>
+<li>the long tether,</li>
+<li>the terminal cap closing the tether.</li>
+</ul>
+<p>Try to associate each region with a standard object whose principal curvatures are immediately known.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="question-2---bending-energy" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="question-2---bending-energy"><span class="header-section-number">2.1.2</span> Question 2 - Bending energy</h3>
+<p>Using the Helfrich model (without spontaneous curvature), express the total bending energy of the membrane as a function of:</p>
+<ul>
+<li><span class="math inline">\(R\)</span>,</li>
+<li><span class="math inline">\(r\)</span>,</li>
+<li><span class="math inline">\(L\)</span>,</li>
+<li><span class="math inline">\(\kappa\)</span>.</li>
+</ul>
+<p>How does the assumption <span class="math inline">\(r\ll R\)</span> simplify this expression?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Hint 1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The Helfrich bending energy, without spontaneous curvature, can be written as</p>
+<p><span class="math display">\[
+U_b
+=
+\int_A
+\frac{\kappa}{2}
+(2K)^2\,dA,
+\]</span></p>
+<p>For each geometrical component:</p>
+<ol type="1">
+<li>Determine the principal curvatures.</li>
+<li>Compute the mean curvature</li>
+</ol>
+<p><span class="math display">\[
+K
+=
+\frac{\kappa_1+\kappa_2}{2}.
+\]</span></p>
+<ol start="3" type="1">
+<li>Compute</li>
+</ol>
+<p><span class="math display">\[
+\frac{\kappa}{2}(2K)^2.
+\]</span></p>
+<ol start="4" type="1">
+<li>Integrate over the corresponding area.</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Hint 2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Useful results:</p>
+<p>Sphere of radius <span class="math inline">\(R\)</span></p>
+<p><span class="math display">\[
+\kappa_1=\kappa_2=\frac1R.
+\]</span></p>
+<p>Cylinder of radius <span class="math inline">\(r\)</span></p>
+<p><span class="math display">\[
+\kappa_1=\frac1r,
+\qquad
+\kappa_2=0.
+\]</span></p>
+<p>Remember that the cap closing the tether is not cylindrical.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Hint 3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The problem states that</p>
+<p><span class="math display">\[
+r\ll R.
+\]</span></p>
+<p>After obtaining the full expression, identify which contributions are expected to dominate.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="question-3---stretching-energy" class="level3" data-number="2.1.3">
+<h3 data-number="2.1.3" class="anchored" data-anchor-id="question-3---stretching-energy"><span class="header-section-number">2.1.3</span> Question 3 - Stretching energy</h3>
+<p>Write an expression for the membrane stretching energy, as a function of the geometric parameters <span class="math inline">\(R,\qquad r,\qquad L\)</span> and the stretching modulus.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Hint 1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The membrane stretching energy can be written</p>
+<p><span class="math display">\[
+U_s
+=
+\frac{k_s}{2}
+\frac{(A-A_0)^2}{A_0}.
+\]</span></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Hint 2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>The area of the tether scales linearly with <span class="math inline">\(L\)</span>.</p>
+<p>It is convenient to introduce the membrane tension</p>
+<p><span class="math display">\[
+\sigma
+=
+k_s
+\frac{A-A_0}{A_0},
+\]</span></p>
+<p>and rewrite the stretching contribution in terms of <span class="math inline">\(\sigma\)</span>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="question-4---what-energy-contributions-are-still-missing" class="level3" data-number="2.1.4">
+<h3 data-number="2.1.4" class="anchored" data-anchor-id="question-4---what-energy-contributions-are-still-missing"><span class="header-section-number">2.1.4</span> Question 4 - What energy contributions are still missing?</h3>
+<p>So far, only elastic energies have been considered.</p>
+<p>Identify the two additional contributions to the total energy of the system.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Hint 1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>One contribution is associated with the force <span class="math inline">\(f\)</span>.</p>
+<p>The other is associated with the fact that the pressure inside and outside the vesicle may differ.</p>
+<p>Write the corresponding energy terms.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Hint 2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Recall from the lecture that:</p>
+<ul>
+<li>a constant force derives from a linear potential energy,</li>
+<li>pressure differences perform work when the enclosed volume changes.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="question-5---equilibrium-conditions" class="level3" data-number="2.1.5">
+<h3 data-number="2.1.5" class="anchored" data-anchor-id="question-5---equilibrium-conditions"><span class="header-section-number">2.1.5</span> Question 5 - Equilibrium conditions</h3>
+<p>At equilibrium, the membrane adopts a shape for which the total energy respects some specific conditions.</p>
+<p>Write those equilibrium conditions.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Hint 1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>At equilibrium, the membrane adopts a shape for which the tota is stationary with respect to all independent geometrical parameters</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Hint 2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Collect all contributions obtained previously and write a total energy</p>
+<p><span class="math display">\[
+U_{\rm tot}(R,r,L).
+\]</span></p>
+<p>Keep the expression as explicit as possible.</p>
+<p>The total energy should contain:</p>
+<ul>
+<li>bending energy,</li>
+<li>stretching energy,</li>
+<li>pressure-volume work,</li>
+<li>force contribution.</li>
+</ul>
+<p>Remember to use</p>
+<p><span class="math display">\[
+r\ll R
+\]</span></p>
+<p>to simplify the equilibrium equations.</p>
+<p>Identify which terms become negligible compared with the others.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Hint 3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Estimate the relative size of the various bending contributions.</p>
+<p>Compare terms proportional to</p>
+<p><span class="math display">\[
+\frac1R
+\qquad \text{and} \qquad
+\frac1r.
+\]</span></p>
+<p>using the experimental dimensions.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Hint 4
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Ask yourself which geometrical quantities are free to vary.</p>
+<p>For each independent variable <span class="math inline">\(q\)</span>, <span class="math display">\[
+\frac{\partial U_{\rm tot}}{\partial q}
+=
+0.
+\]</span></p>
+<p>You should obtain three independent equations.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="question-8---determination-of-membrane-properties" class="level3" data-number="2.1.6">
+<h3 data-number="2.1.6" class="anchored" data-anchor-id="question-8---determination-of-membrane-properties"><span class="header-section-number">2.1.6</span> Question 8 - Determination of membrane properties</h3>
+<p>Use the experimental values</p>
+<p><span class="math display">\[
+f\approx10\ {\rm pN},
+\]</span></p>
+<p><span class="math display">\[
+r\approx50\ {\rm nm},
+\]</span></p>
+<p><span class="math display">\[
+R\approx10\ {\rm \mu m}
+\]</span></p>
+<p>to estimate:</p>
+<ol type="1">
+<li>the membrane tension <span class="math inline">\(\sigma\)</span>,</li>
+<li>the bending modulus <span class="math inline">\(\kappa\)</span>,</li>
+<li>the pressure difference</li>
+</ol>
+<p><span class="math display">\[
+\Delta p
+=
+p_{\rm in}-p_{\rm out}.
+\]</span></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Hint
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Do not substitute numerical values immediately.</p>
+<p>First isolate the quantities of interest from the equilibrium equations.</p>
+<p>Only then evaluate the resulting expressions numerically.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="interpretation" class="level3" data-number="2.1.7">
+<h3 data-number="2.1.7" class="anchored" data-anchor-id="interpretation"><span class="header-section-number">2.1.7</span> Interpretation</h3>
+<p>Once numerical values have been obtained, compare them with the values encountered in the lecture.</p>
+<p>Do your estimates:</p>
+<ul>
+<li>have physically reasonable magnitudes?</li>
+<li>correspond to realistic membrane tensions?</li>
+<li>fall within the expected range for lipid membranes?</li>
+</ul>
+<p>If not, revisit the approximations used during the derivation.</p>
+<p>The purpose of this exercise is not only to perform the calculations, but also to understand how geometry, elasticity and pressure combine to determine the formation of membrane tethers.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="exercise-2-curvature-of-a-sphere" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Exercise 2: Curvature of a sphere</h1>
+<p>In the lecture we introduced the first and second fundamental forms as the proper way to define curvature on a general surface.</p>
+<p>We now apply this formalism to the simplest example: a sphere.</p>
+<p><strong>[Insert figure from the problem sheet]</strong></p>
+<hr>
+<section id="step-1-parametrize-the-surface" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="step-1-parametrize-the-surface"><span class="header-section-number">3.1</span> Step 1: Parametrize the surface</h2>
+<p>Consider a sphere of radius <span class="math inline">\(R\)</span>.</p>
+<p>Choose two parameters</p>
+<p><span class="math display">\[
+(u_1,u_2)
+\]</span></p>
+<p>and write an explicit parametrization</p>
+<p><span class="math display">\[
+\mathbf X(u_1,u_2).
+\]</span></p>
+<section id="hint-6" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="hint-6"><span class="header-section-number">3.1.1</span> Hint</h3>
+<p>Spherical coordinates are the natural choice.</p>
+<p>The usual angular variables are particularly convenient.</p>
+<hr>
+</section>
+</section>
+<section id="step-2-tangent-vectors" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="step-2-tangent-vectors"><span class="header-section-number">3.2</span> Step 2: Tangent vectors</h2>
+<p>Compute</p>
+<p><span class="math display">\[
+\partial_1\mathbf X,
+\qquad
+\partial_2\mathbf X.
+\]</span></p>
+<p>Verify that both vectors are tangent to the surface.</p>
+<hr>
+</section>
+<section id="step-3-first-fundamental-form" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="step-3-first-fundamental-form"><span class="header-section-number">3.3</span> Step 3: First fundamental form</h2>
+<p>Compute</p>
+<p><span class="math display">\[
+I_{ij}
+=
+\partial_i\mathbf X
+\cdot
+\partial_j\mathbf X.
+\]</span></p>
+<section id="goal" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="goal"><span class="header-section-number">3.3.1</span> Goal</h3>
+<p>Construct the matrix</p>
+<p><span class="math display">\[
+I.
+\]</span></p>
+</section>
+<section id="check" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="check"><span class="header-section-number">3.3.2</span> Check</h3>
+<p>The matrix should be symmetric.</p>
+<hr>
+</section>
+</section>
+<section id="step-4-surface-normal" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="step-4-surface-normal"><span class="header-section-number">3.4</span> Step 4: Surface normal</h2>
+<p>Compute the unit normal vector</p>
+<p><span class="math display">\[
+\mathbf n
+=
+\frac{
+\partial_1\mathbf X
+\times
+\partial_2\mathbf X
+}
+{
+\left|
+\partial_1\mathbf X
+\times
+\partial_2\mathbf X
+\right|
+}.
+\]</span></p>
+<section id="question" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="question"><span class="header-section-number">3.4.1</span> Question</h3>
+<p>Does the chosen normal point inward or outward?</p>
+<hr>
+</section>
+</section>
+<section id="step-5-second-derivatives" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="step-5-second-derivatives"><span class="header-section-number">3.5</span> Step 5: Second derivatives</h2>
+<p>Compute</p>
+<p><span class="math display">\[
+\partial_i\partial_j\mathbf X.
+\]</span></p>
+<p>You will need these quantities to construct the second fundamental form.</p>
+<hr>
+</section>
+<section id="step-6-second-fundamental-form" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="step-6-second-fundamental-form"><span class="header-section-number">3.6</span> Step 6: Second fundamental form</h2>
+<p>Compute</p>
+<p><span class="math display">\[
+II_{ij}
+=
+\mathbf n
+\cdot
+\partial_i\partial_j\mathbf X.
+\]</span></p>
+<p>As for the first fundamental form, build the corresponding matrix</p>
+<p><span class="math display">\[
+II.
+\]</span></p>
+<hr>
+</section>
+<section id="step-7-principal-curvatures" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="step-7-principal-curvatures"><span class="header-section-number">3.7</span> Step 7: Principal curvatures</h2>
+<p>The principal curvatures satisfy</p>
+<p><span class="math display">\[
+\det
+\left(
+II-\kappa I
+\right)
+=
+0.
+\]</span></p>
+<section id="question-1" class="level3" data-number="3.7.1">
+<h3 data-number="3.7.1" class="anchored" data-anchor-id="question-1"><span class="header-section-number">3.7.1</span> Question</h3>
+<p>Solve this equation and determine</p>
+<p><span class="math display">\[
+\kappa_1,
+\qquad
+\kappa_2.
+\]</span></p>
+</section>
+<section id="hint-7" class="level3" data-number="3.7.2">
+<h3 data-number="3.7.2" class="anchored" data-anchor-id="hint-7"><span class="header-section-number">3.7.2</span> Hint</h3>
+<p>Because a sphere has the same curvature in every direction, the answer should not depend on the chosen point.</p>
+<hr>
+</section>
+</section>
+<section id="step-8-mean-and-gaussian-curvature" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="step-8-mean-and-gaussian-curvature"><span class="header-section-number">3.8</span> Step 8: Mean and Gaussian curvature</h2>
+<p>Use</p>
+<p><span class="math display">\[
+K
+=
+\frac{\kappa_1+\kappa_2}{2},
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+K_G
+=
+\kappa_1\kappa_2.
+\]</span></p>
+<p>to determine:</p>
+<ul>
+<li>the mean curvature,</li>
+<li>the Gaussian curvature.</li>
+</ul>
+<section id="check-1" class="level3" data-number="3.8.1">
+<h3 data-number="3.8.1" class="anchored" data-anchor-id="check-1"><span class="header-section-number">3.8.1</span> Check</h3>
+<p>Compare your result with the intuitive definition of curvature introduced earlier in the lecture for a circle of radius <span class="math inline">\(R\)</span>.</p>
+<hr>
+</section>
+</section>
+</section>
+<section id="questions-for-discussion" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Questions for discussion</h1>
+<p>After completing the exercises, make sure you can answer the following questions.</p>
+<section id="membrane-pulling" class="level3" data-number="4.0.1">
+<h3 data-number="4.0.1" class="anchored" data-anchor-id="membrane-pulling"><span class="header-section-number">4.0.1</span> Membrane pulling</h3>
+<ul>
+<li>Why is stretching generally neglected compared with bending in lipid membranes?</li>
+<li>Why does the measured force provide information about the bending modulus?</li>
+</ul>
+</section>
+<section id="surface-geometry" class="level3" data-number="4.0.2">
+<h3 data-number="4.0.2" class="anchored" data-anchor-id="surface-geometry"><span class="header-section-number">4.0.2</span> Surface geometry</h3>
+<ul>
+<li>Why are principal curvatures easier to define locally than globally?</li>
+<li>Why does one need the first and second fundamental forms to compute curvature on an arbitrary surface?</li>
+<li>Why are all directions equivalent on a sphere but not on a general membrane?</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="learning-outcomes" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Learning outcomes</h1>
+<p>By the end of this problem class, you should be able to:</p>
+<ul>
+<li>derive equilibrium conditions from an elastic energy</li>
+<li>connect membrane-scale mechanics with experimentally observed cell behavior</li>
+<li>estimate membrane mechanical parameters from experiments</li>
+<li>compute the first and second fundamental forms of a surface</li>
+<li>determine principal curvatures from differential geometry</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

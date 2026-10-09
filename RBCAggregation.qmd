@@ -1,0 +1,658 @@
+---
+title: "Biological and Mesoscale Physics"
+subtitle: "Red Blood Cell Aggregation and Blood as a Soft Matter System"
+author: "Dr Alexis Darras"
+format:
+  html:
+    toc: true
+    number-sections: true
+---
+
+# Introduction
+
+Throughout this course, we have mostly focused on the behavior of individual red blood cells:
+
+- membrane mechanics,
+- osmotic regulation,
+- cell deformability,
+- interactions with confined flows.
+
+However, blood is not simply a suspension of isolated cells.
+
+Under physiological conditions, red blood cells interact strongly with one another, forming transient clusters and larger structures known as **rouleaux**.
+
+These interactions profoundly influence:
+
+- blood viscosity,
+- microvascular flow,
+- sedimentation,
+- numerous diagnostic tests.
+
+Understanding blood therefore requires moving from **single-cell mechanics** to **collective behavior**, where concepts from:
+
+- colloid physics,
+- statistical physics,
+- rheology,
+- soft matter,
+
+become essential.
+
+# Red blood cells as highly deformable particles
+
+Red blood cells are the most abundant cell type in the human body, accounting for roughly 70–80% of all cells.
+
+Their primary biological role is oxygen transport.
+
+A healthy red blood cell:
+
+- has a diameter of approximately \(8~\mu\mathrm m\),
+- has a thickness of approximately \(2~\mu\mathrm m\),
+- possesses remarkable deformability.
+
+**[Insert figure: RBC deformation in microchannels]**
+
+Experiments in confined microfluidic channels reveal that red blood cells continuously adapt their shape in response to flow conditions.
+
+For example:
+
+- at moderate flow velocities (\(\sim1~\mathrm{mm/s}\)),
+  cells adopt one family of shapes;
+
+- at larger velocities (\(\sim5~\mathrm{mm/s}\)),
+  stronger deformations appear.
+
+These deformations are made possible by the combination of:
+
+- membrane elasticity,
+- cytoskeletal mechanics,
+- fluidity of the lipid bilayer.
+
+Because red blood cells are both deformable and interactive, blood is a particularly rich soft-matter system.
+
+# Blood physics: an overview
+
+Many questions remain actively investigated today.
+
+Examples include:
+
+## Macroscopic rheology
+
+Blood is strongly non-Newtonian.
+
+One of its most characteristic features is **shear thinning**:
+
+$$
+\eta_{\rm app}
+\downarrow
+\qquad
+\text{when}
+\qquad
+\dot{\gamma}
+\uparrow.
+$$
+
+The apparent viscosity decreases as the shear rate increases.
+
+**[Insert figure: viscosity versus shear rate for different species]**
+
+Whether blood also exhibits a true yield stress remains an area of ongoing discussion.
+
+## Microfluidics
+
+Important applications include:
+
+- cell counting,
+- cell sorting,
+- deformability measurements,
+- disease diagnostics,
+- blood analogue development.
+
+## Red blood cell aggregation
+
+Perhaps the most striking collective phenomenon is the tendency of red blood cells to aggregate.
+
+**[Insert figure: rouleaux structures]**
+
+These aggregates are often much larger than individual cells and can dominate blood rheology at low shear rates.
+
+Aggregation energies are typically much larger than thermal fluctuations:
+
+$$
+F_{\rm agg}S
+\gg
+k_B T,
+$$
+
+indicating that aggregation is not driven by thermal motion alone.
+
+This immediately raises a fundamental question:
+
+> What physical mechanism causes red blood cells to attract one another?
+
+# Why do red blood cells aggregate?
+
+Two principal explanations have been proposed:
+
+1. Bridging
+2. Depletion
+
+Both mechanisms are still discussed in the literature.
+
+# Bridging theory
+
+Bridging assumes that macromolecules dissolved in plasma adsorb onto neighboring cell membranes.
+
+A polymer molecule may simultaneously attach to two different cells.
+
+The molecule therefore acts as a molecular spring linking the cells together.
+
+**[Insert figure: polymer bridge between two membranes]**
+
+## Spring model
+
+Suppose a molecular bond behaves like a spring.
+
+The force produced by a single bond is
+
+$$
+f_b
+=
+k_b(l-l_0),
+$$
+
+where:
+
+- \(k_b\) is the bond stiffness,
+- \(l_0\) is the equilibrium length,
+- \(l\) is the current bond length.
+
+If
+
+$$
+n_b
+$$
+
+bonds are present,
+
+the total bridging force becomes
+
+$$
+\boxed{
+f_m
+=
+n_b f_b.
+}
+$$
+
+The interaction therefore depends not only on the mechanical properties of each bond but also on the number of bonds.
+
+## Bond kinetics
+
+The number of attached molecules is itself dynamic.
+
+Bridging models therefore introduce chemical-reaction kinetics.
+
+A typical description is
+
+$$
+\frac{\partial n_b}{\partial t}
+=
+2
+\left[
+k_+
+\frac{(n-n_b)^2}{2}
+-
+k_-
+\frac{n_b}{2}
+\right].
+$$
+
+The attachment and detachment rates are commonly modeled using thermally activated processes:
+
+$$
+k_+
+=
+k_+^0
+\exp
+\left(
+-\frac{k_{ts}(l-l_0)^2}{2k_B T}
+\right),
+$$
+
+$$
+k_-
+=
+k_-^0
+\exp
+\left(
+-\frac{(k_b-k_{ts})(l-l_0)^2}{2k_B T}
+\right).
+$$
+
+This framework was developed and extensively explored in numerical studies by Bagchi and collaborators.
+
+## Advantages of bridging models
+
+Bridging models are attractive because they can naturally be combined with:
+
+- membrane deformation,
+- fluid flow,
+- hydrodynamic simulations.
+
+They are therefore widely used in computational blood mechanics.
+
+## Difficulties
+
+The main limitation is that many parameters are difficult to determine experimentally.
+
+Examples include:
+
+- bond stiffnesses,
+- attachment rates,
+- detachment rates,
+- densities of active macromolecules.
+
+Reported values often span several orders of magnitude.
+
+As a consequence, bridging models can be difficult to validate quantitatively.
+
+# Depletion theory
+
+An alternative explanation comes from colloid physics.
+
+Unlike bridging, depletion does not require any direct molecular binding between cells.
+
+Instead, the attraction emerges from entropy.
+
+## Physical origin
+
+Consider two red blood cells immersed in a solution containing macromolecules.
+
+The polymers cannot approach arbitrarily close to the cell surface.
+
+A depletion layer therefore appears around each cell.
+
+**[Insert figure: depletion layers around two neighboring cells]**
+
+When two cells approach one another, these depletion layers overlap.
+
+The overlap increases the volume available to polymers elsewhere in the solution.
+
+Because entropy increases, the corresponding configuration is favored.
+
+The result is an effective attraction between the cells.
+
+Remarkably:
+
+> two particles can attract one another even if all microscopic interactions are purely repulsive.
+
+This is one of the most important ideas in colloid science.
+
+# Simplest depletion model
+
+Consider two parallel plates immersed in a suspension of particles of radius
+
+$$
+r.
+$$
+
+The plate separation is
+
+$$
+h.
+$$
+
+**[Insert figure: plate-plate depletion geometry]**
+
+## Large separations
+
+If
+
+$$
+h \ge 2r,
+$$
+
+particles can enter the gap.
+
+The osmotic pressure inside and outside the gap is identical:
+
+$$
+P_i=P_o.
+$$
+
+No net force appears.
+
+## Small separations
+
+If
+
+$$
+h < 2r,
+$$
+
+the particles cannot enter the gap.
+
+The osmotic pressure becomes
+
+$$
+P_i=0,
+\qquad
+P_o=\Pi.
+$$
+
+The resulting force is
+
+$$
+\boxed{
+F=S\Pi,
+}
+$$
+
+where \(S\) is the plate area.
+
+For an ideal solution,
+
+$$
+\Pi=nk_B T.
+$$
+
+The corresponding interaction energy becomes
+
+$$
+\boxed{
+U
+=
+-Snk_B T
+\left(
+r-\frac{h}{2}
+\right),
+\qquad
+h<2r.
+}
+$$
+
+This is the classical Asakura–Oosawa depletion attraction.
+
+# Realistic depletion models
+
+Actual blood plasma is considerably more complicated.
+
+Polymers:
+
+- possess finite size,
+- partially penetrate glycocalyces,
+- deform near surfaces,
+- interact with one another.
+
+Consequently, more sophisticated theories are required.
+
+## Polymer penetration
+
+Neu and Meiselman proposed an influential model incorporating:
+
+- penetration depth \(p\),
+- depletion thickness \(\Delta\),
+- osmotic pressure \(\Pi\).
+
+The resulting interaction energy becomes
+
+$$
+\boxed{
+w_D
+=
+-2\Pi
+\left(
+\Delta
+-\frac{p+d}{2}
++\delta
+\right),
+}
+$$
+
+where:
+
+- \(d\) is the cell-cell separation,
+- \(\delta\) characterizes the glycocalyx thickness.
+
+## Osmotic-pressure corrections
+
+At sufficiently large polymer concentrations, ideal-solution approximations become insufficient.
+
+A virial expansion can be used:
+
+$$
+\Pi
+=
+n_b k_B T
++
+B_2 n_b^2.
+$$
+
+The depletion thickness then becomes concentration dependent.
+
+Experimental measurements reveal strong decreases of depletion thickness as polymer concentration increases.
+
+**[Insert figure: depletion thickness versus polymer concentration]**
+
+# Comparison with experiments
+
+Depletion models make quantitative predictions for:
+
+- interaction energies,
+- equilibrium spacing,
+- concentration dependence.
+
+The resulting interaction energies exhibit minima at specific cell-cell distances.
+
+**[Insert figure: interaction energy versus separation distance]**
+
+These predictions can be directly compared with experiments.
+
+Remarkably good agreement is often obtained for dextran solutions.
+
+**[Insert figure: theory versus experiment]**
+
+This success is one reason depletion theory remains extremely influential in the field.
+
+# Direct experimental measurements
+
+Ultimately, interaction forces should be measured directly.
+
+Several techniques are available.
+
+## Atomic force microscopy
+
+A red blood cell can be attached to an AFM cantilever and brought into contact with another cell.
+
+**[Insert figure: AFM setup]**
+
+The force required to separate the cells can then be measured directly.
+
+Typical force-distance curves reveal attractive interactions of order tens of piconewtons.
+
+**[Insert figure: AFM force curve]**
+
+## Experimental precautions
+
+Such measurements are challenging.
+
+Contact times must often be carefully controlled because:
+
+- prolonged contact may induce bridging,
+- cells continuously deform,
+- aggregation may become history dependent.
+
+Consequently, interpretation of experiments requires considerable care.
+
+# Optical tweezers and aggregation
+
+Optical tweezers provide another powerful approach.
+
+A focused laser beam can trap and manipulate individual red blood cells.
+
+The trapping force is often well approximated by
+
+$$
+\mathbf F
+\propto
+-k\mathbf x,
+$$
+
+making the optical trap behave similarly to a spring.
+
+**[Insert figure: optical tweezers trapping geometry]**
+
+Modern experiments use optical tweezers to measure:
+
+- aggregation forces,
+- disaggregation forces,
+- aggregation-disaggregation hysteresis.
+
+These measurements provide particularly clean comparisons with theoretical predictions.
+
+# Comparing interaction models
+
+Recent studies have compared experiments with numerical simulations based on:
+
+- pure depletion,
+- pure bridging,
+- depletion plus bridging.
+
+**[Insert figure: experimental versus simulated aggregation forces]**
+
+An important conclusion is that multiple mechanisms may contribute simultaneously.
+
+This remains an active area of debate.
+
+Current research seeks to determine:
+
+- which mechanism dominates,
+- under what physiological conditions,
+- and for which aggregation agents.
+
+# From aggregation to blood structure
+
+At sufficiently large hematocrits,
+
+$$
+\phi
+\approx
+0.5,
+$$
+
+and when
+
+$$
+U_{\rm agg}
+\gg
+k_B T,
+$$
+
+aggregation can become a collective phenomenon.
+
+Instead of isolated rouleaux, one obtains:
+
+$$
+\boxed{
+\text{Percolating networks.}
+}
+$$
+
+Blood can then behave similarly to:
+
+- colloidal gels,
+- attractive suspensions,
+- soft solids.
+
+**[Insert figure: percolating RBC network]**
+
+This observation links blood physics directly to modern soft-matter physics.
+
+# Mixing aggregation and elasticity
+
+Real red blood cells are neither rigid colloids nor purely elastic objects.
+
+They are deformable particles that aggregate.
+
+Modern models therefore attempt to combine:
+
+- membrane elasticity,
+- hydrodynamic forces,
+- aggregation interactions.
+
+One emerging question is:
+
+> What determines the distribution of rouleaux lengths?
+
+This naturally leads to statistical-physics approaches.
+
+For example,
+
+$$
+P(S)
+=
+\frac{
+g(S)e^{-U(S)/k_B T}
+}
+{Z},
+$$
+
+relates the probability of finding an aggregate of size \(S\) to its free energy.
+
+Understanding these distributions remains an active research area.
+
+# Blood as a soft-matter system
+
+A useful perspective is to view blood as a concentrated suspension of attractive deformable particles.
+
+Under storage or in vitro conditions:
+
+- there is no active propulsion,
+- aggregation dominates thermal motion,
+- dense networks may emerge.
+
+Consequently, many concepts from:
+
+- colloidal gels,
+- dense suspensions,
+- particulate matter,
+
+become directly applicable.
+
+Blood therefore provides a fascinating bridge between biology, physics and engineering.
+
+# Research perspectives
+
+Many blood tests used daily in clinics rely on physical phenomena whose detailed mechanisms remain incompletely understood.
+
+Important challenges include:
+
+- understanding aggregation mechanisms,
+- predicting blood rheology from cellular properties,
+- improving numerical simulations,
+- developing new diagnostic biomarkers,
+- optimizing blood-storage protocols.
+
+Red blood cells remain one of the most accessible and informative model systems in biological physics.
+
+They provide a unique playground in which:
+
+- single-cell mechanics,
+- fluid dynamics,
+- statistical physics,
+- colloid science,
+- soft matter,
+
+interact simultaneously.
+
+# Learning outcomes
+
+After this lecture, you should be able to:
+
+- explain why red blood cells aggregate;
+- distinguish bridging and depletion mechanisms;
+- derive the basic depletion attraction between surfaces;
+- understand how aggregation influences blood rheology;
+- describe modern experimental methods used to measure aggregation forces;
+- explain the challenges of quantitatively validating aggregation theories;
+- appreciate the connections between blood physics and soft condensed matter physics.
