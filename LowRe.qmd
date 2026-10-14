@@ -521,6 +521,11 @@ is linear. This leads to various features of the flow field, which is known as S
 
 - Time reversible flow: Suppose all velocities in a Stokes flow are reversed. The governing equation remains unchanged. Consequently, every motion is exactly reversible.
 
+<video controls style="width:100%; max-width:700px;">
+  <source src="figures/LowReReversible.mp4">
+</video>
+Video: Reverted stress at low Reynolds recovers initial configuration of the fluid. [Credits](https://www.youtube.com/watch?v=UpJ-kGII074). 
+
 This last feature has extraordinary consequences for locomotion.
 
 # Purcell's scallop theorem
@@ -982,11 +987,13 @@ swimming reaches the target faster than diffusion.
 For typical bacterial values,
 
 $$
-D \sim 500\ \mu\mathrm m^2/s,
+v \sim 30\ \mu\mathrm m/s,
 $$
 
+and molecules ($R\approx 10^{-10}\mathrm m$)
+
 $$
-v \sim 30\ \mu\mathrm m/s,
+D \sim 500\ \mu\mathrm m^2/s,
 $$
 
 giving a crossover distance of roughly
