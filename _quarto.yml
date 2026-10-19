@@ -29,7 +29,7 @@ website:
           - href: MembraneElasticity.qmd
             text: Membrane elasticity
 
-          - href: MembraneMechanicsProblemClass.qmd
+          - href: MembraneMechnicsProblemClass.qmd
             text: Membrane elasticity problem class
 
           - href: RBCAggregation.qmd

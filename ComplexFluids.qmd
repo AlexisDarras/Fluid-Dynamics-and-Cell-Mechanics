@@ -146,8 +146,7 @@ A more general expression, known as the Herschel-Bulkley model, combines yield s
 $$
 \sigma-\sigma_s
 =
-k\dot\gamma^{\,n}.
-
+k\,\dot\gamma^{n}.
 $$
 
 Many food products and biological materials are successfully described using this model.
