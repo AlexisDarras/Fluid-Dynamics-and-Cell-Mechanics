@@ -52,7 +52,7 @@ $$
 
 For a Newtonian fluid, this slope is constant. Examples include water, air, and most simple liquids.
 
-![Viscosity of complex fluids as a function of shear stress.](figures/ComplexViscosity.png){#fig-Thixo}
+![Viscosity of complex fluids as a function of shear stress.[Credits](https://scholarworks.utrgv.edu/etd/771)](figures/ComplexViscosity.png){#fig-Thixo}
 
 ## Non-Newtonian fluids
 
