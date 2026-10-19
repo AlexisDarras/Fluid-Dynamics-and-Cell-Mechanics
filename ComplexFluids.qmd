@@ -300,7 +300,7 @@ A famous example is the **pitch-drop experiment**.
 
 ![The picth drop experiment](figures/PicthDrop.png){#fig-PicthDrop}
 
-Pitch appears rigid over seconds or minutes but flows over years: one drop is produced approximately every decade. [More from Queensland UNiversity](https://smp.uq.edu.au/pitch-drop-experiment), [Live feed of teh experiment](http://thetenthwatch.com/feed/)
+Pitch appears rigid over seconds or minutes but flows over years: one drop is produced approximately every decade. [More from Queensland UNiversity](https://smp.uq.edu.au/pitch-drop-experiment), [Live feed of the experiment](http://thetenthwatch.com/feed/)
 
 This observation motivates a deeper question:
 
