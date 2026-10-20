@@ -428,7 +428,7 @@ $$
 \end{pmatrix}.
 $$
 
-Notice that this matrix is non-zero, even though the body has undergone a pure rigid rotation and has not deformed.
+Notice that this tensor is non-zero, even though the body has undergone a pure rigid rotation and has not deformed.
 
 Its transpose is
 
