@@ -318,7 +318,7 @@ $$
 \mathbf u(\mathbf r).
 $$
 
-The corresponding adn so-called strain tensor, used to quantify small local deformations, is
+The corresponding and so-called strain tensor, used to quantify small local deformations, is
 
 $$
 \boxed{
@@ -330,7 +330,206 @@ $$
 }
 $$
 
-The strain tensor measures changes in shape and size, i.e. deformations of the object.
+The strain tensor measures changes in shape and size, i.e. deformations of the object. 
+
+:::{.callout-note}
+[This video explains the construction of the strain tensor in more details](https://www.youtube.com/watch?v=X-H3Fwdm-kI). In summary, the gradient of the displacement field $\nabla \mathbf u$ ensures we don't consider the translations as deformations, while taking into account the average from the gradient and its transposition $(\nabla \mathbf u)^T_{i,j}=\partial_j u_i$ gets rid of overall rotation.
+:::
+::: {.callout-note collapse="true"}
+## A more detailed mathematical justification of the strain tensor.
+
+Recall that the displacement field
+
+$$
+\mathbf u(\mathbf r)
+$$
+
+maps the initial position of every material point to its displaced position.
+
+A natural first guess might be to define deformation through the gradient
+
+$$
+\nabla\mathbf u,
+$$
+
+since this quantity measures how neighboring points move relative to one another.
+
+However, not every relative motion corresponds to a deformation.
+
+### Removing translations
+
+Consider a rigid translation
+
+$$
+\mathbf u=\mathbf u_0,
+$$
+
+where every point is displaced by the same amount.
+
+Then
+
+$$
+\nabla\mathbf u=0.
+$$
+
+The gradient therefore automatically ignores pure translations, as desired.
+
+### Removing rotations
+
+Now consider a small rigid-body rotation described by an (infinitesimal) rotation vector
+
+$$
+\boldsymbol{\Omega},
+$$
+
+whose direction specifies the rotation axis and whose magnitude gives the rotation angle.The displacement of a point located at position
+
+$$
+\mathbf r=(x,y,z)
+$$
+
+is
+
+$$
+\mathbf u
+=
+\boldsymbol{\Omega}\times\mathbf r.
+$$
+
+Writing
+
+$$
+\boldsymbol{\Omega}
+=
+(\Omega_x,\Omega_y,\Omega_z),
+$$
+
+gives
+
+$$
+\mathbf u
+=
+\begin{pmatrix}
+\Omega_y z-\Omega_z y\\
+\Omega_z x-\Omega_x z\\
+\Omega_x y-\Omega_y x
+\end{pmatrix}.
+$$
+
+The displacement gradient is therefore
+
+$$
+\nabla\mathbf u
+=
+\begin{pmatrix}
+0 & -\Omega_z & \Omega_y\\
+\Omega_z & 0 & -\Omega_x\\
+-\Omega_y & \Omega_x & 0
+\end{pmatrix}.
+$$
+
+Notice that this matrix is non-zero, even though the body has undergone a pure rigid rotation and has not deformed.
+
+Its transpose is
+
+$$
+(\nabla\mathbf u)^T
+=
+\begin{pmatrix}
+0 & \Omega_z & -\Omega_y\\
+-\Omega_z & 0 & \Omega_x\\
+\Omega_y & -\Omega_x & 0
+\end{pmatrix}.
+$$
+
+Adding the two matrices gives
+
+$$
+\nabla\mathbf u
++
+(\nabla\mathbf u)^T
+=
+\mathbf 0,
+$$
+
+and therefore
+
+$$
+\boxed{
+\frac{\nabla\mathbf u
++
+(\nabla\mathbf u)^T}{2}
+=
+\mathbf 0.
+}
+$$
+
+The symmetric part of the displacement gradient vanishes identically.
+
+This result is important because it shows that rigid-body rotations do not contribute to the strain tensor. The displacement gradient itself contains information about both deformation and rotation, but taking its symmetric part removes the rotational contribution automatically.
+
+The antisymmetric part,
+
+$$
+\frac{\nabla\mathbf u
+-
+(\nabla\mathbf u)^T}{2},
+$$
+
+contains the local rigid-body rotation, while the symmetric part corresponds to genuine deformations of the material.
+
+### Connection with distances
+
+To understand why the symmetric part is the relevant quantity, consider two neighboring points separated initially by
+
+$$
+d\mathbf r.
+$$
+
+After deformation,
+
+$$
+d\mathbf r'
+=
+d\mathbf r
++
+(\nabla\mathbf u)\,d\mathbf r.
+$$
+
+The squared distance becomes
+
+$$
+|d\mathbf r'|^2
+=
+|d\mathbf r|^2
++
+2\,d\mathbf r^T
+\left[
+\frac{\nabla\mathbf u+(\nabla\mathbf u)^T}{2}
+\right]
+d\mathbf r,
+$$
+
+to first order in the deformation.
+
+We therefore see that changes in length depend only on the symmetric part of the displacement gradient.
+
+The antisymmetric part corresponds exclusively to rigid-body rotations and does not change distances between neighboring points.
+
+For this reason, the strain tensor is defined as
+
+$$
+\boxed{
+\epsilon
+=
+\frac{\nabla\mathbf u
++
+(\nabla\mathbf u)^T}{2}.
+}
+$$
+
+It is precisely the quantity that measures how lengths, angles and shapes are modified locally, independently of any overall translation or rotation of the object.
+:::
 
 The shear component of such deformation is characterized by the shear strain $\gamma$, which does not take into account global expansion or compression of the material. For small deformations,
 

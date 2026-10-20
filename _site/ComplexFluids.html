@@ -317,7 +317,7 @@ Figure&nbsp;1: Illustration of shear stress (<span class="math inline">\(\sigma_
 <img src="figures/ComplexViscosity.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Thixo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Viscosity of complex fluids as a function of shear stress.
+Figure&nbsp;2: Viscosity of complex fluids as a function of shear stress.<a href="https://scholarworks.utrgv.edu/etd/771">Credits</a>
 </figcaption>
 </figure>
 </div>
@@ -579,7 +579,7 @@ Figure&nbsp;9: The picth drop experiment
 </figcaption>
 </figure>
 </div>
-<p>Pitch appears rigid over seconds or minutes but flows over years: one drop is produced approximately every decade. <a href="https://smp.uq.edu.au/pitch-drop-experiment">More from Queensland UNiversity</a>, <a href="http://thetenthwatch.com/feed/">Live feed of teh experiment</a></p>
+<p>Pitch appears rigid over seconds or minutes but flows over years: one drop is produced approximately every decade. <a href="https://smp.uq.edu.au/pitch-drop-experiment">More from Queensland UNiversity</a>, <a href="http://thetenthwatch.com/feed/">Live feed of the experiment</a></p>
 <p>This observation motivates a deeper question:</p>
 <blockquote class="blockquote">
 <p>Is a solid simply a liquid with an extremely long relaxation time?</p>
@@ -593,7 +593,7 @@ Figure&nbsp;9: The picth drop experiment
 <p><span class="math display">\[
 \mathbf u(\mathbf r).
 \]</span></p>
-<p>The corresponding adn so-called strain tensor, used to quantify small local deformations, is</p>
+<p>The corresponding and so-called strain tensor, used to quantify small local deformations, is</p>
 <p><span class="math display">\[
 \boxed{
 \epsilon
@@ -604,6 +604,180 @@ Figure&nbsp;9: The picth drop experiment
 }
 \]</span></p>
 <p>The strain tensor measures changes in shape and size, i.e.&nbsp;deformations of the object.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><a href="https://www.youtube.com/watch?v=X-H3Fwdm-kI">This video explains the construction of the strain tensor in more details</a>. In summary, the gradient of the displacement field <span class="math inline">\(\nabla \mathbf u\)</span> ensures we don’t consider the translations as deformations, while taking into account the average from the gradient and its transposition <span class="math inline">\((\nabla \mathbf u)^T_{i,j}=\partial_j u_i\)</span> gets rid of overall rotation.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>A more detailed mathematical justification of the strain tensor.
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Recall that the displacement field</p>
+<p><span class="math display">\[
+\mathbf u(\mathbf r)
+\]</span></p>
+<p>maps the initial position of every material point to its displaced position.</p>
+<p>A natural first guess might be to define deformation through the gradient</p>
+<p><span class="math display">\[
+\nabla\mathbf u,
+\]</span></p>
+<p>since this quantity measures how neighboring points move relative to one another.</p>
+<p>However, not every relative motion corresponds to a deformation.</p>
+<section id="removing-translations" class="level3" data-number="7.0.1">
+<h3 data-number="7.0.1" class="anchored" data-anchor-id="removing-translations"><span class="header-section-number">7.0.1</span> Removing translations</h3>
+<p>Consider a rigid translation</p>
+<p><span class="math display">\[
+\mathbf u=\mathbf u_0,
+\]</span></p>
+<p>where every point is displaced by the same amount.</p>
+<p>Then</p>
+<p><span class="math display">\[
+\nabla\mathbf u=0.
+\]</span></p>
+<p>The gradient therefore automatically ignores pure translations, as desired.</p>
+</section>
+<section id="removing-rotations" class="level3" data-number="7.0.2">
+<h3 data-number="7.0.2" class="anchored" data-anchor-id="removing-rotations"><span class="header-section-number">7.0.2</span> Removing rotations</h3>
+<p>Now consider a small rigid-body rotation described by an (infinitesimal) rotation vector</p>
+<p><span class="math display">\[
+\boldsymbol{\Omega},
+\]</span></p>
+<p>whose direction specifies the rotation axis and whose magnitude gives the rotation angle.The displacement of a point located at position</p>
+<p><span class="math display">\[
+\mathbf r=(x,y,z)
+\]</span></p>
+<p>is</p>
+<p><span class="math display">\[
+\mathbf u
+=
+\boldsymbol{\Omega}\times\mathbf r.
+\]</span></p>
+<p>Writing</p>
+<p><span class="math display">\[
+\boldsymbol{\Omega}
+=
+(\Omega_x,\Omega_y,\Omega_z),
+\]</span></p>
+<p>gives</p>
+<p><span class="math display">\[
+\mathbf u
+=
+\begin{pmatrix}
+\Omega_y z-\Omega_z y\\
+\Omega_z x-\Omega_x z\\
+\Omega_x y-\Omega_y x
+\end{pmatrix}.
+\]</span></p>
+<p>The displacement gradient is therefore</p>
+<p><span class="math display">\[
+\nabla\mathbf u
+=
+\begin{pmatrix}
+0 &amp; -\Omega_z &amp; \Omega_y\\
+\Omega_z &amp; 0 &amp; -\Omega_x\\
+-\Omega_y &amp; \Omega_x &amp; 0
+\end{pmatrix}.
+\]</span></p>
+<p>Notice that this matrix is non-zero, even though the body has undergone a pure rigid rotation and has not deformed.</p>
+<p>Its transpose is</p>
+<p><span class="math display">\[
+(\nabla\mathbf u)^T
+=
+\begin{pmatrix}
+0 &amp; \Omega_z &amp; -\Omega_y\\
+-\Omega_z &amp; 0 &amp; \Omega_x\\
+\Omega_y &amp; -\Omega_x &amp; 0
+\end{pmatrix}.
+\]</span></p>
+<p>Adding the two matrices gives</p>
+<p><span class="math display">\[
+\nabla\mathbf u
++
+(\nabla\mathbf u)^T
+=
+\mathbf 0,
+\]</span></p>
+<p>and therefore</p>
+<p><span class="math display">\[
+\boxed{
+\frac{\nabla\mathbf u
++
+(\nabla\mathbf u)^T}{2}
+=
+\mathbf 0.
+}
+\]</span></p>
+<p>The symmetric part of the displacement gradient vanishes identically.</p>
+<p>This result is important because it shows that rigid-body rotations do not contribute to the strain tensor. The displacement gradient itself contains information about both deformation and rotation, but taking its symmetric part removes the rotational contribution automatically.</p>
+<p>The antisymmetric part,</p>
+<p><span class="math display">\[
+\frac{\nabla\mathbf u
+-
+(\nabla\mathbf u)^T}{2},
+\]</span></p>
+<p>contains the local rigid-body rotation, while the symmetric part corresponds to genuine deformations of the material.</p>
+</section>
+<section id="connection-with-distances" class="level3" data-number="7.0.3">
+<h3 data-number="7.0.3" class="anchored" data-anchor-id="connection-with-distances"><span class="header-section-number">7.0.3</span> Connection with distances</h3>
+<p>To understand why the symmetric part is the relevant quantity, consider two neighboring points separated initially by</p>
+<p><span class="math display">\[
+d\mathbf r.
+\]</span></p>
+<p>After deformation,</p>
+<p><span class="math display">\[
+d\mathbf r'
+=
+d\mathbf r
++
+(\nabla\mathbf u)\,d\mathbf r.
+\]</span></p>
+<p>The squared distance becomes</p>
+<p><span class="math display">\[
+|d\mathbf r'|^2
+=
+|d\mathbf r|^2
++
+2\,d\mathbf r^T
+\left[
+\frac{\nabla\mathbf u+(\nabla\mathbf u)^T}{2}
+\right]
+d\mathbf r,
+\]</span></p>
+<p>to first order in the deformation.</p>
+<p>We therefore see that changes in length depend only on the symmetric part of the displacement gradient.</p>
+<p>The antisymmetric part corresponds exclusively to rigid-body rotations and does not change distances between neighboring points.</p>
+<p>For this reason, the strain tensor is defined as</p>
+<p><span class="math display">\[
+\boxed{
+\epsilon
+=
+\frac{\nabla\mathbf u
++
+(\nabla\mathbf u)^T}{2}.
+}
+\]</span></p>
+<p>It is precisely the quantity that measures how lengths, angles and shapes are modified locally, independently of any overall translation or rotation of the object.</p>
+</section>
+</div>
+</div>
+</div>
 <p>The shear component of such deformation is characterized by the shear strain <span class="math inline">\(\gamma\)</span>, which does not take into account global expansion or compression of the material. For small deformations,</p>
 <p><span class="math display">\[
 \gamma_{ij}
@@ -1065,7 +1239,7 @@ G' \gg G''.
 <p>The material is neither fully liquid-like nor fully solid-like.</p>
 <p>Instead, it exhibits the strongest viscoelastic behavior.</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1074,7 +1248,7 @@ G' \gg G''.
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <section id="why-does-g-exhibit-a-maximum" class="level3" data-number="10.2.3">
 <h3 data-number="10.2.3" class="anchored" data-anchor-id="why-does-g-exhibit-a-maximum"><span class="header-section-number">10.2.3</span> Why does <span class="math inline">\(G''\)</span> exhibit a maximum?</h3>
