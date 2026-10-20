@@ -1066,7 +1066,7 @@ Any small perturbation lowers the energy and triggers bending.
 
 The beam spontaneously buckles.
 
-[Energy versus angle above the buckling threshold](figures/EnergyAboveBuckling.jpg)
+![Energy versus angle above the buckling threshold](figures/EnergyAboveBuckling.jpg)
 
 The critical force is therefore
 
